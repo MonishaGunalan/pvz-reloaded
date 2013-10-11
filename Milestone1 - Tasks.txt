@@ -1,0 +1,34 @@
+
+** Term project for SYSC3110 Fall 2013 **
+=========================================
+
+Milestone 1 (Due : Oct 25th)
+===========
+
+Task Assignment:TBD
+---------------
+
+Tiam:
+
+Chris:
+
+Monisha:
+
+Arzaan:
+
+
+Deliverables:
+-------------
+- README file
+- code
+- UML diagrams
+- documentation
+
+
+Team Meetings
+=============
+TBD
+
+
+
+
