@@ -1,7 +1,8 @@
 
 public class GameModel {
 	Player player;
-	//Level level; 	
+	//Level level;
+	int turnNumber;
 	
 	
 	public GameModel(){

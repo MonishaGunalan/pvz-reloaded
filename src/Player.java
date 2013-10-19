@@ -1,3 +1,5 @@
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 
@@ -8,9 +10,13 @@ public class Player {
 	//private Field field;
 	private PlantFactory plantFactory;
 
+	//This map contains the mapping of all plant type to their active cooldown
+	private Map<PlantFactory.PlantType, Integer> triggeredCooldowns;
+
 	public Player(/*Field field*/){
 		//this.field = field;
 		plantFactory = new PlantFactory();
+		triggeredCooldowns = new HashMap<PlantFactory.PlantType, Integer>();
 		sun = 0;
 		money = 0;
 	}
@@ -22,7 +28,7 @@ public class Player {
 			String command = c.next();
 
 			//before do anything reduce cooldowns
-			plantFactory.triggerCooldowns();
+			triggerCooldowns();
 			PlantFactory.PlantType p = null;
 			try{
 				p = PlantFactory.PlantType.valueOf(command.toUpperCase());
@@ -30,7 +36,8 @@ public class Player {
 				System.out.println("No such plant!");
 				continue;
 			}
-			if (p != null){
+
+			if (p != null && triggeredCooldowns.containsKey(p)){
 				grow(0,0,p);
 
 			}
@@ -55,6 +62,7 @@ public class Player {
 			//			field.getSquare(row, col).setPlant()
 
 			sun-= plantType.getCost();
+			triggeredCooldowns.put(plantType, plantType.getCooldown());
 			return true;
 		}
 
@@ -63,7 +71,20 @@ public class Player {
 		return false;
 	}
 
-
+	/**
+	 * This method should be called before makePlant so we don't decrement the cooldown as soon as it is added
+	 */
+	public void triggerCooldowns(){
+		for (PlantFactory.PlantType plantType: triggeredCooldowns.keySet()){
+			int cooldown = triggeredCooldowns.get(plantType);
+			cooldown --;
+			if (cooldown == -1){
+				triggeredCooldowns.remove(plantType);
+			} else{
+				triggeredCooldowns.put(plantType, cooldown);
+			}
+		}
+	}
 
 
 }

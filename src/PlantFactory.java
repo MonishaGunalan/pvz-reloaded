@@ -32,27 +32,13 @@ public class PlantFactory {
 
 	}
 
-	//This map contains the mapping of all plant type to their active cooldown
-	private Map<PlantType, Integer> activeCooldownMap;
+
 
 	public PlantFactory(){
-		activeCooldownMap = new HashMap<PlantType, Integer>();
+		
 	}
 
-	/**
-	 * This method should be called before makePlant so we don't decrement the cooldown as soon as it is added
-	 */
-	public void triggerCooldowns(){
-		for (PlantType plantType: activeCooldownMap.keySet()){
-			int cooldown = activeCooldownMap.get(plantType);
-			cooldown --;
-			if (cooldown == -1){
-				activeCooldownMap.remove(plantType);
-			} else{
-				activeCooldownMap.put(plantType, cooldown);
-			}
-		}
-	}
+
 
 
 	/**
@@ -65,10 +51,7 @@ public class PlantFactory {
 	 */
 	public Plant makePlant(PlantType type){
 
-		if (activeCooldownMap.containsKey(type)){
-			//Plant Type still on cooldown
-			return null;
-		}
+
 		Plant p = null;
 		try {
 			p = type.getPlantClass().newInstance();
@@ -81,7 +64,7 @@ public class PlantFactory {
 			e.printStackTrace();
 		}
 
-		activeCooldownMap.put(type, type.getCooldown());
+
 		return p;
 
 	}
