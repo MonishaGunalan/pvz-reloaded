@@ -1,15 +1,27 @@
 
 public class GameModel {
 	Player player;
-	//Level level;
-	int turnNumber;
-	
+	Level level;
+
 	
 	public GameModel(){
-		player = new Player();
+		loadLevel();
+		player = new Player(level.getField());
+		loadPlayerInformation();
 		player.play();
 		
 	}
+	
+	
+	private void loadPlayerInformation(){
+		
+	}
+	
+	private void loadLevel(){
+		
+	}
+	
+	
 	/**
 	 * @param args
 	 */
