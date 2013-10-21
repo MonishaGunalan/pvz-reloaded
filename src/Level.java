@@ -14,7 +14,6 @@ public class Level {
 	private int[] numZombieInRow;
 	private int numTurns;
 
-	
 	// instantiate a new field with field row and column
 	public Level(String fileName, int levelNumber) {
 		this.levelNumber = levelNumber;
@@ -24,17 +23,17 @@ public class Level {
 		turnNumber = 0;
 
 	}
-	
-	//create an array of Queue for each row to store the Zombies
-	public void createZombieQueue(){
+
+	// create an array of Queue for each row to store the Zombies
+	public void createZombieQueue() {
 		zombieQueue = new Queue[Field.DEFAULT_MAX_ROW];
 		for (int i = 0; i < Field.DEFAULT_MAX_ROW; i++) {
 			zombieQueue[i] = new LinkedList<Zombie>();
 		}
 	}
-	
-	//Create Zombies in the specified row#
-	public void spawnZombie(int row, int turn){
+
+	// Create Zombies in the specified row#
+	public void spawnZombie(int row, int turn) {
 		zombieQueue[row].add(new Zombie(turn, row, "normal"));
 	}
 
@@ -45,7 +44,7 @@ public class Level {
 		String readLevel = "Level" + levelNumber;
 		String[] fieldRows = new String[Field.DEFAULT_MAX_ROW];
 		numZombieInRow = new int[Field.DEFAULT_MAX_ROW];
-		
+
 		try {
 			// FileReader reads text files in the default encoding.
 			FileReader fileReader = new FileReader(fileName);
@@ -55,23 +54,25 @@ public class Level {
 
 			while ((line = bufferedReader.readLine()) != null) {
 				if (line.equals(readLevel)) {
-					//total turns allowed for the user to play
+					// total turns allowed for the user to play
 					numTurns = Integer.parseInt(bufferedReader.readLine());
 					System.out.println(numTurns);
-					
+
 					for (int i = 0; i < Field.DEFAULT_MAX_ROW; i++) {
 						String[] rowContents = bufferedReader.readLine().split(
 								" ");
-						//read the terrian type for each row
+						// read the terrian type for each row
 						fieldRows[i] = rowContents[0];
 						// read number of Zombies enetering a specic row
 						numZombieInRow[i] = Integer.parseInt(rowContents[1]);
-						while(numZombieInRow[i]>0){
-							//read the turn number in which the Zombie enters the field
-							int turn = Integer.parseInt(bufferedReader.readLine());
-							spawnZombie(i,turn);
+						while (numZombieInRow[i] > 0) {
+							// read the turn number in which the Zombie enters
+							// the field
+							int turn = Integer.parseInt(bufferedReader
+									.readLine());
+							spawnZombie(i, turn);
 							numZombieInRow[i]--;
-							
+
 						}
 					}
 				}
@@ -97,19 +98,22 @@ public class Level {
 	public int getTurnNumber() {
 		return turnNumber;
 	}
-	
-	public void incrementTurn(){
-		if(turnNumber< numTurns){
+
+	public void incrementTurn() {
+		if (turnNumber < numTurns) {
 			turnNumber++;
 			bringNewZombiesIn();
 		}
 	}
-	
-	public void bringNewZombiesIn(){
+
+	public void bringNewZombiesIn() {
 		for (int i = 0; i < Field.DEFAULT_MAX_ROW; i++) {
-			if(zombieQueue[i].peek().getTurn() == turnNumber){
+			if (zombieQueue[i].peek().getTurn() == turnNumber) {
 				Zombie z = zombieQueue[i].remove();
-				this.field.getStrip()[i].getSquare()[Field.DEFAULT_MAX_POSN].addZombie(z);
+				z.setPosition(i, Field.DEFAULT_MAX_POSN);
+				this.field.getStrip()[i].getSquare()[Field.DEFAULT_MAX_POSN]
+						.addZombie(z);
+
 			}
 		}
 	}

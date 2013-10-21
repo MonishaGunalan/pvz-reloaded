@@ -25,15 +25,17 @@ public class Field {
 		if (row < DEFAULT_MAX_ROW && col < DEFAULT_MAX_POSN - 1) {
 			strips[row].getSquare()[col].removeBullet(bullet);
 			strips[row].getSquare()[col + 1].addBullet(bullet);
+			bullet.setPosition(row, col+1);
 		}
 	}
 
-	public void moveZombieForware(Zombie zombie) {
+	public void moveZombieForward(Zombie zombie) {
 		int row = zombie.getRow();
 		int col = zombie.getCol();
 		if (row < DEFAULT_MAX_ROW && col < DEFAULT_MAX_POSN && col > 0) {
 			strips[row].getSquare()[col].removeZombie(zombie);
 			strips[row].getSquare()[col - 1].addZombie(zombie);
+			zombie.setPosition(row, col-1);
 		}
 	}
 
@@ -66,5 +68,13 @@ public class Field {
 		return prevSquare;
 	}
 	
+	public String toString(){
+		String s = "";
+		for (int i = 0; i < Field.DEFAULT_MAX_ROW; i++) {
+			s += strips[i].toString();
+		}
+		s += "/n";
+		return s;
+	}
 
 }

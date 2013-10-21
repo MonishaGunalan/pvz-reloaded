@@ -29,6 +29,15 @@ public class Strip {
 		return squares;
 	}
 	
+	public String toString(){
+		String s = "";
+		for (int j = 0; j < Field.DEFAULT_MAX_POSN; j++) {
+			s += squares[j].toString();
+		}
+		s += " ";
+		return s;
+	}
+	
 	
 	
 

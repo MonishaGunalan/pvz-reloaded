@@ -63,24 +63,44 @@ public class Square {
 	}
 
 	public boolean hasZombie() {
-		if (zombies.size()>0){
+		if (zombies.size() > 0) {
 			return true;
 		}
 		return false;
 	}
 
 	public boolean hasPlant() {
-		if (this.plant!=null){
+		if (this.plant != null) {
 			return true;
 		}
 		return false;
 	}
 
 	public boolean hasBullet() {
-		if (bullets.size()>0){
+		if (bullets.size() > 0) {
 			return true;
 		}
 		return false;
 	}
 
+	public String toString() {
+		String s = "[";
+		if (this.hasPlant()) {
+			s += 'p';
+		}else{
+			s += ' ';
+		}
+		if (this.hasZombie()) {
+			s += 'z';
+		}else{
+			s += ' ';
+		}
+		if (this.hasBullet()) {
+			s += '>';
+		}else{
+			s += ' ';
+		}
+		s += ']';
+		return s;
+	}
 }
