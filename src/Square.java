@@ -62,4 +62,25 @@ public class Square {
 		return zombies.remove(p);
 	}
 
+	public boolean hasZombie() {
+		if (zombies.size()>0){
+			return true;
+		}
+		return false;
+	}
+
+	public boolean hasPlant() {
+		if (this.plant!=null){
+			return true;
+		}
+		return false;
+	}
+
+	public boolean hasBullet() {
+		if (bullets.size()>0){
+			return true;
+		}
+		return false;
+	}
+
 }
