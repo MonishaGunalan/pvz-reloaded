@@ -1,4 +1,4 @@
-abstract public class Bullet
+public abstract class Bullet
 	extends Unit {
 	// Number of turns bullet must wait after moving
 	protected Cooldown moveCD;

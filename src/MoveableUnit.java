@@ -1,4 +1,3 @@
-
 public interface MoveableUnit {	
-	public void makeTurnAction();
+	public void move();
 }

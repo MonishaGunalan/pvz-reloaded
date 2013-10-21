@@ -1,4 +1,4 @@
-public class Zombie 
+public abstract class Zombie 
 	extends PerishableUnit{
 	protected Cooldown moveCD;
 	protected Cooldown attackCD;

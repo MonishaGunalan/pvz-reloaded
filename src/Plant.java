@@ -1,4 +1,4 @@
-public class Plant 
+public abstract class Plant 
 	extends PerishableUnit{
 	protected Cooldown attackCD;
 
@@ -6,35 +6,40 @@ public class Plant
 	}
 
 	public enum Type{
-		SUNFLOWER_PLANT(50, ;
+		SUNFLOWER_PLANT(50, 3);
 
 		// Constants
 		private static final int DEFAULT_ATTACK_TRIGGER = 0;
 		// State variables for different types of bullets
 		private final int cost;
 		private final int attackTriggerAmt;
-		private final Bullet.Type bullet;
+		private final Bullet.Type bulletType;
 		private final int maxHP;
 
 		private final int sunGenerated;
 
-		Type(int cost, int attackTriggerAmt, Bullet.Type bullet, int maxHP) {
+		// Constructor for defensive plants
+		Type(int cost, int maxHP) {
+			this(cost, maxHP, 0);
+		}
+
+		// Constructor for generator plants
+		Type(int cost, int maxHP, int sunGenerated) {
+			this(cost, maxHP, -1, null);
+		}
+
+		// Constructor for offensive plants
+		Type(int cost, int maxHP, int attackTriggerAmt, Bullet.Type bulletType) {
 			this.maxHP = maxHP;
-			this.dmg = dmg;
+			this.bulletType = bulletType;
 			this.attackTriggerAmt = attackTriggerAmt;
 			this.sunGenerated = 0;
 		}
 
-		Type(int cost, int attackTriggerAmt, Bullet.Type bullet, int maxHP, int sunGenerated) {
-			this.maxHP = maxHP;
-			this.dmg = dmg;
-			this.attackTriggerAmt = attackTriggerAmt;
-			this.sunGenerated = 0;
-		}
 
-		// Damage of bullet
-		public int getDmg() {
-			return dmg;
+		// Type of bullet
+		public Bullet.Type getBulletType() {
+			return bulletType;
 		}
 
 		public int getAttackTriggerAmt() {

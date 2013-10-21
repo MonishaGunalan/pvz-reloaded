@@ -11,7 +11,7 @@ public class NormalZombie
 		// If there's a plant on the square, attack it
 		// otherwise, move when possible
 		if (square.hasPlant()) {
-			this.attack(square.getPlant());
+			this.hit(square.getPlant());
 		} else {
 			this.move();
 		}
@@ -37,8 +37,8 @@ public class NormalZombie
 	// Normal zombie hits a plant on current hp, reducing
 	// its hp by a flat amount
 	private void hit(Plant plant) {
-		if (attackCD.isAvailable) {
-			plant.reduceHP(Bullet.Type.NORMAL.getDmg());
+		if (attackCD.isAvailable()) {
+			plant.reduceHP(Bullet.Type.PEA.getDmg());
 			attackCD.trigger();
 		}
 	}
@@ -46,7 +46,7 @@ public class NormalZombie
 	// Tick all cooldowns
 	private void tickCooldowns() {
 		moveCD.tick();
-		attackCD.tick()
+		attackCD.tick();
 	}
 }
 

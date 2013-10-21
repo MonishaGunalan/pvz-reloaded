@@ -1,4 +1,3 @@
-
 public interface TurnBasedUnit {
-	public void move();
+	public void makeTurnAction();
 }

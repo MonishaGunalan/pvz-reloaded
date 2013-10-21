@@ -1,6 +1,5 @@
-
-public class SquareUnit {
-	
+public abstract class Unit 
+	implements TurnBasedUnit{
 	protected Square square;
 	private int row;
 	private int col;
@@ -20,5 +19,4 @@ public class SquareUnit {
 	public void setSquare(Square square){
 		this.square = square;
 	}
-
 }

@@ -1,7 +1,7 @@
-
-public class PerishableUnit {
-    private int maxHP;
-    private int currentHP;
+public abstract class PerishableUnit 
+	extends Unit{
+    protected int maxHP;
+    protected int currentHP;
 
 	public int getMAXHP(){
 		return maxHP;
@@ -12,15 +12,14 @@ public class PerishableUnit {
 	}
 	
 	public void reduceHP(int amount){
-		if (currentHP != 0 && currentHP > 0){
-			currentHP = currentHP - amount;
+		this.currentHP -= amount;
+		if (this.currentHP <= 0) {
+			this.die();
 		}
 	}
 	
 	public void die(){
-		if (maxHP<0){
-			System.out.println("Dead! GG");
-		}
+		this.square.remove(this);
 	}
 	
 
