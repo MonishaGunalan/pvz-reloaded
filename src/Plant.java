@@ -1,34 +1,35 @@
-public class Zombie 
+public class Plant 
 	extends PerishableUnit{
-	protected Cooldown moveCD;
 	protected Cooldown attackCD;
 
 	public enum Status {
 	}
 
 	public enum Type{
-		NORMAL(10);
+		SUNFLOWER_PLANT(50, ;
 
 		// Constants
 		private static final int DEFAULT_ATTACK_TRIGGER = 0;
-		private static final int DEFAULT_MOVE_TRIGGER = 3;
-		private static final int DEFAULT_DMG = 1;
 		// State variables for different types of bullets
+		private final int cost;
 		private final int attackTriggerAmt;
-		private final int moveTriggerAmt;
-		private final int dmg;
+		private final Bullet.Type bullet;
 		private final int maxHP;
 
+		private final int sunGenerated;
 
-		Type(int maxHP) {
-			this(maxHP, DEFAULT_DMG, DEFAULT_MOVE_TRIGGER, DEFAULT_ATTACK_TRIGGER);
-		}
-
-		Type(int maxHP, int dmg, int moveTriggerAmt, int attackTriggerAmt) {
+		Type(int cost, int attackTriggerAmt, Bullet.Type bullet, int maxHP) {
 			this.maxHP = maxHP;
 			this.dmg = dmg;
-			this.moveTriggerAmt = moveTriggerAmt;
 			this.attackTriggerAmt = attackTriggerAmt;
+			this.sunGenerated = 0;
+		}
+
+		Type(int cost, int attackTriggerAmt, Bullet.Type bullet, int maxHP, int sunGenerated) {
+			this.maxHP = maxHP;
+			this.dmg = dmg;
+			this.attackTriggerAmt = attackTriggerAmt;
+			this.sunGenerated = 0;
 		}
 
 		// Damage of bullet
@@ -36,10 +37,6 @@ public class Zombie
 			return dmg;
 		}
 
-		// Amount to trigger CD by
-		public int getMoveTriggerAmt() {
-			return moveTriggerAmt;
-		}
 		public int getAttackTriggerAmt() {
 			return attackTriggerAmt;
 		}
