@@ -1,2 +1,3 @@
 public class PeaShooterPlant
-	extends 
+	extends OffensivePlant {
+}

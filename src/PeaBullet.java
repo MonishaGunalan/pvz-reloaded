@@ -1,55 +1,31 @@
 public class PeaBullet
 	extends Bullet {
+	// Constants
+	private static final int MOVE_TRIGGER = 0;
+	private static final int DMG = 1;
 
 	public PeaBullet(Square square) {
+		super(DMG, MOVE_TRIGGER);
 		// Set the square on which this bullet exists
 		super.setSquare(square);
-		// Create cooldown object for this bullet with appropriate
-		// trigger amount for the type
-		this.moveCD = new Cooldown(this.getType().getMoveTriggerAmt());
-	}
-
-	public Bullet.Type getType() {
-		return Bullet.Type.PEA;
+		// Instantiate cooldowns
+		moveCD = new Cooldown(MOVE_TRIGGER);
+		// Build set of all cooldowns
+		cooldowns.add(moveCD);
+		// Damage bullet does
 	}
 
 	public void makeTurnAction() {
 		if (square.hasZombies()) {
-			this.hit(square.getFirstZombie());
+			super.hit(square.getFirstZombie());
 		} else {
-			this.move();
-			this.tickCooldowns();
+			super.move(Field.Direction.RIGHT);
+			super.tickCooldowns();
 		}
 
 	}
 
-	// Moves the bullet appropriately for the turn
-	// and trickers the move cooldown
-	private void move() {
-		if (moveCD.isAvailable()) {
-			if (square.getNextSquare() != null) {
-				// Remove bullet from this square and add
-				// it to the next square
-				square.getNextSquare().add(this);
-				square.remove(this);
-				// Trigger the CD
-				moveCD.trigger();
-			} else {
-				square.remove(this);
-			}
-		}
-	}
-
-	// Pea bullet hits a single zombie and reduces
-	// its hp by a flat amount, after which the bullet
-	// is removed from the current square.
-	private void hit(Zombie zombie) {
-		zombie.reduceHP(Bullet.Type.PEA.getDmg());
-		square.remove(this);
-	}
-
-	// Tick all cooldowns
-	private void tickCooldowns() {
-		moveCD.tick();
+	public Bullet.Type getType() {
+		return Bullet.Type.PEA;
 	}
 }

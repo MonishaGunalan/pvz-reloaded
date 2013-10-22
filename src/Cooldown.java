@@ -10,7 +10,12 @@ public class Cooldown {
 	}
 
 	public void trigger() {
-		this.cooldown = this.TRIGGER_AMOUNT;
+		// Triggers with a default multiplier of 1
+		this.trigger(1);
+	}
+
+	public void trigger(int multiplier) {
+		this.cooldown *= multiplier * TRIGGER_AMOUNT;
 	}
 
 	public void tick() {

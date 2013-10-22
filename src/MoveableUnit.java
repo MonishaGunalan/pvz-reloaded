@@ -1,3 +1,3 @@
 public interface MoveableUnit {	
-	public void move();
+	public void move(Field.Direction dir);
 }

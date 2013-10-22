@@ -1,22 +1,18 @@
 public abstract class Plant 
 	extends PerishableUnit{
 	protected Cooldown attackCD;
+	
+	protected final int cost;
+
 
 	public enum Status {
 	}
 
-	public enum Type{
-		SUNFLOWER_PLANT(50, 3);
+	public enum Type{SUNFLOWER_PLANT;}
 
 		// Constants
 		private static final int DEFAULT_ATTACK_TRIGGER = 0;
 		// State variables for different types of bullets
-		private final int cost;
-		private final int attackTriggerAmt;
-		private final Bullet.Type bulletType;
-		private final int maxHP;
-
-		private final int sunGenerated;
 
 		// Constructor for defensive plants
 		Type(int cost, int maxHP) {

@@ -1,52 +1,71 @@
 public abstract class Zombie 
-	extends PerishableUnit{
+	extends PerishableUnit
+	implements MoveableUnit{
+
+	// State variables for different types of zombies
 	protected Cooldown moveCD;
 	protected Cooldown attackCD;
+	protected int attackTriggerAmt; 
+	protected int moveTriggerAmt;
+	protected int dmg;
 
-	public enum Status {
+	public enum Status {CHILLED, FROZEN, NORMAL}
+
+	public enum Type{ NORMAL;}
+
+	protected Zombie(int maxHP, int dmg, int attackTriggerAmt, int moveTriggerAmt) {
+		super(maxHP);
+
+		this.dmg = dmg;
+		this.attackTriggerAmt = attackTriggerAmt;
+		this.moveTriggerAmt = moveTriggerAmt;
+
+		this.attackCD = new Cooldown(attackTriggerAmt);
+		this.moveCD = new Cooldown(moveTriggerAmt);
+		cooldowns.add(attackCD;)
+		cooldowns.add(moveCD;)
 	}
 
-	public enum Type{
-		NORMAL(10);
-
-		// Constants
-		private static final int DEFAULT_ATTACK_TRIGGER = 0;
-		private static final int DEFAULT_MOVE_TRIGGER = 3;
-		private static final int DEFAULT_DMG = 1;
-		// State variables for different types of bullets
-		private final int attackTriggerAmt;
-		private final int moveTriggerAmt;
-		private final int dmg;
-		private final int maxHP;
-
-
-		Type(int maxHP) {
-			this(maxHP, DEFAULT_DMG, DEFAULT_MOVE_TRIGGER, DEFAULT_ATTACK_TRIGGER);
-		}
-
-		Type(int maxHP, int dmg, int moveTriggerAmt, int attackTriggerAmt) {
-			this.maxHP = maxHP;
-			this.dmg = dmg;
-			this.moveTriggerAmt = moveTriggerAmt;
-			this.attackTriggerAmt = attackTriggerAmt;
-		}
-
-		// Damage of bullet
-		public int getDmg() {
-			return dmg;
-		}
-
-		// Amount to trigger CD by
-		public int getMoveTriggerAmt() {
-			return moveTriggerAmt;
-		}
-		public int getAttackTriggerAmt() {
-			return attackTriggerAmt;
-		}
-
-		public int getMaxHP() {
-			return maxHP;
-		}
-
+	// Damage of bullet
+	public int getDmg() {
+		return dmg;
 	}
+
+	// Amount to trigger CD by
+	public int getMoveTriggerAmt() {
+		return moveTriggerAmt;
+	}
+	public int getAttackTriggerAmt() {
+		return attackTriggerAmt;
+	}
+
+	public int getMaxHP() {
+		return maxHP;
+	}
+
+	// Moves the bullet appropriately for the turn
+	// and trickers the move cooldown
+	public void move(Field.Direction dir) {
+		if (moveCD.isAvailable()) {
+			// Remove bullet from this square and add
+			// it to the next square
+			square.getSquare(Field.Direction.LEFT).add(this);
+			square.remove(this);
+			// Trigger the CD
+			moveCD.trigger();
+		}
+	}
+
+	// Normal zombie hits a plant on current hp, reducing
+	// its hp by a flat amount
+	public void hit(Plant plant) {
+		if (attackCD.isAvailable()) {
+			plant.reduceHP(getDmg());
+			attackCD.trigger();
+		}
+	}
+
+	// Abstract classes
+	public abstract Zombie.Type getType();
+	
 }

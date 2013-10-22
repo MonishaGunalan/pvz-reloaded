@@ -1,19 +1,23 @@
 public class NormalZombie
 	extends Zombie {
+	// Constants
+	private static final int DMG = 1;
+	private static final int MAX_HP = 10;
+	private static final int ATTACK_TRIGGER = 0;
+	private static final int MOVE_TRIGGER = 3;
+
+	// COnstructor
 	public NormalZombie() {
-		this.attackCD = new Cooldown(this.getType().getAttackTriggerAmt());
-		this.moveCD = new Cooldown(this.getType().getMoveTriggerAmt());
-		super.maxHP = this.getType().getMaxHP();
-		super.currentHP = super.maxHP;
+		super(MAX_HP, DMG, ATTACK_TRIGGER, MOVE_TRIGGER);
 	}
 
 	public void makeTurnAction() {
 		// If there's a plant on the square, attack it
 		// otherwise, move when possible
 		if (square.hasPlant()) {
-			this.hit(square.getPlant());
+			super.hit(square.getPlant());
 		} else {
-			this.move();
+			super.move(Field.Direcion.LEFT);
 		}
 	}
 
@@ -21,32 +25,5 @@ public class NormalZombie
 		return Zombie.Type.NORMAL;
 	}
 
-	// Moves the bullet appropriately for the turn
-	// and trickers the move cooldown
-	private void move() {
-		if (moveCD.isAvailable()) {
-			// Remove bullet from this square and add
-			// it to the next square
-			square.getPrevSquare().add(this);
-			square.remove(this);
-			// Trigger the CD
-			moveCD.trigger();
-		}
-	}
-
-	// Normal zombie hits a plant on current hp, reducing
-	// its hp by a flat amount
-	private void hit(Plant plant) {
-		if (attackCD.isAvailable()) {
-			plant.reduceHP(Bullet.Type.PEA.getDmg());
-			attackCD.trigger();
-		}
-	}
-
-	// Tick all cooldowns
-	private void tickCooldowns() {
-		moveCD.tick();
-		attackCD.tick();
-	}
 }
 

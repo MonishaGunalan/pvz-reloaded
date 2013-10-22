@@ -3,6 +3,12 @@ public abstract class PerishableUnit
     protected int maxHP;
     protected int currentHP;
 
+	protected PerishableUnit(int maxHP) {
+		super();
+		this. maxHP = maxHP;
+		this.currentHP = this.maxHP;
+	}
+
 	public int getMAXHP(){
 		return maxHP;
 	}
