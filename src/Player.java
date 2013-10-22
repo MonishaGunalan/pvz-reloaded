@@ -67,9 +67,10 @@ public class Player {
 	}
 
 	public Command getNextCommand(){
+		System.out.println(Command.getCommandOptions());
 		String command = c.next();
 		
-		return new Command(command);
+		return new Command(command,c);
 	}
 
 
