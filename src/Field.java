@@ -20,22 +20,22 @@ public class Field {
 	}
 
 	public void moveBulletForward(Bullet bullet) {
-		int row = bullet.getRow();
-		int col = bullet.getCol();
+		int col = bullet.getSquare().getCol();
+		int row = bullet.getSquare().getRow();
 		if (row < DEFAULT_MAX_ROW && col < DEFAULT_MAX_POSN - 1) {
 			strips[row].getSquare()[col].removeBullet(bullet);
 			strips[row].getSquare()[col + 1].addBullet(bullet);
-			bullet.setPosition(row, col+1);
+			bullet.setSquare(this.getNextSquare(bullet.getSquare()));
 		}
 	}
 
 	public void moveZombieForward(Zombie zombie) {
-		int row = zombie.getRow();
-		int col = zombie.getCol();
+		int row = zombie.getSquare().getRow();
+		int col = zombie.getSquare().getCol();
 		if (row < DEFAULT_MAX_ROW && col < DEFAULT_MAX_POSN && col > 0) {
 			strips[row].getSquare()[col].removeZombie(zombie);
 			strips[row].getSquare()[col - 1].addZombie(zombie);
-			zombie.setPosition(row, col-1);
+			zombie.setSquare(this.getNextSquare(zombie.getSquare()));
 		}
 	}
 
@@ -52,7 +52,7 @@ public class Field {
 		Square nextSquare = null;
 		int row = square.getRow();
 		int col = square.getCol();
-		if (row < DEFAULT_MAX_ROW - 1 && col < DEFAULT_MAX_POSN - 1) {
+		if ( col < DEFAULT_MAX_POSN - 1) {
 			nextSquare =  strips[row].getSquare()[col+1];
 		}
 		return nextSquare;
@@ -62,10 +62,15 @@ public class Field {
 		Square prevSquare = null;
 		int row = square.getRow();
 		int col = square.getCol();
-		if (row < DEFAULT_MAX_ROW && col < DEFAULT_MAX_POSN && row > 0 && col > 0) {
+		if (col > 0) {
 			prevSquare =  strips[row].getSquare()[col-1];
 		}
 		return prevSquare;
+	}
+	
+	public int getTotalSun(){
+		//yet to be filled.
+		return 0;
 	}
 	
 	public String toString(){

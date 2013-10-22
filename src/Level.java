@@ -33,8 +33,8 @@ public class Level {
 	}
 
 	// Create Zombies in the specified row#
-	public void spawnZombie(int row, int turn) {
-		zombieQueue[row].add(new Zombie(turn, row, "normal"));
+	public void spawnZombie(int row, int turn, String type) {
+		zombieQueue[row].add(new Zombie(turn, row, type));
 	}
 
 	// Read File to get the information about this level
@@ -67,10 +67,12 @@ public class Level {
 						numZombieInRow[i] = Integer.parseInt(rowContents[1]);
 						while (numZombieInRow[i] > 0) {
 							// read the turn number in which the Zombie enters
-							// the field
-							int turn = Integer.parseInt(bufferedReader
-									.readLine());
-							spawnZombie(i, turn);
+							// the field and the type 
+							String[] rowContents1 = bufferedReader.readLine().split(
+									" ");
+							int turn = Integer.parseInt(rowContents[0]);
+							String type = rowContents[1];
+							spawnZombie(i, turn, type);
 							numZombieInRow[i]--;
 
 						}
@@ -110,17 +112,11 @@ public class Level {
 		for (int i = 0; i < Field.DEFAULT_MAX_ROW; i++) {
 			if (zombieQueue[i].peek().getTurn() == turnNumber) {
 				Zombie z = zombieQueue[i].remove();
-				z.setPosition(i, Field.DEFAULT_MAX_POSN);
-				this.field.getStrip()[i].getSquare()[Field.DEFAULT_MAX_POSN]
+				z.setSquare(this.field.getStrip()[i].getSquare()[Field.DEFAULT_MAX_POSN-1]);
+				this.field.getStrip()[i].getSquare()[Field.DEFAULT_MAX_POSN-1]
 						.addZombie(z);
 
 			}
 		}
-	}
-
-	// *****Has to be removed - Just for testing
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		new Level("level.txt", 2);
 	}
 }
