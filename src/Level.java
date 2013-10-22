@@ -110,17 +110,11 @@ public class Level {
 		for (int i = 0; i < Field.DEFAULT_MAX_ROW; i++) {
 			if (zombieQueue[i].peek().getTurn() == turnNumber) {
 				Zombie z = zombieQueue[i].remove();
-				z.setPosition(i, Field.DEFAULT_MAX_POSN);
-				this.field.getStrip()[i].getSquare()[Field.DEFAULT_MAX_POSN]
+				z.setSquare(this.field.getStrip()[i].getSquare()[Field.DEFAULT_MAX_POSN-1]);
+				this.field.getStrip()[i].getSquare()[Field.DEFAULT_MAX_POSN-1]
 						.addZombie(z);
 
 			}
 		}
-	}
-
-	// *****Has to be removed - Just for testing
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		new Level("level.txt", 2);
 	}
 }
