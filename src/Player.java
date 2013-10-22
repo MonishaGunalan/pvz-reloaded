@@ -1,7 +1,7 @@
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
-import CommandType.*;
+//import CommandType.*;
 
 public class Player {
 
@@ -39,7 +39,7 @@ public class Player {
 				PlantFactory.PlantType p = null;
 				String plant = command.getArg();
 				try{
-					p = PlantFactory.PlantType.valueOf(plant);
+					p = PlantFactory.PlantType.valueOf(plant.toUpperCase());
 				}catch(IllegalArgumentException e){
 					System.out.println("No such plant!");
 					continue;
@@ -70,8 +70,8 @@ public class Player {
 
 
 	public boolean grow(int row, int col, PlantFactory.PlantType plantType){
-		//		Square square = field.getSquare(row,col);
-		if(/*square.getPlant() != null &&*/ plantType.getCost() <= sun){	
+		Square square = field.getStrip()[row].getSquare()[col];
+		if(square.hasPlant() && plantType.getCost() <= sun){	
 			Plant plant = plantFactory.makePlant(plantType);
 			if (plant != null){
 				System.out.println("Plant Created");
@@ -81,10 +81,8 @@ public class Player {
 			}
 
 
-
 			if (plant != null){
-				//			field.getSquare(row, col).setPlant()
-
+				square.addPlant(plant);
 				sun-= plantType.getCost();
 				triggeredCooldowns.put(plantType, plantType.getCooldown());
 				return true;

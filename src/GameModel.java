@@ -5,21 +5,16 @@ public class GameModel {
 
 	
 	public GameModel(){
-		loadLevel();
+		//TODO:: reader info here
+		level = new Level("",1);
 		player = new Player(level.getField());
-		loadPlayerInformation();
+
 		player.play();
 		
 	}
 	
 	
-	private void loadPlayerInformation(){
-		
-	}
-	
-	private void loadLevel(){
-		
-	}
+
 	
 	
 	/**
