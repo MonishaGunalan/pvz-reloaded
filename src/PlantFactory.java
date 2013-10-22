@@ -7,7 +7,7 @@ public class PlantFactory {
  
 	public enum PlantType {
 		SUNFLOWER(5,5,  SunflowerPlant.class),
-		PEASHOOTER(5,5,Plant.class);
+		PEASHOOTER(5,5,PeaShooterPlant.class);
 		private int cooldown;
 		private int cost;
 		private Class<? extends Plant> plantClass;
