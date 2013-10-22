@@ -1,5 +1,9 @@
 public abstract class GeneratorPlant
 	extends Plant {
-	protected final int sunGenerated;
+	protected SunGenerator sunGenerator;
+
+	protected GeneratorPlant(int maxHP) {
+		super(maxHP);
+	}
 }
 

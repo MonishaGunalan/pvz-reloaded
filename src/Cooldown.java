@@ -3,6 +3,7 @@ public class Cooldown {
 	private final int TRIGGER_AMOUNT;
 	// Triggered cd
 	private int cooldown;
+	private int pauseDuration;
 
 	public Cooldown(int triggerAmount) {
 		this.TRIGGER_AMOUNT = triggerAmount;
@@ -15,11 +16,13 @@ public class Cooldown {
 	}
 
 	public void trigger(int multiplier) {
-		this.cooldown *= multiplier * TRIGGER_AMOUNT;
+		this.cooldown = multiplier * (TRIGGER_AMOUNT+1) - 1;
 	}
 
 	public void tick() {
-		if (this.cooldown > 0) {
+		if (isPaused()) {
+			pauseDuration--;
+		} else if (!isAvailable()) {
 			this.cooldown--;
 		}
 	}
@@ -34,5 +37,13 @@ public class Cooldown {
 
 	public boolean isAvailable() {
 		return this.cooldown == 0;
+	}
+
+	public boolean isPaused() {
+		return this.pauseDuration > 0;
+	}
+
+	public void pause(int duration) {
+		this.pauseDuration = duration;
 	}
 }

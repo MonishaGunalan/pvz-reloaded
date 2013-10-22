@@ -1,14 +1,11 @@
-public class NormalZombie
+Public class NormalZombie
 	extends Zombie {
 	// Constants
-	private static final int DMG = 1;
 	private static final int MAX_HP = 10;
-	private static final int ATTACK_TRIGGER = 0;
-	private static final int MOVE_TRIGGER = 3;
 
 	// COnstructor
 	public NormalZombie() {
-		super(MAX_HP, DMG, ATTACK_TRIGGER, MOVE_TRIGGER);
+		super(MAX_HP);
 	}
 
 	public void makeTurnAction() {
@@ -19,6 +16,8 @@ public class NormalZombie
 		} else {
 			super.move(Field.Direcion.LEFT);
 		}
+
+		super.tickCooldowns();
 	}
 
 	public Zombie.Type getType() {
