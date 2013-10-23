@@ -33,6 +33,7 @@ public abstract class Zombie
 
 	protected Zombie(int maxHP) {
 		this(maxHP, DEFAULT_ATK, DEFAULT_ATTACK_TRIGGER, DEFAULT_MOVE_TRIGGER);
+		moveCD.trigger();
 	}
 
 	protected Zombie(int maxHP, int dmg, int attackTriggerAmt, int moveTriggerAmt) {

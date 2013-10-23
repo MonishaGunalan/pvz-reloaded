@@ -69,10 +69,10 @@ public class Square {
 		Square s = null;
 		switch (dir) {
 		case LEFT:
-			s = this.strip.getSquare(col - 1);
+			if (col-1 >= 0) s = this.strip.getSquare(col - 1);
 			break;
 		case RIGHT:
-			s = this.strip.getSquare(col + 1);
+			if (col+1 < Field.DEFAULT_MAX_POSN) s = this.strip.getSquare(col + 1);
 			break;
 		}
 
@@ -116,7 +116,7 @@ public class Square {
 	 */
 	public void add(Zombie zombie) {
 		zombies.add(zombie);
-		//System.out.println("adding zombie @ " + getRow() + "," + getCol());
+		System.out.println("adding zombie @ " + getRow() + "," + getCol());
 		this.numZombie++;
 	}
 
@@ -144,7 +144,7 @@ public class Square {
 	 * 
 	 */
 	public boolean remove(Zombie z) {
-		//System.out.println("removing zombie @ " + getRow() + "," + getCol());
+		System.out.println("removing zombie @ " + getRow() + "," + getCol());
 		numZombie--;
 		return zombies.remove(z);
 	}

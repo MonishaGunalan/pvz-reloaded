@@ -1,4 +1,4 @@
-Import java.io.BufferedReader;
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -156,8 +156,6 @@ public class Level {
 			if (!zombieList[i].isEmpty() && zombieList[i].get(0).getKey() == turnNumber) {
 				Zombie z = zombieList[i].remove(0).getValue();
 				z.setSquare(this.field.getStrip()[i].getSquares()[Field.DEFAULT_MAX_POSN - 1]);
-				this.field.getStrip()[i].getSquares()[Field.DEFAULT_MAX_POSN - 1]
-						.add(z);
 			}
 
 		}
