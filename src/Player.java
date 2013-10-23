@@ -12,7 +12,7 @@ public class Player {
 	private int sun;
 	private Level level;
 
-	Scanner c;
+	//Scanner c;
 	//This map contains the mapping of all plant type to their active cooldown
 	private Map<PlantFactory.PlantType, Integer> triggeredCooldowns;
 
@@ -27,55 +27,62 @@ public class Player {
 		triggeredCooldowns = new HashMap<PlantFactory.PlantType, Integer>();
 		sun = 0;
 		score = 0;
-		c = new Scanner(System.in);
+
 
 	}
 
+	/**
+	 * The play via command line as the means of input
+	 * and pass to a helper function to handle the command
+	 */
 	public void play(){
-
+		Scanner c = new Scanner(System.in);
 		while (true){
-
-			//Get the plyaer command
-			PlayerCommand command = getNextCommand(); 
-
-			switch(command.getCommandType()){
-			case PLANT_SEED:
-				PlantFactory.PlantType p = null;
-
-				String plant = command.getArg();
-				try{
-					p = PlantFactory.PlantType.valueOf(plant.toUpperCase());
-				}catch(IllegalArgumentException e){
-					System.out.println("No such plant!");
-					continue;
-				}
-				boolean growSuccessful = false;
-				if (p != null && triggeredCooldowns.containsKey(p)){
-					growSuccessful = grow(0,0,p);
-
-				}
-				if (growSuccessful){
-					System.out.println(level.toString());
-					level.incrementTurn();
-				}
-				break;
-			case UNDO:
-				//TODO implement a Turn Class that will encapsulate the data of a turn
-				break;
-			case REDO:
-				//TODO implement a Turn Class that will encapsulate the data of a turn
-				break;
-			default:
-			}
-			triggerCooldowns();
-
+			//Get the player command
+			PlayerCommand command = new PlayerCommand(c); 
+			play(command);
 		}
 	}
 
-	public PlayerCommand getNextCommand(){
+	/**
+	 * The helper function that will handle the command
+	 * @param command The command to be input
+	 */
+	private void play (PlayerCommand command){
+		switch(command.getCommandType()){
+		case PLANT_SEED:
+			//Try to create the plant based on the playercommand
+			PlantFactory.PlantType p = null;
+			String plant = command.getArg();
+			try{
+				p = PlantFactory.PlantType.valueOf(plant.toUpperCase());
+			}catch(IllegalArgumentException e){
+				System.out.println("No such plant!");
+				return;
+			}
+			boolean growSuccessful = false;
+			if (p != null && triggeredCooldowns.containsKey(p)){
+				growSuccessful = grow(0,0,p);
 
-		return new PlayerCommand(c);
+			}
+			if (growSuccessful){
+				System.out.println(level.toString());
+				level.incrementTurn();
+				triggerCooldowns();
+			}
+			break;
+		case UNDO:
+			//TODO implement a Turn Class that will encapsulate the data of a turn
+			break;
+		case REDO:
+			//TODO implement a Turn Class that will encapsulate the data of a turn
+			break;
+		default:
+		}
+
+
 	}
+
 
 
 	/**
@@ -87,7 +94,7 @@ public class Player {
 	 * @return The boolean if the the plant was grown
 	 */
 	public boolean grow(int row, int col, PlantFactory.PlantType plantType){
-		
+
 		//TODO:: give a message if sun points are sufficient or square already has plants
 		Square square = level.getField().getStrip()[row].getSquare(col);
 		if(square.hasPlant() && plantType.getCost() <= sun){	
