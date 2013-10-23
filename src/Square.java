@@ -36,10 +36,10 @@ public class Square {
 	}
 
 	public Square getSquare(Field.Direction dir) {
-		Square s;
+		Square s = null;
 		switch (dir) {
-			case Field.Direction.LEFT: s = this.strip.getSquares(col-1); break;
-			case Field.Direction.RIGHT: s = this.strip.getSquares(col+1); break;
+			case LEFT: s = this.strip.getSquares(col-1); break;
+			case RIGHT: s = this.strip.getSquares(col+1); break;
 		}
 
 		return s;
