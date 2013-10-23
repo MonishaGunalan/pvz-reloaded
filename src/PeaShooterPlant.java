@@ -15,8 +15,9 @@ public class PeaShooterPlant
 	}
 
 	public void makeTurnAction() {
-		if (square.hasZombieAfter()) {
-			shoot();
+		if (square.hasZombieAfter() && shootCD.isAvailable()) {
+				shoot();
+				shootCD.trigger();
 		}
 		super.tickCooldowns();
 	}

@@ -106,6 +106,7 @@ public class Square {
 	 * @bullet the bullet
 	 */
 	public void add(Bullet bullet) {
+		System.out.println("adding bullet @ " + getRow() + "," + getCol());
 		bullets.add(bullet);
 		this.numBullet++;
 	}
@@ -116,7 +117,7 @@ public class Square {
 	 */
 	public void add(Zombie zombie) {
 		zombies.add(zombie);
-		System.out.println("adding zombie @ " + getRow() + "," + getCol());
+		//System.out.println("adding zombie @ " + getRow() + "," + getCol());
 		this.numZombie++;
 	}
 
@@ -144,7 +145,7 @@ public class Square {
 	 * 
 	 */
 	public boolean remove(Zombie z) {
-		System.out.println("removing zombie @ " + getRow() + "," + getCol());
+		//System.out.println("removing zombie @ " + getRow() + "," + getCol());
 		numZombie--;
 		return zombies.remove(z);
 	}
@@ -156,8 +157,9 @@ public class Square {
 	 * 
 	 */
 	public boolean remove(Bullet b) {
-		numZombie--;
-		return zombies.remove(b);
+		System.out.println("removing bullet @ " + getRow() + "," + getCol());
+		numBullet--;
+		return bullets.remove(b);
 	}
 
 	/*
@@ -167,8 +169,8 @@ public class Square {
 	 * 
 	 */
 	public boolean remove(Plant p) {
-		numZombie--;
-		return zombies.remove(p);
+		this.plant = null;
+		return true;
 	}
 	/*
 	 * check if there is a zombie after it

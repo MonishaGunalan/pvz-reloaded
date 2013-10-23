@@ -20,7 +20,8 @@ public abstract class Bullet
 	// is removed from the current square.
 	protected void hit(Zombie zombie) {
 		zombie.reduceHP(getDmg());
-		square.remove(this);
+		System.out.println("Attemption to remove bullet; successful? " + square.remove(this));
+		//square.remove(this);
 	}
 
 	// Damage of bullet
@@ -36,9 +37,9 @@ public abstract class Bullet
 
 	// Moves the bullet appropriately for the turn
 	// and trickers the move cooldown
-	public void move(Field.Direction dir) {
+	protected void move(Field.Direction dir) {
 		if (moveCD.isAvailable()) {
-			Square dest = square.getSquare(Field.Direction.LEFT);
+			Square dest = square.getSquare(dir);
 			if (dest != null) {
 				// Remove bullet from this square and add
 				// it to the next square
