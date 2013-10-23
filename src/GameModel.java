@@ -9,17 +9,25 @@ public class GameModel {
 	Player player;
 	Level level;
 
+	public static final String playerDataFileLocation = "../rsrc/PlayerData.txt";
 	
+	
+	/**
+	 * The public constructor for Game Model
+	 * If player data exists it is loaded and level and player is initialized
+	 * 
+	 */
 	public GameModel(){
-		//TODO:: reader info here
-		File f = new File("playerData.txt");
+		
+		File f = new File(playerDataFileLocation);
+		
+		//if the file exists then read the file and initialize based on the file
 		if (f.exists()){
-			// load files here
 			try {
 				BufferedReader reader = new BufferedReader(new FileReader(f));
 				int levelNum = Integer.parseInt(reader.readLine());
 				int score =  Integer.parseInt(reader.readLine());
-				level = new Level("", levelNum);
+				level = new Level(levelNum);
 				player = new Player(level);
 				player.setScore(score);
 			} catch (NumberFormatException | IOException e) {
@@ -27,7 +35,8 @@ public class GameModel {
 				e.printStackTrace();
 			}
 		} else {
-			level = new Level("",1);
+			//If no file exists initialize with level 1
+			level = new Level(1);
 			player = new Player(level);	
 		}
 		

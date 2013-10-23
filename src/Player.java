@@ -11,16 +11,19 @@ public class Player {
 	private int score;
 	private int sun;
 	private Level level;
-	private PlantFactory plantFactory;
+
 	Scanner c;
 	//This map contains the mapping of all plant type to their active cooldown
 	private Map<PlantFactory.PlantType, Integer> triggeredCooldowns;
 
 
-
+	/**
+	 * public constructor for player
+	 * @param level	The level the player starts at
+	 */
 	public Player(Level level){
 		this.level = level;
-		plantFactory = new PlantFactory();
+
 		triggeredCooldowns = new HashMap<PlantFactory.PlantType, Integer>();
 		sun = 0;
 		score = 0;
@@ -30,17 +33,15 @@ public class Player {
 
 	public void play(){
 
-
 		while (true){
-			PlayerCommand command = getNextCommand(); 
 
-			//before do anything reduce cooldowns
-			triggerCooldowns();
+			//Get the plyaer command
+			PlayerCommand command = getNextCommand(); 
 
 			switch(command.getCommandType()){
 			case PLANT_SEED:
 				PlantFactory.PlantType p = null;
-				//TODO:: refactor this into playercommand
+
 				String plant = command.getArg();
 				try{
 					p = PlantFactory.PlantType.valueOf(plant.toUpperCase());
@@ -48,13 +49,15 @@ public class Player {
 					System.out.println("No such plant!");
 					continue;
 				}
-
+				boolean growSuccessful = false;
 				if (p != null && triggeredCooldowns.containsKey(p)){
-					grow(0,0,p);
+					growSuccessful = grow(0,0,p);
 
 				}
-				System.out.println(level.toString());
-				level.incrementTurn();
+				if (growSuccessful){
+					System.out.println(level.toString());
+					level.incrementTurn();
+				}
 				break;
 			case UNDO:
 				//TODO implement a Turn Class that will encapsulate the data of a turn
@@ -64,22 +67,31 @@ public class Player {
 				break;
 			default:
 			}
+			triggerCooldowns();
 
 		}
 	}
 
 	public PlayerCommand getNextCommand(){
-		System.out.println(PlayerCommand.getCommandOptions());
-		String command = c.next();
 
-		return new PlayerCommand(command,c);
+		return new PlayerCommand(c);
 	}
 
 
+	/**
+	 * Grow the plant in the square at row col if the player
+	 * has sufficient sun points and the cooldown is not active
+	 * @param row
+	 * @param col
+	 * @param plantType
+	 * @return The boolean if the the plant was grown
+	 */
 	public boolean grow(int row, int col, PlantFactory.PlantType plantType){
-		Square square = level.getField().getStrip()[row].getSquare()[col];
+		
+		//TODO:: give a message if sun points are sufficient or square already has plants
+		Square square = level.getField().getStrip()[row].getSquare(col);
 		if(square.hasPlant() && plantType.getCost() <= sun){	
-			Plant plant = plantFactory.makePlant(plantType);
+			Plant plant = PlantFactory.makePlant(plantType);
 			if (plant != null){
 				System.out.println("Plant Created");
 				System.out.println(plant.getClass().getName());
@@ -89,7 +101,7 @@ public class Player {
 
 
 			if (plant != null){
-				square.addPlant(plant);
+				square.add(plant);
 				sun-= plantType.getCost();
 				triggeredCooldowns.put(plantType, plantType.getCooldown());
 				return true;
@@ -107,7 +119,7 @@ public class Player {
 		for (PlantFactory.PlantType plantType: triggeredCooldowns.keySet()){
 			int cooldown = triggeredCooldowns.get(plantType);
 			cooldown --;
-			if (cooldown == -1){
+			if (cooldown == 0){
 				triggeredCooldowns.remove(plantType);
 			} else{
 				triggeredCooldowns.put(plantType, cooldown);

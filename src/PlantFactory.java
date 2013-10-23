@@ -4,12 +4,12 @@
 public class PlantFactory {
  
 	public enum PlantType {
-		SUNFLOWER(5,5,  SunflowerPlant.class),
+		SUNFLOWER(5,5,SunflowerPlant.class),
 		PEASHOOTER(5,5,PeaShooterPlant.class);
 		private int cooldown;
 		private int cost;
 		private Class<? extends Plant> plantClass;
-		//private String name;
+
 		private PlantType(int cost, int cooldown,Class<? extends Plant> plantClass){
 			this.cost = cost;
 			this.cooldown = cooldown;
@@ -32,11 +32,9 @@ public class PlantFactory {
 
 
 
-	public PlantFactory(){
+	private PlantFactory(){
 		
 	}
-
-
 
 
 	/**
@@ -47,8 +45,7 @@ public class PlantFactory {
 	 * if it is not on cooldown it creates the desired plant
 	 * 
 	 */
-	public Plant makePlant(PlantType type){
-
+	public static Plant makePlant(PlantType type){
 
 		Plant p = null;
 		try {
@@ -61,12 +58,14 @@ public class PlantFactory {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-
 		return p;
 
 	}
-	
+
+	/**
+	 * Formats all the plant options into user viewable string
+	 * @return The formatted string
+	 */
 	public static String getPlantOptions(){
 		StringBuilder b = new StringBuilder();
 		for (PlantType cmd: PlantType.values()){
