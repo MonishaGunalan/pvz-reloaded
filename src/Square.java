@@ -136,6 +136,14 @@ public class Square {
 		return false;
 	}
 
+	public List<Zombie> getZombies() {
+		return zombies;
+	}
+
+	public List<Bullet> getBullets() {
+		return bullets;
+	}
+
 	public String toString() {
 		String s = "[";
 		if (this.terrain.equals("mud")) {

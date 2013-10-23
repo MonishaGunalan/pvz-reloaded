@@ -144,6 +144,7 @@ public class Level {
 		if (turnNumber < numTurns) {
 			turnNumber++;
 			bringNewZombiesIn();
+			field.makeTurnAction();
 		}
 	}
 

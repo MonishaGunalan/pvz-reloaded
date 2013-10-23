@@ -5,7 +5,10 @@ public class Field {
 
 	public static final int DEFAULT_MAX_ROW = 5;
 	public static final int DEFAULT_MAX_POSN = 5;
+	public static final int SUN_GENERATION_PERIOD=3;
+	public static final int SUN_GENERATION_VALUE=25;
 	private List<Unit> units;
+	private Cooldown sunGenerationCooldown;
 
 	public enum Direction {
 		LEFT, RIGHT;
@@ -21,6 +24,7 @@ public class Field {
 			strips[i] = new Strip(terrainType[i], i, this);
 		}
 		units = new ArrayList<Unit>();
+		sunGenerationCooldown = new Cooldown(SUN_GENERATION_PERIOD);
 	}
 
 	public Strip[] getStrip() {
@@ -79,8 +83,24 @@ public class Field {
 
 	public int getTotalSun() {
 		// yet to be filled.
-		return 0;
+		int sun = 0;
+		if (sunGenerationCooldown.isAvailable()){
+			sun += SUN_GENERATION_VALUE;
+			sunGenerationCooldown.trigger();
+		}
+
+		for (Strip strip: strips){
+			for (Square square: strip.getSquares()){
+				if (square.getPlant() instanceof GeneratorPlant){
+					//TODO:: wait for implementation of generatorPlant
+					//(Generator)
+				}
+			}
+		}
+		return sun;
 	}
+	
+	
 
 	public String toString() {
 		String s = "";
@@ -93,6 +113,23 @@ public class Field {
 
 	public void addToUnitList(Unit unit) {
 		units.add(unit);
+	}
+
+	public void makeTurnAction() {
+		// TODO Auto-generated method stub
+		sunGenerationCooldown.tick();
+		for (Strip strip: strips){
+			for (Square square: strip.getSquares()){
+				square.getPlant().makeTurnAction();
+				for (Zombie z: square.getZombies()){
+					z.makeTurnAction();
+				}
+				for (Bullet b: square.getBullets()){
+					b.makeTurnAction();
+				}
+			}
+		}
+
 	}
 
 }

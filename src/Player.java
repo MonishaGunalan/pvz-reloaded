@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
-//import CommandType.*;
 
 public class Player {
 
@@ -27,7 +26,7 @@ public class Player {
 		for (PlantFactory.PlantType p: PlantFactory.PlantType.values()){
 			triggeredCooldowns.put(p, new Cooldown(p.getCooldown()));
 		}
-		sun = 0;
+		sun = 25;
 		score = 0;
 
 	}
@@ -81,6 +80,9 @@ public class Player {
 		case DO_NOTHING:
 			break;
 		default:
+			System.out.println(level.getField().toString());
+			level.incrementTurn();
+			triggerCooldowns();
 		}
 
 
@@ -129,6 +131,7 @@ public class Player {
 	 * Iterate through all the cooldowns and tick any that are active
 	 */
 	public void triggerCooldowns(){
+		sun += level.getField().getTotalSun();
 		for (Cooldown cooldown: triggeredCooldowns.values()){
 			cooldown.tick();
 		}
