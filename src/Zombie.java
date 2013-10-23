@@ -16,7 +16,16 @@ public abstract class Zombie
 
 	public enum Status {CHILLED, FROZEN, NORMAL}
 
-	public enum Type{ NORMAL;}
+	public enum Type{ 
+		NORMAL;
+
+		public static Type getType(String s) {
+			switch (s) {
+				case "normal": return NORMAL; break;
+				default: throw(IllegalArgumentException); break;
+			}
+		}
+	}
 
 	protected Zombie(int maxHP) {
 		this(maxHP, DEFAULT_ATK, DEFAULT_ATTACK_TRIGGER, DEFAULT_MOVE_TRIGGER);
