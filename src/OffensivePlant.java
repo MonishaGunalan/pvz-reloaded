@@ -6,7 +6,6 @@ public abstract class OffensivePlant
 
 	// Variables
 	protected Cooldown shootCD;
-	protected BulletFactory bulletFactory;
 
 	protected final Bullet.Type bulletType;
 	protected final int shootTriggerAmt;

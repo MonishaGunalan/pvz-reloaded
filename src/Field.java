@@ -20,32 +20,33 @@ public class Field {
 		return strips;
 	}
 
-	public void moveBulletForward(Bullet bullet) {
-		int col = bullet.getSquare().getCol();
-		int row = bullet.getSquare().getRow();
-		if (row < DEFAULT_MAX_ROW && col < DEFAULT_MAX_POSN - 1) {
-			strips[row].getSquare()[col].removeBullet(bullet);
-			strips[row].getSquare()[col + 1].addBullet(bullet);
-			bullet.setSquare(this.getNextSquare(bullet.getSquare()));
-		}
-	}
+	// DEPRECATED
+	//public void moveBulletForward(Bullet bullet) {
+		//int col = bullet.getSquares().getCol();
+		//int row = bullet.getSquares().getRow();
+		//if (row < DEFAULT_MAX_ROW && col < DEFAULT_MAX_POSN - 1) {
+			//strips[row].getSquares()[col].removeBullet(bullet);
+			//strips[row].getSquares()[col + 1].add(bullet);
+			//bullet.setSquare(this.getNextSquare(bullet.getSquares()));
+		//}
+	//}
 
-	public void moveZombieForward(Zombie zombie) {
-		int row = zombie.getSquare().getRow();
-		int col = zombie.getSquare().getCol();
-		if (row < DEFAULT_MAX_ROW && col < DEFAULT_MAX_POSN && col > 0) {
-			strips[row].getSquare()[col].removeZombie(zombie);
-			strips[row].getSquare()[col - 1].addZombie(zombie);
-			zombie.setSquare(this.getNextSquare(zombie.getSquare()));
-		}
-	}
+	//public void moveZombieForward(Zombie zombie) {
+		//int row = zombie.getSquares().getRow();
+		//int col = zombie.getSquares().getCol();
+		//if (row < DEFAULT_MAX_ROW && col < DEFAULT_MAX_POSN && col > 0) {
+			//strips[row].getSquares()[col].removeZombie(zombie);
+			//strips[row].getSquares()[col - 1].add(zombie);
+			//zombie.setSquare(this.getNextSquare(zombie.getSquares()));
+		//}
+	//}
 
 	public void seedPlant(Plant plant) {
 		int row = plant.getRow();
 		int col = plant.getCol();
 
 		if (row < DEFAULT_MAX_ROW && col < DEFAULT_MAX_POSN) {
-			strips[row].getSquare()[col].addPlant(plant);
+			strips[row].getSquares()[col].add(plant);
 		}
 	}
 
@@ -54,7 +55,7 @@ public class Field {
 		int row = square.getRow();
 		int col = square.getCol();
 		if ( col < DEFAULT_MAX_POSN - 1) {
-			nextSquare =  strips[row].getSquare()[col+1];
+			nextSquare =  strips[row].getSquares()[col+1];
 		}
 		return nextSquare;
 	}
@@ -64,7 +65,7 @@ public class Field {
 		int row = square.getRow();
 		int col = square.getCol();
 		if (col > 0) {
-			prevSquare =  strips[row].getSquare()[col-1];
+			prevSquare =  strips[row].getSquares()[col-1];
 		}
 		return prevSquare;
 	}

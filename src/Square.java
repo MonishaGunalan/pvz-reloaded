@@ -59,6 +59,17 @@ public class Square {
 		this.numZombie++;
 	}
 
+	public boolean remove(PerishableUnit p) {
+		if (p instanceof Zombie) {
+			return remove((Zombie)p);
+		} else if (p instanceof Plant) {
+			return remove((Plant)p);
+		}
+
+		// If code reaches here, p is not a valid PerishableUnit
+		return false;
+	}
+
 	public boolean remove(Zombie z) {
 		numZombie--;
 		return zombies.remove(z);
