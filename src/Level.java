@@ -3,7 +3,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.Queue;
 
 public class Level {
@@ -11,7 +10,6 @@ public class Level {
 	private int levelNumber;
 	private Field field;
 	private int turnNumber;
-	private Queue<Zombie>[] zombieQueue;
 	private int[] numZombieInRow;
 	private int numTurns;
 	private ZombieFactory zFact;
@@ -23,7 +21,7 @@ public class Level {
 	 * @param levelNumber level number
 	 */
 	public Level(int levelNumber) {
-		String fileName = "level" + levelNumber;
+		String fileName = "level" + levelNumber +".txt";
 		this.levelNumber = levelNumber;
 		createZombieList();
 		String[] fieldRows = this.loadLevel(fileName, levelNumber);
@@ -32,6 +30,9 @@ public class Level {
 		zFact = new ZombieFactory();
 	}
 
+	/*
+	 * create an array of ArrayList for each row to store the Zombies
+	 */
 	public void createZombieList() {
 
 		zombieList = new ArrayList[Field.DEFAULT_MAX_ROW];
@@ -41,15 +42,7 @@ public class Level {
 
 	}
 
-	/*
-	 * create an array of Queue for each row to store the Zombies
-	 */
-	/*
-	 * public void createZombieQueue() { zombieQueue = new
-	 * Queue[Field.DEFAULT_MAX_ROW]; for (int i = 0; i < Field.DEFAULT_MAX_ROW;
-	 * i++) { zombieQueue[i] = new LinkedList<Zombie>(); } }
-	 */
-
+	
 	/*
 	 * Create Zombies in the specified row#
 	 * 
@@ -61,7 +54,7 @@ public class Level {
 	 */
 	public void spawnZombie(int row, int turn, String type) {
 		Zombie.Type zombieType = Zombie.Type.valueOf(type);
-		Zombie z = ZombieFactory.makeZombie(zombieType);
+		Zombie z = zFact.makeZombie(zombieType);
 		zombieList[row].add(new java.util.AbstractMap.SimpleEntry<>(turn, z));
 	}
 

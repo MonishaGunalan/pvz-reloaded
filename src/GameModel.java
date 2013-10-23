@@ -30,8 +30,10 @@ public class GameModel {
 				level = new Level(levelNum);
 				player = new Player(level);
 				player.setScore(score);
-			} catch (NumberFormatException | IOException e) {
+			} catch (NumberFormatException e ) {
 				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}catch(IOException e){
 				e.printStackTrace();
 			}
 		} else {
