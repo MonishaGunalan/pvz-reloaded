@@ -10,8 +10,8 @@ public class PeaShooterPlant
 
 	private void shoot() {
 		Bullet bullet = BulletFactory.makeBullet(getBulletType());
-		Square nextSquare = square.getSquare(Field.Direction.RIGHT);
-		bullet.setSquare(nextSquare);
+		//Square nextSquare = square.getSquare(Field.Direction.RIGHT);
+		bullet.setSquare(square);
 	}
 
 	public void makeTurnAction() {

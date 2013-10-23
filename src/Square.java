@@ -132,6 +132,8 @@ public class Square {
 			return remove((Zombie) p);
 		} else if (p instanceof Plant) {
 			return remove((Plant) p);
+		} else if (p instanceof Bullet){
+			return remove((Bullet)p);
 		}
 
 		// If code reaches here, p is not a valid PerishableUnit

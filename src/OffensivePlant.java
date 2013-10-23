@@ -2,7 +2,7 @@ public abstract class OffensivePlant
 	extends Plant {
 	// Constants
 	protected static final Bullet.Type DEFAULT_BULLET = Bullet.Type.PEA; 
-	protected static final int DEFAULT_SHOOT_TRIGGER = 0;
+	protected static final int DEFAULT_SHOOT_TRIGGER = 1;
 
 	// Variables
 	protected Cooldown shootCD;

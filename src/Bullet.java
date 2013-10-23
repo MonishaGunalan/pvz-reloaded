@@ -9,6 +9,7 @@ public abstract class Bullet
 		this.dmg = dmg;
 		this.moveTriggerAmt = moveTriggerAmt;
 		this.moveCD = new Cooldown(getMoveTriggerAmt());
+		this.moveCD.trigger();
 		super.cooldowns.add(this.moveCD);
 	}
 
