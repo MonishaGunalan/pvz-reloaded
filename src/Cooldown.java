@@ -46,4 +46,11 @@ public class Cooldown {
 	public void pause(int duration) {
 		this.pauseDuration = duration;
 	}
+
+	@Override
+		public String toString() { 
+			String s = "";
+			s += cooldown;
+			return s;
+		}
 }

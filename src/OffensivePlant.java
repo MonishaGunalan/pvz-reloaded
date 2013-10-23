@@ -19,6 +19,7 @@ public abstract class OffensivePlant
 		super(maxHP, cost);
 		this.bulletType = bulletType;
 		this.shootTriggerAmt = shootTriggerAmt;
+		shootCD = new Cooldown(DEFAULT_SHOOT_TRIGGER);
 	}
 
 	// Type of bullet

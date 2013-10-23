@@ -69,10 +69,10 @@ public class Square {
 		Square s = null;
 		switch (dir) {
 		case LEFT:
-			s = this.strip.getSquare(col - 1);
+			if (col-1 >= 0) s = this.strip.getSquare(col - 1);
 			break;
 		case RIGHT:
-			s = this.strip.getSquare(col + 1);
+			if (col+1 < Field.DEFAULT_MAX_POSN) s = this.strip.getSquare(col + 1);
 			break;
 		}
 
@@ -85,11 +85,11 @@ public class Square {
 	 */
 	public void add(Unit unit) {
 		if (unit instanceof Plant) {
-			remove((Plant) unit);
+			add((Plant) unit);
 		} else if (unit instanceof Bullet) {
-			remove((Bullet) unit);
+			add((Bullet) unit);
 		} else if (unit instanceof Zombie) {
-			remove((Zombie) unit);
+			add((Zombie) unit);
 		}
 	}
 
@@ -116,6 +116,7 @@ public class Square {
 	 */
 	public void add(Zombie zombie) {
 		zombies.add(zombie);
+		System.out.println("adding zombie @ " + getRow() + "," + getCol());
 		this.numZombie++;
 	}
 
@@ -143,6 +144,7 @@ public class Square {
 	 * 
 	 */
 	public boolean remove(Zombie z) {
+		System.out.println("removing zombie @ " + getRow() + "," + getCol());
 		numZombie--;
 		return zombies.remove(z);
 	}
@@ -213,7 +215,6 @@ public class Square {
 		return false;
 	}
 
-<<<<<<< HEAD
 	public List<Zombie> getZombies() {
 		return zombies;
 	}
@@ -222,11 +223,10 @@ public class Square {
 		return bullets;
 	}
 
-=======
 	/*
 	 * @return returns a toString representation of the square
 	 */
->>>>>>> 5b9c5f481c20fe97b69e3b90559eaded7ce3a895
+
 	public String toString() {
 		String s = "[";
 		if (this.terrain.equals("mud")) {
