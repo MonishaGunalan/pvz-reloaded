@@ -1,0 +1,17 @@
+Level1
+10
+MUD 0
+GRASS 2 
+930 normal
+950 normal
+GRASS 4
+1 normal
+94 normal
+97 normal
+98 normal
+GRASS 3 
+92 normal
+96 normal
+99 normal
+MUD 0
+
