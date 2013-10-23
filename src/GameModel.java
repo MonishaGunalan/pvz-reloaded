@@ -15,7 +15,6 @@ public class GameModel {
 		File f = new File("playerData.txt");
 		if (f.exists()){
 			// load files here
-			System.out.println("Got here");
 			try {
 				BufferedReader reader = new BufferedReader(new FileReader(f));
 				int levelNum = Integer.parseInt(reader.readLine());
@@ -28,7 +27,6 @@ public class GameModel {
 				e.printStackTrace();
 			}
 		} else {
-			System.out.println("Got here2");
 			level = new Level("",1);
 			player = new Player(level);	
 		}

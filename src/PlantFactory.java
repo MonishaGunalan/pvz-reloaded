@@ -1,5 +1,3 @@
-import java.util.HashMap;
-import java.util.Map;
 
 
 
@@ -67,5 +65,14 @@ public class PlantFactory {
 
 		return p;
 
+	}
+	
+	public static String getPlantOptions(){
+		StringBuilder b = new StringBuilder();
+		for (PlantType cmd: PlantType.values()){
+			b.append(cmd.name()).append(" ");
+			
+		}
+		return b.toString();
 	}
 }

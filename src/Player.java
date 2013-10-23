@@ -32,7 +32,7 @@ public class Player {
 
 
 		while (true){
-			Command command = getNextCommand(); 
+			PlayerCommand command = getNextCommand(); 
 
 			//before do anything reduce cooldowns
 			triggerCooldowns();
@@ -40,6 +40,7 @@ public class Player {
 			switch(command.getCommandType()){
 			case PLANT_SEED:
 				PlantFactory.PlantType p = null;
+				//TODO:: refactor this into playercommand
 				String plant = command.getArg();
 				try{
 					p = PlantFactory.PlantType.valueOf(plant.toUpperCase());
@@ -52,6 +53,7 @@ public class Player {
 					grow(0,0,p);
 
 				}
+				System.out.println(level.toString());
 				level.incrementTurn();
 				break;
 			case UNDO:
@@ -62,15 +64,15 @@ public class Player {
 				break;
 			default:
 			}
-			
+
 		}
 	}
 
-	public Command getNextCommand(){
-		System.out.println(Command.getCommandOptions());
+	public PlayerCommand getNextCommand(){
+		System.out.println(PlayerCommand.getCommandOptions());
 		String command = c.next();
-		
-		return new Command(command,c);
+
+		return new PlayerCommand(command,c);
 	}
 
 
@@ -113,9 +115,9 @@ public class Player {
 		}
 	}
 
-	
+
 	public void save(){
-		
+
 		try {
 			BufferedWriter out = new BufferedWriter(new FileWriter("playerData.txt"));
 			out.write(level.getLevelNumber());
@@ -125,9 +127,9 @@ public class Player {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
-	
+
 	public void setScore(int score){
 		this.score = score;
 	}
