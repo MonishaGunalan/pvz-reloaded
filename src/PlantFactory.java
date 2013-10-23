@@ -1,3 +1,8 @@
+/*
+ * @author Chris Nguyen
+ * 100793244
+ * 
+ */
 public class PlantFactory {
 
 	public enum PlantType {

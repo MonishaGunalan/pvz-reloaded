@@ -1,3 +1,9 @@
+/*
+ * 
+ * @author Chris Nguyen
+ * 100793244
+ * 
+ */
 import java.util.Scanner;
 
 public class PlayerCommand{

@@ -1,3 +1,4 @@
+
 /**
  * This class is the parent of all zombie types.<!-- --> It contains default information
  * shared by several of its subclasses.<!-- -->

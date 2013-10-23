@@ -1,3 +1,7 @@
+/*
+ * @author Tianming Zhuang
+ * 100875151
+ */
 public abstract class GeneratorPlant
 	extends Plant {
 	protected SunGenerator sunGenerator;

@@ -1,3 +1,7 @@
+/*
+ * @author  Arzaan Irani
+ * 100826631
+ */
 public abstract class PerishableUnit 
 	extends Unit{
     protected int maxHP;
