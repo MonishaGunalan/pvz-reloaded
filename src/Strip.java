@@ -25,7 +25,7 @@ public class Strip {
 		return squares;
 	}
 
-	public Square getSquares(int posn) {
+	public Square getSquare(int posn) {
 		return squares[posn];
 	}
 
