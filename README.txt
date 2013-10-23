@@ -20,12 +20,16 @@ Input file:
 Documentation files:
 	Design-Documentaion.txt
 UML diagram:
-	pvz-reloaded.png
+	pvz-reloaded.png 
 Sequence Diagram :
 	ContatcingZombieBullet.JPG
 	gameModel.JPG
 	levelCreation.JPG
 	plantCreation.JPG
 	playerCommand.JPG
+	
+JavaDoc files
+	
+	
 	
 
