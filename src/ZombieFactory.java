@@ -1,16 +1,19 @@
 import java.util.Map;
 import java.util.HashMap;
+import java.util.Collections;
 
 public class ZombieFactory {
-	private Map<Zombie.Type, Class<? extends Zombie>> zombieTable;
+	private static final Map<Zombie.Type, Class<? extends Zombie>> zombieTable;
 	
-	public ZombieFactory() {
-		zombieTable = new HashMap<Zombie.Type, Class<? extends Zombie>>();
+	static {
+		Map<Zombie.Type, Class<? extends Zombie>> aTable = new HashMap<Zombie.Type, Class<? extends Zombie>>();
 
-		zombieTable.put(Zombie.Type.NORMAL, NormalZombie.class);
+		aTable.put(Zombie.Type.NORMAL, NormalZombie.class);
+
+		zombieTable = Collections.unmodifiableMap(aTable);
 	}
 
-	public Zombie makeZombie(Zombie.Type zombieType) {
+	public static Zombie makeZombie(Zombie.Type zombieType) {
 		Zombie z = null;
 		try {
 			z = zombieTable.get(zombieType).newInstance();

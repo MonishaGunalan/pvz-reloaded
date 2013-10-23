@@ -37,6 +37,10 @@ public class Square {
 		return plant;
 	}
 
+	public Zombie getFirstZombie() {
+		return zombies.get(0);
+	}
+
 	public Square getSquare(Field.Direction dir) {
 		Square s = null;
 		switch (dir) {
@@ -99,6 +103,16 @@ public class Square {
 	public boolean remove(Plant p) {
 		numZombie--;
 		return zombies.remove(p);
+	}
+
+	public boolean hasZombieAfter() {
+		int currentPosn = this.getCol();
+		boolean hasZombie = false;
+		for (int i=currentPosn; i<Field.DEFAULT_MAX_ROW; i++) {
+			hasZombie |= strip.getSquare(i).hasZombie();
+		}
+
+		return hasZombie;
 	}
 
 	public boolean hasZombie() {

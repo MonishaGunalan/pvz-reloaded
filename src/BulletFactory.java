@@ -1,16 +1,19 @@
 import java.util.Map;
 import java.util.HashMap;
+import java.util.Collections;
 
 public class BulletFactory {
-	private Map<Bullet.Type, Class<? extends Bullet>> bulletTable;
+	private static Map<Bullet.Type, Class<? extends Bullet>> bulletTable;
 	
-	public BulletFactory() {
-		bulletTable = new HashMap<Bullet.Type, Class<? extends Bullet>>();
+	static {
+		Map<Bullet.Type, Class<? extends Bullet>> aTable = new HashMap<Bullet.Type, Class<? extends Bullet>>();
 
-		bulletTable.put(Bullet.Type.PEA, PeaBullet.class);
+		aTable.put(Bullet.Type.PEA, PeaBullet.class);
+
+		bulletTable = Collections.unmodifiableMap(aTable);
 	}
 
-	public Bullet makeBullet(Bullet.Type bulletType) {
+	public static Bullet makeBullet(Bullet.Type bulletType) {
 		Bullet p = null;
 		try {
 			p = bulletTable.get(bulletType).newInstance();

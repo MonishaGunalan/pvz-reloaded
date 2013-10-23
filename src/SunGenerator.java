@@ -15,5 +15,7 @@ public class SunGenerator {
 		if (sunCooldown.isAvailable()) {
 			return GEN_AMT;
 		}
+
+		return 0;
 	}
 }

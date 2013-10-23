@@ -9,13 +9,13 @@ public class PeaShooterPlant
 	}
 
 	private void shoot() {
-		Bullet bullet = bulletFactory.makeBullet(getBulletType());
+		Bullet bullet = BulletFactory.makeBullet(getBulletType());
 		Square nextSquare = square.getSquare(Field.Direction.RIGHT);
 		bullet.setSquare(nextSquare);
 	}
 
 	public void makeTurnAction() {
-		if (square.hasZombieInStrip()) {
+		if (square.hasZombieAfter()) {
 			shoot();
 		}
 		super.tickCooldowns();

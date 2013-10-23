@@ -14,7 +14,7 @@ public class PeaBullet
 	}
 
 	public void makeTurnAction() {
-		if (square.hasZombies()) {
+		if (square.hasZombie()) {
 			super.hit(square.getFirstZombie());
 		} else {
 			super.move(Field.Direction.RIGHT);
