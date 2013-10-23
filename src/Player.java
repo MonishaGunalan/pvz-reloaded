@@ -39,8 +39,10 @@ public class Player {
 		Scanner c = new Scanner(System.in);
 		while (true){
 			//Get the player command
+			System.out.println("Current Sun Points: " + sun);
 			PlayerCommand command = new PlayerCommand(c); 
 			play(command);
+			System.out.println(level.getField().toString());
 		}
 	}
 
@@ -66,7 +68,6 @@ public class Player {
 
 			}
 			if (growSuccessful){
-				System.out.println(level.getField().toString());
 				level.incrementTurn();
 				triggerCooldowns();
 			}
@@ -78,12 +79,12 @@ public class Player {
 			//TODO implement a Turn Class that will encapsulate the data of a turn
 			break;
 		case DO_NOTHING:
-			System.out.println(level.getField().toString());
 			level.incrementTurn();
 			triggerCooldowns();
 			break;
 		default:
 		}
+
 
 
 	}
@@ -104,7 +105,7 @@ public class Player {
 			System.out.println("Plant Still On cooldown!");
 			return false;
 		}
-		
+
 		Square square = level.getField().getStrip()[row].getSquare(col);
 		if (square.hasPlant()){
 			System.out.println("There is already a plant present in the square!");

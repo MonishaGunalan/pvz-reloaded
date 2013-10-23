@@ -102,6 +102,7 @@ public class Field {
 				}
 				for (Zombie z: new ArrayList<Zombie>(square.getZombies())){
 					z.makeTurnAction();
+					System.out.println("Zombie move cooldown: "  + z.getMoveCooldown());
 				}
 				for (Bullet b: new ArrayList<Bullet>(square.getBullets())){
 					b.makeTurnAction();

@@ -42,7 +42,7 @@ public class Level {
 
 	}
 
-	
+
 	/*
 	 * Create Zombies in the specified row#
 	 * 
@@ -141,11 +141,11 @@ public class Level {
 	 * increment the turn number for ever user input
 	 */
 	public void incrementTurn() {
-		if (turnNumber < numTurns) {
-			turnNumber++;
-			bringNewZombiesIn();
-			field.makeTurnAction();
-		}
+		//if (turnNumber < numTurns) {
+		turnNumber++;
+		bringNewZombiesIn();
+		field.makeTurnAction();
+		//	}
 	}
 
 	/*
