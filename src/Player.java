@@ -30,7 +30,6 @@ public class Player {
 		sun = 0;
 		score = 0;
 
-
 	}
 
 	/**
@@ -64,11 +63,11 @@ public class Player {
 			}
 			boolean growSuccessful = false;
 			if (p != null){
-				growSuccessful = grow(0,0,p);
+				growSuccessful = grow(command.getX(),command.getY(),p);
 
 			}
 			if (growSuccessful){
-				System.out.println(level.toString());
+				System.out.println(level.getField().toString());
 				level.incrementTurn();
 				triggerCooldowns();
 			}
@@ -78,6 +77,8 @@ public class Player {
 			break;
 		case REDO:
 			//TODO implement a Turn Class that will encapsulate the data of a turn
+			break;
+		case DO_NOTHING:
 			break;
 		default:
 		}
