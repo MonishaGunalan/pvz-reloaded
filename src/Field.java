@@ -100,11 +100,19 @@ public class Field {
 				if (square.getPlant() != null){
 					square.getPlant().makeTurnAction();
 				}
+<<<<<<< HEAD
+=======
+	
+>>>>>>> d35ea155828216cf477ece29107254862534e89d
 				for (Bullet b: new ArrayList<Bullet>(square.getBullets())){
 					b.makeTurnAction();
 				}
 				for (Zombie z: new ArrayList<Zombie>(square.getZombies())){
 					z.makeTurnAction();
+<<<<<<< HEAD
+=======
+					System.out.println("Zombie move cooldown: "  + z.getMoveCooldown());
+>>>>>>> d35ea155828216cf477ece29107254862534e89d
 				}
 			}
 		}
