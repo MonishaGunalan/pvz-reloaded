@@ -1,7 +1,7 @@
 import java.util.Set;
 import java.util.HashSet;
-public abstract class Unit 
-	implements TurnBasedUnit{
+
+public abstract class Unit implements TurnBasedUnit {
 	protected Square square;
 	protected Set<Cooldown> cooldowns;
 
@@ -9,20 +9,20 @@ public abstract class Unit
 		cooldowns = new HashSet<Cooldown>();
 		square = null;
 	}
-	
-	public Square getSquare(){
+
+	public Square getSquare() {
 		return square;
 	}
-	
-	public int getRow(){
+
+	public int getRow() {
 		return square.getRow();
 	}
-	
-	public int getCol(){
+
+	public int getCol() {
 		return square.getCol();
 	}
-	
-	public void setSquare(Square square){
+
+	public void setSquare(Square square) {
 		if (this.square != null) {
 			this.square.remove(this);
 		}
@@ -31,7 +31,7 @@ public abstract class Unit
 	}
 
 	public void tickCooldowns() {
-		for (Cooldown cooldown: cooldowns) {
+		for (Cooldown cooldown : cooldowns) {
 			cooldown.tick();
 		}
 	}
