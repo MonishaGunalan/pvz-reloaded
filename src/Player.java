@@ -138,7 +138,7 @@ public class Player {
 	public void save(){
 
 		try {
-			BufferedWriter out = new BufferedWriter(new FileWriter("playerData.txt"));
+			BufferedWriter out = new BufferedWriter(new FileWriter(GameModel.playerDataFileLocation));
 			out.write(level.getLevelNumber());
 			out.write(score);
 			out.close();
