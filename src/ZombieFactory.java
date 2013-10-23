@@ -2,18 +2,18 @@ import java.util.Map;
 import java.util.HashMap;
 
 public class ZombieFactory {
-	private Map<Zombie.Type,Zombie> zombieTable;
+	private Map<Zombie.Type, Class<? extends Zombie>> zombieTable;
 	
 	public ZombieFactory() {
-		zombieTable = new HashMap<Zombie.Type, Zombie>();
+		zombieTable = new HashMap<Zombie.Type, Class<? extends Zombie>>();
 
-		zombieTable.put(Zombie.Type.PEA, PeaZombie.class);
+		zombieTable.put(Zombie.Type.NORMAL, NormalZombie.class);
 	}
 
-	public static Zombie makeZombie(Zombie.Type zombieType) {
-		Zombie p = null;
+	public Zombie makeZombie(Zombie.Type zombieType) {
+		Zombie z = null;
 		try {
-			p = zombieTable.get(zombieType).newInstance();
+			z = zombieTable.get(zombieType).newInstance();
 		} catch (InstantiationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -22,6 +22,6 @@ public class ZombieFactory {
 			e.printStackTrace();
 		}
 
-		return p;
+		return z;
 	}
 }

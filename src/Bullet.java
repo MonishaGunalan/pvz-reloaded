@@ -1,6 +1,5 @@
 public abstract class Bullet
-	extends Unit 
-	implements MoveableUnit{
+	extends Unit {
 	protected Cooldown moveCD; // Number of turns bullet must wait after moving
 	protected final int dmg; // Dmg bullet does to a zombie
 	protected final int moveTriggerAmt; // Number of turns bullet has to wait before moving again

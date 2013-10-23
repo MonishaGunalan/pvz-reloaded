@@ -9,5 +9,7 @@ public class SunflowerPlant
 		super.sunGenerator = new SunGenerator(GEN_TRIGGER, GEN_AMT);
 	}
 
+	public void makeTurnAction() {}
+
 }
 

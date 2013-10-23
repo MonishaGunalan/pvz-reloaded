@@ -22,7 +22,7 @@ public abstract class Unit
 		return square.getCol();
 	}
 	
-	public void move(Square square){
+	public void setSquare(Square square){
 		if (this.square != null) {
 			this.square.remove(this);
 		}
