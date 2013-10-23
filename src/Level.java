@@ -17,7 +17,7 @@ public class Level {
 
 	/*
 	 *  instantiate a new field with field row and column
-	 *  @param levelNumber level number
+	 *  @param levelNumber 	level number
 	 */
 	public Level (int levelNumber) {
 		String fileName = "level"+levelNumber;
@@ -26,12 +26,10 @@ public class Level {
 		String[] fieldRows = this.loadLevel(fileName, levelNumber);
 		field = new Field(fieldRows);
 		turnNumber = 0;
-
 	}
 
 	/*
-	 *  create an array of Queue for each row to store the Zombies
-	 *  
+	 *  create an array of Queue for each row to store the Zombies 
 	 */
 	public void createZombieQueue() {
 		zombieQueue = new Queue[Field.DEFAULT_MAX_ROW];
@@ -42,14 +40,20 @@ public class Level {
 
 	/*
 	 *  Create Zombies in the specified row#
-	 *  @param row row number of the field 
-	 *  @param turn the turn in which the Zombie enters the field
+	 *  
+	 *  @param row 	row number of the field 
+	 *  @param turn  the turn in which the Zombie enters the field
+	 *  @param type	 the type of the zombie
 	 */
 	public void spawnZombie(int row, int turn, String type) {
 		zombieQueue[row].add(new Zombie(turn, row, type));
 	}
 
-	// Read File to get the information about this level
+	/*
+	 *  Read File to get the information about this level
+	 *  @param fileName  the name of the file which contains level information
+	 *  @param levelNumber 	level number
+	 */
 	public String[] loadLevel(String fileName, int levelNumber) {
 		// This will reference one line at a time
 		String line = null;
@@ -100,19 +104,31 @@ public class Level {
 		}
 		return fieldRows;
 	}
-	//Returns the level Number
+	
+	/*
+	 * @return  level Number
+	 */
 	public int getLevelNumber() {
 		return levelNumber;
 	}
-
+	
+	/*
+	 * @return field of this level
+	 */
 	public Field getField() {
 		return field;
 	}
 
+	/*
+	 * @return turn number of the player
+	 */
 	public int getTurnNumber() {
 		return turnNumber;
 	}
 
+	/*
+	 * increment the turn number for ever user input
+	 */
 	public void incrementTurn() {
 		if (turnNumber < numTurns) {
 			turnNumber++;
@@ -120,6 +136,9 @@ public class Level {
 		}
 	}
 
+	/*
+	 * bring the zombie into the firld when it is their turn
+	 */
 	public void bringNewZombiesIn() {
 		for (int i = 0; i < Field.DEFAULT_MAX_ROW; i++) {
 			if (zombieQueue[i].peek().getTurn() == turnNumber) {

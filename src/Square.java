@@ -11,6 +11,7 @@ public class Square {
 	private int col;
 	private int numZombie;
 	private int numBullet;
+	private String terrain;
 
 	public Square(String terrain, int row, int col, Strip strip) {
 		this.row = row;
@@ -21,6 +22,7 @@ public class Square {
 		this.numZombie = 0;
 		this.numBullet = 0;
 		this.strip = strip;
+		this.terrain = terrain;
 	}
 
 	public int getRow() {
@@ -38,8 +40,8 @@ public class Square {
 	public Square getSquare(Field.Direction dir) {
 		Square s = null;
 		switch (dir) {
-			case LEFT: s = this.strip.getSquares(col-1); break;
-			case RIGHT: s = this.strip.getSquares(col+1); break;
+			case LEFT: s = this.strip.getSquare(col-1); break;
+			case RIGHT: s = this.strip.getSquare(col+1); break;
 		}
 
 		return s;
@@ -118,22 +120,30 @@ public class Square {
 
 	public String toString() {
 		String s = "[";
+		if(this.terrain.equals("mud")){
+			s += '-';
+		}
+		
 		if (this.hasPlant()) {
 			s += 'p';
 		}else{
 			s += ' ';
 		}
+		
 		if (this.hasZombie()) {
 			s += 'z';
 		}else{
 			s += ' ';
 		}
+		
 		if (this.hasBullet()) {
 			s += '>';
 		}else{
 			s += ' ';
 		}
+		
 		s += ']';
+		
 		return s;
 	}
 }
