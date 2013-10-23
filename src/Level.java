@@ -53,7 +53,7 @@ public class Level {
 	 * @param type the type of the zombie
 	 */
 	public void spawnZombie(int row, int turn, String type) {
-		Zombie.Type zombieType = Zombie.Type.valueOf(type);
+		Zombie.Type zombieType = Zombie.Type.valueOf(type.toUpperCase());
 		Zombie z = zFact.makeZombie(zombieType);
 		zombieList[row].add(new java.util.AbstractMap.SimpleEntry<>(turn, z));
 	}
@@ -153,7 +153,7 @@ public class Level {
 	 */
 	public void bringNewZombiesIn() {
 		for (int i = 0; i < Field.DEFAULT_MAX_ROW; i++) {
-			if (zombieList[i].get(0).getKey() == turnNumber) {
+			if (!zombieList[i].isEmpty() && zombieList[i].get(0).getKey() == turnNumber) {
 				Zombie z = zombieList[i].remove(0).getValue();
 				z.setSquare(this.field.getStrip()[i].getSquares()[Field.DEFAULT_MAX_POSN - 1]);
 				this.field.getStrip()[i].getSquares()[Field.DEFAULT_MAX_POSN - 1]

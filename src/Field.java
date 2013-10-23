@@ -76,15 +76,15 @@ public class Field {
 		}
 		return sun;
 	}
-	
-	
+
+
 
 	public String toString() {
 		String s = "";
 		for (int i = 0; i < Field.DEFAULT_MAX_ROW; i++) {
 			s += strips[i].toString();
 		}
-		s += "/n";
+		s += "\n";
 		return s;
 	}
 
@@ -97,11 +97,13 @@ public class Field {
 		sunGenerationCooldown.tick();
 		for (Strip strip: strips){
 			for (Square square: strip.getSquares()){
-				square.getPlant().makeTurnAction();
-				for (Zombie z: square.getZombies()){
+				if (square.getPlant() != null){
+					square.getPlant().makeTurnAction();
+				}
+				for (Zombie z: new ArrayList<Zombie>(square.getZombies())){
 					z.makeTurnAction();
 				}
-				for (Bullet b: square.getBullets()){
+				for (Bullet b: new ArrayList<Bullet>(square.getBullets())){
 					b.makeTurnAction();
 				}
 			}

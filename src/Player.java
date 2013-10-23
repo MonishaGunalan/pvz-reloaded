@@ -78,11 +78,11 @@ public class Player {
 			//TODO implement a Turn Class that will encapsulate the data of a turn
 			break;
 		case DO_NOTHING:
-			break;
-		default:
 			System.out.println(level.getField().toString());
 			level.incrementTurn();
 			triggerCooldowns();
+			break;
+		default:
 		}
 
 

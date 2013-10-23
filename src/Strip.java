@@ -43,7 +43,7 @@ public class Strip {
 		for (int j = 0; j < Field.DEFAULT_MAX_POSN; j++) {
 			s += squares[j].toString();
 		}
-		s += " ";
+		s += " \n";
 		return s;
 	}
 

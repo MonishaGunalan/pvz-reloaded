@@ -213,7 +213,6 @@ public class Square {
 		return false;
 	}
 
-<<<<<<< HEAD
 	public List<Zombie> getZombies() {
 		return zombies;
 	}
@@ -222,11 +221,10 @@ public class Square {
 		return bullets;
 	}
 
-=======
 	/*
 	 * @return returns a toString representation of the square
 	 */
->>>>>>> 5b9c5f481c20fe97b69e3b90559eaded7ce3a895
+
 	public String toString() {
 		String s = "[";
 		if (this.terrain.equals("mud")) {
