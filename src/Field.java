@@ -15,7 +15,9 @@ public class Field {
 	}
 
 	private Strip[] strips;
-
+/*
+ * @param TerrianType[]  the terrian type for each row
+ */
 	public Field(String[] terrainType) {
 		strips = new Strip[DEFAULT_MAX_ROW];
 		for (int i = 0; i < DEFAULT_MAX_ROW; i++) {
@@ -24,11 +26,17 @@ public class Field {
 		units = new ArrayList<Unit>();
 		sunGenerationCooldown = new Cooldown(SUN_GENERATION_PERIOD);
 	}
-
+/*
+ * @return Strip[] returns the array of strips in the field
+ */
 	public Strip[] getStrip() {
 		return strips;
 	}
 
+	/*
+	 * plant the seed in the field
+	 * @param plant plant
+	 */
 	public void seedPlant(Plant plant) {
 		int row = plant.getRow();
 		int col = plant.getCol();
@@ -38,6 +46,10 @@ public class Field {
 		}
 	}
 
+	/*
+	 * @param square the square element
+	 * @return square rdturns the next square in the fiels
+	 */
 	public Square getNextSquare(Square square) {
 		Square nextSquare = null;
 		int row = square.getRow();
@@ -48,6 +60,12 @@ public class Field {
 		return nextSquare;
 	}
 
+	/*
+	 * 
+	 * @param square the square element
+	 * @return square rdturns the previous square in the fiels
+	 */
+	 
 	public Square getPrevSquare(Square square) {
 		Square prevSquare = null;
 		int row = square.getRow();
@@ -58,6 +76,10 @@ public class Field {
 		return prevSquare;
 	}
 
+	/*
+	 * get the total sun generated
+	 * @return sun points
+	 */
 	public int getTotalSun() {
 		// yet to be filled.
 		int sun = 0;
@@ -78,7 +100,9 @@ public class Field {
 	}
 
 
-
+/*
+ * @return returns the string representation of the field
+ */
 	public String toString() {
 		String s = "";
 		for (int i = 0; i < Field.DEFAULT_MAX_ROW; i++) {
@@ -88,10 +112,16 @@ public class Field {
 		return s;
 	}
 
+	/*
+	 * @param unit add the unit to thelist of units in the field
+	 */
 	public void addToUnitList(Unit unit) {
 		units.add(unit);
 	}
 
+	/*
+	 * trigger action on the unit to move after every turn
+	 */
 	public void makeTurnAction() {
 		// TODO Auto-generated method stub
 		sunGenerationCooldown.tick();
