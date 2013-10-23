@@ -37,14 +37,14 @@ public class PlantFactory {
 
 
 	/**
-	 * @param type                The type of plant to be made
+	 * @param type          The type of plant to be made
 	 * @return Plant        The Plant that is made
 	 * 
 	 * The method checks to see if the plant type is on cooldown or not
 	 * if it is not on cooldown it creates the desired plant
 	 * 
 	 */
-	public Plant makePlant(PlantType type){
+	public static Plant makePlant(PlantType type){
 
 
 		Plant p = null;
@@ -63,6 +63,11 @@ public class PlantFactory {
 		return p;
 
 	}
+	
+	/**
+	 * Returns a string formatted with the plants option
+	 * @return the formatted string
+	 */
 
 	public static String getPlantOptions(){
 		StringBuilder b = new StringBuilder();
