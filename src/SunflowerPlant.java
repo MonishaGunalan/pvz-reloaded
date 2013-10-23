@@ -1,3 +1,7 @@
+/*
+ * @author Tianming Zhuang
+ * 100875151
+ */
 public class SunflowerPlant
 	extends GeneratorPlant {
 	private static final int MAX_HP = 3;

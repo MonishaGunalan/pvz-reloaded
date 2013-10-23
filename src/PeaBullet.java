@@ -1,3 +1,7 @@
+/*
+ * @author Tianming Zhuang
+ * 100875151
+ */
 public class PeaBullet
 	extends Bullet {
 	// Constants

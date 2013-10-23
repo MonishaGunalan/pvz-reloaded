@@ -1,3 +1,7 @@
+/*
+ * @author Tianming Zhuang
+ * 100875151
+ */
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Collections;

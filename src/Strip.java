@@ -1,3 +1,8 @@
+/*
+ * @author Monisha Gunalan
+ * 100871444
+ */
+
 public class Strip {
 	private int fieldRow;
 	private Square[] squares;

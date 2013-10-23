@@ -1,3 +1,7 @@
+/*
+ * @author Tianming Zhuang
+ * 100875151
+ */
 public class Cooldown {
 	// Amount to trigger cd by
 	private final int TRIGGER_AMOUNT;

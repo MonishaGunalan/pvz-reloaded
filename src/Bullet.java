@@ -1,3 +1,7 @@
+/*
+ * @author Tianming Zhuang
+ * 100875151
+ */
 public abstract class Bullet
 	extends Unit {
 	protected Cooldown moveCD; // Number of turns bullet must wait after moving

@@ -1,3 +1,7 @@
+/*
+ * @author Tianming Zhuang
+ * 100875151
+ */
 public class SunGenerator {
 	private final int GEN_TRIGGER;
 	private final int GEN_AMT;
