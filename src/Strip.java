@@ -25,8 +25,12 @@ public class Strip {
 
 	}
 	
-	public Square[] getSquare(){
+	public Square[] getSquares(){
 		return squares;
+	}
+
+	public Square getSquare(int posn) {
+		return squares[posn];
 	}
 	
 	public String toString(){

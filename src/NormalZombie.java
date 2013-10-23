@@ -1,4 +1,4 @@
-Public class NormalZombie
+public class NormalZombie
 	extends Zombie {
 	// Constants
 	private static final int MAX_HP = 10;

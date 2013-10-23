@@ -6,12 +6,13 @@ public class Square {
 	private Plant plant;
 	private List<Zombie> zombies;
 	private List<Bullet> bullets;
+	private Strip strip;
 	private int row;
 	private int col;
 	private int numZombie;
 	private int numBullet;
 
-	public Square(String terrain, int row, int col) {
+	public Square(String terrain, int row, int col, Strip strip) {
 		this.row = row;
 		this.col = col;
 		zombies = new ArrayList<Zombie>();
@@ -19,6 +20,7 @@ public class Square {
 		this.plant = null;
 		this.numZombie = 0;
 		this.numBullet = 0;
+		this.strip = strip;
 	}
 
 	public int getRow() {
@@ -33,31 +35,41 @@ public class Square {
 		return plant;
 	}
 
-	public void addPlant(Plant plant) {
+	public Square getSquare(Field.Direction dir) {
+		Square s;
+		switch (dir) {
+			case Direction.LEFT: s = this.strip.getSquare(col-1); break;
+			case Direction.RIGHT: s = this.strip.getSquare(col+1); break;
+		}
+
+		return s;
+	}
+
+	public void add(Plant plant) {
 		this.plant = plant;
 	}
 
-	public void addBullet(Bullet bullet) {
+	public void add(Bullet bullet) {
 		bullets.add(bullet);
 		this.numBullet++;
 	}
 
-	public void addZombie(Zombie zombie) {
+	public void add(Zombie zombie) {
 		zombies.add(zombie);
 		this.numZombie++;
 	}
 
-	public boolean removeZombie(Zombie z) {
+	public boolean remove(Zombie z) {
 		numZombie--;
 		return zombies.remove(z);
 	}
 
-	public boolean removeBullet(Bullet b) {
+	public boolean remove(Bullet b) {
 		numZombie--;
 		return zombies.remove(b);
 	}
 
-	public boolean removePlant(Plant p) {
+	public boolean remove(Plant p) {
 		numZombie--;
 		return zombies.remove(p);
 	}

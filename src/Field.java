@@ -4,6 +4,8 @@ public class Field {
 
 	public static final int DEFAULT_MAX_ROW = 5;
 	public static final int DEFAULT_MAX_POSN = 5;
+
+	public enum Direction { LEFT, RIGHT; }
 	private Strip[] strips;
 
 	// private Set<TurnBasedElements> elements;
