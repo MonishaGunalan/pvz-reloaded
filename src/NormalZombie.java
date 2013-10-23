@@ -26,7 +26,6 @@ public class NormalZombie
 		} else {
 			super.move(Field.Direction.LEFT);
 		}
-
 		super.tickCooldowns();
 	}
 
