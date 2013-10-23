@@ -1,8 +1,8 @@
-
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -14,45 +14,63 @@ public class Level {
 	private Queue<Zombie>[] zombieQueue;
 	private int[] numZombieInRow;
 	private int numTurns;
+	private ZombieFactory zFact;
+	private ArrayList<java.util.Map.Entry<Integer, Zombie>>[] zombieList;
 
 	/*
-	 *  instantiate a new field with field row and column
-	 *  @param levelNumber 	level number
+	 * instantiate a new field with field row and column
+	 * 
+	 * @param levelNumber level number
 	 */
-	public Level (int levelNumber) {
-		String fileName = "level"+levelNumber;
+	public Level(int levelNumber) {
+		String fileName = "level" + levelNumber;
 		this.levelNumber = levelNumber;
-		createZombieQueue();
+		createZombieList();
 		String[] fieldRows = this.loadLevel(fileName, levelNumber);
 		field = new Field(fieldRows);
 		turnNumber = 0;
+		zFact = new ZombieFactory();
 	}
 
-	/*
-	 *  create an array of Queue for each row to store the Zombies 
-	 */
-	public void createZombieQueue() {
-		zombieQueue = new Queue[Field.DEFAULT_MAX_ROW];
+	public void createZombieList() {
+
+		zombieList = new ArrayList[Field.DEFAULT_MAX_ROW];
 		for (int i = 0; i < Field.DEFAULT_MAX_ROW; i++) {
-			zombieQueue[i] = new LinkedList<Zombie>();
+			zombieList[i] = new ArrayList<java.util.Map.Entry<Integer, Zombie>>();
 		}
+
 	}
 
 	/*
-	 *  Create Zombies in the specified row#
-	 *  
-	 *  @param row 	row number of the field 
-	 *  @param turn  the turn in which the Zombie enters the field
-	 *  @param type	 the type of the zombie
+	 * create an array of Queue for each row to store the Zombies
+	 */
+	/*
+	 * public void createZombieQueue() { zombieQueue = new
+	 * Queue[Field.DEFAULT_MAX_ROW]; for (int i = 0; i < Field.DEFAULT_MAX_ROW;
+	 * i++) { zombieQueue[i] = new LinkedList<Zombie>(); } }
+	 */
+
+	/*
+	 * Create Zombies in the specified row#
+	 * 
+	 * @param row row number of the field
+	 * 
+	 * @param turn the turn in which the Zombie enters the field
+	 * 
+	 * @param type the type of the zombie
 	 */
 	public void spawnZombie(int row, int turn, String type) {
-		zombieQueue[row].add(new Zombie(turn, row, type));
+		Zombie.Type zombieType = Zombie.Type.valueOf(type);
+		Zombie z = ZombieFactory.makeZombie(zombieType);
+		zombieList[row].add(new java.util.AbstractMap.SimpleEntry<>(turn, z));
 	}
 
 	/*
-	 *  Read File to get the information about this level
-	 *  @param fileName  the name of the file which contains level information
-	 *  @param levelNumber 	level number
+	 * Read File to get the information about this level
+	 * 
+	 * @param fileName the name of the file which contains level information
+	 * 
+	 * @param levelNumber level number
 	 */
 	public String[] loadLevel(String fileName, int levelNumber) {
 		// This will reference one line at a time
@@ -83,9 +101,9 @@ public class Level {
 						numZombieInRow[i] = Integer.parseInt(rowContents[1]);
 						while (numZombieInRow[i] > 0) {
 							// read the turn number in which the Zombie enters
-							// the field and the type 
-							String[] rowContents1 = bufferedReader.readLine().split(
-									" ");
+							// the field and the type
+							String[] rowContents1 = bufferedReader.readLine()
+									.split(" ");
 							int turn = Integer.parseInt(rowContents1[0]);
 							String type = rowContents1[1];
 							spawnZombie(i, turn, type);
@@ -104,14 +122,14 @@ public class Level {
 		}
 		return fieldRows;
 	}
-	
+
 	/*
-	 * @return  level Number
+	 * @return level Number
 	 */
 	public int getLevelNumber() {
 		return levelNumber;
 	}
-	
+
 	/*
 	 * @return field of this level
 	 */
@@ -141,13 +159,13 @@ public class Level {
 	 */
 	public void bringNewZombiesIn() {
 		for (int i = 0; i < Field.DEFAULT_MAX_ROW; i++) {
-			if (zombieQueue[i].peek().getTurn() == turnNumber) {
-				Zombie z = zombieQueue[i].remove();
-				z.setSquare(this.field.getStrip()[i].getSquares()[Field.DEFAULT_MAX_POSN-1]);
-				this.field.getStrip()[i].getSquares()[Field.DEFAULT_MAX_POSN-1]
+			if (zombieList[i].get(0).getKey() == turnNumber) {
+				Zombie z = zombieList[i].remove(0).getValue();
+				z.setSquare(this.field.getStrip()[i].getSquares()[Field.DEFAULT_MAX_POSN - 1]);
+				this.field.getStrip()[i].getSquares()[Field.DEFAULT_MAX_POSN - 1]
 						.add(z);
-
 			}
+
 		}
 	}
 }

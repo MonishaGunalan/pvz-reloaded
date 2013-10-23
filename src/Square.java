@@ -40,8 +40,12 @@ public class Square {
 	public Square getSquare(Field.Direction dir) {
 		Square s = null;
 		switch (dir) {
-			case LEFT: s = this.strip.getSquare(col-1); break;
-			case RIGHT: s = this.strip.getSquare(col+1); break;
+		case LEFT:
+			s = this.strip.getSquare(col - 1);
+			break;
+		case RIGHT:
+			s = this.strip.getSquare(col + 1);
+			break;
 		}
 
 		return s;
@@ -49,11 +53,11 @@ public class Square {
 
 	public void add(Unit unit) {
 		if (unit instanceof Plant) {
-			remove((Plant)unit);
+			remove((Plant) unit);
 		} else if (unit instanceof Bullet) {
-			remove((Bullet)unit);
+			remove((Bullet) unit);
 		} else if (unit instanceof Zombie) {
-			remove((Zombie)unit);
+			remove((Zombie) unit);
 		}
 	}
 
@@ -71,11 +75,11 @@ public class Square {
 		this.numZombie++;
 	}
 
-	public boolean remove(PerishableUnit p) {
+	public boolean remove(Unit p) {
 		if (p instanceof Zombie) {
-			return remove((Zombie)p);
+			return remove((Zombie) p);
 		} else if (p instanceof Plant) {
-			return remove((Plant)p);
+			return remove((Plant) p);
 		}
 
 		// If code reaches here, p is not a valid PerishableUnit
@@ -120,30 +124,30 @@ public class Square {
 
 	public String toString() {
 		String s = "[";
-		if(this.terrain.equals("mud")){
+		if (this.terrain.equals("mud")) {
 			s += '-';
 		}
-		
+
 		if (this.hasPlant()) {
 			s += 'p';
-		}else{
+		} else {
 			s += ' ';
 		}
-		
+
 		if (this.hasZombie()) {
 			s += 'z';
-		}else{
+		} else {
 			s += ' ';
 		}
-		
+
 		if (this.hasBullet()) {
 			s += '>';
-		}else{
+		} else {
 			s += ' ';
 		}
-		
+
 		s += ']';
-		
+
 		return s;
 	}
 }
