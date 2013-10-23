@@ -1,3 +1,9 @@
+import java.io.BufferedReader;
+import java.io.File;
+
+import java.io.FileReader;
+import java.io.IOException;
+
 
 public class GameModel {
 	Player player;
@@ -6,16 +12,31 @@ public class GameModel {
 	
 	public GameModel(){
 		//TODO:: reader info here
-		level = new Level("",1);
-		player = new Player(level.getField());
+		File f = new File("playerData.txt");
+		if (f.exists()){
+			// load files here
+			System.out.println("Got here");
+			try {
+				BufferedReader reader = new BufferedReader(new FileReader(f));
+				int levelNum = Integer.parseInt(reader.readLine());
+				int score =  Integer.parseInt(reader.readLine());
+				level = new Level("", levelNum);
+				player = new Player(level);
+				player.setScore(score);
+			} catch (NumberFormatException | IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else {
+			System.out.println("Got here2");
+			level = new Level("",1);
+			player = new Player(level);	
+		}
+		
 
 		player.play();
 		
-	}
-	
-	
-
-	
+	}	
 	
 	/**
 	 * @param args

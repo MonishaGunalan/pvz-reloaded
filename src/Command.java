@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Command{
 	
 	public enum CommandType{
@@ -5,20 +7,23 @@ public class Command{
 		UNDO("u"),
 		REDO("r"),
 		DO_NOTHING("d");
-		String command;
-		private CommandType(String command){
-			this.command = command;
+		String commandString;
+		private CommandType(String commandString){
+			this.commandString = commandString;
 		}
 		
 		public static CommandType getCommandType(String s){
 			for (CommandType c: CommandType.values()){
-				if (s.equals(c.command)){
+				if (s.equals(c.commandString)){
 					return c;
 				}
 			}
 			return null;
 		}
 		
+		public String getCommandString(){
+			return commandString;
+		}
 		
 	}
 	
@@ -39,16 +44,16 @@ public class Command{
 		
 	}
 	
-	public Command (String s){
+	public Command (String s, Scanner c){
 		
-		String [] argv = s.split(" ");
-		commandType = CommandType.getCommandType(argv[0]);
-		
+		commandType = CommandType.getCommandType(s);
+
 		switch(commandType){
 		case PLANT_SEED:
-			arg = argv[1];
-			x = Integer.parseInt(argv[2]);
-			y = Integer.parseInt(argv[3]);
+			System.out.println("Please enter what plant type and the x and y loaction");
+			arg = c.next();
+			x = c.nextInt();
+			y = c.nextInt();
 		case DO_NOTHING:
 			break;
 		case REDO:
@@ -74,10 +79,15 @@ public class Command{
 		return arg;
 	}
 
-	
-	
-	
-	
+	public static String getCommandOptions(){
+		StringBuilder b = new StringBuilder();
+		for (CommandType cmd: CommandType.values()){
+			b.append(cmd.name()).append("(\"").append(cmd.getCommandString()).append("\") ");
+			
+		}
+		
+		return b.toString();
+	}
 	
 	
 }

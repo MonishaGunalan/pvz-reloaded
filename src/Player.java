@@ -1,3 +1,6 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -5,9 +8,9 @@ import java.util.Scanner;
 
 public class Player {
 
-	private int money;
+	private int score;
 	private int sun;
-	private Field field;
+	private Level level;
 	private PlantFactory plantFactory;
 	Scanner c;
 	//This map contains the mapping of all plant type to their active cooldown
@@ -15,12 +18,12 @@ public class Player {
 
 
 
-	public Player(Field field){
-		this.field = field;
+	public Player(Level level){
+		this.level = level;
 		plantFactory = new PlantFactory();
 		triggeredCooldowns = new HashMap<PlantFactory.PlantType, Integer>();
 		sun = 0;
-		money = 0;
+		score = 0;
 		c = new Scanner(System.in);
 
 	}
@@ -49,12 +52,13 @@ public class Player {
 					grow(0,0,p);
 
 				}
+				level.incrementTurn();
 				break;
 			case UNDO:
-				//TODO implement
+				//TODO implement a Turn Class that will encapsulate the data of a turn
 				break;
 			case REDO:
-				//TODO implement
+				//TODO implement a Turn Class that will encapsulate the data of a turn
 				break;
 			default:
 			}
@@ -63,14 +67,15 @@ public class Player {
 	}
 
 	public Command getNextCommand(){
+		System.out.println(Command.getCommandOptions());
 		String command = c.next();
 		
-		return new Command(command);
+		return new Command(command,c);
 	}
 
 
 	public boolean grow(int row, int col, PlantFactory.PlantType plantType){
-		Square square = field.getStrip()[row].getSquare()[col];
+		Square square = level.getField().getStrip()[row].getSquare()[col];
 		if(square.hasPlant() && plantType.getCost() <= sun){	
 			Plant plant = plantFactory.makePlant(plantType);
 			if (plant != null){
@@ -108,5 +113,23 @@ public class Player {
 		}
 	}
 
+	
+	public void save(){
+		
+		try {
+			BufferedWriter out = new BufferedWriter(new FileWriter("playerData.txt"));
+			out.write(level.getLevelNumber());
+			out.write(score);
+			out.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public void setScore(int score){
+		this.score = score;
+	}
 
 }
