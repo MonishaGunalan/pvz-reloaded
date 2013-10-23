@@ -4,10 +4,8 @@ public class PeaBullet
 	private static final int MOVE_TRIGGER = 0;
 	private static final int DMG = 1;
 
-	public PeaBullet(Square square) {
+	public PeaBullet() {
 		super(DMG, MOVE_TRIGGER);
-		// Set the square on which this bullet exists
-		super.setSquare(square);
 		// Instantiate cooldowns
 		moveCD = new Cooldown(MOVE_TRIGGER);
 		// Build set of all cooldowns

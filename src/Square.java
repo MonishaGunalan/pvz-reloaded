@@ -45,6 +45,16 @@ public class Square {
 		return s;
 	}
 
+	public void add(Unit unit) {
+		if (unit instanceof Plant) {
+			remove((Plant)unit);
+		} else if (unit instanceof Bullet) {
+			remove((Bullet)unit);
+		} else if (unit instanceof Zombie) {
+			remove((Zombie)unit);
+		}
+	}
+
 	public void add(Plant plant) {
 		this.plant = plant;
 	}
