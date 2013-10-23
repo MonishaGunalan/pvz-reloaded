@@ -2,6 +2,7 @@ public class SunGenerator {
 	private final int GEN_TRIGGER;
 	private final int GEN_AMT;
 
+	private Field field;
 	private int sunCooldown;
 
 	public SunGenerator(int trigger, int genAmt) {

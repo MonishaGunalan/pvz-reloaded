@@ -2,6 +2,11 @@ public abstract class Zombie
 	extends PerishableUnit
 	implements MoveableUnit{
 
+	// Constants
+	protected static final int DEFAULT_ATK = 10;
+	protected static final int DEFAULT_ATTACK_TRIGGER = 0;
+	protected static final int DEFAULT_MOVE_TRIGGER = 3;
+
 	// State variables for different types of zombies
 	protected Cooldown moveCD;
 	protected Cooldown attackCD;
@@ -12,6 +17,10 @@ public abstract class Zombie
 	public enum Status {CHILLED, FROZEN, NORMAL}
 
 	public enum Type{ NORMAL;}
+
+	protected Zombie(int maxHP) {
+		this(maxHP, DEFAULT_ATK, DEFAULT_ATTACK_TRIGGER, DEFAULT_MOVE_TRIGGER);
+	}
 
 	protected Zombie(int maxHP, int dmg, int attackTriggerAmt, int moveTriggerAmt) {
 		super(maxHP);
@@ -37,10 +46,6 @@ public abstract class Zombie
 	}
 	public int getAttackTriggerAmt() {
 		return attackTriggerAmt;
-	}
-
-	public int getMaxHP() {
-		return maxHP;
 	}
 
 	// Moves the bullet appropriately for the turn
