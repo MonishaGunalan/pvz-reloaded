@@ -3,13 +3,12 @@ public class Strip {
 	private Square[] squares;
 	private String terrain;
 	private Field field;
-
 	/*
-	 * private enum terrainType { POOL('P'), LAWN('L'); private char value;
-	 * 
-	 * terrainType(char value) { this.value = value; } };
+	 * Constructor - creates squares which are contained in a strip
+	 * @param terrian the terraintype of the field
+	 * @param fieldRow the index of the strip in a field
+	 * @param field the field which contains the strip
 	 */
-
 	public Strip(String terrain, int fieldRow, Field field) {
 		this.fieldRow = fieldRow;
 		this.terrain = terrain;
@@ -21,14 +20,24 @@ public class Strip {
 
 	}
 
+	/*
+	 * @returns  list of squares contained in this strip
+	 */
 	public Square[] getSquares() {
 		return squares;
 	}
-
+	
+	/*
+	 * @param posn position of the square in the strip
+	 * @return a square in the requested position
+	 */
 	public Square getSquare(int posn) {
 		return squares[posn];
 	}
 
+	/*
+	 * @return returns a string represention of the strip
+	 */
 	public String toString() {
 		String s = "";
 		for (int j = 0; j < Field.DEFAULT_MAX_POSN; j++) {
