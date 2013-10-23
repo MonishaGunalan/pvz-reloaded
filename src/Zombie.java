@@ -1,8 +1,19 @@
+/**
+ * This class is the parent of all zombie types.<!-- --> It contains default information
+ * shared by several of its subclasses.<!-- -->
+ *
+ * @author Tianming Zhuang
+ * @version 1.0
+ * @since 1.7
+ */
 public abstract class Zombie 
 	extends PerishableUnit {
 
 	// Constants
-	protected static final int DEFAULT_ATK = 10;
+	/**
+	 * this is a test
+	 */
+	protected static final int DEFAULT_ATK = 10; 
 	protected static final int DEFAULT_ATTACK_TRIGGER = 0;
 	protected static final int DEFAULT_MOVE_TRIGGER = 3;
 
@@ -50,13 +61,19 @@ public abstract class Zombie
 		return attackTriggerAmt;
 	}
 
+	public Cooldown getMoveCooldown() {
+		return this.moveCD;
+	}
 
 	protected void move() {
 		move(DEFAULT_MOVE_DIR);
 	}
 
-	// Moves the bullet appropriately for the turn
-	// and trickers the move cooldown
+	/**
+	 * Moves the bullet 1 square in the specified direction
+	 *
+	 * @param dir The direction to move in
+	 */
 	protected void move(Field.Direction dir) {
 		if (moveCD.isAvailable()) {
 			// Remove bullet from this square and add
