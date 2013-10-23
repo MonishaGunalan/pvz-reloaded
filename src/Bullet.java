@@ -38,11 +38,11 @@ public abstract class Bullet
 	// and trickers the move cooldown
 	public void move(Field.Direction dir) {
 		if (moveCD.isAvailable()) {
-			if (square.getSquare(dir) != null) {
+			Square dest = square.getSquare(Field.Direction.LEFT);
+			if (dest != null) {
 				// Remove bullet from this square and add
 				// it to the next square
-				square.getSquare(dir).add(this);
-				square.remove(this);
+				this.setSquare(dest);
 				// Trigger the CD
 				moveCD.trigger();
 			} else {

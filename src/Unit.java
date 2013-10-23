@@ -23,7 +23,10 @@ public abstract class Unit implements TurnBasedUnit {
 	}
 
 	public void setSquare(Square square) {
+		//System.out.println("Calling setSquare");
+		//System.out.println("Is unit square null? " + (this.square == null));
 		if (this.square != null) {
+			//System.out.println("Unit @: " + getRow() + "," + getCol());
 			this.square.remove(this);
 		}
 		this.square = square;

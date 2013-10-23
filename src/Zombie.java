@@ -76,10 +76,11 @@ public abstract class Zombie
 	 */
 	protected void move(Field.Direction dir) {
 		if (moveCD.isAvailable()) {
+			System.out.println("row: " + square.getRow() + " col: " + square.getCol());
 			// Remove bullet from this square and add
 			// it to the next square
-			square.getSquare(Field.Direction.LEFT).add(this);
-			square.remove(this);
+			Square dest = square.getSquare(Field.Direction.LEFT);
+			this.setSquare(dest);
 			// Trigger the CD
 			moveCD.trigger();
 		}

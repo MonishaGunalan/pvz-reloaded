@@ -85,11 +85,11 @@ public class Square {
 	 */
 	public void add(Unit unit) {
 		if (unit instanceof Plant) {
-			remove((Plant) unit);
+			add((Plant) unit);
 		} else if (unit instanceof Bullet) {
-			remove((Bullet) unit);
+			add((Bullet) unit);
 		} else if (unit instanceof Zombie) {
-			remove((Zombie) unit);
+			add((Zombie) unit);
 		}
 	}
 
@@ -116,6 +116,7 @@ public class Square {
 	 */
 	public void add(Zombie zombie) {
 		zombies.add(zombie);
+		//System.out.println("adding zombie @ " + getRow() + "," + getCol());
 		this.numZombie++;
 	}
 
@@ -143,6 +144,7 @@ public class Square {
 	 * 
 	 */
 	public boolean remove(Zombie z) {
+		//System.out.println("removing zombie @ " + getRow() + "," + getCol());
 		numZombie--;
 		return zombies.remove(z);
 	}
