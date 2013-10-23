@@ -38,8 +38,8 @@ public class Square {
 	public Square getSquare(Field.Direction dir) {
 		Square s;
 		switch (dir) {
-			case Direction.LEFT: s = this.strip.getSquare(col-1); break;
-			case Direction.RIGHT: s = this.strip.getSquare(col+1); break;
+			case Field.Direction.LEFT: s = this.strip.getSquares(col-1); break;
+			case Field.Direction.RIGHT: s = this.strip.getSquares(col+1); break;
 		}
 
 		return s;
