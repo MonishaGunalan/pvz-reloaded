@@ -250,7 +250,7 @@ public class Square {
 		}
 
 		if (this.hasBullet()) {
-			s += "b"+bullets.size();
+			s += ">";
 		} else {
 			s += ' ';
 		}
