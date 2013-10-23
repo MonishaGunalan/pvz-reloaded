@@ -21,7 +21,6 @@ public abstract class OffensivePlant
 		this.cost = cost;
 		this.bulletType = bulletType;
 		this.shootTriggerAmt = shootTriggerAmt;
-		bulletFactory = new BulletFactory();
 	}
 
 	// Type of bullet

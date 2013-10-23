@@ -31,8 +31,8 @@ public abstract class Zombie
 
 		this.attackCD = new Cooldown(attackTriggerAmt);
 		this.moveCD = new Cooldown(moveTriggerAmt);
-		cooldowns.add(attackCD;)
-		cooldowns.add(moveCD;)
+		cooldowns.add(attackCD);
+		cooldowns.add(moveCD);
 	}
 
 	// Damage of bullet
