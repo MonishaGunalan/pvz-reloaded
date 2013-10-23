@@ -82,8 +82,8 @@ public class Level {
 							// the field and the type 
 							String[] rowContents1 = bufferedReader.readLine().split(
 									" ");
-							int turn = Integer.parseInt(rowContents[0]);
-							String type = rowContents[1];
+							int turn = Integer.parseInt(rowContents1[0]);
+							String type = rowContents1[1];
 							spawnZombie(i, turn, type);
 							numZombieInRow[i]--;
 
@@ -126,7 +126,7 @@ public class Level {
 				Zombie z = zombieQueue[i].remove();
 				z.setSquare(this.field.getStrip()[i].getSquares()[Field.DEFAULT_MAX_POSN-1]);
 				this.field.getStrip()[i].getSquares()[Field.DEFAULT_MAX_POSN-1]
-						.addZombie(z);
+						.add(z);
 
 			}
 		}
