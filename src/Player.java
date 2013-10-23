@@ -12,9 +12,8 @@ public class Player {
 	private int sun;
 	private Level level;
 
-	//Scanner c;
 	//This map contains the mapping of all plant type to their active cooldown
-	private Map<PlantFactory.PlantType, Integer> triggeredCooldowns;
+	private Map<PlantFactory.PlantType, Cooldown> triggeredCooldowns;
 
 
 	/**
@@ -24,7 +23,10 @@ public class Player {
 	public Player(Level level){
 		this.level = level;
 
-		triggeredCooldowns = new HashMap<PlantFactory.PlantType, Integer>();
+		triggeredCooldowns = new HashMap<PlantFactory.PlantType, Cooldown>();
+		for (PlantFactory.PlantType p: PlantFactory.PlantType.values()){
+			triggeredCooldowns.put(p, new Cooldown(p.getCooldown()));
+		}
 		sun = 0;
 		score = 0;
 
@@ -61,7 +63,7 @@ public class Player {
 				return;
 			}
 			boolean growSuccessful = false;
-			if (p != null && triggeredCooldowns.containsKey(p)){
+			if (p != null){
 				growSuccessful = grow(0,0,p);
 
 			}
@@ -94,47 +96,47 @@ public class Player {
 	 * @return The boolean if the the plant was grown
 	 */
 	public boolean grow(int row, int col, PlantFactory.PlantType plantType){
-
-		//TODO:: give a message if sun points are sufficient or square already has plants
+		//TODO:: return with more meaningful error messages
+		if (!triggeredCooldowns.get(plantType).isAvailable()){
+			System.out.println("Plant Still On cooldown!");
+			return false;
+		}
+		
 		Square square = level.getField().getStrip()[row].getSquare(col);
-		if(square.hasPlant() && plantType.getCost() <= sun){	
-			Plant plant = PlantFactory.makePlant(plantType);
-			if (plant != null){
-				System.out.println("Plant Created");
-				System.out.println(plant.getClass().getName());
-			} else {
-				System.out.println("Plant Still On cooldown!");
-			}
+		if (square.hasPlant()){
+			System.out.println("There is already a plant present in the square!");
+			return false;
+		} else if (plantType.getCost() > sun){
+			System.out.println("Insufficient funds!");
+			return false;
+		}
 
-
-			if (plant != null){
-				square.add(plant);
-				sun-= plantType.getCost();
-				triggeredCooldowns.put(plantType, plantType.getCooldown());
-				return true;
-			}
-
+		Plant plant = PlantFactory.makePlant(plantType);
+		if (plant != null){
+			System.out.println("Plant Created");
+			System.out.println(plant.getClass().getName());
+			square.add(plant);
+			sun-= plantType.getCost();
+			triggeredCooldowns.get(plantType).trigger();
+			return true;
 		}
 
 		return false;
 	}
 
 	/**
-	 * This method should be called before makePlant so we don't decrement the cooldown as soon as it is added
+	 * Iterate through all the cooldowns and tick any that are active
 	 */
 	public void triggerCooldowns(){
-		for (PlantFactory.PlantType plantType: triggeredCooldowns.keySet()){
-			int cooldown = triggeredCooldowns.get(plantType);
-			cooldown --;
-			if (cooldown == 0){
-				triggeredCooldowns.remove(plantType);
-			} else{
-				triggeredCooldowns.put(plantType, cooldown);
-			}
+		for (Cooldown cooldown: triggeredCooldowns.values()){
+			cooldown.tick();
 		}
 	}
 
 
+	/**
+	 * Save the player state
+	 */
 	public void save(){
 
 		try {
