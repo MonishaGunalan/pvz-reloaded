@@ -23,12 +23,12 @@ public abstract class Unit implements TurnBasedUnit {
 	}
 
 	public void setSquare(Square square) {
-		System.out.println("Calling setSquare");
-		System.out.println("Unit is of type: " + this.getClass().getName());
-		System.out.println("Is unit square null? " + (this.square == null));
+		//System.out.println("Calling setSquare");
+		//System.out.println("Unit is of type: " + this.getClass().getName());
+		//System.out.println("Is unit square null? " + (this.square == null));
 		if (this.square != null) {
-			System.out.println("Attemping to remove; successful? " + this.square.remove(this));
-			//this.square.remove(this);
+			//System.out.println("Attemping to remove; successful? " + this.square.remove(this));
+			this.square.remove(this);
 		}
 		this.square = square;
 		square.add(this);

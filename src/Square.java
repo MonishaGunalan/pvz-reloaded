@@ -106,7 +106,7 @@ public class Square {
 	 * @bullet the bullet
 	 */
 	public void add(Bullet bullet) {
-		System.out.println("adding bullet @ " + getRow() + "," + getCol());
+		//System.out.println("adding bullet @ " + getRow() + "," + getCol());
 		bullets.add(bullet);
 		this.numBullet++;
 	}
@@ -159,7 +159,7 @@ public class Square {
 	 * 
 	 */
 	public boolean remove(Bullet b) {
-		System.out.println("removing bullet @ " + getRow() + "," + getCol());
+		//System.out.println("removing bullet @ " + getRow() + "," + getCol());
 		numBullet--;
 		return bullets.remove(b);
 	}
@@ -243,17 +243,18 @@ public class Square {
 			s += ' ';
 		}
 
+		if (this.hasBullet()) {
+			s += ">";
+		} else {
+			s += ' ';
+		}
+
 		if (this.hasZombie()) {
 			s += 'z';
 		} else {
 			s += ' ';
 		}
 
-		if (this.hasBullet()) {
-			s += "b"+bullets.size();
-		} else {
-			s += ' ';
-		}
 
 		s += ']';
 

@@ -16,10 +16,10 @@ public class PeaBullet
 
 	public void makeTurnAction() {
 		if (square.hasZombie()) {
-			System.out.println("HASS A FUCKING ZOMBIE");
+			//System.out.println("HASS A FUCKING ZOMBIE");
 			super.hit(square.getFirstZombie());
 		} else if (moveCD.isAvailable()) {
-			System.out.println("Is move cd avail? " + moveCD.isAvailable());
+			//System.out.println("Is move cd avail? " + moveCD.isAvailable());
 			super.move(Field.Direction.RIGHT);
 			moveCD.trigger();
 		}
