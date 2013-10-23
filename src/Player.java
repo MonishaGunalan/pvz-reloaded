@@ -119,7 +119,7 @@ public class Player {
 		if (plant != null){
 			System.out.println("Plant Created");
 			System.out.println(plant.getClass().getName());
-			square.add(plant);
+			plant.setSquare(square);
 			sun-= plantType.getCost();
 			triggeredCooldowns.get(plantType).trigger();
 			return true;
