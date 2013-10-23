@@ -3,7 +3,7 @@ public abstract class OffensivePlant
 	// Constants
 	protected static final Bullet.Type DEFAULT_BULLET = Bullet.Type.PEA; 
 	protected static final int DEFAULT_SHOOT_TRIGGER = 0;
-	protected static final BulletFactory bulletFactory;
+	protected final BulletFactory bulletFactory;
 
 	// Variables
 	protected Cooldown shootCD;

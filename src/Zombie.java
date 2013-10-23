@@ -51,13 +51,13 @@ public abstract class Zombie
 	}
 
 
-	private void move() {
+	protected void move() {
 		move(DEFAULT_MOVE_DIR);
 	}
 
 	// Moves the bullet appropriately for the turn
 	// and trickers the move cooldown
-	private void move(Field.Direction dir) {
+	protected void move(Field.Direction dir) {
 		if (moveCD.isAvailable()) {
 			// Remove bullet from this square and add
 			// it to the next square
