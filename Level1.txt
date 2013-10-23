@@ -1,5 +1,4 @@
-
-Level2
+Level1
 10
 MUD 0
 GRASS 2 
