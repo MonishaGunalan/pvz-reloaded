@@ -1,6 +1,5 @@
 public abstract class Zombie 
-	extends PerishableUnit
-	implements MoveableUnit{
+	extends PerishableUnit {
 
 	// Constants
 	protected static final int DEFAULT_ATK = 10;

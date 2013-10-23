@@ -14,7 +14,7 @@ public class NormalZombie
 		if (square.hasPlant()) {
 			super.hit(square.getPlant());
 		} else {
-			super.move(Field.Direcion.LEFT);
+			super.move(Field.Direction.LEFT);
 		}
 
 		super.tickCooldowns();

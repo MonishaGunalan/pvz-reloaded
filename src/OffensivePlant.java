@@ -3,6 +3,7 @@ public abstract class OffensivePlant
 	// Constants
 	protected static final Bullet.Type DEFAULT_BULLET = Bullet.Type.PEA; 
 	protected static final int DEFAULT_SHOOT_TRIGGER = 0;
+	protected static final BulletFactory bulletFactory;
 
 	// Variables
 	protected Cooldown shootCD;
@@ -16,10 +17,10 @@ public abstract class OffensivePlant
 	}
 
 	public OffensivePlant(int maxHP, int cost, Bullet.Type bulletType, int shootTriggerAmt) {
-		super(maxHP);
-		this.cost = cost;
+		super(maxHP, cost);
 		this.bulletType = bulletType;
 		this.shootTriggerAmt = shootTriggerAmt;
+		this.bulletFactory = new BulletFactory();
 	}
 
 	// Type of bullet
