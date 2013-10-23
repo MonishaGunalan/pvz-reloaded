@@ -2,6 +2,7 @@ public class Strip {
 	private int fieldRow;
 	private Square[] squares;
 	private String terrain;
+	private Field field;
 
 	/*
 	private enum terrainType {
@@ -14,13 +15,13 @@ public class Strip {
 	};
 	*/
 
-	public Strip(String terrain, int fieldRow) {
+	public Strip(String terrain, int fieldRow, Field field) {
 		this.fieldRow = fieldRow;
 		this.terrain = terrain;
-
+		this.field = field;
 		squares = new Square[Field.DEFAULT_MAX_POSN];
 		for (int j = 0; j < Field.DEFAULT_MAX_POSN; j++) {
-			squares[j] = new Square(terrain, fieldRow, j);
+			squares[j] = new Square(terrain, fieldRow, j, this);
 		}
 
 	}

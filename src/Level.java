@@ -1,3 +1,4 @@
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -14,8 +15,12 @@ public class Level {
 	private int[] numZombieInRow;
 	private int numTurns;
 
-	// instantiate a new field with field row and column
-	public Level(String fileName, int levelNumber) {
+	/*
+	 *  instantiate a new field with field row and column
+	 *  @param levelNumber level number
+	 */
+	public Level (int levelNumber) {
+		String fileName = "level"+levelNumber;
 		this.levelNumber = levelNumber;
 		createZombieQueue();
 		String[] fieldRows = this.loadLevel(fileName, levelNumber);
@@ -24,7 +29,10 @@ public class Level {
 
 	}
 
-	// create an array of Queue for each row to store the Zombies
+	/*
+	 *  create an array of Queue for each row to store the Zombies
+	 *  
+	 */
 	public void createZombieQueue() {
 		zombieQueue = new Queue[Field.DEFAULT_MAX_ROW];
 		for (int i = 0; i < Field.DEFAULT_MAX_ROW; i++) {
@@ -32,7 +40,11 @@ public class Level {
 		}
 	}
 
-	// Create Zombies in the specified row#
+	/*
+	 *  Create Zombies in the specified row#
+	 *  @param row row number of the field 
+	 *  @param turn the turn in which the Zombie enters the field
+	 */
 	public void spawnZombie(int row, int turn, String type) {
 		zombieQueue[row].add(new Zombie(turn, row, type));
 	}
@@ -88,7 +100,7 @@ public class Level {
 		}
 		return fieldRows;
 	}
-
+	//Returns the level Number
 	public int getLevelNumber() {
 		return levelNumber;
 	}

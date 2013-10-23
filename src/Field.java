@@ -1,4 +1,3 @@
-import java.util.Set;
 
 public class Field {
 
@@ -11,7 +10,7 @@ public class Field {
 	public Field(String[] terrainType) {
 		strips = new Strip[DEFAULT_MAX_ROW];
 		for (int i = 0; i < DEFAULT_MAX_ROW; i++) {
-			strips[i] = new Strip(terrainType[i], i);
+			strips[i] = new Strip(terrainType[i], i, this);
 		}
 	}
 
