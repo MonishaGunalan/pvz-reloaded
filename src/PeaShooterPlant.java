@@ -1,9 +1,10 @@
 public class PeaShooterPlant
 	extends OffensivePlant {
+	private static final int MAX_HP = 3;
 	private static final int COST = 100;
 
-	public PeaShooterPlant(int maxHP) {
-		super(maxHP, COST);
+	public PeaShooterPlant() {
+		super(MAX_HP, COST);
 		cooldowns.add(shootCD);
 	}
 

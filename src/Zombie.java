@@ -7,6 +7,8 @@ public abstract class Zombie
 	protected static final int DEFAULT_ATTACK_TRIGGER = 0;
 	protected static final int DEFAULT_MOVE_TRIGGER = 3;
 
+	private static final Field.Direction DEFAULT_MOVE_DIR = Field.Direction.LEFT;
+
 	// State variables for different types of zombies
 	protected Cooldown moveCD;
 	protected Cooldown attackCD;
@@ -14,18 +16,10 @@ public abstract class Zombie
 	protected int moveTriggerAmt;
 	protected int dmg;
 
+
 	public enum Status {CHILLED, FROZEN, NORMAL}
 
-	public enum Type{ 
-		NORMAL;
-
-		public static Type getType(String s) {
-			switch (s) {
-				case "normal": return NORMAL; break;
-				default: throw(IllegalArgumentException); break;
-			}
-		}
-	}
+	public enum Type{ NORMAL; }
 
 	protected Zombie(int maxHP) {
 		this(maxHP, DEFAULT_ATK, DEFAULT_ATTACK_TRIGGER, DEFAULT_MOVE_TRIGGER);
@@ -57,9 +51,14 @@ public abstract class Zombie
 		return attackTriggerAmt;
 	}
 
+
+	private void move() {
+		move(DEFAULT_MOVE_DIR);
+	}
+
 	// Moves the bullet appropriately for the turn
 	// and trickers the move cooldown
-	public void move(Field.Direction dir) {
+	private void move(Field.Direction dir) {
 		if (moveCD.isAvailable()) {
 			// Remove bullet from this square and add
 			// it to the next square
