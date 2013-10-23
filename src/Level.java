@@ -124,8 +124,8 @@ public class Level {
 		for (int i = 0; i < Field.DEFAULT_MAX_ROW; i++) {
 			if (zombieQueue[i].peek().getTurn() == turnNumber) {
 				Zombie z = zombieQueue[i].remove();
-				z.setSquare(this.field.getStrip()[i].getSquare()[Field.DEFAULT_MAX_POSN-1]);
-				this.field.getStrip()[i].getSquare()[Field.DEFAULT_MAX_POSN-1]
+				z.setSquare(this.field.getStrip()[i].getSquares()[Field.DEFAULT_MAX_POSN-1]);
+				this.field.getStrip()[i].getSquares()[Field.DEFAULT_MAX_POSN-1]
 						.addZombie(z);
 
 			}

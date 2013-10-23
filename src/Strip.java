@@ -5,15 +5,10 @@ public class Strip {
 	private Field field;
 
 	/*
-	private enum terrainType {
-		POOL('P'), LAWN('L');
-		private char value;
-
-		terrainType(char value) {
-			this.value = value;
-		}
-	};
-	*/
+	 * private enum terrainType { POOL('P'), LAWN('L'); private char value;
+	 * 
+	 * terrainType(char value) { this.value = value; } };
+	 */
 
 	public Strip(String terrain, int fieldRow, Field field) {
 		this.fieldRow = fieldRow;
@@ -25,16 +20,16 @@ public class Strip {
 		}
 
 	}
-	
-	public Square[] getSquares(){
+
+	public Square[] getSquares() {
 		return squares;
 	}
 
-	public Square getSquare(int posn) {
+	public Square getSquares(int posn) {
 		return squares[posn];
 	}
-	
-	public String toString(){
+
+	public String toString() {
 		String s = "";
 		for (int j = 0; j < Field.DEFAULT_MAX_POSN; j++) {
 			s += squares[j].toString();
@@ -42,8 +37,5 @@ public class Strip {
 		s += " ";
 		return s;
 	}
-	
-	
-	
 
 }
