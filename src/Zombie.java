@@ -88,6 +88,10 @@ public abstract class Zombie
 		}
 	}
 
+	private void printMove(Square dest) {
+		System.out.println("Zombie (" + getRow() + "," + getCol() + ")-->{" + dest.getRow() + "," + dest.getCol() + ")");
+	}
+
 	// Normal zombie hits a plant on current hp, reducing
 	// its hp by a flat amount
 	public void hit(Plant plant) {

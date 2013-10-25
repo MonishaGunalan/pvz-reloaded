@@ -1,0 +1,17 @@
+Level1
+10
+MUD 0
+GRASS 2 
+200 normal
+200 normal
+GRASS 4
+1 normal
+200 normal
+200 normal
+200 normal
+GRASS 3 
+200 normal
+200 normal
+200 normal
+MUD 0
+

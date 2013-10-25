@@ -63,7 +63,10 @@ public class Square {
 	 * @return the first zombie in the square
 	 */
 	public Zombie getFirstZombie() {
-		return zombies.get(0);
+		if (zombies.size() > 0) {
+			return zombies.get(0);
+		}
+		return null;
 	}
 
 	/*
@@ -185,6 +188,7 @@ public class Square {
 	 * @return true if there exits a zombie
 	 */
 	public boolean hasZombieAfter() {
+		//System.out.println("Checking for zombie after plant..");
 		int currentPosn = this.getCol();
 		boolean hasZombie = false;
 		for (int i=currentPosn; i<Field.DEFAULT_MAX_ROW; i++) {
@@ -198,10 +202,7 @@ public class Square {
 	 * @return returns true if the square contains a zombie
 	 */
 	public boolean hasZombie() {
-		if (zombies.size() > 0) {
-			return true;
-		}
-		return false;
+		return (zombies.size() > 0);
 	}
 	
 	/*

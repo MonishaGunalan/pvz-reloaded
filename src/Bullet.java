@@ -45,6 +45,7 @@ public abstract class Bullet
 	protected void move(Field.Direction dir) {
 		if (moveCD.isAvailable()) {
 			Square dest = square.getSquare(dir);
+			printMove(dest);
 			if (dest != null) {
 				// Remove bullet from this square and add
 				// it to the next square
@@ -56,6 +57,32 @@ public abstract class Bullet
 			}
 		}
 	}
+
+	private void printMove(Square dest) {
+		System.out.println("Bullet (" + getRow() + "," + getCol() + ")-->{" + dest.getRow() + "," + dest.getCol() + ")");
+	}
+
+	public void makeTurnAction() {
+		System.out.println(this + " calling square.getSquare(right);");
+		Square dest = square.getSquare(Field.Direction.RIGHT);
+		if (dest == null) {
+			System.out.println("WTF HOW IS DEST NULL?");
+		}
+		if (square.hasZombie()) {
+			System.out.println("1");
+			//System.out.println("HASS A FUCKING ZOMBIE");
+			this.hit(square.getFirstZombie());
+		} else if (dest.hasZombie()) {
+			System.out.println("2");
+			this.hit(dest.getFirstZombie());
+		} else if (moveCD.isAvailable()) {
+			System.out.println("3");
+			//System.out.println("Is move cd avail? " + moveCD.isAvailable());
+			this.move(Field.Direction.RIGHT);
+		}
+		super.tickCooldowns();
+	}
+
 
 	public abstract Bullet.Type getType();
 }

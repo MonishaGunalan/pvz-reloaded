@@ -29,6 +29,7 @@ public abstract class PerishableUnit
 	}
 	
 	public void die(){
+		//System.out.println(this.getClass().getName() + "@" + getRow() + "," + getCol() + " is dead.");
 		this.square.remove(this);
 	}
 	

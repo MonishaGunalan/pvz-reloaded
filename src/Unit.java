@@ -43,4 +43,12 @@ public abstract class Unit implements TurnBasedUnit {
 			cooldown.tick();
 		}
 	}
+
+	@Override
+	public String toString() {
+		String s = "";
+		s += this.getClass().getName();
+		s += "@(" + getRow() + "," + getCol() + ")";
+		return s;
+	}
 }

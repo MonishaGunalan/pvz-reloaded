@@ -18,18 +18,6 @@ public class PeaBullet
 		// Damage bullet does
 	}
 
-	public void makeTurnAction() {
-		if (square.hasZombie()) {
-			//System.out.println("HASS A FUCKING ZOMBIE");
-			super.hit(square.getFirstZombie());
-		} else if (moveCD.isAvailable()) {
-			//System.out.println("Is move cd avail? " + moveCD.isAvailable());
-			super.move(Field.Direction.RIGHT);
-			moveCD.trigger();
-		}
-		super.tickCooldowns();
-	}
-
 	public Bullet.Type getType() {
 		return Bullet.Type.PEA;
 	}
