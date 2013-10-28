@@ -84,7 +84,7 @@ public class PlayerCommand{
 			//Get the arguments for plant creation
 			System.out.print("Plant: ");
 			System.out.println(PlantFactory.getPlantOptions());
-			System.out.println("Please enter plant and the x and y loaction");
+			System.out.println("Please enter plant and the row and col loaction");
 			arg = c.next();
 			x = getNumber(c);
 			y = getNumber(c);
