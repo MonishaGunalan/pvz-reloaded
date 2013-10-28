@@ -92,6 +92,7 @@ public class Square {
 	 * @param unit is the element such as zombie, plant bullet
 	 */
 	public void add(Unit unit) {
+		this.getStrip().getField().getLevel().addObserver(unit);
 		if (unit instanceof Plant) {
 			add((Plant) unit);
 		} else if (unit instanceof Bullet) {
@@ -135,13 +136,14 @@ public class Square {
 	 * @return returns true when the unit can be removed
 	 * 
 	 */
-	public boolean remove(Unit p) {
-		if (p instanceof Zombie) {
-			return remove((Zombie) p);
-		} else if (p instanceof Plant) {
-			return remove((Plant) p);
-		} else if (p instanceof Bullet){
-			return remove((Bullet)p);
+	public boolean remove(Unit unit) {
+		this.getStrip().getField().getLevel().deleteObserver(unit);
+		if (unit instanceof Zombie) {
+			return remove((Zombie) unit);
+		} else if (unit instanceof Plant) {
+			return remove((Plant) unit);
+		} else if (unit instanceof Bullet){
+			return remove((Bullet) unit);
 		}
 
 		// If code reaches here, p is not a valid PerishableUnit
@@ -265,5 +267,9 @@ public class Square {
 		s += ']';
 
 		return s;
+	}
+
+	public Strip getStrip() {
+		return this.strip;
 	}
 }

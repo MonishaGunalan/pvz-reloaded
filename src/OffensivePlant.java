@@ -1,3 +1,5 @@
+import java.util.Observable;
+
 /*
  * @author Tianming Zhuang
  * 100875151
@@ -33,5 +35,19 @@ public abstract class OffensivePlant
 
 	public int getShootTriggerAmt() {
 		return shootTriggerAmt;
+	}
+
+	private void shoot() {
+		Bullet bullet = BulletFactory.makeBullet(getBulletType());
+		//Square nextSquare = square.getSquare(Field.Direction.RIGHT);
+		bullet.setSquare(square);
+	}
+
+	public void update(Observable o, Object arg) {
+		if (square.hasZombieAfter() && shootCD.isAvailable()) {
+				shoot();
+				shootCD.trigger();
+		}
+		super.tickCooldowns();
 	}
 }

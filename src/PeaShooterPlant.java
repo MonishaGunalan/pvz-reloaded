@@ -12,17 +12,4 @@ public class PeaShooterPlant
 		cooldowns.add(shootCD);
 	}
 
-	private void shoot() {
-		Bullet bullet = BulletFactory.makeBullet(getBulletType());
-		//Square nextSquare = square.getSquare(Field.Direction.RIGHT);
-		bullet.setSquare(square);
-	}
-
-	public void makeTurnAction() {
-		if (square.hasZombieAfter() && shootCD.isAvailable()) {
-				shoot();
-				shootCD.trigger();
-		}
-		super.tickCooldowns();
-	}
 }

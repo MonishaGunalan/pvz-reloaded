@@ -1,3 +1,4 @@
+import java.util.Observer;
 /*
  * @author Tianming Zhuang
  * 100875151
@@ -5,7 +6,8 @@
 import java.util.Set;
 import java.util.HashSet;
 
-public abstract class Unit implements TurnBasedUnit {
+public abstract class Unit 
+	implements Observer {
 	protected Square square;
 	protected Set<Cooldown> cooldowns;
 

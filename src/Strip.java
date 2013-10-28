@@ -25,6 +25,10 @@ public class Strip {
 
 	}
 
+	public Field getField() {
+		return this.field;
+	}
+
 	/*
 	 * @returns  list of squares contained in this strip
 	 */

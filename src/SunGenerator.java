@@ -11,7 +11,7 @@ public class SunGenerator {
 
 	public SunGenerator(int trigger, int genAmt) {
 		GEN_TRIGGER = trigger;
-		this.GEN_AMT = genAmt;
+		GEN_AMT = genAmt;
 		sunCooldown = new Cooldown(GEN_TRIGGER);
 	}
 

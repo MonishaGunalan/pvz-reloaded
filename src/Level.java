@@ -7,8 +7,10 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Observable;
 
-public class Level {
+public class Level 
+	extends Observable {
 
 	private int levelNumber;
 	private Field field;
@@ -28,7 +30,7 @@ public class Level {
 		this.levelNumber = levelNumber;
 		createZombieList();
 		String[] fieldRows = this.loadLevel(fileName, levelNumber);
-		field = new Field(fieldRows);
+		field = new Field(fieldRows, this);
 		turnNumber = 0;
 		zFact = new ZombieFactory();
 	}
@@ -147,7 +149,8 @@ public class Level {
 		//if (turnNumber < numTurns) {
 		turnNumber++;
 		bringNewZombiesIn();
-		field.makeTurnAction();
+		setChanged();
+		notifyObservers();
 		//	}
 	}
 

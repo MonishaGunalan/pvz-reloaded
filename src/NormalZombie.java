@@ -22,17 +22,6 @@ public class NormalZombie
 		super(MAX_HP);
 	}
 
-	public void makeTurnAction() {
-		// If there's a plant on the square, attack it
-		// otherwise, move when possible
-		if (square.hasPlant()) {
-			super.hit(square.getPlant());
-		} else {
-			super.move(Field.Direction.LEFT);
-		}
-		super.tickCooldowns();
-	}
-
 	public Zombie.Type getType() {
 		return Zombie.Type.NORMAL;
 	}

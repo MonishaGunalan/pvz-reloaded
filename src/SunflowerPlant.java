@@ -13,8 +13,5 @@ public class SunflowerPlant
 		super(MAX_HP, COST);
 		super.sunGenerator = new SunGenerator(GEN_TRIGGER, GEN_AMT);
 	}
-
-	public void makeTurnAction() {}
-
 }
 

@@ -1,3 +1,4 @@
+import java.util.Observable;
 
 /**
  * This class is the parent of all zombie types.<!-- --> It contains default information
@@ -100,6 +101,18 @@ public abstract class Zombie
 			attackCD.trigger();
 		}
 	}
+
+	public void update(Observable o, Object arg) {
+		// If there's a plant on the square, attack it
+		// otherwise, move when possible
+		if (square.hasPlant()) {
+			this.hit(square.getPlant());
+		} else {
+			this.move(Field.Direction.LEFT);
+		}
+		super.tickCooldowns();
+	}
+
 
 	// Abstract classes
 	public abstract Zombie.Type getType();
