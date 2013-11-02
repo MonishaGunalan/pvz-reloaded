@@ -1,21 +1,39 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 
 public class GamePanel extends JPanel {
 
+	SquareLabel [][] grid;
 
 
+	public GamePanel(MouseListener mouseListener){
+		super();
+		this.setLayout(new GridLayout(Field.DEFAULT_MAX_ROW,Field.DEFAULT_MAX_POSN));
+		grid = new SquareLabel[Field.DEFAULT_MAX_ROW][Field.DEFAULT_MAX_POSN];
+		
+		for (int i =0; i <Field.DEFAULT_MAX_ROW; i++){
+			for (int j =0; j< Field.DEFAULT_MAX_POSN; j++){
+				grid[i][j] = new SquareLabel(i,j);
+				//Set to null for now
+				grid[i][j].addMouseListener(mouseListener);
+				this.add(grid[i][j]);
+			}
+		}
+	}
 
 	//TODO:: Switch when assets are ready
-
+/*
 	public void paintComponent(Graphics g)
 	{
 
@@ -44,9 +62,9 @@ public class GamePanel extends JPanel {
 		}
 
 		g.drawImage(sampleImage, 0, 0, 100, 100, 0, 0, 100, 100, null);
-		 */	
+		 	
 	}
 
-
+*/
 
 }

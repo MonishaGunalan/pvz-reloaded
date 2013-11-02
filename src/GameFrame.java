@@ -2,6 +2,8 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -9,7 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 
-public class GameFrame extends JFrame implements ActionListener {
+public class GameFrame extends JFrame implements ActionListener, MouseListener {
 	JPanel commandPanel, seedPanel, consolePanel;
 	GamePanel gamePanel;
 	JButton plantButton, doNothingButton;
@@ -17,14 +19,16 @@ public class GameFrame extends JFrame implements ActionListener {
 	public GameFrame(String title){
 		super(title);
 		this.setLayout(new BorderLayout());
-		gamePanel = new GamePanel();
+		gamePanel = new GamePanel(this);
 		
 		commandPanel = new JPanel();
 		commandPanel.setLayout(new GridLayout(1,4));
+		
 		plantButton = new JButton("Plant");
 		plantButton.addActionListener(this);
 		doNothingButton = new JButton("Do Nothing");
 		doNothingButton.addActionListener(this);
+		
 		commandPanel.add(plantButton);
 		commandPanel.add(new JButton("Undo"));
 		commandPanel.add(new JButton("Redo"));
@@ -84,6 +88,40 @@ public class GameFrame extends JFrame implements ActionListener {
 			repaint();
 		}
 		
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+		if (e.getComponent() instanceof SquareLabel){
+			SquareLabel squareLabel = (SquareLabel)e.getComponent();
+			System.out.println(squareLabel.getRow() + " " + squareLabel.getCol());
+		}
 	}
 	
 
