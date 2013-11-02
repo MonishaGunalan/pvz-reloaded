@@ -1,22 +1,35 @@
-/*
- * @author Chris Nguyen
- * 100793244
- * 
- */
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
-
+/**
+ * This class represents the player playing the the game
+ * it keeps track of the current score, sun points and level
+ *
+ * @author Christopher Nguyen
+ * @version 1.0
+ * @since 1.7
+ */
 public class Player {
 
+	/**
+	 * The current score of the player (Not implemented)
+	 */
 	private int score;
+	/**
+	 * The Current sun points the playe rhas
+	 */
 	private int sun;
+	/**
+	 * The current level the player is playing
+	 */
 	private Level level;
 
-	//This map contains the mapping of all plant type to their active cooldown
+	/**
+	 * This map contains the mapping of all plant type to their active cooldown
+	 */
 	private Map<PlantFactory.PlantType, Cooldown> triggeredCooldowns;
 
 
@@ -161,6 +174,10 @@ public class Player {
 
 	}
 
+	/**
+	 * Set the player score (Not implemented)
+	 * @param score
+	 */
 	public void setScore(int score){
 		this.score = score;
 	}

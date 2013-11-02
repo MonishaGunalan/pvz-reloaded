@@ -1,11 +1,11 @@
-/*
- * 
- * @author Chris Nguyen
- * 100793244
- * 
- */
 import java.util.Scanner;
-
+/**
+ * This class represents the possible commands the Player could do
+ *
+ * @author Christopher Nguyen
+ * @version 1.0
+ * @since 1.7
+ */
 public class PlayerCommand{
 
 	/**
@@ -38,9 +38,21 @@ public class PlayerCommand{
 
 	}
 
-	//The arguments of commandtype
-	int x, y;
+	/**
+	 * The x input
+	 */
+	int x;
+	/**
+	 * The y input
+	 */
+	int y;
+	/**
+	 * The argument
+	 */
 	String arg;
+	/**
+	 * The command type
+	 */
 	CommandType commandType;
 
 	/**
@@ -87,8 +99,15 @@ public class PlayerCommand{
 			System.out.println("Please enter plant and the row and col loaction");
 			arg = c.next();
 			x = getNumber(c);
+			while (x <0 || x >= Field.DEFAULT_MAX_ROW){
+				System.out.println("Please enter a position in the grid");
+				x = getNumber(c);
+			} 
 			y = getNumber(c);
-
+			while (y <0 || y >= Field.DEFAULT_MAX_POSN){
+				System.out.println("Please enter a position in the grid");
+				y = getNumber(c);
+			} 
 		case DO_NOTHING:
 			break;
 		case REDO:

@@ -1,18 +1,24 @@
-/*
- * @author Chris Nguyen
- * 100793244
- * 
- */
-
 import java.io.BufferedReader;
 import java.io.File;
-
 import java.io.FileReader;
 import java.io.IOException;
 
-
+/**
+ * The GameModel is the model for the Plant vs Zombie game
+ * it is also the entry point for playing the game on text based
+ *
+ * @author Christopher Nguyen
+ * @version 1.0
+ * @since 1.7
+ */
 public class GameModel {
+	/**
+	 * The Player playing the game
+	 */
 	Player player;
+	/**
+	 * The level that is loaded
+	 */
 	Level level;
 
 	public static final String playerDataFileLocation = "../rsrc/PlayerData.txt";
