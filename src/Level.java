@@ -7,10 +7,10 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Map.Entry;
 import java.util.Observable;
 
-public class Level 
-	extends Observable {
+public class Level extends Observable {
 
 	private int levelNumber;
 	private Field field;
@@ -18,15 +18,15 @@ public class Level
 	private int[] numZombieInRow;
 	private int numTurns;
 	private ZombieFactory zFact;
-	private ArrayList<java.util.Map.Entry<Integer, Zombie>>[] zombieList;
+	private ArrayList<Entry<Integer, Zombie>>[] zombieList;
 
 	/*
-	 * instantiate a new field with field row and column
+	 * Instantiates a new field with field row and column
 	 * 
 	 * @param levelNumber level number
 	 */
 	public Level(int levelNumber) {
-		String fileName = "level" + levelNumber +".txt";
+		String fileName = "level" + levelNumber + ".txt";
 		this.levelNumber = levelNumber;
 		createZombieList();
 		String[] fieldRows = this.loadLevel(fileName, levelNumber);
@@ -42,11 +42,10 @@ public class Level
 
 		zombieList = new ArrayList[Field.DEFAULT_MAX_ROW];
 		for (int i = 0; i < Field.DEFAULT_MAX_ROW; i++) {
-			zombieList[i] = new ArrayList<java.util.Map.Entry<Integer, Zombie>>();
+			zombieList[i] = new ArrayList<Entry<Integer, Zombie>>();
 		}
 
 	}
-
 
 	/*
 	 * Create Zombies in the specified row#
@@ -146,12 +145,12 @@ public class Level
 	 * increment the turn number for ever user input
 	 */
 	public void incrementTurn() {
-		//if (turnNumber < numTurns) {
+		// if (turnNumber < numTurns) {
 		turnNumber++;
 		bringNewZombiesIn();
 		setChanged();
 		notifyObservers();
-		//	}
+		// }
 	}
 
 	/*
@@ -159,7 +158,8 @@ public class Level
 	 */
 	public void bringNewZombiesIn() {
 		for (int i = 0; i < Field.DEFAULT_MAX_ROW; i++) {
-			if (!zombieList[i].isEmpty() && zombieList[i].get(0).getKey() == turnNumber) {
+			if (!zombieList[i].isEmpty()
+					&& zombieList[i].get(0).getKey() == turnNumber) {
 				Zombie z = zombieList[i].remove(0).getValue();
 				z.setSquare(this.field.getStrip()[i].getSquares()[Field.DEFAULT_MAX_POSN - 1]);
 			}

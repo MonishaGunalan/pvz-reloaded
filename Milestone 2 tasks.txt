@@ -1,0 +1,44 @@
+MileStone 2- Things to do
+-------------------------
+
+write Java doc comments for all the classes, methods and variables
+
+GUI - MVC pattern
+	- create view and controller
+
+Unit Testing
+	- create test case class for each class
+	- test case for every method and multiple test cases for each method where applicable
+	- Black Box testing
+	- Dont worry about testing I/O
+	
+Fix the data structure in class Level for reading from the text file.
+	- create turn class(GUI needs turn class as well)
+	- get rid of array of arraylist when reading the info about zombie turns from file
+	- change the format of the text file to read by turn and not read by rows. 
+		Eg :
+		Level1
+		mud
+		grass
+		grass
+		grass
+		mud
+		
+		turn2 (assuming no zombies spawn until turn2)
+		normal 2 (zombie type, row#)
+		normal 3
+		turn3
+		etc
+
+Fix the errors with UML and Sequence Diagrams - Arzaan
+
+Update Help command for unser Interaction
+
+update Read me file 
+	- instruction of how to play the game and the commands
+	- provide Git repository link
+	- mention the errors we might have when submitting
+	- how to compile and run the input text file
+	
+	
+
