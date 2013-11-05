@@ -126,6 +126,9 @@ public class Square {
 	 */
 	public void add(Zombie zombie) {
 		zombies.add(zombie);
+		// Make sure level is observing zombie so it knows if zombie
+		// reaches end of strip
+		zombie.addObserver(getStrip().getField().getLevel());
 		//System.out.println("adding zombie @ " + getRow() + "," + getCol());
 		this.numZombie++;
 	}
@@ -211,10 +214,7 @@ public class Square {
 	 * @return returns true if the square contains aplant
 	 */
 	public boolean hasPlant() {
-		if (this.plant != null) {
-			return true;
-		}
-		return false;
+		return this.plant == null;
 	}
 	
 	/*
@@ -266,6 +266,12 @@ public class Square {
 
 		s += ']';
 
+		return s;
+	}
+
+	public String getLoc() {
+		String s = "";
+		s += "Square@" + getRow() + "," + getCol();
 		return s;
 	}
 

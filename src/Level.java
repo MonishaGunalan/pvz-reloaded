@@ -8,9 +8,11 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Observable;
+import java.util.Observer;
 
 public class Level 
-	extends Observable {
+	extends Observable
+	implements Observer {
 
 	private int levelNumber;
 	private Field field;
@@ -166,4 +168,13 @@ public class Level
 
 		}
 	}
+
+	public void update(Observable o, Object arg) {
+		//if (arg instanceof Class<? extends Zombie>) {
+		if (arg instanceof Zombie) {
+			// Zombie has reached end strip moving left. Handle here
+			System.out.println("Zombie ate your brains!");
+		}
+	}
+
 }

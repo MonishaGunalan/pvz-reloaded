@@ -5,12 +5,10 @@
 public abstract class Plant 
 	extends PerishableUnit{
 
-	protected final int cost;
+	public enum Type{SUNFLOWER, PEASHOOTER;}
 
-	public enum Type{SUNFLOWER_PLANT;}
-
-	public Plant(int maxHP, int cost) {
+	public Plant(int maxHP, Square square) {
 		super(maxHP);
-		this.cost = cost;
+		this.square = square;
 	}
 }

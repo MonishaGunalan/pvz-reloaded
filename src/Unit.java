@@ -1,4 +1,5 @@
 import java.util.Observer;
+import java.util.Observable;
 /*
  * @author Tianming Zhuang
  * 100875151
@@ -7,6 +8,7 @@ import java.util.Set;
 import java.util.HashSet;
 
 public abstract class Unit 
+	extends Observable
 	implements Observer {
 	protected Square square;
 	protected Set<Cooldown> cooldowns;
@@ -47,10 +49,10 @@ public abstract class Unit
 	}
 
 	@Override
-	public String toString() {
-		String s = "";
-		s += this.getClass().getName();
-		s += "@(" + getRow() + "," + getCol() + ")";
-		return s;
-	}
+		public String toString() {
+			String s = "";
+			s += this.getClass().getName();
+			s += "@(" + getRow() + "," + getCol() + ")";
+			return s;
+		}
 }

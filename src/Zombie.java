@@ -12,9 +12,6 @@ public abstract class Zombie
 	extends PerishableUnit {
 
 	// Constants
-	/**
-	 * this is a test
-	 */
 	protected static final int DEFAULT_ATK = 10; 
 	protected static final int DEFAULT_ATTACK_TRIGGER = 0;
 	protected static final int DEFAULT_MOVE_TRIGGER = 3;
@@ -49,6 +46,9 @@ public abstract class Zombie
 		this.moveCD = new Cooldown(moveTriggerAmt);
 		cooldowns.add(attackCD);
 		cooldowns.add(moveCD);
+
+		// Add level as an observer of this zombie
+		//addObserver(square.getStrip().getField().getLevel());
 	}
 
 	// Damage of bullet
@@ -83,12 +83,22 @@ public abstract class Zombie
 			// Remove bullet from this square and add
 			// it to the next square
 			Square dest = square.getSquare(Field.Direction.LEFT);
+			// Destination is null meaning we are trying to move left off the field,
+			// ie. current zombie has reached end of map
+			if (dest == null) {
+				// Let level know we reached the end so it can handle it
+				setChanged();
+				notifyObservers(this);
+				// Exit function without moving zombie
+				return;
+			}
 			this.setSquare(dest);
 			// Trigger the CD
 			moveCD.trigger();
 		}
 	}
 
+	// For debugging
 	private void printMove(Square dest) {
 		System.out.println("Zombie (" + getRow() + "," + getCol() + ")-->{" + dest.getRow() + "," + dest.getCol() + ")");
 	}
@@ -96,6 +106,7 @@ public abstract class Zombie
 	// Normal zombie hits a plant on current hp, reducing
 	// its hp by a flat amount
 	public void hit(Plant plant) {
+		System.out.println("calling Zombie.hit");
 		if (attackCD.isAvailable()) {
 			plant.reduceHP(getDmg());
 			attackCD.trigger();
@@ -106,6 +117,7 @@ public abstract class Zombie
 		// If there's a plant on the square, attack it
 		// otherwise, move when possible
 		if (square.hasPlant()) {
+			System.out.println(square.getLoc());
 			this.hit(square.getPlant());
 		} else {
 			this.move(Field.Direction.LEFT);

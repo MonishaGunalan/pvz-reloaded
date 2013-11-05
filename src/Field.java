@@ -13,26 +13,33 @@ public class Field {
 	public static final int SUN_GENERATION_VALUE=25;
 
 	private final Level level;
+	private final SunGenerator sunGenerator;
 
-	private List<Unit> units;
-	private Cooldown sunGenerationCooldown;
+	private int totalSun;
 
 	public enum Direction {
 		LEFT, RIGHT;
 	}
 
 	private Strip[] strips;
-/*
- * @param TerrianType[]  the terrian type for each row
- */
+	/*
+	 * @param TerrianType[]  the terrian type for each row
+	 */
 	public Field(String[] terrainType, Level level) {
+		// Create field
 		strips = new Strip[DEFAULT_MAX_ROW];
 		for (int i = 0; i < DEFAULT_MAX_ROW; i++) {
 			strips[i] = new Strip(terrainType[i], i, this);
 		}
-		units = new ArrayList<Unit>();
-		sunGenerationCooldown = new Cooldown(SUN_GENERATION_PERIOD);
+
+		// Reference to current level
 		this.level = level;
+
+		// Generator for adding sun to totalSun each turn
+		sunGenerator = new SunGenerator(SUN_GENERATION_PERIOD, SUN_GENERATION_VALUE, this);
+
+		// Initialize totalSun
+		totalSun = 0;
 	}
 
 	public Level getLevel() {
@@ -40,83 +47,25 @@ public class Field {
 	}
 
 
-/*
- * @return Strip[] returns the array of strips in the field
- */
+	/*
+	 * @return Strip[] returns the array of strips in the field
+	 */
 	public Strip[] getStrip() {
 		return strips;
 	}
-
-	/*
-	 * plant the seed in the field
-	 * @param plant plant
-	 */
-	public void seedPlant(Plant plant) {
-		int row = plant.getRow();
-		int col = plant.getCol();
-
-		if (row < DEFAULT_MAX_ROW && col < DEFAULT_MAX_POSN) {
-			strips[row].getSquares()[col].add(plant);
-		}
-	}
-
-	///*
-	 //* @param square the square element
-	 //* @return square rdturns the next square in the fiels
-	 //*/
-	//public Square getNextSquare(Square square) {
-		//Square nextSquare = null;
-		//int row = square.getRow();
-		//int col = square.getCol();
-		//if (col < DEFAULT_MAX_POSN - 1) {
-			//nextSquare = strips[row].getSquares()[col + 1];
-		//}
-		//return nextSquare;
-	//}
-
-	///*
-	 //* 
-	 //* @param square the square element
-	 //* @return square rdturns the previous square in the fiels
-	 //*/
-	 
-	//public Square getPrevSquare(Square square) {
-		//Square prevSquare = null;
-		//int row = square.getRow();
-		//int col = square.getCol();
-		//if (col > 0) {
-			//prevSquare = strips[row].getSquares()[col - 1];
-		//}
-		//return prevSquare;
-	//}
 
 	/*
 	 * get the total sun generated
 	 * @return sun points
 	 */
 	public int getTotalSun() {
-		// yet to be filled.
-		int sun = 0;
-		if (sunGenerationCooldown.isAvailable()){
-			sun += SUN_GENERATION_VALUE;
-			sunGenerationCooldown.trigger();
-		}
-
-		for (Strip strip: strips){
-			for (Square square: strip.getSquares()){
-				if (square.getPlant() instanceof GeneratorPlant){
-					//TODO:: wait for implementation of generatorPlant
-					//(Generator)
-				}
-			}
-		}
-		return sun;
+		return this.totalSun;
 	}
 
 
-/*
- * @return returns the string representation of the field
- */
+	/*
+	 * @return returns the string representation of the field
+	 */
 	public String toString() {
 		String s = "";
 		for (int i = 0; i < Field.DEFAULT_MAX_ROW; i++) {
@@ -124,6 +73,17 @@ public class Field {
 		}
 		s += "\n";
 		return s;
+	}
+
+
+	public void addSun(int amt) {
+		this.totalSun += amt;
+	}
+
+	public void useSun(int amt) {
+		System.out.println("before sun:" + getTotalSun());
+		this.totalSun -= amt;
+		System.out.println("after sun:" + getTotalSun());
 	}
 
 }

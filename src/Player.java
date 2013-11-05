@@ -11,13 +11,13 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Player {
+	public final int START_SCORE = 0;
 
 	private int score;
-	private int sun;
 	private Level level;
 
 	//This map contains the mapping of all plant type to their active cooldown
-	private Map<PlantFactory.PlantType, Cooldown> triggeredCooldowns;
+	private Map<Plant.Type, Cooldown> triggeredCooldowns;
 
 
 	/**
@@ -27,12 +27,13 @@ public class Player {
 	public Player(Level level){
 		this.level = level;
 
-		triggeredCooldowns = new HashMap<PlantFactory.PlantType, Cooldown>();
-		for (PlantFactory.PlantType p: PlantFactory.PlantType.values()){
-			triggeredCooldowns.put(p, new Cooldown(p.getCooldown()));
+		triggeredCooldowns = new HashMap<Plant.Type, Cooldown>();
+		for (Plant.Type p: Plant.Type.values()){
+			// We need to resolve static function from 
+			Class c = PlantFactory.getClass(p);
+			triggeredCooldowns.put(p, new Cooldown(PlantFactory.getCooldown(p)));
 		}
-		sun = 25;
-		score = 0;
+		score = START_SCORE;
 
 	}
 
@@ -44,7 +45,7 @@ public class Player {
 		Scanner c = new Scanner(System.in);
 		while (true){
 			//Get the player command
-			System.out.println("Current Sun Points: " + sun);
+			System.out.println("Current Sun Points: " + level.getField().getTotalSun());
 			PlayerCommand command = new PlayerCommand(c); 
 			play(command);
 			System.out.println(level.getField().toString());
@@ -57,37 +58,37 @@ public class Player {
 	 */
 	private void play (PlayerCommand command){
 		switch(command.getCommandType()){
-		case PLANT_SEED:
-			//Try to create the plant based on the playercommand
-			PlantFactory.PlantType p = null;
-			String plant = command.getArg();
-			try{
-				p = PlantFactory.PlantType.valueOf(plant.toUpperCase());
-			}catch(IllegalArgumentException e){
-				System.out.println("No such plant!");
-				return;
-			}
-			boolean growSuccessful = false;
-			if (p != null){
-				growSuccessful = grow(command.getX(),command.getY(),p);
+			case PLANT_SEED:
+				//Try to create the plant based on the playercommand
+				Plant.Type p = null;
+				String plant = command.getArg();
+				try{
+					p = Plant.Type.valueOf(plant.toUpperCase());
+				}catch(IllegalArgumentException e){
+					System.out.println("No such plant!");
+					return;
+				}
+				boolean growSuccessful = false;
+				if (p != null){
+					growSuccessful = grow(command.getX(),command.getY(),p);
 
-			}
-			if (growSuccessful){
+				}
+				if (growSuccessful){
+					level.incrementTurn();
+					triggerCooldowns();
+				}
+				break;
+			case UNDO:
+				//TODO implement a Turn Class that will encapsulate the data of a turn
+				break;
+			case REDO:
+				//TODO implement a Turn Class that will encapsulate the data of a turn
+				break;
+			case DO_NOTHING:
 				level.incrementTurn();
 				triggerCooldowns();
-			}
-			break;
-		case UNDO:
-			//TODO implement a Turn Class that will encapsulate the data of a turn
-			break;
-		case REDO:
-			//TODO implement a Turn Class that will encapsulate the data of a turn
-			break;
-		case DO_NOTHING:
-			level.incrementTurn();
-			triggerCooldowns();
-			break;
-		default:
+				break;
+			default:
 		}
 
 
@@ -104,28 +105,37 @@ public class Player {
 	 * @param plantType
 	 * @return The boolean if the the plant was grown
 	 */
-	public boolean grow(int row, int col, PlantFactory.PlantType plantType){
+	public boolean grow(int row, int col, Plant.Type plantType){
+		// Get the plant class from type
+		Class plantClass = PlantFactory.getClass(plantType);
+		int plantCost = PlantFactory.getCost(plantType);
 		//TODO:: return with more meaningful error messages
-		if (!triggeredCooldowns.get(plantType).isAvailable()){
-			System.out.println("Plant Still On cooldown!");
+		Cooldown plantTypeCD = triggeredCooldowns.get(plantType);
+		if (!plantTypeCD.isAvailable()){
+			System.out.println("Plant Still On cooldown for " + plantTypeCD.getCooldown() + " more turns!");
 			return false;
 		}
 
+		// Get reference to indicated square
 		Square square = level.getField().getStrip()[row].getSquare(col);
+
+		// Failure to plant
 		if (square.hasPlant()){
+			// Occupied square
 			System.out.println("There is already a plant present in the square!");
 			return false;
-		} else if (plantType.getCost() > sun){
+		} else if (plantCost > level.getField().getTotalSun()){
+			// Not enough sun
 			System.out.println("Insufficient funds!");
 			return false;
 		}
 
-		Plant plant = PlantFactory.makePlant(plantType);
+		Plant plant = PlantFactory.makePlant(plantType, square);
 		if (plant != null){
 			System.out.println("Plant Created");
 			System.out.println(plant.getClass().getName());
-			plant.setSquare(square);
-			sun-= plantType.getCost();
+			System.out.println("Using " + plantCost + " amount of sun.");
+			level.getField().useSun(plantCost);
 			triggeredCooldowns.get(plantType).trigger();
 			return true;
 		}
@@ -137,7 +147,6 @@ public class Player {
 	 * Iterate through all the cooldowns and tick any that are active
 	 */
 	public void triggerCooldowns(){
-		sun += level.getField().getTotalSun();
 		for (Cooldown cooldown: triggeredCooldowns.values()){
 			cooldown.tick();
 		}
