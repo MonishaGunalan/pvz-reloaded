@@ -46,7 +46,7 @@ public abstract class Bullet
 	// and trickers the move cooldown
 	protected void move(Field.Direction dir) {
 		if (moveCD.isAvailable()) {
-			Square dest = square.getSquare(dir);
+			Square dest = getSquare().getSquare(dir);
 			if (dest != null) {
 				// Remove bullet from this square and add
 				// it to the next square
@@ -54,7 +54,7 @@ public abstract class Bullet
 				// Trigger the CD
 				moveCD.trigger();
 			} else {
-				square.remove(this);
+				getSquare().remove(this);
 			}
 		}
 	}
@@ -65,9 +65,9 @@ public abstract class Bullet
 
 	public void update(Observable o, Object arg) {
 		//System.out.println(this + " calling square.getSquare(right);");
-		Square dest = square.getSquare(Field.Direction.RIGHT);
-		if (square.hasZombie()) {
-			this.hit(square.getFirstZombie());
+		Square dest = getSquare().getSquare(Field.Direction.RIGHT);
+		if (getSquare().hasZombie()) {
+			this.hit(getSquare().getFirstZombie());
 		} else if (dest != null && dest.hasZombie()) {
 			this.hit(dest.getFirstZombie());
 		} else if (moveCD.isAvailable()) {

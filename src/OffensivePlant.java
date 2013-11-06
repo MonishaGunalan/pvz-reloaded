@@ -40,11 +40,11 @@ public abstract class OffensivePlant
 	private void shoot() {
 		Bullet bullet = BulletFactory.makeBullet(getBulletType());
 		//Square nextSquare = square.getSquare(Field.Direction.RIGHT);
-		bullet.setSquare(square);
+		bullet.setSquare(getSquare());
 	}
 
 	public void update(Observable o, Object arg) {
-		if (square.hasZombieAfter() && shootCD.isAvailable()) {
+		if (getSquare().hasZombieAfter() && shootCD.isAvailable()) {
 				shoot();
 				shootCD.trigger();
 		}

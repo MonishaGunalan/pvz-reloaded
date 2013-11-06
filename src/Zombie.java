@@ -82,7 +82,7 @@ public abstract class Zombie
 			//System.out.println("row: " + square.getRow() + " col: " + square.getCol());
 			// Remove bullet from this square and add
 			// it to the next square
-			Square dest = square.getSquare(Field.Direction.LEFT);
+			Square dest = getSquare().getSquare(Field.Direction.LEFT);
 			// Destination is null meaning we are trying to move left off the field,
 			// ie. current zombie has reached end of map
 			if (dest == null) {
@@ -116,9 +116,9 @@ public abstract class Zombie
 	public void update(Observable o, Object arg) {
 		// If there's a plant on the square, attack it
 		// otherwise, move when possible
-		if (square.hasPlant()) {
-			System.out.println(square.getLoc());
-			this.hit(square.getPlant());
+		if (getSquare().hasPlant()) {
+			System.out.println(getSquare().getLoc());
+			this.hit(getSquare().getPlant());
 		} else {
 			this.move(Field.Direction.LEFT);
 		}

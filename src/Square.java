@@ -107,7 +107,10 @@ public class Square {
 	 * @plant the plant
 	 */
 	public void add(Plant plant) {
-		this.plant = plant;
+		System.out.println("Add plant");
+		if (!this.hasPlant()) {
+			this.plant = plant;
+		}
 	}
 
 	/*
@@ -214,7 +217,7 @@ public class Square {
 	 * @return returns true if the square contains aplant
 	 */
 	public boolean hasPlant() {
-		return this.plant == null;
+		return this.plant != null;
 	}
 	
 	/*
@@ -242,29 +245,29 @@ public class Square {
 	public String toString() {
 		String s = "[";
 		if (this.terrain.equals("mud")) {
-			s += '-';
+			s += "-";
 		}
 
 		if (this.hasPlant()) {
-			s += 'p';
+			s += "p";
 		} else {
-			s += ' ';
+			s += " ";
 		}
 
 		if (this.hasBullet()) {
-			s += ">";
+			s += ">" + numBullet;
 		} else {
-			s += ' ';
+			s += "  ";
 		}
 
 		if (this.hasZombie()) {
-			s += 'z';
+			s += "z" + numZombie;
 		} else {
-			s += ' ';
+			s += "  ";
 		}
 
 
-		s += ']';
+		s += "]";
 
 		return s;
 	}

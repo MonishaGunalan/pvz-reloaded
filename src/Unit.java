@@ -10,7 +10,7 @@ import java.util.HashSet;
 public abstract class Unit 
 	extends Observable
 	implements Observer {
-	protected Square square;
+	private Square square;
 	protected Set<Cooldown> cooldowns;
 
 	protected Unit() {

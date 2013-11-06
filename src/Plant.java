@@ -9,6 +9,6 @@ public abstract class Plant
 
 	public Plant(int maxHP, Square square) {
 		super(maxHP);
-		this.square = square;
+		this.setSquare(square);
 	}
 }

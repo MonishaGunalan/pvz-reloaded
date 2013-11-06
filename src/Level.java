@@ -163,7 +163,9 @@ public class Level
 		for (int i = 0; i < Field.DEFAULT_MAX_ROW; i++) {
 			if (!zombieList[i].isEmpty() && zombieList[i].get(0).getKey() == turnNumber) {
 				Zombie z = zombieList[i].remove(0).getValue();
-				z.setSquare(this.field.getStrip()[i].getSquares()[Field.DEFAULT_MAX_POSN - 1]);
+				Square lastSquareInStrip = this.field.getStrip()[i].getSquares()[Field.DEFAULT_MAX_POSN - 1];
+				System.out.println("Putting a zombie on " + lastSquareInStrip.getLoc());
+				z.setSquare(lastSquareInStrip);
 			}
 
 		}
