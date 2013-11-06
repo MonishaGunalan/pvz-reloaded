@@ -12,7 +12,7 @@ public abstract class Zombie
 	extends PerishableUnit {
 
 	// Constants
-	protected static final int DEFAULT_ATK = 10; 
+	protected static final int DEFAULT_ATK = 1; 
 	protected static final int DEFAULT_ATTACK_TRIGGER = 0;
 	protected static final int DEFAULT_MOVE_TRIGGER = 3;
 

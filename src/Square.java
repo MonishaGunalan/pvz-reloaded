@@ -176,8 +176,10 @@ public class Square {
 	 */
 	public boolean remove(Bullet b) {
 		//System.out.println("removing bullet @ " + getRow() + "," + getCol());
-		numBullet--;
-		return bullets.remove(b);
+		if (hasBullet()) {
+			return bullets.remove(b);
+		}
+		return false;
 	}
 
 	/*
@@ -224,10 +226,7 @@ public class Square {
 	 * @return returns true if the square contains a bullet
 	 */
 	public boolean hasBullet() {
-		if (bullets.size() > 0) {
-			return true;
-		}
-		return false;
+		return bullets.size() > 0;
 	}
 
 	public List<Zombie> getZombies() {
