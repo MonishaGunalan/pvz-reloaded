@@ -92,7 +92,6 @@ public class Square {
 	 * @param unit is the element such as zombie, plant bullet
 	 */
 	public void add(Unit unit) {
-		this.getStrip().getField().getLevel().addObserver(unit);
 		if (unit instanceof Plant) {
 			add((Plant) unit);
 		} else if (unit instanceof Bullet) {
@@ -143,7 +142,7 @@ public class Square {
 	 * 
 	 */
 	public boolean remove(Unit unit) {
-		this.getStrip().getField().getLevel().deleteObserver(unit);
+	
 		if (unit instanceof Zombie) {
 			return remove((Zombie) unit);
 		} else if (unit instanceof Plant) {

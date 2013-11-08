@@ -28,6 +28,7 @@ public abstract class Bullet
 	protected void hit(Zombie zombie) {
 		zombie.reduceHP(getDmg());
 		//System.out.println("Attemption to remove bullet; successful? " + square.remove(this));
+		getSquare().getStrip().getField().getLevel().deleteObserver(this);
 		getSquare().remove(this);
 	}
 
