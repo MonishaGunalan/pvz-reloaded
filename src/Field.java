@@ -77,13 +77,19 @@ public class Field {
 
 
 	public void addSun(int amt) {
-		this.totalSun += amt;
+		if (amt > 0) {
+			this.totalSun += amt;
+		}
 	}
 
 	public void useSun(int amt) {
+		int currentSunPoints = getTotalSun();
 		System.out.println("before sun:" + getTotalSun());
-		this.totalSun -= amt;
+		if (currentSunPoints >= amt) {
+			this.totalSun -= amt;
+		}
 		System.out.println("after sun:" + getTotalSun());
 	}
+
 
 }

@@ -46,7 +46,7 @@ public class Strip {
 	 * @return a square in the requested position
 	 */
 	public Square getSquare(int posn) {
-		if (posn < 0) {
+        if (posn < 0 && posn >= Field.DEFAULT_MAX_POSN) {
 			return null;
 		}
 		return squares[posn];
