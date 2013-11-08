@@ -163,6 +163,7 @@ public class Level
 		for (int i = 0; i < Field.DEFAULT_MAX_ROW; i++) {
 			if (!zombieList[i].isEmpty() && zombieList[i].get(0).getKey() == turnNumber) {
 				Zombie z = zombieList[i].remove(0).getValue();
+				addObserver(z);
 				Square lastSquareInStrip = this.field.getStrip()[i].getSquares()[Field.DEFAULT_MAX_POSN - 1];
 				System.out.println("Putting a zombie on " + lastSquareInStrip.getLoc());
 				z.setSquare(lastSquareInStrip);
@@ -177,6 +178,10 @@ public class Level
 			// Zombie has reached end strip moving left. Handle here
 			System.out.println("Zombie ate your brains!");
 		}
+	}
+	
+	public Square getSquare(int row, int col){
+		return field.getStrip()[row].getSquare(col);
 	}
 
 }

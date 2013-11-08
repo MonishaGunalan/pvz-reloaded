@@ -14,10 +14,10 @@ import javax.swing.JPanel;
 public class GameFrame extends JFrame implements ActionListener, MouseListener {
 	JPanel commandPanel, seedPanel, consolePanel, statusPanel;
 	GamePanel gamePanel;
-	JButton plantButton, doNothingButton;
-    JLabel sunLabel, scoreLabel;
+	JButton plantButton, doNothingButton,undoButton, redoButton, sunflowerButton, peashooterButton, cancelButton;
+	JLabel sunLabel, scoreLabel, userMessage;
 	GameModel model;
-	int plantMode;
+	Plant.Type plantMode;
 
 	public GameFrame(String title){
 		super(title);
@@ -33,17 +33,22 @@ public class GameFrame extends JFrame implements ActionListener, MouseListener {
 		plantButton.addActionListener(this);
 		doNothingButton = new JButton("Do Nothing");
 		doNothingButton.addActionListener(this);
-
+		undoButton = new JButton("Undo");
+		undoButton.setEnabled(false);
+		redoButton = new JButton("Redo");
+		redoButton.setEnabled(false);
 		commandPanel.add(plantButton);
-		commandPanel.add(new JButton("Undo"));
-		commandPanel.add(new JButton("Redo"));
+		commandPanel.add(undoButton);
+		commandPanel.add(redoButton);
 		commandPanel.add(doNothingButton);
 
 		seedPanel = new JPanel();
 		seedPanel.setLayout(new GridLayout(1,0));
 
 		populateSeedPanel();
-		
+		userMessage = new JLabel("");
+		consolePanel = new JPanel();
+		consolePanel.setLayout(new GridLayout(0,1));
 		
 		statusPanel = new JPanel();
 		statusPanel.setLayout(new GridLayout(0,4));
@@ -53,10 +58,13 @@ public class GameFrame extends JFrame implements ActionListener, MouseListener {
 		statusPanel.add(new JLabel("Score"));
 		scoreLabel = new JLabel();
 		statusPanel.add(scoreLabel);
+		consolePanel.add(statusPanel);
+		consolePanel.add(userMessage);
+		
 		this.add(commandPanel,BorderLayout.NORTH);
 
 		this.add(gamePanel, BorderLayout.CENTER);
-		this.add(statusPanel, BorderLayout.SOUTH);
+		this.add(consolePanel, BorderLayout.SOUTH);
 		this.setSize(700,700);
 		//	this.setResizable(false);
 		this.setVisible(true);
@@ -66,13 +74,16 @@ public class GameFrame extends JFrame implements ActionListener, MouseListener {
 
 	public void populateSeedPanel(){
 		//TODO:: change with scrollable
-		JButton sunButton = new JButton("Sunflower");
-		sunButton.addActionListener(this);
-		seedPanel.add(sunButton);
+		sunflowerButton = new JButton("<html>Sunflower<br>sun: " + PlantFactory.getCost(Plant.Type.SUNFLOWER)+ "</html>");
+		sunflowerButton.addActionListener(this);
+		seedPanel.add(sunflowerButton);
+		peashooterButton =new JButton("<html>Peashooter<br>sun: " + PlantFactory.getCost(Plant.Type.PEASHOOTER)+ "</html>");
+		peashooterButton.addActionListener(this);
+		seedPanel.add(peashooterButton);
 		JButton button =new JButton("Cancel");
 		button.addActionListener(this);
-		seedPanel.add(new JButton("Peashooter"));
 		seedPanel.add(button);
+
 		seedPanel.add(new JLabel(""));
 		seedPanel.add(new JLabel(""));
 
@@ -98,10 +109,11 @@ public class GameFrame extends JFrame implements ActionListener, MouseListener {
 			} else if (e.getSource() == doNothingButton) {
 				model.play(new PlayerCommand(PlayerCommand.CommandType.DO_NOTHING,0,0,""));
 				updateLevel();
-				
-			} else if (((JButton)e.getSource()).getText().equals("Sunflower") ){
-				plantMode = 1;
 
+			} else if ((e.getSource() == sunflowerButton) ){
+				plantMode = Plant.Type.SUNFLOWER;
+			} else if (e.getSource() == peashooterButton ){
+				plantMode = Plant.Type.PEASHOOTER;
 			} else if (((JButton)e.getSource()).getText().equals("Cancel") ) {
 				hideSeedPanel();
 			}
@@ -110,10 +122,10 @@ public class GameFrame extends JFrame implements ActionListener, MouseListener {
 		repaint();
 
 	}
-	
+
 
 	private void updateLevel() {
-		
+		userMessage.setText("");
 		gamePanel.updateLevel();
 		sunLabel.setText(""+ model.getLevel().getField().getTotalSun());
 	}
@@ -151,18 +163,27 @@ public class GameFrame extends JFrame implements ActionListener, MouseListener {
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
 
 		if (e.getComponent() instanceof SquareLabel){
 			SquareLabel squareLabel = (SquareLabel)e.getComponent();
 			System.out.println(squareLabel.getRow() + " " + squareLabel.getCol());
-			if (plantMode != 0){
-				hideSeedPanel();
+			String s = "";
+			if (plantMode == null){
+				System.out.println("returning null");
+				return;
+			}else if (plantMode == Plant.Type.SUNFLOWER){
+				s = "SUNFLOWER";
+
+			} else if (plantMode == Plant.Type.PEASHOOTER){
+				s ="PEASHOOTER";
+
 			}
-			if (plantMode == 1){
-				if (model.play(new PlayerCommand(PlayerCommand.CommandType.PLANT_SEED,squareLabel.getRow(),squareLabel.getCol(),"SUNFLOWER"))){
-					updateLevel();
-				}
+			if (model.play(new PlayerCommand(PlayerCommand.CommandType.PLANT_SEED,squareLabel.getRow(),squareLabel.getCol(),s))){
+				updateLevel();
+				hideSeedPanel();
+				plantMode = null;
+			}else {
+				userMessage.setText("Error");
 			}
 			revalidate();
 			repaint();

@@ -40,6 +40,7 @@ public abstract class OffensivePlant
 	private void shoot() {
 		Bullet bullet = BulletFactory.makeBullet(getBulletType());
 		//Square nextSquare = square.getSquare(Field.Direction.RIGHT);
+		getSquare().getStrip().getField().getLevel().addObserver(bullet);
 		bullet.setSquare(getSquare());
 	}
 

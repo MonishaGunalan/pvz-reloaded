@@ -57,6 +57,9 @@ public class Player {
 	 * @param command The command to be input
 	 */
 	public boolean play (PlayerCommand command){
+		if (command == null){
+			return false;
+		}
 		switch(command.getCommandType()){
 			case PLANT_SEED:
 				//Try to create the plant based on the playercommand
@@ -77,7 +80,7 @@ public class Player {
 					level.incrementTurn();
 					triggerCooldowns();
 				}
-				break;
+				return growSuccessful;
 			case UNDO:
 				//TODO implement a Turn Class that will encapsulate the data of a turn
 				break;
@@ -118,7 +121,7 @@ public class Player {
 		}
 
 		// Get reference to indicated square
-		Square square = level.getField().getStrip()[row].getSquare(col);
+		Square square = level.getSquare(row, col);
 
 		// Failure to plant
 		if (square.hasPlant()){
@@ -137,6 +140,7 @@ public class Player {
 			System.out.println(plant.getClass().getName());
 			System.out.println("Using " + plantCost + " amount of sun.");
 			level.getField().useSun(plantCost);
+			level.addObserver(plant);
 			triggeredCooldowns.get(plantType).trigger();
 			return true;
 		}
