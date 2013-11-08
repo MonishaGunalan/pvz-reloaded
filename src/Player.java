@@ -56,7 +56,7 @@ public class Player {
 	 * The helper function that will handle the command
 	 * @param command The command to be input
 	 */
-	private void play (PlayerCommand command){
+	public boolean play (PlayerCommand command){
 		switch(command.getCommandType()){
 			case PLANT_SEED:
 				//Try to create the plant based on the playercommand
@@ -66,7 +66,7 @@ public class Player {
 					p = Plant.Type.valueOf(plant.toUpperCase());
 				}catch(IllegalArgumentException e){
 					System.out.println("No such plant!");
-					return;
+					return false;
 				}
 				boolean growSuccessful = false;
 				if (p != null){
@@ -90,6 +90,7 @@ public class Player {
 				break;
 			default:
 		}
+		return true;
 
 
 

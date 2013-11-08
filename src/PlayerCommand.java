@@ -70,7 +70,8 @@ public class PlayerCommand{
 	 * @param y			The y coordinate
 	 * @param arg		The argument
 	 */
-	public PlayerCommand(int x, int y, String arg){
+	public PlayerCommand(CommandType commandType, int x, int y, String arg){
+		this.commandType = commandType;
 		this.x = x;
 		this.y = y;
 		this.arg = arg;

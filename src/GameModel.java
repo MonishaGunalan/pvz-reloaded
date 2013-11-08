@@ -54,17 +54,30 @@ public class GameModel {
 			player = new Player(level);	
 		}
 		
-
-		player.play();
 		
 	}	
+	
+	public void play(){
+		player.play();
+	}
+	
+	public boolean play(PlayerCommand command){
+		return player.play(command);
+	}
+	public Player getPlayer(){
+		return player;
+	}
+	
+	public Level getLevel(){
+		return level;
+	}
 	
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		new GameModel();
+		new GameModel().play();
 	}
 
 }

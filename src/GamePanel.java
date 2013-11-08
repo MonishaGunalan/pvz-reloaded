@@ -15,10 +15,11 @@ import javax.swing.JPanel;
 public class GamePanel extends JPanel {
 
 	SquareLabel [][] grid;
+	Level level;
 
-
-	public GamePanel(MouseListener mouseListener){
+	public GamePanel(MouseListener mouseListener, Level level){
 		super();
+		this.level = level;
 		this.setLayout(new GridLayout(Field.DEFAULT_MAX_ROW,Field.DEFAULT_MAX_POSN));
 		grid = new SquareLabel[Field.DEFAULT_MAX_ROW][Field.DEFAULT_MAX_POSN];
 		
@@ -32,6 +33,16 @@ public class GamePanel extends JPanel {
 		}
 	}
 
+	public void updateLevel(){
+		for (int i =0; i < Field.DEFAULT_MAX_ROW; i++){
+			Strip strip = level.getField().getStrip()[i];
+			for (int j = 0; j < Field.DEFAULT_MAX_ROW; j++){
+				grid[i][j].updateSquare(strip.getSquare(j));
+				grid[i][j].repaint();
+			}
+		}
+	}
+	
 	//TODO:: Switch when assets are ready
 /*
 	public void paintComponent(Graphics g)
