@@ -73,7 +73,7 @@ public class Player {
 				}
 				boolean growSuccessful = false;
 				if (p != null){
-					growSuccessful = grow(command.getX(),command.getY(),p);
+					growSuccessful = grow(command.getRow(),command.getCol(),p);
 
 				}
 				if (growSuccessful){

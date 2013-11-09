@@ -34,6 +34,9 @@ public class PlantFactory {
 	 * 
 	 */
 	public static Plant makePlant(Plant.Type plantType, Square square) {
+		if (plantType == null || square == null){
+			return null;
+		}
 		Plant p = null;
 		Class plantClass = plantTable.get(plantType).pClass;
 		try {

@@ -41,11 +41,11 @@ public class PlayerCommand{
 	/**
 	 * The x input
 	 */
-	int x;
+	int row;
 	/**
 	 * The y input
 	 */
-	int y;
+	int col;
 	/**
 	 * The argument
 	 */
@@ -72,8 +72,8 @@ public class PlayerCommand{
 	 */
 	public PlayerCommand(CommandType commandType, int x, int y, String arg){
 		this.commandType = commandType;
-		this.x = x;
-		this.y = y;
+		this.row = x;
+		this.col = y;
 		this.arg = arg;
 
 	}
@@ -99,15 +99,15 @@ public class PlayerCommand{
 			System.out.println(PlantFactory.getPlantOptions());
 			System.out.println("Please enter plant and the row and col loaction");
 			arg = c.next();
-			x = getNumber(c);
-			while (x <0 || x >= Field.DEFAULT_MAX_ROW){
+			row = getNumber(c);
+			while (row <0 || row >= Field.DEFAULT_MAX_ROW){
 				System.out.println("Please enter a position in the grid");
-				x = getNumber(c);
+				row = getNumber(c);
 			} 
-			y = getNumber(c);
-			while (y <0 || y >= Field.DEFAULT_MAX_POSN){
+			col = getNumber(c);
+			while (col <0 || col >= Field.DEFAULT_MAX_POSN){
 				System.out.println("Please enter a position in the grid");
-				y = getNumber(c);
+				col = getNumber(c);
 			} 
 		case DO_NOTHING:
 			break;
@@ -146,16 +146,16 @@ public class PlayerCommand{
 	 * Return the x coordinate
 	 * @return the x coordinate
 	 */
-	public int getX() {
-		return x;
+	public int getRow() {
+		return row;
 	}
 
 	/**
 	 * Return the y coordinate
 	 * @return the y coordinate
 	 */
-	public int getY() {
-		return y;
+	public int getCol() {
+		return col;
 	}
 
 	/**

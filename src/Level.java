@@ -60,6 +60,9 @@ public class Level
 	 * @param type the type of the zombie
 	 */
 	public void spawnZombie(int row, int turn, String type) {
+		if (row <0 || row >= Field.DEFAULT_MAX_ROW || turn <0  || type == null){
+			throw new IllegalArgumentException("Wrong paremeters passed for spawning zombie");
+		}
 		Zombie.Type zombieType = Zombie.Type.valueOf(type.toUpperCase());
 		Zombie z = zFact.makeZombie(zombieType);
 		zombieList[row].add(new java.util.AbstractMap.SimpleEntry<>(turn, z));
@@ -90,7 +93,6 @@ public class Level
 				if (line.equals(readLevel)) {
 					// total turns allowed for the user to play
 					numTurns = Integer.parseInt(bufferedReader.readLine());
-					System.out.println(numTurns);
 
 					for (int i = 0; i < Field.DEFAULT_MAX_ROW; i++) {
 						String[] rowContents = bufferedReader.readLine().split(
@@ -117,8 +119,10 @@ public class Level
 			bufferedReader.close();
 		} catch (FileNotFoundException ex) {
 			System.out.println("Unable to open file '" + fileName + "'");
+			System.exit(-1);
 		} catch (IOException ex) {
 			System.out.println("Error reading file '" + fileName + "'");
+			System.exit(-1);
 		}
 		return fieldRows;
 	}

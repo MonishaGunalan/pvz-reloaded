@@ -93,8 +93,8 @@ public class PlayerTest {
 		when(mockField.getTotalSun()).thenReturn(9999);
 		when(mockCommand.getCommandType()).thenReturn(PlayerCommand.CommandType.PLANT_SEED);
 		when(mockCommand.getArg()).thenReturn("sunflower");
-		when(mockCommand.getX()).thenReturn(0);
-		when(mockCommand.getY()).thenReturn(0);
+		when(mockCommand.getRow()).thenReturn(0);
+		when(mockCommand.getCol()).thenReturn(0);
 		assertTrue(player.play(mockCommand));
 	}
 	
@@ -103,8 +103,8 @@ public class PlayerTest {
 		when(mockField.getTotalSun()).thenReturn(9999);
 		when(mockCommand.getCommandType()).thenReturn(PlayerCommand.CommandType.PLANT_SEED);
 		when(mockCommand.getArg()).thenReturn("peashooter");
-		when(mockCommand.getX()).thenReturn(0);
-		when(mockCommand.getY()).thenReturn(0);
+		when(mockCommand.getRow()).thenReturn(0);
+		when(mockCommand.getCol()).thenReturn(0);
 		assertTrue(player.play(mockCommand));
 	}
 	
