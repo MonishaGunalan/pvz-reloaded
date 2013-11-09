@@ -40,7 +40,6 @@ public class Player {
 		triggeredCooldowns = new HashMap<Plant.Type, Cooldown>();
 		for (Plant.Type p: Plant.Type.values()){
 			// We need to resolve static function from 
-			Class c = PlantFactory.getClass(p);
 			triggeredCooldowns.put(p, new Cooldown(PlantFactory.getCooldown(p)));
 		}
 		score = START_SCORE;
@@ -125,8 +124,7 @@ public class Player {
 	 * @return The boolean if the the plant was grown
 	 */
 	public boolean grow(int row, int col, Plant.Type plantType){
-		// Get the plant class from type
-		Class plantClass = PlantFactory.getClass(plantType);
+
 		int plantCost = PlantFactory.getCost(plantType);
 		//TODO:: return with more meaningful error messages
 		Cooldown plantTypeCD = triggeredCooldowns.get(plantType);

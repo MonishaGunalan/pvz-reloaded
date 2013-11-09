@@ -1,5 +1,5 @@
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+import junit.framework.TestCase;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -7,13 +7,14 @@ import org.junit.Test;
 
 
 
-public class PlayerCommandTest {
+public class PlayerCommandTest extends TestCase {
 
 	PlayerCommand playerCommand;
 	int row, col;
 	String arg;
 	@Before
 	public void setUp() throws Exception {
+		super.setUp();
 		row = 0;
 		col = 0;
 		arg = "abc";

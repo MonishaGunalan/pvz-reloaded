@@ -1,6 +1,11 @@
 SYSC 3110 - Project
 ====================
 
+How to compile
+
+From the main project folder
+javac -cp ".;src/;rsrc/" src/*.java
+
 Milestone 1
 -----------
 
