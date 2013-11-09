@@ -52,15 +52,15 @@ public class TestSquare extends TestCase {
 	}
 
 	public void testGetSquare() {
-		assertSame(
-				"There should be a  square in requested direction.",
-				testStrip1.getSquare(2), testStrip1.getSquare(1).getSquare(Field.Direction.RIGHT));
+		assertSame("There should be a  square in requested direction.",
+				testStrip1.getSquare(2),
+				testStrip1.getSquare(1).getSquare(Field.Direction.RIGHT));
 	}
 
 	public void testGetSquare1() {
-		assertSame(
-				"There should be a  square in requested direction.",
-				testStrip1.getSquare(2), testStrip1.getSquare(3).getSquare(Field.Direction.LEFT));
+		assertSame("There should be a  square in requested direction.",
+				testStrip1.getSquare(2),
+				testStrip1.getSquare(3).getSquare(Field.Direction.LEFT));
 	}
 
 	public void testAddZ() {
@@ -71,28 +71,24 @@ public class TestSquare extends TestCase {
 
 	public void testHasZombie() {
 		testSquare1.add(testZombie);
-		assertTrue("The square should have a zombie.",
-				testSquare1.hasZombie());
+		assertTrue("The square should have a zombie.", testSquare1.hasZombie());
 	}
-	
+
 	// test the getFirstZombie method after adding a zombie
 	public void testGetFirstZombie1() {
 		testSquare1.add(testZombie);
 		assertSame("The first Zombie should be testZombie.", testZombie,
 				testSquare1.getFirstZombie());
 	}
-	
-
 
 	public void testAddP() {
 		testSquare3.add(testPlant);
 		assertSame("The square should contain testPlant.", testPlant,
 				testSquare3.getPlant());
 	}
-	
+
 	public void testHasPlant() {
-		assertTrue("The square should have a plant.",
-				testSquare3.hasPlant());
+		assertTrue("The square should have a plant.", testSquare3.hasPlant());
 	}
 
 	public void testAddB() {
@@ -100,11 +96,10 @@ public class TestSquare extends TestCase {
 		assertEquals("The bullet Array should contain a bullet.", 1,
 				testSquare4.getBullets().size());
 	}
-	
+
 	public void testHasBullet() {
 		testSquare4.add(testBullet);
-		assertTrue("The square should have a bullet.",
-				testSquare4.hasBullet());
+		assertTrue("The square should have a bullet.", testSquare4.hasBullet());
 	}
 
 	public void testRemoveZombieZ() {
@@ -114,7 +109,7 @@ public class TestSquare extends TestCase {
 		assertEquals("The Zombie Array should be empty.", 0, testSquare1
 				.getZombies().size());
 	}
-	
+
 	public void testHasZombie1() {
 		assertFalse("The square should not have a Zombie.",
 				testSquare1.hasZombie());
@@ -127,7 +122,7 @@ public class TestSquare extends TestCase {
 		assertEquals("The Bullet Array should be empty.", 0, testSquare4
 				.getBullets().size());
 	}
-	
+
 	public void testHasBullet1() {
 		assertFalse("The square should not have a bullet.",
 				testSquare4.hasBullet());
@@ -139,7 +134,6 @@ public class TestSquare extends TestCase {
 		assertEquals("The Bullet Array should be empty.", 0, testSquare4
 				.getBullets().size());
 	}
-	
 
 	public void testRemovePlant() {
 		assertTrue("The plants should be removed.",
@@ -152,12 +146,11 @@ public class TestSquare extends TestCase {
 		assertFalse("The square should not have a plant.",
 				testSquare4.hasPlant());
 	}
-	
 
 	public void testGetLoc() {
 		System.out.println(testSquare1.getLoc());
-		assertEquals("The square should be located in row 3 and col 2.", "Square@3,2",
-				testSquare1.getLoc());
+		assertEquals("The square should be located in row 3 and col 2.",
+				"Square@3,2", testSquare1.getLoc());
 	}
 
 	public void testGetStrip() {
