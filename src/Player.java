@@ -1,22 +1,32 @@
-/*
- * @author Chris Nguyen
- * 100793244
- * 
- */
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
-
+/**
+ * This class represents the player playing the the game
+ * it keeps track of the current score, sun points and level
+ *
+ * @author Christopher Nguyen
+ * @version 1.0
+ * @since 1.7
+ */
 public class Player {
 	public final int START_SCORE = 0;
 
+	/**
+	 * The current score of the player (Not implemented)
+	 */
 	private int score;
+	/**
+	 * The current level the player is playing
+	 */
 	private Level level;
 
-	//This map contains the mapping of all plant type to their active cooldown
+	/**
+	 * This map contains the mapping of all plant type to their active cooldown
+	 */
 	private Map<Plant.Type, Cooldown> triggeredCooldowns;
 
 
@@ -46,14 +56,15 @@ public class Player {
 		while (true){
 			//Get the player command
 			System.out.println("Current Sun Points: " + level.getField().getTotalSun());
-			PlayerCommand command = new PlayerCommand(c); 
+			PlayerCommand command = new PlayerCommand(c);
+			//call the helper method
 			play(command);
 			System.out.println(level.getField().toString());
 		}
 	}
 
 	/**
-	 * The helper function that will handle the command
+	 * The helper function if using text version that will handle the command
 	 * @param command The command to be input
 	 */
 	public boolean play (PlayerCommand command){
@@ -65,6 +76,7 @@ public class Player {
 				//Try to create the plant based on the playercommand
 				Plant.Type p = null;
 				String plant = command.getArg();
+				//Get the plant type
 				try{
 					p = Plant.Type.valueOf(plant.toUpperCase());
 				}catch(IllegalArgumentException e){
@@ -72,22 +84,25 @@ public class Player {
 					return false;
 				}
 				boolean growSuccessful = false;
+				//try to grow the plant
 				if (p != null){
 					growSuccessful = grow(command.getRow(),command.getCol(),p);
 
 				}
+				//increment turn if the grow was successful
 				if (growSuccessful){
 					level.incrementTurn();
 					triggerCooldowns();
 				}
 				return growSuccessful;
 			case UNDO:
-				//TODO implement a Turn Class that will encapsulate the data of a turn
+				//TODO 
 				break;
 			case REDO:
-				//TODO implement a Turn Class that will encapsulate the data of a turn
+				//TODO 
 				break;
 			case DO_NOTHING:
+				//Player does nothing that turn, just increment to the next turn
 				level.incrementTurn();
 				triggerCooldowns();
 				break;
@@ -123,7 +138,7 @@ public class Player {
 		// Get reference to indicated square
 		Square square = level.getSquare(row, col);
 
-		// Failure to plant
+		// Check if it can be plant in the location
 		if (square.hasPlant()){
 			// Occupied square
 			System.out.println("There is already a plant present in the square!");
@@ -134,6 +149,7 @@ public class Player {
 			return false;
 		}
 
+		//Make the plant and update the level based on the plant
 		Plant plant = PlantFactory.makePlant(plantType, square);
 		if (plant != null){
 			System.out.println("Plant Created");
@@ -152,6 +168,7 @@ public class Player {
 	 * Iterate through all the cooldowns and tick any that are active
 	 */
 	public void triggerCooldowns(){
+		//iterate through all it's cooldown and trigger it
 		for (Cooldown cooldown: triggeredCooldowns.values()){
 			cooldown.tick();
 		}
@@ -159,7 +176,7 @@ public class Player {
 
 
 	/**
-	 * Save the player state
+	 * Save the player state Not used
 	 */
 	public void save(){
 
@@ -175,6 +192,10 @@ public class Player {
 
 	}
 
+	/**
+	 * Setter method for score
+	 * @param score
+	 */
 	public void setScore(int score){
 		this.score = score;
 	}

@@ -1,6 +1,11 @@
-/*
+
+/**
+ * The level keeps track of
+ * it keeps track of the current score, sun points and level
+ *
  * @author Monisha Gunalan
- * 100871444
+ * @version 1.0
+ * @since 1.7
  */
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -14,15 +19,28 @@ public class Level
 	extends Observable
 	implements Observer {
 
+	/**
+	 * The current level number
+	 */
 	private int levelNumber;
+	/**
+	 * The field being played on
+	 */
 	private Field field;
+	/**
+	 * The current turn number
+	 */
 	private int turnNumber;
-	private int[] numZombieInRow;
+	/**
+	 * The number of turns the level is supposed to finish by
+	 */
 	private int numTurns;
-	private ZombieFactory zFact;
+	/**
+	 * The list of zombies to be brought into the level
+	 */
 	private ArrayList<java.util.Map.Entry<Integer, Zombie>>[] zombieList;
 
-	/*
+	/**
 	 * instantiate a new field with field row and column
 	 * 
 	 * @param levelNumber level number
@@ -34,10 +52,9 @@ public class Level
 		String[] fieldRows = this.loadLevel(fileName, levelNumber);
 		field = new Field(fieldRows, this);
 		turnNumber = 0;
-		zFact = new ZombieFactory();
 	}
 
-	/*
+	/**
 	 * create an array of ArrayList for each row to store the Zombies
 	 */
 	public void createZombieList() {
@@ -50,7 +67,7 @@ public class Level
 	}
 
 
-	/*
+	/**
 	 * Create Zombies in the specified row#
 	 * 
 	 * @param row row number of the field
@@ -64,11 +81,11 @@ public class Level
 			throw new IllegalArgumentException("Wrong paremeters passed for spawning zombie");
 		}
 		Zombie.Type zombieType = Zombie.Type.valueOf(type.toUpperCase());
-		Zombie z = zFact.makeZombie(zombieType);
+		Zombie z = ZombieFactory.makeZombie(zombieType);
 		zombieList[row].add(new java.util.AbstractMap.SimpleEntry<>(turn, z));
 	}
 
-	/*
+	/**
 	 * Read File to get the information about this level
 	 * 
 	 * @param fileName the name of the file which contains level information
@@ -80,7 +97,7 @@ public class Level
 		String line = null;
 		String readLevel = "Level" + levelNumber;
 		String[] fieldRows = new String[Field.DEFAULT_MAX_ROW];
-		numZombieInRow = new int[Field.DEFAULT_MAX_ROW];
+		int[] numZombieInRow = new int[Field.DEFAULT_MAX_ROW];
 
 		try {
 			// FileReader reads text files in the default encoding.
@@ -127,41 +144,43 @@ public class Level
 		return fieldRows;
 	}
 
-	/*
+	/**
 	 * @return level Number
 	 */
 	public int getLevelNumber() {
 		return levelNumber;
 	}
 
-	/*
+	/**
 	 * @return field of this level
 	 */
 	public Field getField() {
 		return field;
 	}
 
-	/*
+	/**
 	 * @return turn number of the player
 	 */
 	public int getTurnNumber() {
 		return turnNumber;
 	}
 
-	/*
+	/**
 	 * increment the turn number for ever user input
 	 */
 	public void incrementTurn() {
 		//if (turnNumber < numTurns) {
+		//Increment the turn
 		turnNumber++;
+		//Bring in new zombies and notify all observers that the turn has incremente 
 		bringNewZombiesIn();
 		setChanged();
 		notifyObservers();
 		//	}
 	}
 
-	/*
-	 * bring the zombie into the firld when it is their turn
+	/**
+	 * bring the zombie into the field when it is their turn
 	 */
 	public void bringNewZombiesIn() {
 		for (int i = 0; i < Field.DEFAULT_MAX_ROW; i++) {
@@ -176,14 +195,22 @@ public class Level
 		}
 	}
 
+	/**
+	 * Update method from zombie if it has reached the end
+	 */
 	public void update(Observable o, Object arg) {
-		//if (arg instanceof Class<? extends Zombie>) {
 		if (arg instanceof Zombie) {
 			// Zombie has reached end strip moving left. Handle here
 			System.out.println("Zombie ate your brains!");
 		}
 	}
 	
+	/**
+	 * Gets a square based on the row and col position
+	 * @param row The row to get the square from
+	 * @param col The col to get the square from
+	 * @return The square
+	 */
 	public Square getSquare(int row, int col){
 		return field.getStrip()[row].getSquare(col);
 	}
