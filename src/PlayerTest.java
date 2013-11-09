@@ -1,12 +1,13 @@
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
+import junit.framework.TestCase;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 
 
-public class PlayerTest {
+public class PlayerTest extends TestCase{
 	Player player;
 	Level mockLevel;
 	PlayerCommand mockCommand;
@@ -16,6 +17,7 @@ public class PlayerTest {
 	int row, col;
 	@Before
 	public void setUp() throws Exception {
+		super.setUp();
 		mockLevel = mock(Level.class);
 		row = 0;
 		col = 0;

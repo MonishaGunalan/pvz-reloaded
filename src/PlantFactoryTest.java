@@ -1,25 +1,26 @@
-import static org.junit.Assert.*;
+import junit.framework.TestCase;
+
 import org.junit.Before;
 import org.junit.Test;
-public class PlantFactoryTest {
+public class PlantFactoryTest extends TestCase{
 
 	Square square;
 
 	@Before
 	public void setUp() throws Exception {
-
+		super.setUp();
 		square = new Square("",0,0,null);
 
 	}
 	
-	@Test
+	@Test (expected = NullPointerException.class)
 	public void testMakePlantWithNullSquare(){
 		PlantFactory.makePlant(Plant.Type.PEASHOOTER, null);
 	}
 	
 	@Test
 	public void testMakePlantWithNullType(){
-		PlantFactory.makePlant(null, square);
+		assertFalse(PlantFactory.makePlant(null, square) instanceof Plant);
 	}
 	
 	@Test

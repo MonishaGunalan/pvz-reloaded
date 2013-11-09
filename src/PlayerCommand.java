@@ -129,6 +129,7 @@ public class PlayerCommand{
 	private int getNumber(Scanner c){
 		boolean isNumber = false;
 		int number= -1;
+		//Does error checking while trying to get a number from scanner
 		while (!isNumber){
 			try{
 				number = Integer.parseInt(c.next());

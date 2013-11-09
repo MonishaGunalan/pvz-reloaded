@@ -6,19 +6,38 @@
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Collections;
-
+/**
+ * This class represents the possible commands the Player could do
+ *
+ * @author Christopher Nguyen
+ * @version 1.0
+ * @since 1.7
+ */
 public class PlantFactory {
+	/**
+	 * Mapping of plant type to plant data
+	 */
 	private static final Map<Plant.Type, PlantData> plantTable;
-	// Sunflower info
+	/**
+	 * Sunflower cooldown
+	 */
 	private static final int SUNFLOWER_CD = 3;
+	/**
+	 * Sunflower cost
+	 */
 	private static final int SUNFLOWER_COST = 50;
-	// Peashooter info
+	/**
+	 * Peashooter cooldown
+	 */
 	private static final int PEASHOOTER_CD = 4;
+	/**
+	 * Peashooter cost
+	 */
 	private static final int PEASHOOTER_COST = 100;
 
 	static {
+		//Instanciate to map static time
 		Map<Plant.Type, PlantData> aTable = new HashMap<Plant.Type, PlantData>();
-
 		aTable.put(Plant.Type.SUNFLOWER, new PlantData(SunflowerPlant.class, SUNFLOWER_CD, SUNFLOWER_COST));
 		aTable.put(Plant.Type.PEASHOOTER, new PlantData(PeaShooterPlant.class, PEASHOOTER_CD, PEASHOOTER_COST));
 
@@ -38,7 +57,7 @@ public class PlantFactory {
 			return null;
 		}
 		Plant p = null;
-		Class plantClass = plantTable.get(plantType).pClass;
+		Class<? extends Plant> plantClass = plantTable.get(plantType).pClass;
 		try {
 			p = (Plant)plantClass.getConstructor(Square.class).newInstance(square);
 		} catch (Exception e) {
@@ -49,7 +68,7 @@ public class PlantFactory {
 	}
 
 
-	public static Class getClass(Plant.Type plantType) {
+	public static Class<? extends Plant> getClass(Plant.Type plantType) {
 		return plantTable.get(plantType).pClass;
 	}
 	
@@ -62,6 +81,10 @@ public class PlantFactory {
 		return plantTable.get(plantType).seedCooldown;
 	}
 
+	/**
+	 * Iterate through the plant type and get the string format
+	 * @return the formatted string
+	 */
 	public static String getPlantOptions(){
 		StringBuilder b = new StringBuilder();
 		for (Plant.Type cmd: Plant.Type.values()){
@@ -71,6 +94,11 @@ public class PlantFactory {
 		return b.toString();
 	}
 
+	/**
+	 * Get the cost of a specific Plant
+	 * @param plantType
+	 * @return The cost of the plant
+	 */
 	public static int getCost(Plant.Type plantType) {
 		return plantTable.get(plantType).seedCost;
 	}
