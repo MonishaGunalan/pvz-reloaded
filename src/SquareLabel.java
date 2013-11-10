@@ -90,12 +90,12 @@ public class SquareLabel extends JLabel {
 		}
 		//draw the bullets
 		for (int i =0; i< bulletList.size(); i++){
-			g.drawImage(unitImageMapping.get(bulletList.get(i)), width/2 - 10 *(bulletList.size() -i), height/2, null);
+			g.drawImage(unitImageMapping.get(bulletList.get(i)), width/2 + 3 *(i), height/2, null);
 		}
 		//draw the zombies
 
 		for (int i =0; i< zombieList.size(); i++){
-			g.drawImage(unitImageMapping.get(zombieList.get(i)), width* 6 /8 - 10 *(zombieList.size() -i), height/8, null);
+			g.drawImage(unitImageMapping.get(zombieList.get(i)), width* 6 /8 + 3 *(i), height/8, null);
 		}
 	}
 	
