@@ -14,13 +14,13 @@ public class PeaBulletTest extends TestCase{
 		super.setUp();
 		MOVE_TRIGGER = 0;
 	}
-	// not finished
+/*	// not finished
 	public testBullet.Type getType() {
 		assertTrue(PeaBullet.getType(Bullet.Type.PEA) == PeaBullet.class);
 	}
+*/
 
 
 
-}
 }
 

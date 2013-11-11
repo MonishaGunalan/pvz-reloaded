@@ -3,15 +3,29 @@ import org.junit.Before;
 import org.junit.Test;
 public class PlantFactoryTest {
 	
-	@Test
-	public void testMakePlantWithNullType(){
-		assertTrue(PlantFactory.makePlant(null) instanceof Zombie);
-	}
-	
-	@Test
-	public void testMakePlant(){
-		assertTrue(PlantFactory.makePlant(Plant.Type.PEASHOOTER, square).getClass() == PeaShooterPlant.class);
-	}
+    Square square;
+
+    @Before
+    public void setUp() throws Exception {
+            square = new Square("",0,0,null);
+
+    }
+    
+    @Test (expected = NullPointerException.class)
+    public void testMakePlantWithNullSquare(){
+            PlantFactory.makePlant(Plant.Type.PEASHOOTER, null);
+    }
+    
+    @Test
+    public void testMakePlantWithNullType(){
+            assertFalse(PlantFactory.makePlant(null, square) instanceof Plant);
+    }
+    
+    @Test
+    public void testMakePlant(){
+            assertTrue(PlantFactory.makePlant(Plant.Type.PEASHOOTER, square).getClass() == PeaShooterPlant.class);
+    }
+    
 	
 	@Test
 	public void testGetClass(){
