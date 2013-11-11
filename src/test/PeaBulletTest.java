@@ -6,20 +6,41 @@ import org.junit.Before;
 import org.junit.Test;
 
 
+import static org.junit.Assert.*;
+import junit.framework.TestCase;
+
+import org.junit.Before;
+import org.junit.Test;
+
+
 public class PeaBulletTest extends TestCase{
 
-	int MOVE_TRIGGER, DMG;
+	private Level testLevel1;
+	private Field testField1;
+	private Strip testStrip1;
+	private Square testSquare1;
+	private Zombie testZombie1;
+	private String[] terrainType = { "mud", "grass", "grass", "grass", "mud" };
 
 	@Before
-	public void setUp() throws Exception {
-		super.setUp();
-		MOVE_TRIGGER = 0;
+		public void setUp() throws Exception {
+			testLevel1 = new Level(1);
+			testField1 = new Field(terrainType, testLevel1);
+			testStrip1 = new Strip("grass", 3, testField1);
+			testSquare1 = new Square("grass", 3, 2, testStrip1);
+			testZombie1 = new NormalZombie();
+
+			testZombie1.setSquare(testSquare1);
+		}
+		
+	
+		public Bullet.Type getType() {
+			assertTrue(PeaBullet.getType(Bullet.Type.PEA) == PeaBullet.class);
+		}
+		
+		
+		
 	}
-/*	// not finished
-	public testBullet.Type getType() {
-		assertTrue(PeaBullet.getType(Bullet.Type.PEA) == PeaBullet.class);
-	}
-*/
 
 
 

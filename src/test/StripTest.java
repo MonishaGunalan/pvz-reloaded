@@ -22,11 +22,15 @@ public class StripTest {
 	private Field testField1;
 
 	@Before
+	/**
+	 * Set up the fixture
+	 * @throws Exception
+	 */
 	public void setUp() throws Exception {
 		testStrip = new Strip("grass", 3, null);
 	}
 
-	/*
+	/**
 	 * Method to test 'getField' method in class Strip
 	 */
 	@Test
@@ -35,7 +39,7 @@ public class StripTest {
 				testField1, testStrip.getField());
 	}
 
-	/*
+	/**
 	 * Method to test 'getSquares' method in class Strip
 	 */
 	@Test
@@ -45,7 +49,7 @@ public class StripTest {
 				testStrip.getSquares().length);
 	}
 
-	/*
+	/**
 	 * Method to test 'getSquare' method in class Strip
 	 */
 	@Test
@@ -54,7 +58,7 @@ public class StripTest {
 				testStrip.getSquare(-2));
 	}
 
-	/*
+	/**
 	 * Method to test 'getSquares' method in class Strip
 	 */
 	@Test
@@ -63,7 +67,7 @@ public class StripTest {
 				testStrip.getSquare(0).getRow());
 	}
 
-	/*
+	/**
 	 * Method to test 'getSquares' method in class Strip
 	 */
 	@Test
@@ -72,7 +76,7 @@ public class StripTest {
 				testStrip.getSquare(4).getRow());
 	}
 
-	/*
+	/**
 	 * Method to test 'getSquares' method in class Strip
 	 */
 	@Test
