@@ -28,13 +28,13 @@ public class SquareLabel extends JLabel {
 		BufferedImage sampleImage = null ;
 		try {
 			System.out.println(System.getProperty("user.dir"));
-			sampleImage = ImageIO.read(new File("sunflower.png"));
+			sampleImage = ImageIO.read(new File("rsrc/sunflower.png"));
 			aTable.put(SunflowerPlant.class, sampleImage);
-			sampleImage = ImageIO.read(new File("sunflower.png"));
+			sampleImage = ImageIO.read(new File("rsrc/peashooter.png"));
 			aTable.put(PeaShooterPlant.class, sampleImage);
-			sampleImage = ImageIO.read(new File("sunflower.png"));
+			sampleImage = ImageIO.read(new File("rsrc/Zombie.png"));
 			aTable.put(NormalZombie.class, sampleImage);
-			sampleImage = ImageIO.read(new File("sunflower.png"));
+			sampleImage = ImageIO.read(new File("rsrc/PeashooterBullet.png"));
 			aTable.put(PeaBullet.class, sampleImage);
 		} catch (IOException e) {
 			System.out.println("error trying to create image");
@@ -86,16 +86,16 @@ public class SquareLabel extends JLabel {
 		g.drawRect(0, 0, this.getWidth(), this.getHeight());
 		//draw the plant
 		if (type != null){
-			g.drawImage(unitImageMapping.get(type), width/8, height/8, null);
+			g.drawImage(unitImageMapping.get(type), width/20, height/4, null);
 		}
 		//draw the bullets
 		for (int i =0; i< bulletList.size(); i++){
-			g.drawImage(unitImageMapping.get(bulletList.get(i)), width/2 + 3 *(i), height/2, null);
+			g.drawImage(unitImageMapping.get(bulletList.get(i)), width/2 + 3 *(i), height/4, null);
 		}
 		//draw the zombies
 
 		for (int i =0; i< zombieList.size(); i++){
-			g.drawImage(unitImageMapping.get(zombieList.get(i)), width* 6 /8 + 3 *(i), height/8, null);
+			g.drawImage(unitImageMapping.get(zombieList.get(i)), width* 5 /8 + 5 *(i), height/8, null);
 		}
 	}
 	
