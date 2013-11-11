@@ -1,4 +1,5 @@
 package pvz;
+
 /*
  * This class implements the strip contained in the field
  * Strips contains a list of squares. Strips represent the rows of the field

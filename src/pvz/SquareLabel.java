@@ -1,4 +1,5 @@
 package pvz;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -14,7 +15,6 @@ import java.util.Map;
 import javax.imageio.ImageIO;
 import javax.swing.JLabel;
 
-
 public class SquareLabel extends JLabel {
 	/**
 	 * row of square
@@ -27,11 +27,11 @@ public class SquareLabel extends JLabel {
 	/**
 	 * List of zombie classes currently in the square
 	 */
-	private List<Class<?extends Zombie>> zombieList;
+	private List<Class<? extends Zombie>> zombieList;
 	/**
 	 * List of bullet classes currently in the square
 	 */
-	private List<Class<?extends Bullet>> bulletList;
+	private List<Class<? extends Bullet>> bulletList;
 	/**
 	 * The type of plant in the square
 	 */
@@ -42,7 +42,7 @@ public class SquareLabel extends JLabel {
 	private static final Map<Class<? extends Unit>, Image> unitImageMapping;
 	static {
 		Map<Class<? extends Unit>, Image> aTable = new HashMap<Class<? extends Unit>, Image>();
-		BufferedImage sampleImage = null ;
+		BufferedImage sampleImage = null;
 		try {
 			System.out.println(System.getProperty("user.dir"));
 			sampleImage = ImageIO.read(new File("rsrc/sunflower.png"));
@@ -57,87 +57,92 @@ public class SquareLabel extends JLabel {
 			System.out.println("error trying to create image");
 		}
 
-
 		unitImageMapping = Collections.unmodifiableMap(aTable);
 	}
 
-
 	/**
 	 * SquareLabel constructor
+	 * 
 	 * @param row
 	 * @param col
 	 */
-	public SquareLabel(int row, int col){
+	public SquareLabel(int row, int col) {
 		this.row = row;
 		this.col = col;
 		zombieList = new ArrayList<Class<? extends Zombie>>();
 		bulletList = new ArrayList<Class<? extends Bullet>>();
 	}
-	
+
 	/**
 	 * Update the square GUI with the model
+	 * 
 	 * @param square
 	 */
-	public void updateSquare(Square square){
-		//TODO:: have square return the numbers directly?
-		if (square != null){
+	public void updateSquare(Square square) {
+		// TODO:: have square return the numbers directly?
+		if (square != null) {
 			zombieList.clear();
 			bulletList.clear();
-			for (Zombie z: square.getZombies()){
+			for (Zombie z : square.getZombies()) {
 				zombieList.add(z.getClass());
 			}
-			for (Bullet b: square.getBullets()){
+			for (Bullet b : square.getBullets()) {
 				bulletList.add(b.getClass());
 			}
 
-			if (square.getPlant() != null){
+			if (square.getPlant() != null) {
 				type = square.getPlant().getClass();
-			}else {
+			} else {
 				type = null;
 			}
 		}
 	}
-	
+
 	/**
 	 * Paint the square with the appropriate images
 	 */
-	public void paintComponent(Graphics g)
-	{
-		//TODO:: figure out if this belongs on instance  scope
+	public void paintComponent(Graphics g) {
+		// TODO:: figure out if this belongs on instance scope
 		int width = this.getWidth();
 		int height = this.getHeight();
-		//TODO:: change default of grass
+		// TODO:: change default of grass
 		g.setColor(Color.GREEN);
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
 		g.setColor(Color.BLACK);
 		g.drawRect(0, 0, this.getWidth(), this.getHeight());
-		//draw the plant
-		if (type != null){
-			g.drawImage(unitImageMapping.get(type), width/20, height/4, null);
+		// draw the plant
+		if (type != null) {
+			g.drawImage(unitImageMapping.get(type), width / 20, height / 4,
+					null);
 		}
-		//draw the bullets
-		for (int i =0; i< bulletList.size(); i++){
-			g.drawImage(unitImageMapping.get(bulletList.get(i)), width/2 + 3 *(i), height/4, null);
+		// draw the bullets
+		for (int i = 0; i < bulletList.size(); i++) {
+			g.drawImage(unitImageMapping.get(bulletList.get(i)), width / 2 + 3
+					* (i), height / 4, null);
 		}
-		//draw the zombies
+		// draw the zombies
 
-		for (int i =0; i< zombieList.size(); i++){
-			g.drawImage(unitImageMapping.get(zombieList.get(i)), width* 5 /8 + 5 *(i), height/8, null);
+		for (int i = 0; i < zombieList.size(); i++) {
+			g.drawImage(unitImageMapping.get(zombieList.get(i)), width * 5 / 8
+					+ 5 * (i), height / 8, null);
 		}
 	}
-	
+
 	/**
 	 * Getter for Row
+	 * 
 	 * @return
 	 */
-	public int getRow(){
+	public int getRow() {
 		return row;
 	}
+
 	/**
 	 * Getter for Column
+	 * 
 	 * @return
 	 */
-	public int getCol(){
+	public int getCol() {
 		return col;
 	}
 
