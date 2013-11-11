@@ -15,7 +15,6 @@ import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 
-
 public class BulletTest extends TestCase{
 	private Level testLevel1;
 	private Field testField1;
