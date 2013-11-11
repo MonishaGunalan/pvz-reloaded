@@ -6,6 +6,10 @@
 import java.util.Observer;
 import java.util.Observable;
 
+/**
+ * @author Tianming
+ *
+ */
 public class SunGenerator 
 	implements Observer {
 	private final int GEN_TRIGGER;
@@ -14,6 +18,14 @@ public class SunGenerator
 	private Field field;
 	private Cooldown sunCooldown;
 
+	/**
+	 * Constructor. Registers this object as an observer
+	 * of Level so that it knows when level increments.
+	 * 
+	 * @param trigger Number of turns between producing sun
+	 * @param genAmt Amount of sun produced each time
+	 * @param field Field to produce sun to
+	 */
 	public SunGenerator(int trigger, int genAmt, Field field) {
 		GEN_TRIGGER = trigger;
 		GEN_AMT = genAmt;
@@ -25,6 +37,11 @@ public class SunGenerator
 		this.field.getLevel().addObserver(this);
 	}
 
+	/**
+	 * If GEN_TRIGGER turns have passed since 
+	 * last producing sunlight, adds GEN_AMT sun
+	 * to the field. Otherwise, tick cooldowns.
+	 */
 	public void generateSun() {
 		if (sunCooldown.isAvailable()) {
 			field.addSun(GEN_AMT);
@@ -34,6 +51,9 @@ public class SunGenerator
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
+	 */
 	public void update(Observable o, Object arg) {
 		generateSun();
 	}

@@ -7,7 +7,13 @@ public abstract class Plant
 
 	public enum Type{SUNFLOWER, PEASHOOTER;}
 
-	public Plant(int maxHP, Square square) {
+	/**
+	 * Constructor
+	 *
+	 * @param maxHP Maximum HP for unit
+	 * @param square The square the unit is on
+	 */
+	protected Plant(int maxHP, Square square) {
 		super(maxHP);
 		this.setSquare(square);
 	}

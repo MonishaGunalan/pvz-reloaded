@@ -2,23 +2,10 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 public class PlantFactoryTest {
-
-	Square square;
-
-	@Before
-	public void setUp() throws Exception {
-		square = new Square("",0,0,null);
-
-	}
-	
-	@Test (expected = NullPointerException.class)
-	public void testMakePlantWithNullSquare(){
-		PlantFactory.makePlant(Plant.Type.PEASHOOTER, null);
-	}
 	
 	@Test
 	public void testMakePlantWithNullType(){
-		assertFalse(PlantFactory.makePlant(null, square) instanceof Plant);
+		assertTrue(PlantFactory.makePlant(null) instanceof Zombie);
 	}
 	
 	@Test

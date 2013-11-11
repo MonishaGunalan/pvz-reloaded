@@ -7,8 +7,8 @@ import java.util.Observable;
 public abstract class OffensivePlant
 	extends Plant {
 	// Constants
-	protected static final Bullet.Type DEFAULT_BULLET = Bullet.Type.PEA; 
-	protected static final int DEFAULT_SHOOT_TRIGGER = 1;
+	public static final Bullet.Type DEFAULT_BULLET = Bullet.Type.PEA; 
+	public static final int DEFAULT_SHOOT_TRIGGER = 1;
 
 	// Variables
 	protected Cooldown shootCD;

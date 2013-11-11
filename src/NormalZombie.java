@@ -13,7 +13,7 @@
 public class NormalZombie
 	extends Zombie {
 	// Constants
-	private static final int MAX_HP = 10;
+	public static final int MAX_HP = 10;
 
 	/** 
 	* Class constructor. 
@@ -22,6 +22,12 @@ public class NormalZombie
 		super(MAX_HP);
 	}
 
+	/**
+	 * Returns the type of zombie associated
+	 * with this concrete class as
+	 * listed in the enumeration of the
+	 * Zombie class.
+	 */
 	public Zombie.Type getType() {
 		return Zombie.Type.NORMAL;
 	}

@@ -12,9 +12,9 @@ public abstract class Zombie
 	extends PerishableUnit {
 
 	// Constants
-	protected static final int DEFAULT_ATK = 1; 
-	protected static final int DEFAULT_ATTACK_TRIGGER = 0;
-	protected static final int DEFAULT_MOVE_TRIGGER = 3;
+	public static final int DEFAULT_ATK = 1; 
+	public static final int DEFAULT_ATTACK_TRIGGER = 0;
+	public static final int DEFAULT_MOVE_TRIGGER = 3;
 
 	private static final Field.Direction DEFAULT_MOVE_DIR = Field.Direction.LEFT;
 
@@ -64,10 +64,6 @@ public abstract class Zombie
 		return attackTriggerAmt;
 	}
 
-	public Cooldown getMoveCooldown() {
-		return this.moveCD;
-	}
-
 	protected void move() {
 		move(DEFAULT_MOVE_DIR);
 	}
@@ -82,7 +78,7 @@ public abstract class Zombie
 			//System.out.println("row: " + square.getRow() + " col: " + square.getCol());
 			// Remove bullet from this square and add
 			// it to the next square
-			Square dest = getSquare().getSquare(Field.Direction.LEFT);
+			Square dest = getSquare().getSquare(dir);
 			// Destination is null meaning we are trying to move left off the field,
 			// ie. current zombie has reached end of map
 			if (dest == null) {
@@ -99,7 +95,7 @@ public abstract class Zombie
 	}
 
 	// For debugging
-	private void printMove(Square dest) {
+	publicV void printMove(Square dest) {
 		System.out.println("Zombie (" + getRow() + "," + getCol() + ")-->{" + dest.getRow() + "," + dest.getCol() + ")");
 	}
 

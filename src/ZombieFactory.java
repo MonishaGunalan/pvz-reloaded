@@ -17,7 +17,17 @@ public class ZombieFactory {
 		zombieTable = Collections.unmodifiableMap(aTable);
 	}
 
+	/**
+	 * Creates a new instance of Zombie of specified type.
+	 * 
+	 * @param zombieType Type of zombie to create
+	 * @return New instance of specified zombie type
+	 */
 	public static Zombie makeZombie(Zombie.Type zombieType) {
+		if (zombieType == null) {
+			return null;
+		}
+
 		Zombie z = null;
 		try {
 			z = zombieTable.get(zombieType).newInstance();

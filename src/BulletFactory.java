@@ -17,7 +17,18 @@ public class BulletFactory {
 		bulletTable = Collections.unmodifiableMap(aTable);
 	}
 
+	/**
+	 * Creates a new instance of a bullet of type 
+	 * bulletType.
+	 * 
+	 * @param bulletType Type of bullet to create
+	 * @return New instance of specified bullet
+	 */
 	public static Bullet makeBullet(Bullet.Type bulletType) {
+		if (bulletType == null) {
+			return null;
+		}
+
 		Bullet p = null;
 		try {
 			p = bulletTable.get(bulletType).newInstance();
