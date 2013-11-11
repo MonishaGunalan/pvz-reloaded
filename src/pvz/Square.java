@@ -1,5 +1,6 @@
 package pvz;
-/*
+
+/**
  * This class implements the square. The square can contain, plants, zombies and bullets
  * @author Monisha Gunalan
  * 100871444
@@ -20,16 +21,20 @@ public class Square {
 	private int numBullet;
 	private String terrain;
 
-	/*
+	/**
 	 * constructor: can contain zombies, plant and bullets
 	 * 
-	 * @param terrain terrian type of the field
+	 * @param terrain
+	 *            terrian type of the field
 	 * 
-	 * @param row the position in the field row
+	 * @param row
+	 *            the position in the field row
 	 * 
-	 * @param col position in the firld column
+	 * @param col
+	 *            position in the firld column
 	 * 
-	 * @param strip the strip which contains this square
+	 * @param strip
+	 *            the strip which contains this square
 	 */
 	public Square(String terrain, int row, int col, Strip strip) {
 		this.row = row;
@@ -43,28 +48,28 @@ public class Square {
 		this.terrain = terrain;
 	}
 
-	/*
+	/**
 	 * @return the position of the square in field row
 	 */
 	public int getRow() {
 		return row;
 	}
 
-	/*
+	/**
 	 * @return the position of the square in field column
 	 */
 	public int getCol() {
 		return col;
 	}
 
-	/*
+	/**
 	 * @return the plant present in this square
 	 */
 	public Plant getPlant() {
 		return plant;
 	}
 
-	/*
+	/**
 	 * @return the first zombie in the square
 	 */
 	public Zombie getFirstZombie() {
@@ -74,8 +79,9 @@ public class Square {
 		return null;
 	}
 
-	/*
-	 * @param dir direction of the unit present in the square
+	/**
+	 * @param dir
+	 *            direction of the unit present in the square
 	 * 
 	 * @return returns the nearest square in the specified direction
 	 */
@@ -95,10 +101,11 @@ public class Square {
 		return s;
 	}
 
-	/*
+	/**
 	 * add the specified unit to the square
 	 * 
-	 * @param unit is the element such as zombie, plant bullet
+	 * @param unit
+	 *            is the element such as zombie, plant bullet
 	 */
 	public void add(Unit unit) {
 		if (unit instanceof Plant) {
@@ -110,7 +117,7 @@ public class Square {
 		}
 	}
 
-	/*
+	/**
 	 * Adds the plant to the square
 	 * 
 	 * @plant the plant
@@ -122,7 +129,7 @@ public class Square {
 		}
 	}
 
-	/*
+	/**
 	 * Adds the bullet to the square
 	 * 
 	 * @bullet the bullet
@@ -133,7 +140,7 @@ public class Square {
 		this.numBullet++;
 	}
 
-	/*
+	/**
 	 * Adds the zombie to the square
 	 * 
 	 * @zombie the zombie
@@ -147,10 +154,11 @@ public class Square {
 		this.numZombie++;
 	}
 
-	/*
+	/**
 	 * removes the unit from the square
 	 * 
-	 * @param p the unit element
+	 * @param p
+	 *            the unit element
 	 * 
 	 * @return returns true when the unit can be removed
 	 */
@@ -168,10 +176,11 @@ public class Square {
 		return false;
 	}
 
-	/*
+	/**
 	 * removes the zombie from the square
 	 * 
-	 * @param z zombie
+	 * @param z
+	 *            zombie
 	 * 
 	 * @return returns true when the unit can be removed
 	 */
@@ -181,10 +190,11 @@ public class Square {
 		return zombies.remove(z);
 	}
 
-	/*
+	/**
 	 * removes the bullet from the square
 	 * 
-	 * @param b bullet
+	 * @param b
+	 *            bullet
 	 * 
 	 * @return returns true when the unit can be removed
 	 */
@@ -196,10 +206,11 @@ public class Square {
 		return false;
 	}
 
-	/*
+	/**
 	 * removes the plant from the square
 	 * 
-	 * @param p plant
+	 * @param p
+	 *            plant
 	 * 
 	 * @return returns true when the unit can be removed
 	 */
@@ -208,7 +219,7 @@ public class Square {
 		return true;
 	}
 
-	/*
+	/**
 	 * check if there is a zombie after it
 	 * 
 	 * @return true if there exits a zombie
@@ -224,39 +235,46 @@ public class Square {
 		return hasZombie;
 	}
 
-	/*
+	/**
 	 * @return returns true if the square contains a zombie
 	 */
 	public boolean hasZombie() {
 		return (zombies.size() > 0);
 	}
 
-	/*
+	/**
 	 * @return returns true if the square contains aplant
 	 */
 	public boolean hasPlant() {
 		return this.plant != null;
 	}
 
-	/*
+	/**
 	 * @return returns true if the square contains a bullet
 	 */
 	public boolean hasBullet() {
 		return bullets.size() > 0;
 	}
 
+	/**
+	 * 
+	 * @return returns a list of Zombies in the square
+	 */
 	public List<Zombie> getZombies() {
 		return zombies;
 	}
 
+	/**
+	 * 
+	 * @return returns a list of Bullets in the square
+	 */
 	public List<Bullet> getBullets() {
 		return bullets;
 	}
 
-	/*
+	/**
 	 * @return returns a toString representation of the square
 	 */
-
 	public String toString() {
 		String s = "[";
 		if (this.terrain.equals("mud")) {
@@ -286,7 +304,7 @@ public class Square {
 		return s;
 	}
 
-	/*
+	/**
 	 * @return returns the location of the square
 	 */
 	public String getLoc() {
@@ -295,7 +313,7 @@ public class Square {
 		return s;
 	}
 
-	/*
+	/**
 	 * @return returns the strip in which the square is present
 	 */
 	public Strip getStrip() {

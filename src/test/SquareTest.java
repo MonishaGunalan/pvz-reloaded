@@ -1,5 +1,5 @@
 package test;
-/*
+/**
  * This class contains unit testing for all the methods in the class Square
  * @author Monisha Gunalan
  * 100871444
@@ -37,6 +37,10 @@ public class SquareTest {
 	private String[] terrainType = { "mud", "grass", "grass", "grass", "mud" };
 
 	@Before
+	/**
+	 * Set up the fixture
+	 * @throws Exception
+	 */
 	public void setUp() throws Exception {
 		
 		testLevel2 = new Level(1);
@@ -51,7 +55,7 @@ public class SquareTest {
 		testBullet = new PeaBullet();
 	}
 
-	/*
+	/**
 	 * Test method getRow in class square
 	 */
 	@Test
@@ -59,7 +63,7 @@ public class SquareTest {
 		assertEquals("Row number should be 3.", 3, testSquare1.getRow());
 	}
 
-	/*
+	/**
 	 * Test method getRow in class square
 	 */
 	@Test
@@ -67,7 +71,7 @@ public class SquareTest {
 		assertEquals("Row number should be 1.", 1, testSquare2.getRow());
 	}
 
-	/*
+	/**
 	 * Test method getCol in class square
 	 */
 	@Test
@@ -75,7 +79,7 @@ public class SquareTest {
 		assertEquals("Row number should be 2.", 2, testSquare1.getCol());
 	}
 
-	/*
+	/**
 	 * Test method getCol in class square
 	 */
 	@Test
@@ -83,7 +87,7 @@ public class SquareTest {
 		assertEquals("Row number should be 1.", 1, testSquare2.getCol());
 	}
 
-	/*
+	/**
 	 * Test method getPlant in class square. The plant is initialised to null in
 	 * the constructor
 	 */
@@ -93,7 +97,7 @@ public class SquareTest {
 				testSquare1.getPlant());
 	}
 
-	/*
+	/**
 	 * Test method getFirstZombie in class square. There is no Zombie in the
 	 * square yet so it returns a null
 	 */
@@ -104,7 +108,7 @@ public class SquareTest {
 				testSquare1.getFirstZombie());
 	}
 
-	/*
+	/**
 	 * Test method getSquare in class square. getSquare method returns te
 	 * nearest square in the requested direction.
 	 */
@@ -115,7 +119,7 @@ public class SquareTest {
 				testStrip1.getSquare(1).getSquare(Field.Direction.RIGHT));
 	}
 
-	/*
+	/**
 	 * Test method getSquare in class square.getSquare method returns te nearest
 	 * square in the requested direction
 	 */
@@ -126,7 +130,7 @@ public class SquareTest {
 				testStrip1.getSquare(3).getSquare(Field.Direction.LEFT));
 	}
 
-	/*
+	/**
 	 * Test method 'add' in class square which invokes addZombie method Test if
 	 * the zombie arraylist size has been incremented
 	 */
@@ -137,7 +141,7 @@ public class SquareTest {
 				testSquare1.getZombies().size());
 	}
 
-	/*
+	/**
 	 * Test method 'hasZombie' in class square by adding a zombie to the square
 	 */
 	@Test
@@ -146,7 +150,7 @@ public class SquareTest {
 		assertTrue("The square should have a zombie.", testSquare1.hasZombie());
 	}
 
-	/*
+	/**
 	 * Test the getFirstZombie method after adding a zombie
 	 */
 	@Test
@@ -156,7 +160,7 @@ public class SquareTest {
 				testSquare1.getFirstZombie());
 	}
 
-	/*
+	/**
 	 * Test method 'add' in class square which invokes addPlant method
 	 */
 	@Test
@@ -166,7 +170,7 @@ public class SquareTest {
 				testSquare3.getPlant());
 	}
 
-	/*
+	/**
 	 * Test method 'hasPlant' in class square which check if a plant is present
 	 * in a square
 	 */
@@ -175,7 +179,7 @@ public class SquareTest {
 		assertTrue("The square should have a plant.", testSquare3.hasPlant());
 	}
 
-	/*
+	/**
 	 * Test method 'add' in class square which invokes addBullet method Test if
 	 * the bullet arraylist size has been incremented
 	 */
@@ -186,7 +190,7 @@ public class SquareTest {
 				testSquare4.getBullets().size());
 	}
 
-	/*
+	/**
 	 * Test method 'hasBullet' in class square which check if a bullet is
 	 * present in a square after adding a bullet to the square
 	 */
@@ -196,7 +200,7 @@ public class SquareTest {
 		assertTrue("The square should have a bullet.", testSquare4.hasBullet());
 	}
 
-	/*
+	/**
 	 * Test method 'remove' in class square which invokes removeZombie method
 	 * and Tests if the zombie arraylist size has been decremented
 	 */
@@ -209,7 +213,7 @@ public class SquareTest {
 				.getZombies().size());
 	}
 
-	/*
+	/**
 	 * Test method 'hasZombie' in class square after removing the zombie from
 	 * the square
 	 */
@@ -219,7 +223,7 @@ public class SquareTest {
 				testSquare1.hasZombie());
 	}
 
-	/*
+	/**
 	 * Test method 'remove' in class square which invokes removeBullet method
 	 * and Tests if the bullet arraylist size has been decremented
 	 */
@@ -232,7 +236,7 @@ public class SquareTest {
 				.getBullets().size());
 	}
 
-	/*
+	/**
 	 * Test method 'hasBullet' in class square after removing the bullet from
 	 * the square
 	 */
@@ -242,7 +246,7 @@ public class SquareTest {
 				testSquare4.hasBullet());
 	}
 
-	/*
+	/**
 	 * Test method 'remove' in class square which invokes removeBullet method
 	 * and Tests if the bullet arraylist size has been decremented
 	 */
@@ -254,7 +258,7 @@ public class SquareTest {
 				.getBullets().size());
 	}
 
-	/*
+	/**
 	 * Test method 'remove' in class square which invokes removePlant method and
 	 * Tests if the square does not contain the plant after it is removed
 	 */
@@ -266,7 +270,7 @@ public class SquareTest {
 				testSquare1.getPlant());
 	}
 
-	/*
+	/**
 	 * Test method 'hasPlant' in class square after removing a plant from the
 	 * square
 	 */
@@ -276,7 +280,7 @@ public class SquareTest {
 				testSquare4.hasPlant());
 	}
 
-	/*
+	/**
 	 * Test method 'getLoc' in class square
 	 */
 	@Test
@@ -286,7 +290,7 @@ public class SquareTest {
 				"Square@3,2", testSquare1.getLoc());
 	}
 
-	/*
+	/**
 	 * Test method 'getStrip' in class square
 	 */
 	@Test

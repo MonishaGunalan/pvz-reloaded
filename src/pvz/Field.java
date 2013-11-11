@@ -1,5 +1,5 @@
 package pvz;
-/*
+/**
  * Field contains a list of strips which in turn contains square
  * this class creates the field for the game
  * 
@@ -27,7 +27,7 @@ public class Field {
 
 	private Strip[] strips;
 
-	/*
+	/**
 	 * @param TerrianType[] the terrian type for each row
 	 */
 	public Field(String[] terrainType, Level level) {
@@ -48,18 +48,22 @@ public class Field {
 		totalSun = 0;
 	}
 
+	/**
+	 * 
+	 * @return return the level that corresponds to the field
+	 */
 	public Level getLevel() {
 		return this.level;
 	}
 
-	/*
+	/**
 	 * @return Strip[] returns the array of strips in the field
 	 */
 	public Strip[] getStrip() {
 		return strips;
 	}
 
-	/*
+	/**
 	 * get the total sun generated
 	 * 
 	 * @return sun points
@@ -68,7 +72,7 @@ public class Field {
 		return this.totalSun;
 	}
 
-	/*
+	/**
 	 * @return returns the string representation of the field
 	 */
 	public String toString() {
@@ -80,7 +84,7 @@ public class Field {
 		return s;
 	}
 
-	/*
+	/**
 	 * Add sun points to the field
 	 * 
 	 * @param int amount of sun points to be added
@@ -91,7 +95,7 @@ public class Field {
 		}
 	}
 
-	/*
+	/**
 	 * Use sun points from the field
 	 * 
 	 * @param int amount of sun points to be used
