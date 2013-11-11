@@ -4,10 +4,14 @@
  * 100871444
  
  */
+import static org.junit.Assert.*;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 import junit.framework.TestCase;
 
-public class TestSquare extends TestCase {
+public class SquareTest {
 	private Square testSquare1, testSquare2, testSquare3, testSquare4;
 	private Zombie testZombie;
 	private Strip testStrip1;
@@ -17,8 +21,9 @@ public class TestSquare extends TestCase {
 	private Level testLevel2;
 	private String[] terrainType = { "mud", "grass", "grass", "grass", "mud" };
 
-	protected void setUp() throws Exception {
-		super.setUp();
+	@Before
+	public void setUp() throws Exception {
+		
 		testLevel2 = new Level(1);
 		testField2 = new Field(terrainType, testLevel2);
 		testStrip1 = new Strip("grass", 3, testField2);
@@ -34,6 +39,7 @@ public class TestSquare extends TestCase {
 	/*
 	 * Test method getRow in class square
 	 */
+	@Test
 	public void testGetRow1() {
 		assertEquals("Row number should be 3.", 3, testSquare1.getRow());
 	}
@@ -41,6 +47,7 @@ public class TestSquare extends TestCase {
 	/*
 	 * Test method getRow in class square
 	 */
+	@Test
 	public void testGetRow2() {
 		assertEquals("Row number should be 1.", 1, testSquare2.getRow());
 	}
@@ -48,6 +55,7 @@ public class TestSquare extends TestCase {
 	/*
 	 * Test method getCol in class square
 	 */
+	@Test
 	public void testGetCol1() {
 		assertEquals("Row number should be 2.", 2, testSquare1.getCol());
 	}
@@ -55,6 +63,7 @@ public class TestSquare extends TestCase {
 	/*
 	 * Test method getCol in class square
 	 */
+	@Test
 	public void testGetCol2() {
 		assertEquals("Row number should be 1.", 1, testSquare2.getCol());
 	}
@@ -63,6 +72,7 @@ public class TestSquare extends TestCase {
 	 * Test method getPlant in class square. The plant is initialised to null in
 	 * the constructor
 	 */
+	@Test
 	public void testGetPlant() {
 		assertNull("The initial value of plant in square should be null.",
 				testSquare1.getPlant());
@@ -72,6 +82,7 @@ public class TestSquare extends TestCase {
 	 * Test method getFirstZombie in class square. There is no Zombie in the
 	 * square yet so it returns a null
 	 */
+	@Test
 	public void testGetFirstZombie() {
 		assertNull(
 				"The initial value of first zombie in square should be null.",
@@ -82,6 +93,7 @@ public class TestSquare extends TestCase {
 	 * Test method getSquare in class square. getSquare method returns te
 	 * nearest square in the requested direction.
 	 */
+	@Test
 	public void testGetSquare() {
 		assertSame("There should be a  square in requested direction.",
 				testStrip1.getSquare(2),
@@ -92,6 +104,7 @@ public class TestSquare extends TestCase {
 	 * Test method getSquare in class square.getSquare method returns te nearest
 	 * square in the requested direction
 	 */
+	@Test
 	public void testGetSquare1() {
 		assertSame("There should be a  square in requested direction.",
 				testStrip1.getSquare(2),
@@ -102,6 +115,7 @@ public class TestSquare extends TestCase {
 	 * Test method 'add' in class square which invokes addZombie method Test if
 	 * the zombie arraylist size has been incremented
 	 */
+	@Test
 	public void testAddZ() {
 		testSquare1.add(testZombie);
 		assertEquals("The Zombie Array should contain a zombie.", 1,
@@ -111,6 +125,7 @@ public class TestSquare extends TestCase {
 	/*
 	 * Test method 'hasZombie' in class square by adding a zombie to the square
 	 */
+	@Test
 	public void testHasZombie() {
 		testSquare1.add(testZombie);
 		assertTrue("The square should have a zombie.", testSquare1.hasZombie());
@@ -119,6 +134,7 @@ public class TestSquare extends TestCase {
 	/*
 	 * Test the getFirstZombie method after adding a zombie
 	 */
+	@Test
 	public void testGetFirstZombie1() {
 		testSquare1.add(testZombie);
 		assertSame("The first Zombie should be testZombie.", testZombie,
@@ -128,6 +144,7 @@ public class TestSquare extends TestCase {
 	/*
 	 * Test method 'add' in class square which invokes addPlant method
 	 */
+	@Test
 	public void testAddP() {
 		testSquare3.add(testPlant);
 		assertSame("The square should contain testPlant.", testPlant,
@@ -138,6 +155,7 @@ public class TestSquare extends TestCase {
 	 * Test method 'hasPlant' in class square which check if a plant is present
 	 * in a square
 	 */
+	@Test
 	public void testHasPlant() {
 		assertTrue("The square should have a plant.", testSquare3.hasPlant());
 	}
@@ -146,6 +164,7 @@ public class TestSquare extends TestCase {
 	 * Test method 'add' in class square which invokes addBullet method Test if
 	 * the bullet arraylist size has been incremented
 	 */
+	@Test
 	public void testAddB() {
 		testSquare4.add(testBullet);
 		assertEquals("The bullet Array should contain a bullet.", 1,
@@ -156,6 +175,7 @@ public class TestSquare extends TestCase {
 	 * Test method 'hasBullet' in class square which check if a bullet is
 	 * present in a square after adding a bullet to the square
 	 */
+	@Test
 	public void testHasBullet() {
 		testSquare4.add(testBullet);
 		assertTrue("The square should have a bullet.", testSquare4.hasBullet());
@@ -165,6 +185,7 @@ public class TestSquare extends TestCase {
 	 * Test method 'remove' in class square which invokes removeZombie method
 	 * and Tests if the zombie arraylist size has been decremented
 	 */
+	@Test
 	public void testRemoveZombieZ() {
 		testSquare1.add(testZombie);
 		assertTrue("The zombie should be removed.",
@@ -177,6 +198,7 @@ public class TestSquare extends TestCase {
 	 * Test method 'hasZombie' in class square after removing the zombie from
 	 * the square
 	 */
+	@Test
 	public void testHasZombie1() {
 		assertFalse("The square should not have a Zombie.",
 				testSquare1.hasZombie());
@@ -186,6 +208,7 @@ public class TestSquare extends TestCase {
 	 * Test method 'remove' in class square which invokes removeBullet method
 	 * and Tests if the bullet arraylist size has been decremented
 	 */
+	@Test
 	public void testRemoveBullet() {
 		testSquare4.add(testBullet);
 		assertTrue("The Bullet removed should be testBullet.",
@@ -198,6 +221,7 @@ public class TestSquare extends TestCase {
 	 * Test method 'hasBullet' in class square after removing the bullet from
 	 * the square
 	 */
+	@Test
 	public void testHasBullet1() {
 		assertFalse("The square should not have a bullet.",
 				testSquare4.hasBullet());
@@ -207,6 +231,7 @@ public class TestSquare extends TestCase {
 	 * Test method 'remove' in class square which invokes removeBullet method
 	 * and Tests if the bullet arraylist size has been decremented
 	 */
+	@Test
 	public void testRemoveBullet1() {
 		assertFalse("There should be no bullet in the square.",
 				testSquare4.remove(testBullet));
@@ -218,6 +243,7 @@ public class TestSquare extends TestCase {
 	 * Test method 'remove' in class square which invokes removePlant method and
 	 * Tests if the square does not contain the plant after it is removed
 	 */
+	@Test
 	public void testRemovePlant() {
 		assertTrue("The plants should be removed.",
 				testSquare3.remove(testPlant));
@@ -229,6 +255,7 @@ public class TestSquare extends TestCase {
 	 * Test method 'hasPlant' in class square after removing a plant from the
 	 * square
 	 */
+	@Test
 	public void testHasPlant1() {
 		assertFalse("The square should not have a plant.",
 				testSquare4.hasPlant());
@@ -237,6 +264,7 @@ public class TestSquare extends TestCase {
 	/*
 	 * Test method 'getLoc' in class square
 	 */
+	@Test
 	public void testGetLoc() {
 		System.out.println(testSquare1.getLoc());
 		assertEquals("The square should be located in row 3 and col 2.",
@@ -246,13 +274,15 @@ public class TestSquare extends TestCase {
 	/*
 	 * Test method 'getStrip' in class square
 	 */
+	@Test
 	public void testGetStrip() {
 		assertSame("The strip should be testStrip1.", testStrip1,
 				testSquare3.getStrip());
 	}
 
-	protected void tearDown() throws Exception {
-		super.tearDown();
+	@After
+	public void tearDown() throws Exception {
+		
 	}
 
 }

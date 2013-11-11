@@ -16,7 +16,7 @@ public class PlantFactoryTest {
             PlantFactory.makePlant(Plant.Type.PEASHOOTER, null);
     }
     
-    @Test
+    @Test (expected = NullPointerException.class)
     public void testMakePlantWithNullType(){
             assertFalse(PlantFactory.makePlant(null, square) instanceof Plant);
     }

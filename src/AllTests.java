@@ -11,7 +11,7 @@ import org.junit.runners.Suite.SuiteClasses;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 @RunWith(Suite.class)
-@SuiteClasses({PlayerTest.class, PlantFactoryTest.class, LevelTest.class, PlayerCommandTest.class,})
+@SuiteClasses({PlayerTest.class, PlantFactoryTest.class, LevelTest.class, PlayerCommandTest.class,FieldTest.class, StripTest.class, SquareTest.class})
 public class AllTests {
 	
 	/*
@@ -26,9 +26,9 @@ public class AllTests {
 	 */
 	/*public static Test suite() {
 		TestSuite suite = new TestSuite("Tests for Plants vs Zombies Game");
-		suite.addTest(new TestSuite(TestStrip.class));
-		suite.addTest(new TestSuite(TestSquare.class));
-		suite.addTest(new TestSuite(TestField.class));
+		suite.addTest(new TestSuite(StripTest.class));
+		suite.addTest(new TestSuite(SquareTest.class));
+		suite.addTest(new TestSuite(FieldTest.class));
 		suite.addTest(new TestSuite(PlayerTest.class));
 		return suite;
 	}*/
