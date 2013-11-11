@@ -14,6 +14,13 @@ import java.util.Scanner;
  * @since 1.7
  */
 public class Player {
+
+	public enum PlayStatus{
+		
+	}
+	/**
+	 * The starting score;
+	 */
 	public final int START_SCORE = 0;
 
 	/**

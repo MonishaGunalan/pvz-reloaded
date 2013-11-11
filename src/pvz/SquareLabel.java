@@ -11,10 +11,14 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.imageio.ImageIO;
 import javax.swing.JLabel;
 
+/**
+ * 
+ * @author Christopher Nguyen
+ *
+ */
 public class SquareLabel extends JLabel {
 	/**
 	 * row of square

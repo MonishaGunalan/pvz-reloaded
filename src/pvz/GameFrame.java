@@ -53,6 +53,7 @@ public class GameFrame extends JFrame implements ActionListener, MouseListener {
 		commandPanel = new JPanel();
 		commandPanel.setLayout(new GridLayout(1,4));
 
+		//initialize all the command buttons
 		plantButton = new JButton("Plant");
 		plantButton.addActionListener(this);
 		doNothingButton = new JButton("Do Nothing");
