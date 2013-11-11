@@ -16,13 +16,29 @@ import javax.swing.JLabel;
 
 
 public class SquareLabel extends JLabel {
-	//TODO:: have list of objects here
-	int row;
-	int col;
+	/**
+	 * row of square
+	 */
+	private int row;
+	/**
+	 * column of square
+	 */
+	private int col;
+	/**
+	 * List of zombie classes currently in the square
+	 */
 	private List<Class<?extends Zombie>> zombieList;
+	/**
+	 * List of bullet classes currently in the square
+	 */
 	private List<Class<?extends Bullet>> bulletList;
-	Class<? extends Plant> type;
-	
+	/**
+	 * The type of plant in the square
+	 */
+	private Class<? extends Plant> type;
+	/**
+	 * Mapping of classes to images
+	 */
 	private static final Map<Class<? extends Unit>, Image> unitImageMapping;
 	static {
 		Map<Class<? extends Unit>, Image> aTable = new HashMap<Class<? extends Unit>, Image>();
@@ -45,7 +61,12 @@ public class SquareLabel extends JLabel {
 		unitImageMapping = Collections.unmodifiableMap(aTable);
 	}
 
-	
+
+	/**
+	 * SquareLabel constructor
+	 * @param row
+	 * @param col
+	 */
 	public SquareLabel(int row, int col){
 		this.row = row;
 		this.col = col;
@@ -53,8 +74,12 @@ public class SquareLabel extends JLabel {
 		bulletList = new ArrayList<Class<? extends Bullet>>();
 	}
 	
+	/**
+	 * Update the square GUI with the model
+	 * @param square
+	 */
 	public void updateSquare(Square square){
-		//TODO:: have square return the numbers directly
+		//TODO:: have square return the numbers directly?
 		if (square != null){
 			zombieList.clear();
 			bulletList.clear();
@@ -66,7 +91,6 @@ public class SquareLabel extends JLabel {
 			}
 
 			if (square.getPlant() != null){
-				//TODO:: have a mapping of class to images
 				type = square.getPlant().getClass();
 			}else {
 				type = null;
@@ -74,7 +98,9 @@ public class SquareLabel extends JLabel {
 		}
 	}
 	
-	
+	/**
+	 * Paint the square with the appropriate images
+	 */
 	public void paintComponent(Graphics g)
 	{
 		//TODO:: figure out if this belongs on instance  scope
@@ -100,10 +126,17 @@ public class SquareLabel extends JLabel {
 		}
 	}
 	
+	/**
+	 * Getter for Row
+	 * @return
+	 */
 	public int getRow(){
 		return row;
 	}
-	
+	/**
+	 * Getter for Column
+	 * @return
+	 */
 	public int getCol(){
 		return col;
 	}
