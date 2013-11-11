@@ -1,5 +1,4 @@
-import junit.framework.TestCase;
-
+import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -7,14 +6,13 @@ import org.junit.Test;
 
 
 
-public class PlayerCommandTest extends TestCase {
+public class PlayerCommandTest {
 
 	PlayerCommand playerCommand;
 	int row, col;
 	String arg;
 	@Before
 	public void setUp() throws Exception {
-		super.setUp();
 		row = 0;
 		col = 0;
 		arg = "abc";

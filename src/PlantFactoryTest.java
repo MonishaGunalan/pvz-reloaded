@@ -1,14 +1,12 @@
-import junit.framework.TestCase;
-
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
-public class PlantFactoryTest extends TestCase{
+public class PlantFactoryTest {
 
 	Square square;
 
 	@Before
 	public void setUp() throws Exception {
-		super.setUp();
 		square = new Square("",0,0,null);
 
 	}
