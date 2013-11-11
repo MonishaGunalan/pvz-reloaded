@@ -1,4 +1,7 @@
 /*
+ * This class implements the strip contained in the field
+ * Strips contains a list of squares. Strips represent the rows of the field
+ * 
  * @author Monisha Gunalan
  * 100871444
  */
@@ -46,7 +49,7 @@ public class Strip {
 	 * @return a square in the requested position
 	 */
 	public Square getSquare(int posn) {
-        if (posn < 0 || posn >= Field.DEFAULT_MAX_POSN) {
+		if (posn < 0 || posn >= Field.DEFAULT_MAX_POSN) {
 			return null;
 		}
 		return squares[posn];

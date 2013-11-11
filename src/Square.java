@@ -1,4 +1,5 @@
 /*
+ * This class implements the square. The square can contain, plants, zombies and bullets
  * @author Monisha Gunalan
  * 100871444
  */
@@ -21,9 +22,12 @@ public class Square {
 	/*
 	 * constructor: can contain zombies, plant and bullets
 	 * 
-	 * @param terrain  terrian type of the field 
+	 * @param terrain terrian type of the field
+	 * 
 	 * @param row the position in the field row
+	 * 
 	 * @param col position in the firld column
+	 * 
 	 * @param strip the strip which contains this square
 	 */
 	public Square(String terrain, int row, int col, Strip strip) {
@@ -71,16 +75,19 @@ public class Square {
 
 	/*
 	 * @param dir direction of the unit present in the square
+	 * 
 	 * @return returns the nearest square in the specified direction
 	 */
 	public Square getSquare(Field.Direction dir) {
 		Square s = null;
 		switch (dir) {
 		case LEFT:
-			if (col-1 >= 0) s = this.strip.getSquare(col - 1);
+			if (col - 1 >= 0)
+				s = this.strip.getSquare(col - 1);
 			break;
 		case RIGHT:
-			if (col+1 < Field.DEFAULT_MAX_POSN) s = this.strip.getSquare(col + 1);
+			if (col + 1 < Field.DEFAULT_MAX_POSN)
+				s = this.strip.getSquare(col + 1);
 			break;
 		}
 
@@ -89,6 +96,7 @@ public class Square {
 
 	/*
 	 * add the specified unit to the square
+	 * 
 	 * @param unit is the element such as zombie, plant bullet
 	 */
 	public void add(Unit unit) {
@@ -103,10 +111,11 @@ public class Square {
 
 	/*
 	 * Adds the plant to the square
+	 * 
 	 * @plant the plant
 	 */
 	public void add(Plant plant) {
-		System.out.println("Add plant");
+		// System.out.println("Add plant");
 		if (!this.hasPlant()) {
 			this.plant = plant;
 		}
@@ -114,16 +123,18 @@ public class Square {
 
 	/*
 	 * Adds the bullet to the square
+	 * 
 	 * @bullet the bullet
 	 */
 	public void add(Bullet bullet) {
-		//System.out.println("adding bullet @ " + getRow() + "," + getCol());
+		// System.out.println("adding bullet @ " + getRow() + "," + getCol());
 		bullets.add(bullet);
 		this.numBullet++;
 	}
 
 	/*
 	 * Adds the zombie to the square
+	 * 
 	 * @zombie the zombie
 	 */
 	public void add(Zombie zombie) {
@@ -131,50 +142,53 @@ public class Square {
 		// Make sure level is observing zombie so it knows if zombie
 		// reaches end of strip
 		zombie.addObserver(getStrip().getField().getLevel());
-		//System.out.println("adding zombie @ " + getRow() + "," + getCol());
+		// System.out.println("adding zombie @ " + getRow() + "," + getCol());
 		this.numZombie++;
 	}
 
 	/*
 	 * removes the unit from the square
-	 * @param p the unit element
-	 * @return returns true when the unit can be removed
 	 * 
+	 * @param p the unit element
+	 * 
+	 * @return returns true when the unit can be removed
 	 */
 	public boolean remove(Unit unit) {
-	
+
 		if (unit instanceof Zombie) {
 			return remove((Zombie) unit);
 		} else if (unit instanceof Plant) {
 			return remove((Plant) unit);
-		} else if (unit instanceof Bullet){
+		} else if (unit instanceof Bullet) {
 			return remove((Bullet) unit);
 		}
 
 		// If code reaches here, p is not a valid PerishableUnit
 		return false;
 	}
-	
+
 	/*
 	 * removes the zombie from the square
-	 * @param z zombie  
-	 * @return returns true when the unit can be removed
 	 * 
+	 * @param z zombie
+	 * 
+	 * @return returns true when the unit can be removed
 	 */
 	public boolean remove(Zombie z) {
-		//System.out.println("removing zombie @ " + getRow() + "," + getCol());
+		// System.out.println("removing zombie @ " + getRow() + "," + getCol());
 		numZombie--;
 		return zombies.remove(z);
 	}
 
 	/*
 	 * removes the bullet from the square
-	 * @param b bullet
-	 * @return returns true when the unit can be removed
 	 * 
+	 * @param b bullet
+	 * 
+	 * @return returns true when the unit can be removed
 	 */
 	public boolean remove(Bullet b) {
-		//System.out.println("removing bullet @ " + getRow() + "," + getCol());
+		// System.out.println("removing bullet @ " + getRow() + "," + getCol());
 		if (hasBullet()) {
 			return bullets.remove(b);
 		}
@@ -183,44 +197,46 @@ public class Square {
 
 	/*
 	 * removes the plant from the square
-	 * @param p plant  
-	 * @return returns true when the unit can be removed
 	 * 
+	 * @param p plant
+	 * 
+	 * @return returns true when the unit can be removed
 	 */
 	public boolean remove(Plant p) {
 		this.plant = null;
 		return true;
 	}
+
 	/*
 	 * check if there is a zombie after it
 	 * 
 	 * @return true if there exits a zombie
 	 */
 	public boolean hasZombieAfter() {
-		//System.out.println("Checking for zombie after plant..");
+		// System.out.println("Checking for zombie after plant..");
 		int currentPosn = this.getCol();
 		boolean hasZombie = false;
-		for (int i=currentPosn; i<Field.DEFAULT_MAX_ROW; i++) {
+		for (int i = currentPosn; i < Field.DEFAULT_MAX_ROW; i++) {
 			hasZombie |= strip.getSquare(i).hasZombie();
 		}
 
 		return hasZombie;
 	}
-	
+
 	/*
 	 * @return returns true if the square contains a zombie
 	 */
 	public boolean hasZombie() {
 		return (zombies.size() > 0);
 	}
-	
+
 	/*
 	 * @return returns true if the square contains aplant
 	 */
 	public boolean hasPlant() {
 		return this.plant != null;
 	}
-	
+
 	/*
 	 * @return returns true if the square contains a bullet
 	 */
@@ -264,18 +280,23 @@ public class Square {
 			s += "  ";
 		}
 
-
 		s += "]";
 
 		return s;
 	}
 
+	/*
+	 * @return returns the location of the square
+	 */
 	public String getLoc() {
 		String s = "";
 		s += "Square@" + getRow() + "," + getCol();
 		return s;
 	}
 
+	/*
+	 * @return returns the strip in which the square is present
+	 */
 	public Strip getStrip() {
 		return this.strip;
 	}
