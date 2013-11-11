@@ -95,7 +95,7 @@ public abstract class Zombie
 	}
 
 	// For debugging
-	publicV void printMove(Square dest) {
+	public void printMove(Square dest) {
 		System.out.println("Zombie (" + getRow() + "," + getCol() + ")-->{" + dest.getRow() + "," + dest.getCol() + ")");
 	}
 

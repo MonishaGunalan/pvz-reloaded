@@ -8,19 +8,19 @@ import org.junit.Test;
 public class PeaBulletTest extends TestCase{
 
 	int MOVE_TRIGGER, DMG;
-	
-		@Before
+
+	@Before
 	public void setUp() throws Exception {
 		super.setUp();
 		MOVE_TRIGGER = 0;
-		
-		// not finished
-		public testBullet.Type getType() {
-			assertTrue(PeaBullet.getType(Bullet.Type.PEA) == PeaBullet.class);
-		}
-		
-		
-		
 	}
+	// not finished
+	public testBullet.Type getType() {
+		assertTrue(PeaBullet.getType(Bullet.Type.PEA) == PeaBullet.class);
+	}
+
+
+
+}
 }
 

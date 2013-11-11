@@ -10,5 +10,5 @@ public class PeaShooterPlant
 	public PeaShooterPlant(Square square) {
 		super(MAX_HP, square);
 		cooldowns.add(shootCD);
-	}j
+	}
 }

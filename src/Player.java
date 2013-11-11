@@ -55,7 +55,7 @@ public class Player {
 		while (true){
 			//Get the player command
 			System.out.println("Current Sun Points: " + level.getField().getTotalSun());
-			PlayerCommand command = new PlayerCommand(c);
+			PlayerCommand command = getPlayerCommand(c);
 			//call the helper method
 			play(command);
 			System.out.println(level.getField().toString());
@@ -113,7 +113,12 @@ public class Player {
 
 	}
 
-
+	/**
+	 * Gets the player command
+	 */
+	private PlayerCommand getPlayerCommand(Scanner c){
+		return new PlayerCommand(c);
+	}
 
 	/**
 	 * Grow the plant in the square at row col if the player

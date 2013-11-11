@@ -11,7 +11,7 @@ import org.junit.runners.Suite.SuiteClasses;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 @RunWith(Suite.class)
-@SuiteClasses({PlayerTest.class, PlantFactoryTest.class, LevelTest.class, PlayerCommandTest.class})
+@SuiteClasses({PlayerTest.class, PlantFactoryTest.class, LevelTest.class, PlayerCommandTest.class,})
 public class AllTests {
 	
 	/*
