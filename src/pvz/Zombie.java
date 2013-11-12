@@ -12,30 +12,73 @@ import java.util.Observable;
 public abstract class Zombie 
 	extends PerishableUnit {
 
-	// Constants
-	public static final int DEFAULT_ATK = 1; 
+	/**
+	 * The default attack damage of zombie
+	 */
+	public static final int DEFAULT_ATK = 1;
+	/**
+	 * The Default attack trigger of zombie
+	 */
 	public static final int DEFAULT_ATTACK_TRIGGER = 0;
+	/**
+	 * The Default move trigger of zombie
+	 */
 	public static final int DEFAULT_MOVE_TRIGGER = 3;
 
+	/**
+	 * The direction the zombie can move
+	 */
 	private static final Field.Direction DEFAULT_MOVE_DIR = Field.Direction.LEFT;
 
-	// State variables for different types of zombies
+	/**
+	 * The move cooldown of zombie
+	 */
 	protected Cooldown moveCD;
+	/**
+	 * The attack cooldown of zombie
+	 */
 	protected Cooldown attackCD;
+	/**
+	 * The amount to trigger the attack cooldown by
+	 */
 	protected int attackTriggerAmt; 
+	/**
+	 * The amount to trigger the move cooldown by
+	 */
 	protected int moveTriggerAmt;
+	/**
+	 * The amount of dmg the zombie does
+	 */
 	protected int dmg;
 
-
+	/**
+	 * The status the zombie can be affected by
+	 *
+	 */
 	public enum Status {CHILLED, FROZEN, NORMAL}
 
+	/**
+	 * The type of zombies
+	 *
+	 */
 	public enum Type{ NORMAL; }
 
+	/**
+	 * Protected constructor initialing to defaults values
+	 * @param maxHP
+	 */
 	protected Zombie(int maxHP) {
 		this(maxHP, DEFAULT_ATK, DEFAULT_ATTACK_TRIGGER, DEFAULT_MOVE_TRIGGER);
 		moveCD.trigger();
 	}
 
+	/**
+	 * Protected constructor initializing the zombie
+	 * @param maxHP
+	 * @param dmg
+	 * @param attackTriggerAmt
+	 * @param moveTriggerAmt
+	 */
 	protected Zombie(int maxHP, int dmg, int attackTriggerAmt, int moveTriggerAmt) {
 		super(maxHP);
 
@@ -52,19 +95,33 @@ public abstract class Zombie
 		//addObserver(square.getStrip().getField().getLevel());
 	}
 
-	// Damage of bullet
+	/**
+	 * Get damage of Zombie
+	 * @return The Damage
+	 */
 	public int getDmg() {
 		return dmg;
 	}
 
-	// Amount to trigger CD by
+	/**
+	 *  Get the amount to trigger CD by
+	 * @return
+	 */
 	public int getMoveTriggerAmt() {
 		return moveTriggerAmt;
 	}
+	
+	/**
+	 * Get the Attack Trigger Amount
+	 * @return
+	 */
 	public int getAttackTriggerAmt() {
 		return attackTriggerAmt;
 	}
 
+	/**
+	 * The move
+	 */
 	protected void move() {
 		move(DEFAULT_MOVE_DIR);
 	}
@@ -95,13 +152,19 @@ public abstract class Zombie
 		}
 	}
 
-	// For debugging
+	/**
+	 *  For debugging
+	 * @param dest
+	 */
 	public void printMove(Square dest) {
 		System.out.println("Zombie (" + getRow() + "," + getCol() + ")-->{" + dest.getRow() + "," + dest.getCol() + ")");
 	}
 
-	// Normal zombie hits a plant on current hp, reducing
-	// its hp by a flat amount
+	/**
+	 *  Normal zombie hits a plant on current hp, reducing
+	 *   its hp by a flat amount
+	 * @param plant
+	 */
 	public void hit(Plant plant) {
 		System.out.println("calling Zombie.hit");
 		if (attackCD.isAvailable()) {
@@ -123,7 +186,10 @@ public abstract class Zombie
 	}
 
 
-	// Abstract classes
+	/**
+	 *  Get the type of zombie
+	 * @return
+	 */
 	public abstract Zombie.Type getType();
 	
 }

@@ -1,13 +1,16 @@
 package pvz;
-/*
- * @author Tianming Zhuang
- * 100875151
- */
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Collections;
-
+/**
+ * @author Tianming Zhuang
+ * 100875151
+ */
 public class ZombieFactory {
+	
+	/**
+	 * Mapping of zombie type to zombie class
+	 */
 	private static final Map<Zombie.Type, Class<? extends Zombie>> zombieTable;
 	
 	static {
