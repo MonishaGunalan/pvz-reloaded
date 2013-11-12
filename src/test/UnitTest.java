@@ -68,9 +68,5 @@ public class UnitTest {
 	
 	}
 	
-	@Test
-	public void ToString(){
-		testZombie1.setSquare(testSquare1);
-		assertEquals("toString should print NormalZombie@3,2", testZombie1.toString(), "NormalZombie@3,2");
-	}
+	
 }

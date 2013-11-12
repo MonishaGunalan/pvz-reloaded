@@ -72,7 +72,7 @@ public class Field {
 				SUN_GENERATION_VALUE, this);
 
 		// Initialize totalSun
-		totalSun = 0;
+		totalSun = 100;
 	}
 
 	/**

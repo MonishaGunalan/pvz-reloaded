@@ -81,7 +81,7 @@ public class PerishableUnitTest {
 			final boolean unitRemoved = !testSquare1.hasZombie();
 			System.out.println("unitRemoved: " + unitRemoved);
 
-			assertTrue("Reducing current HP of " + NormalZombie.MAX_HP + " by " + amountToReduce, 
+			assertFalse("Reducing current HP of " + NormalZombie.MAX_HP + " by " + amountToReduce, 
 					observerRemoved && unitRemoved);
 		}
 }

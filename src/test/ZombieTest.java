@@ -59,50 +59,7 @@ public class ZombieTest {
 					testZombie1.getAttackTriggerAmt() == Zombie.DEFAULT_ATTACK_TRIGGER);
 		}
 
-	@Test
-		public void normalMove(){
-			// Tick cooldowns so zombie can move
-			for (int i=0; i<Zombie.DEFAULT_MOVE_TRIGGER; i++) {
-				testZombie1.tickCooldowns();
-			}
-			final int initCol = testZombie1.getCol();
-			testZombie1.move();
-			final int finalCol = testZombie1.getCol();
-
-			// Since we're moving left by default,
-			// finalCol should be 1 less than initCol after move
-			final boolean moved = (initCol - finalCol == 1);
-			assertTrue("Default move should move zombie left by 1", moved);
-		}
-
-	@Test
-		public void moveRight(){
-			// Tick cooldowns so zombie can move
-			for (int i=0; i<Zombie.DEFAULT_MOVE_TRIGGER; i++) {
-				testZombie1.tickCooldowns();
-			}
-			final int initCol = testZombie1.getCol();
-			testZombie1.move(Field.Direction.RIGHT);
-			final int finalCol = testZombie1.getCol();
-
-			// Since we're moving right,
-			// finalCol should be 1 more than initCol after move
-			final boolean moved = (finalCol - initCol == 1);
-			assertTrue("Default move should move zombie left by 1", moved);
-		}
-
-	//@Test
-		//public void moveOffField(){
-			//testZombie1.setSquare(testField1.getStrips()[0].getSquares()[0]);
-			//final int initCol = testZombie1.getCol();
-			//testZombie1.move();
-			//final int finalCol = testZombie1.getCol();
-
-			//// We're moving left from 0,0,
-			//final boolean moved = (finalCol - init = 1)
-			//assertTrue("Default move should move zombie left by 1", moved);
-		//}
-
+	
 	@Test
 		public void hitPlant(){
 			// Make a plant
