@@ -26,6 +26,9 @@ public abstract class Unit
 	 */
 	protected Set<Cooldown> cooldowns;
 
+	/**
+	 * Protected constructor
+	 */
 	protected Unit() {
 		cooldowns = new HashSet<Cooldown>();
 		square = null;

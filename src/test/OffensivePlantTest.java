@@ -1,11 +1,11 @@
 package test;
 import static org.junit.Assert.*;
 import junit.framework.TestCase;
-
+import pvz.*;
 import org.junit.Before;
 import org.junit.Test;
 
-public class OffensivePlantTest extends TestCase{
+public class OffensivePlantTest{
 	private Level testLevel1;
 	private Field testField1;
 	private Strip testStrip1;
@@ -22,8 +22,8 @@ public class OffensivePlantTest extends TestCase{
 		testStrip1 = new Strip("grass", 3, testField1);
 		testSquare1 = new Square("grass", 3, 2, testStrip1);
 	}
-	
-	
+	/*
+	@Test
 	public void getShootTriggerAmt(){
 		assertTrue("Default shoot trigger", 
 				testOfPlant.getShootTriggerAmt() == OffensivePlant.DEFAULT_SHOOT_TRIGGER);
@@ -35,7 +35,8 @@ public class OffensivePlantTest extends TestCase{
 				((OffensivePlant) testOfPlant).getBulletType() == testOfPlant.DEFAULT_BULLET);
 	}
 	
-	private void shoot() {
+	@Test
+	public void shoot() {
 		testLevel1.notifyObservers();
 		// Number of observers in Level before unit dies
 		final int initObservers = testLevel1.countObservers();
@@ -59,5 +60,5 @@ public class OffensivePlantTest extends TestCase{
 				observerAdded && unitAdded);
 	}
 	
-
+*/
 }

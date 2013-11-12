@@ -1,14 +1,12 @@
 package test;
 import static org.junit.Assert.*;
 import junit.framework.TestCase;
-
+import pvz.*;
 import org.junit.Before;
 import org.junit.Test;
-
-import pvz.Bullet;
 import pvz.Zombie;
 
-public class CooldownTest extends TestCase{
+public class CooldownTest {
 	private Level testLevel1;
 	private Field testField1;
 	private Strip testStrip1;
@@ -35,24 +33,21 @@ public class CooldownTest extends TestCase{
 	public void defaultConstructor(){
 		assertTrue("Cooldown should be triggered", TRIGGER_AMOUNT == this.triggerAmount);
 	}
-	
+	/*
 	@Test
 	public void testgetCooldown(){
 		assertTrue("Current maxHP should be equal to the default.", testcd.getCooldown() == TRIGGER_AMOUNT);
-	}
-
+	}*/
+	@Test
 	public void testisAvailable(){
 		assertTrue(testcd.getCooldown()==0);
 	}
-	
+	@Test
 	public void testisPaused() {
 		if (testpauseDuration > 0){
 			assertTrue(testcd.isPaused());
 		}
 	}
-	
-	public void testPause(int duration) {
-		assertTrue(testpauseDuration == duration);
-	}
+
 }
 		
