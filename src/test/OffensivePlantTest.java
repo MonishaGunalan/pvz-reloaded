@@ -5,14 +5,6 @@ import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 
-
- import static org.junit.Assert.*;
-import junit.framework.TestCase;
-
-import org.junit.Before;
-import org.junit.Test;
-
-
 public class OffensivePlantTest extends TestCase{
 	private Level testLevel1;
 	private Field testField1;
@@ -20,6 +12,7 @@ public class OffensivePlantTest extends TestCase{
 	private Square testSquare1;
 	private Zombie testZombie1;
 	private Plant testPlant1;
+	private OffensivePlant testOfPlant;
 	private String[] terrainType = { "mud", "grass", "grass", "grass", "mud" };
 
 	@Before
@@ -33,13 +26,13 @@ public class OffensivePlantTest extends TestCase{
 	
 	public void getShootTriggerAmt(){
 		assertTrue("Default shoot trigger", 
-				testPlant1.getShootTriggerAmt() == OffensivePlant.DEFAULT_SHOOT_TRIGGER);
+				testOfPlant.getShootTriggerAmt() == OffensivePlant.DEFAULT_SHOOT_TRIGGER);
 	}
 	
 	@Test
 	public void getBulletType(){
 		assertTrue("Bullet type should be DEFAULT_BULLET", 
-				((OffensivePlant) testPlant1).getBulletType() == OffensivePlant.Type.DEFAULT_BULLET);
+				((OffensivePlant) testOfPlant).getBulletType() == testOfPlant.DEFAULT_BULLET);
 	}
 	
 	private void shoot() {
