@@ -1,5 +1,5 @@
 package pvz;
-/*
+/**
  * @author Tianming Zhuang
  * 100875151
  *
@@ -17,7 +17,13 @@ import java.util.Observable;
 public abstract class Unit 
 	extends Observable
 	implements Observer {
+	/**
+	 * The square the unit is located
+	 */
 	private Square square;
+	/**
+	 * The set of cooldown the unit has
+	 */
 	protected Set<Cooldown> cooldowns;
 
 	protected Unit() {

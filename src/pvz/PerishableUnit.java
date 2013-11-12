@@ -1,5 +1,5 @@
 package pvz;
-/*
+/**
  * @author  Arzaan Irani
  * 100826631
  *
@@ -9,7 +9,13 @@ package pvz;
  */
 public abstract class PerishableUnit 
 	extends Unit{
+	/**
+	 * Maximum hp
+	 */
     protected int maxHP;
+    /**
+     * Current HP
+     */
     protected int currentHP;
 
 	/**

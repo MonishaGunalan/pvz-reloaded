@@ -68,7 +68,11 @@ public class PlantFactory {
 		return p;
 	}
 
-
+	/**
+	 * Return the Class mapping of a type
+	 * @param plantType
+	 * @return
+	 */
 	public static Class<? extends Plant> getClass(Plant.Type plantType) {
 		return plantTable.get(plantType).pClass;
 	}

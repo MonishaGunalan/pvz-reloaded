@@ -11,20 +11,48 @@ import java.util.List;
 
 public class Field {
 
+	/**
+	 * The default number of rows in the field
+	 */
 	public static final int DEFAULT_MAX_ROW = 5;
+	/**
+	 * The default number of columns in a row
+	 */
 	public static final int DEFAULT_MAX_POSN = 5;
+	/**
+	 * The number of periods before the field generates sun points
+	 */
 	public static final int SUN_GENERATION_PERIOD = 3;
+	/**
+	 * The number of sun points generated
+	 */
 	public static final int SUN_GENERATION_VALUE = 25;
 
+	/**
+	 * The level which the field is located
+	 */
 	private final Level level;
+	/**
+	 * The sun generator
+	 */
 	private final SunGenerator sunGenerator;
 
+	/**
+	 * The number of sun point
+	 */
 	private int totalSun;
 
+	/**
+	 * The possible direction units can move
+	 *
+	 */
 	public enum Direction {
 		LEFT, RIGHT;
 	}
 
+	/**
+	 * The strips of the field
+	 */
 	private Strip[] strips;
 
 	/**

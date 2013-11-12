@@ -22,6 +22,9 @@ public class GameModel {
 	 */
 	Level level;
 
+	/**
+	 * The location where the player data will be stored (Not needed)
+	 */
 	public static final String playerDataFileLocation = "../rsrc/PlayerData.txt";
 	
 	
@@ -58,17 +61,34 @@ public class GameModel {
 		
 	}	
 	
+	/**
+	 * Play the game
+	 */
 	public void play(){
 		player.play();
 	}
 	
+	/**
+	 * Play the game with a given a command
+	 * @param command
+	 * @return
+	 */
 	public boolean play(PlayerCommand command){
 		return player.play(command);
 	}
+	
+	/**
+	 * Get the player
+	 * @return the player
+	 */
 	public Player getPlayer(){
 		return player;
 	}
 	
+	/**
+	 * Get the level
+	 * @return return the level
+	 */
 	public Level getLevel(){
 		return level;
 	}

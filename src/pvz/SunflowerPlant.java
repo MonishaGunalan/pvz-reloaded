@@ -1,5 +1,5 @@
 package pvz;
-/*
+/**
  * @author Tianming Zhuang
  * 100875151
  *
@@ -11,8 +11,17 @@ package pvz;
 import java.util.Observable;
 public class SunflowerPlant
 	extends GeneratorPlant {	
+	/**
+	 * Max HP of a sunflower plant
+	 */
 	public static final int MAX_HP = 3;
+	/**
+	 * Time between sun generation
+	 */
 	public static final int GEN_TRIGGER = 3;
+	/**
+	 * Amount of sun generated
+	 */
 	public static final int GEN_AMT = 25;
 
 	/**

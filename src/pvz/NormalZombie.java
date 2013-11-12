@@ -1,8 +1,5 @@
 package pvz;
-/*
- * @author Tianming Zhuang
- * 100875151
- */
+
 /**
  * The most basic type of zombie. This class should not be instantiated
  * via its contstructor. Instead, use {@link ZombieFactory#makeZombie(Zombie.Type)}.
@@ -13,7 +10,9 @@ package pvz;
  */
 public class NormalZombie
 	extends Zombie {
-	// Constants
+	/**
+	 * Max HP of zombie
+	 */
 	public static final int MAX_HP = 10;
 
 	/** 

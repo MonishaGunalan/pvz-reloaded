@@ -24,6 +24,11 @@ public class PlayerCommand{
 			this.commandString = commandString;
 		}
 
+		/**
+		 * Get the CommandType given a string
+		 * @param s The string representation of a commandtype
+		 * @return CommandType
+		 */
 		public static CommandType getCommandType(String s){
 			for (CommandType c: CommandType.values()){
 				if (s.equals(c.commandString)){
@@ -33,6 +38,10 @@ public class PlayerCommand{
 			return null;
 		}
 
+		/**
+		 * Returns the command string
+		 * @return commandString
+		 */
 		public String getCommandString(){
 			return commandString;
 		}

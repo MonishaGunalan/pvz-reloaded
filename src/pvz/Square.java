@@ -1,14 +1,11 @@
 package pvz;
-
+import java.util.ArrayList;
+import java.util.List;
 /**
  * This class implements the square. The square can contain, plants, zombies and bullets
  * @author Monisha Gunalan
  * 100871444
  */
-
-import java.util.ArrayList;
-import java.util.List;
-
 public class Square {
 
 	/**

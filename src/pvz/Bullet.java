@@ -1,16 +1,30 @@
 package pvz;
 import java.util.Observable;
 
-/*
+/**
  * @author Tianming Zhuang
  * 100875151
  */
 public abstract class Bullet
-	extends Unit {
-	protected Cooldown moveCD; // Number of turns bullet must wait after moving
-	protected final int dmg; // Dmg bullet does to a zombie
-	protected final int moveTriggerAmt; // Number of turns bullet has to wait before moving again
+extends Unit {
+	/**
+	 * Number of turns bullet must wait after moving
+	 */
+	protected Cooldown moveCD;
+	/**
+	 * Dmg bullet does to a zombie
+	 */
+	protected final int dmg; 
+	/**
+	 * Number of turns bullet has to wait before moving again
+	 */
+	protected final int moveTriggerAmt;
 
+	/**
+	 * protected constructor, sets the damage and move trigger amount
+	 * @param dmg
+	 * @param moveTriggerAmt
+	 */
 	protected Bullet(int dmg, int moveTriggerAmt) {
 		super();
 		this.dmg = dmg;
@@ -20,12 +34,19 @@ public abstract class Bullet
 		super.cooldowns.add(this.moveCD);
 	}
 
-	// Types of bullets
+	/**
+	 *  Types of bullets
+	 * 
+	 *
+	 */
 	public enum Type{PEA;}
 
-	// Pea bullet hits a single zombie and reduces
-	// its hp by a flat amount, after which the bullet
-	// is removed from the current square.
+	/**
+	 *  Pea bullet hits a single zombie and reduces
+	 *  its hp by a flat amount, after which the bullet
+	 *  is removed from the current square.
+	 * @param zombie
+	 */
 	protected void hit(Zombie zombie) {
 		zombie.reduceHP(getDmg());
 		//System.out.println("Attemption to remove bullet; successful? " + square.remove(this));
@@ -33,19 +54,28 @@ public abstract class Bullet
 		getSquare().remove(this);
 	}
 
-	// Damage of bullet
+	/**
+	 *  Damage of bullet
+	 * @return Damage of bullet
+	 */
 	public int getDmg() {
 		return dmg;
 	}
 
-	// Amount to trigger moveCD by each time
-	// bullet moves
+	/**
+	 * Amount to trigger moveCD by each time
+	 * bullet moves
+	 * @return
+	 */
 	public int getMoveTriggerAmt() {
 		return moveTriggerAmt;
 	}
 
-	// Moves the bullet appropriately for the turn
-	// and trickers the move cooldown
+	/**
+	 *  Moves the bullet appropriately for the turn
+	 *  and trickers the move cooldown
+	 * @param dir the direction moving
+	 */
 	protected void move(Field.Direction dir) {
 		if (moveCD.isAvailable()) {
 			Square dest = getSquare().getSquare(dir);
@@ -61,10 +91,17 @@ public abstract class Bullet
 		}
 	}
 
+	/**
+	 * For debugging uses
+	 * @param dest
+	 */
 	private void printMove(Square dest) {
 		System.out.println("Bullet (" + getRow() + "," + getCol() + ")-->{" + dest.getRow() + "," + dest.getCol() + ")");
 	}
 
+	/**
+	 * Update the observer
+	 */
 	public void update(Observable o, Object arg) {
 		//System.out.println(this + " calling square.getSquare(right);");
 		Square dest = getSquare().getSquare(Field.Direction.RIGHT);
@@ -78,6 +115,9 @@ public abstract class Bullet
 		super.tickCooldowns();
 	}
 
-
+	/**
+	 * The implementing classes should know what type of bullet it is
+	 * @return
+	 */
 	public abstract Bullet.Type getType();
 }
