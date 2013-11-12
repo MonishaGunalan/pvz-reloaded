@@ -1,13 +1,11 @@
 package pvz;
+
 /**
- * Field contains a list of strips which in turn contains square
- * this class creates the field for the game
+ * Field contains a list of strips which in turn contains square this class
+ * creates the field for the game
  * 
- * @author Monisha Gunalan
- * 100871444
+ * @author Monisha Gunalan 100871444
  */
-import java.util.ArrayList;
-import java.util.List;
 
 public class Field {
 
@@ -28,7 +26,8 @@ public class Field {
 	private Strip[] strips;
 
 	/**
-	 * @param TerrianType[] the terrian type for each row
+	 * @param TerrianType
+	 *            [] the terrian type for each row
 	 */
 	public Field(String[] terrainType, Level level) {
 		// Create field
