@@ -16,9 +16,11 @@ import pvz.Strip;
 import pvz.Plant.Type;
 import pvz.PlayerCommand.CommandType;
 
-
-
-
+/**
+ * 
+ * @author Christopher Ngyen
+ *
+ */
 public class PlayerTest {
 	Player player;
 	Level mockLevel;

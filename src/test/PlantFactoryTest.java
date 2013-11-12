@@ -9,7 +9,11 @@ import pvz.Plant;
 import pvz.PlantFactory;
 import pvz.Square;
 import pvz.Plant.Type;
-
+/**
+ * 
+ * @author Christopher Nguyen
+ *
+ */
 public class PlantFactoryTest {
 
 	Square square;
