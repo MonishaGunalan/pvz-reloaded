@@ -7,11 +7,14 @@ Open Eclipse
 File -> new -> project -> java project
 Uncheck the "Use default location" box and provide the location to the folders you have checked out
 
+Import the Jars in the folder Source files and add it to your build path
+Add JUnit4 library to the build path.
+Level1.txt should be outside of src/ folder
 
 
 How to compile using linux commands
 -----------------------------------------------------------------------
-Navigate to the main folder
+Navigate to the Source files folder
 Add JUnit4 jars to your classpath
 javac -cp ".;src/;$CLASSPATH" src/pvz/*.java
 javac -cp ".;src/;$CLASSPATH" src/test/*.java
@@ -28,7 +31,7 @@ GameFrame.java for GUI
 
 How to run using linux commands 
 ---------------------------------------------------------------------
-Navigate to the main folder
+Navigate to the Source files folder
 java -cp ".;src/" pvz.GameModel
 java -cp ".;src/" pvz.GameFrame
 java -cp ".;src/$CLASSPATH" test.AllTests
@@ -58,6 +61,8 @@ UML diagram
 Sequence Diagrams	
 JavaDoc files
 	
-	
+Known Issues
+-----------
+Still Working on improving the data structure implemented in class Level. 
 	
 

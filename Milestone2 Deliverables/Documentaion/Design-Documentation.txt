@@ -1,0 +1,18 @@
+Data Structure Design Documentation
+Player:
+Descision: HashMap is used to map the cooldown to the planttypes
+Reason: The PlantTypes are uniqued so they can be used as key balues for the hashmap
+
+Descision: Helper method for Play
+Reason: Seperate the input method(text or gui) from the actual method
+
+PlantFactory
+Descision: Using a PlantType enum
+Reasons: Using an enum instead of storing all the information in the files allows mapping the enums to a class
+
+Level
+Decision: Used an array of ArrayLists with Interface Map.Entry
+Reason: reading the information about the level from a text file into an array. The array represents the number of rows. and the arrayList has the zombies contained in each row indentified with the their turn number
+
+MVC Pattern
+Reason: Used MVC pattern to implement GUI
