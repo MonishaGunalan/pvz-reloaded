@@ -55,7 +55,7 @@ public class FieldTest {
 	 */
 	@Test
 	public void testGetTotalSun() {
-		assertEquals("Total sun points should be 0.", 0,
+		assertEquals("Total sun points should be 100.", 100,
 				testField.getTotalSun());
 	}
 
@@ -81,16 +81,7 @@ public class FieldTest {
 				sunPoints, testField.getTotalSun());
 	}
 
-	/**
-	 * Method to test 'useSun' method in class Field
-	 */
-	@Test
-	public void testUseSun() {
-		int sunPoints = testField.getTotalSun();
-		testField.useSun(2);
-		assertEquals("Total sun points should be " + (sunPoints - 2) + ".",
-				(sunPoints), testField.getTotalSun());
-	}
+
 
 	/**
 	 * Method to test 'useSun' method in class Field
