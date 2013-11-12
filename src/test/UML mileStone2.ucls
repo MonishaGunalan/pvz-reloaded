@@ -4,7 +4,7 @@
   <class id="1" language="java" name="pvz.Bullet" project="PvZGame" file="/PvZGame/src/pvz/Bullet.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="747" y="1381"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" accessors="true" 
+    <display autosize="true" stereotype="false" package="false" initial-value="true" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="false" private="true" static="true"/>      
       <operations public="true" package="true" protected="false" private="true" static="true"/>    
@@ -12,8 +12,8 @@
   </class>  
   <class id="2" language="java" name="pvz.BulletFactory" project="PvZGame" file="/PvZGame/src/pvz/BulletFactory.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="5" y="1400"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" accessors="true" 
+    <position height="-1" width="-1" x="14" y="1389"/>    
+    <display autosize="true" stereotype="false" package="false" initial-value="true" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="false" private="true" static="true"/>      
       <operations public="true" package="true" protected="false" private="true" static="true"/>    
@@ -22,7 +22,7 @@
   <class id="3" language="java" name="pvz.Cooldown" project="PvZGame" file="/PvZGame/src/pvz/Cooldown.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="11" y="661"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" accessors="true" 
+    <display autosize="true" stereotype="false" package="false" initial-value="true" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="false" private="true" static="true"/>      
       <operations public="true" package="true" protected="false" private="true" static="true"/>    
@@ -31,7 +31,7 @@
   <class id="4" language="java" name="pvz.GameFrame" project="PvZGame" file="/PvZGame/src/pvz/GameFrame.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="2" y="145"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" accessors="true" 
+    <display autosize="true" stereotype="false" package="false" initial-value="true" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="false" private="true" static="true"/>      
       <operations public="true" package="true" protected="false" private="true" static="true"/>    
@@ -40,7 +40,7 @@
   <class id="5" language="java" name="pvz.Field" project="PvZGame" file="/PvZGame/src/pvz/Field.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1089" y="283"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" accessors="true" 
+    <display autosize="true" stereotype="false" package="false" initial-value="true" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="false" private="true" static="true"/>      
       <operations public="true" package="true" protected="false" private="true" static="true"/>    
@@ -49,7 +49,7 @@
   <class id="6" language="java" name="pvz.GameModel" project="PvZGame" file="/PvZGame/src/pvz/GameModel.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="322" y="175"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" accessors="true" 
+    <display autosize="true" stereotype="false" package="false" initial-value="true" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="false" private="true" static="true"/>      
       <operations public="true" package="true" protected="false" private="true" static="true"/>    
@@ -58,7 +58,7 @@
   <class id="7" language="java" name="pvz.GamePanel" project="PvZGame" file="/PvZGame/src/pvz/GamePanel.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="352" y="-56"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" accessors="true" 
+    <display autosize="true" stereotype="false" package="false" initial-value="true" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="false" private="true" static="true"/>      
       <operations public="true" package="true" protected="false" private="true" static="true"/>    
@@ -67,7 +67,7 @@
   <class id="8" language="java" name="pvz.GeneratorPlant" project="PvZGame" file="/PvZGame/src/pvz/GeneratorPlant.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="860" y="710"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" accessors="true" 
+    <display autosize="true" stereotype="false" package="false" initial-value="true" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="false" private="true" static="true"/>      
       <operations public="true" package="true" protected="false" private="true" static="true"/>    
@@ -76,7 +76,7 @@
   <class id="9" language="java" name="pvz.Level" project="PvZGame" file="/PvZGame/src/pvz/Level.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="780" y="279"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" accessors="true" 
+    <display autosize="true" stereotype="false" package="false" initial-value="true" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="false" private="true" static="true"/>      
       <operations public="true" package="true" protected="false" private="true" static="true"/>    
@@ -85,7 +85,7 @@
   <interface id="10" language="java" name="pvz.MoveableUnit" project="PvZGame" file="/PvZGame/src/pvz/MoveableUnit.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="313" y="1158"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" accessors="true" 
+    <display autosize="true" stereotype="true" package="false" initial-value="true" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="false" private="true" static="true"/>      
       <operations public="true" package="true" protected="false" private="true" static="true"/>    
@@ -93,8 +93,8 @@
   </interface>  
   <class id="11" language="java" name="pvz.NormalZombie" project="PvZGame" file="/PvZGame/src/pvz/NormalZombie.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="18" y="1268"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" accessors="true" 
+    <position height="-1" width="-1" x="27" y="1257"/>    
+    <display autosize="true" stereotype="false" package="false" initial-value="true" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="false" private="true" static="true"/>      
       <operations public="true" package="true" protected="false" private="true" static="true"/>    
@@ -103,7 +103,7 @@
   <class id="12" language="java" name="pvz.OffensivePlant" project="PvZGame" file="/PvZGame/src/pvz/OffensivePlant.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="524" y="702"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" accessors="true" 
+    <display autosize="true" stereotype="false" package="false" initial-value="true" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="false" private="true" static="true"/>      
       <operations public="true" package="true" protected="false" private="true" static="true"/>    
@@ -111,8 +111,8 @@
   </class>  
   <class id="13" language="java" name="pvz.PeaBullet" project="PvZGame" file="/PvZGame/src/pvz/PeaBullet.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="548" y="1387"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" accessors="true" 
+    <position height="-1" width="-1" x="557" y="1376"/>    
+    <display autosize="true" stereotype="false" package="false" initial-value="true" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="false" private="true" static="true"/>      
       <operations public="true" package="true" protected="false" private="true" static="true"/>    
@@ -121,7 +121,7 @@
   <class id="14" language="java" name="pvz.PeaShooterPlant" project="PvZGame" 
     file="/PvZGame/src/pvz/PeaShooterPlant.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="528" y="878"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" accessors="true" 
+    <display autosize="true" stereotype="false" package="false" initial-value="true" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="false" private="true" static="true"/>      
       <operations public="true" package="true" protected="false" private="true" static="true"/>    
@@ -130,7 +130,7 @@
   <class id="15" language="java" name="pvz.PerishableUnit" project="PvZGame" file="/PvZGame/src/pvz/PerishableUnit.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="731" y="898"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" accessors="true" 
+    <display autosize="true" stereotype="false" package="false" initial-value="true" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="false" private="true" static="true"/>      
       <operations public="true" package="true" protected="false" private="true" static="true"/>    
@@ -139,7 +139,7 @@
   <class id="16" language="java" name="pvz.Plant" project="PvZGame" file="/PvZGame/src/pvz/Plant.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="732" y="709"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" accessors="true" 
+    <display autosize="true" stereotype="false" package="false" initial-value="true" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="false" private="true" static="true"/>      
       <operations public="true" package="true" protected="false" private="true" static="true"/>    
@@ -148,7 +148,7 @@
   <class id="17" language="java" name="pvz.PlantData" project="PvZGame" file="/PvZGame/src/pvz/PlantData.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1185" y="1120"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" accessors="true" 
+    <display autosize="true" stereotype="false" package="false" initial-value="true" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="false" private="true" static="true"/>      
       <operations public="true" package="true" protected="false" private="true" static="true"/>    
@@ -157,7 +157,7 @@
   <class id="18" language="java" name="pvz.PlantFactory" project="PvZGame" file="/PvZGame/src/pvz/PlantFactory.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1174" y="1326"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" accessors="true" 
+    <display autosize="true" stereotype="false" package="false" initial-value="true" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="false" private="true" static="true"/>      
       <operations public="true" package="true" protected="false" private="true" static="true"/>    
@@ -166,7 +166,7 @@
   <class id="19" language="java" name="pvz.Player" project="PvZGame" file="/PvZGame/src/pvz/Player.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="333" y="420"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" accessors="true" 
+    <display autosize="true" stereotype="false" package="false" initial-value="true" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="false" private="true" static="true"/>      
       <operations public="true" package="true" protected="false" private="true" static="true"/>    
@@ -175,7 +175,7 @@
   <class id="20" language="java" name="pvz.PlayerCommand" project="PvZGame" file="/PvZGame/src/pvz/PlayerCommand.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1096" y="-15"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" accessors="true" 
+    <display autosize="true" stereotype="false" package="false" initial-value="true" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="false" private="true" static="true"/>      
       <operations public="true" package="true" protected="false" private="true" static="true"/>    
@@ -184,7 +184,7 @@
   <class id="21" language="java" name="pvz.Square" project="PvZGame" file="/PvZGame/src/pvz/Square.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="951" y="1083"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" accessors="true" 
+    <display autosize="true" stereotype="false" package="false" initial-value="true" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="false" private="true" static="true"/>      
       <operations public="true" package="true" protected="false" private="true" static="true"/>    
@@ -193,7 +193,7 @@
   <class id="22" language="java" name="pvz.SquareLabel" project="PvZGame" file="/PvZGame/src/pvz/SquareLabel.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="749" y="-30"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" accessors="true" 
+    <display autosize="true" stereotype="false" package="false" initial-value="true" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="false" private="true" static="true"/>      
       <operations public="true" package="true" protected="false" private="true" static="true"/>    
@@ -202,7 +202,7 @@
   <class id="23" language="java" name="pvz.Strip" project="PvZGame" file="/PvZGame/src/pvz/Strip.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1210" y="910"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" accessors="true" 
+    <display autosize="true" stereotype="false" package="false" initial-value="true" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="false" private="true" static="true"/>      
       <operations public="true" package="true" protected="false" private="true" static="true"/>    
@@ -211,7 +211,7 @@
   <class id="24" language="java" name="pvz.SunflowerPlant" project="PvZGame" file="/PvZGame/src/pvz/SunflowerPlant.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1036" y="706"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" accessors="true" 
+    <display autosize="true" stereotype="false" package="false" initial-value="true" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="false" private="true" static="true"/>      
       <operations public="true" package="true" protected="false" private="true" static="true"/>    
@@ -220,7 +220,7 @@
   <class id="25" language="java" name="pvz.SunGenerator" project="PvZGame" file="/PvZGame/src/pvz/SunGenerator.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="847" y="547"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" accessors="true" 
+    <display autosize="true" stereotype="false" package="false" initial-value="true" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="false" private="true" static="true"/>      
       <operations public="true" package="true" protected="false" private="true" static="true"/>    
@@ -229,7 +229,7 @@
   <class id="26" language="java" name="pvz.Unit" project="PvZGame" file="/PvZGame/src/pvz/Unit.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="742" y="1184"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" accessors="true" 
+    <display autosize="true" stereotype="false" package="false" initial-value="true" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="false" private="true" static="true"/>      
       <operations public="true" package="true" protected="false" private="true" static="true"/>    
@@ -237,8 +237,8 @@
   </class>  
   <class id="27" language="java" name="pvz.Zombie" project="PvZGame" file="/PvZGame/src/pvz/Zombie.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="41" y="1058"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" accessors="true" 
+    <position height="-1" width="-1" x="50" y="1047"/>    
+    <display autosize="true" stereotype="false" package="false" initial-value="true" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="false" private="true" static="true"/>      
       <operations public="true" package="true" protected="false" private="true" static="true"/>    
@@ -246,8 +246,8 @@
   </class>  
   <class id="28" language="java" name="pvz.ZombieFactory" project="PvZGame" file="/PvZGame/src/pvz/ZombieFactory.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="308" y="1304"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" accessors="true" 
+    <position height="-1" width="-1" x="317" y="1293"/>    
+    <display autosize="true" stereotype="false" package="false" initial-value="true" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="false" private="true" static="true"/>      
       <operations public="true" package="true" protected="false" private="true" static="true"/>    
