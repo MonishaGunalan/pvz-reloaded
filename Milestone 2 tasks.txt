@@ -37,7 +37,7 @@ Fix the data structure in class Level for reading from the text file.
 
 Fix the errors with UML and Sequence Diagrams - Arzaan
 
-Update Help command for unser Interaction
+Update Help command for user Interaction
 
 modify the row# and col# for the seed plant method so that user is able to specify a row between 1 to 5 and not 0 to 4
 

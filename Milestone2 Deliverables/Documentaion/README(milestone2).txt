@@ -29,16 +29,8 @@ Source Files
 Input file: 
 	level1.text 
 Documentation files:
-	Design-Documentaion.txt
-UML diagram:
-	pvz-reloaded.png 
-Sequence Diagram :
-	ContatcingZombieBullet.JPG
-	gameModel.JPG
-	levelCreation.JPG
-	plantCreation.JPG
-	playerCommand.JPG
-	
+UML diagram
+Sequence Diagrams	
 JavaDoc files
 	
 	
