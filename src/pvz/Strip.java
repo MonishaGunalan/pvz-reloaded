@@ -8,9 +8,21 @@ package pvz;
  */
 
 public class Strip {
+	/**
+	 * The row the field is located (used for moving up and down squares)
+	 */
 	private int fieldRow;
+	/**
+	 * The squares in the strip
+	 */
 	private Square[] squares;
+	/**
+	 * The terrain type of the strip
+	 */
 	private String terrain;
+	/**
+	 * The field it is located in
+	 */
 	private Field field;
 
 	/**

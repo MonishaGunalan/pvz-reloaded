@@ -3,13 +3,27 @@ import java.awt.GridLayout;
 import java.awt.event.MouseListener;
 import javax.swing.JPanel;
 
-
+/**
+ * The Panel displaying the contents of the level
+ * @author Christopher Nguyen
+ *
+ */
 public class GamePanel extends JPanel {
 
-	
+	/**
+	 * The grid of square label
+	 */
 	private SquareLabel [][] grid;
+	/**
+	 * The model of the panel
+	 */
 	private Level level;
 
+	/**
+	 * Creates the grid and assigns a mouseListener to the labels
+	 * @param mouseListener
+	 * @param level
+	 */
 	public GamePanel(MouseListener mouseListener, Level level){
 		super();
 		this.level = level;
@@ -26,6 +40,9 @@ public class GamePanel extends JPanel {
 		}
 	}
 
+	/**
+	 * Update the grid based on the model
+	 */
 	public void updateLevel(){
 		for (int i =0; i < Field.DEFAULT_MAX_ROW; i++){
 			Strip strip = level.getField().getStrip()[i];

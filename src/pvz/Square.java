@@ -11,14 +11,41 @@ import java.util.List;
 
 public class Square {
 
+	/**
+	 * The plant located in the square
+	 */
 	private Plant plant;
+	/**
+	 * The list of zombies that inhibit the square
+	 */
 	private List<Zombie> zombies;
+	/**
+	 * The list of bullets located on the square
+	 */
 	private List<Bullet> bullets;
+	/**
+	 * The strip the square is currently on
+	 */
 	private Strip strip;
+	/**
+	 * The row the square is located
+	 */
 	private int row;
+	/**
+	 * The column the square is located
+	 */
 	private int col;
+	/**
+	 * The number of zombies on the square
+	 */
 	private int numZombie;
+	/**
+	 * The number of bullets on the square
+	 */
 	private int numBullet;
+	/**
+	 * The terrain of the square
+	 */
 	private String terrain;
 
 	/**
