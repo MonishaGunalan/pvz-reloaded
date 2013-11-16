@@ -1,0 +1,51 @@
+Deliverables										60 / 70
+	Tests												20 / 20
+		Testing of Model
+			Basic Testing
+	MVC													14 / 20
+		Correct use of View									8 / 10
+		Correct use of Controllers							6 / 10
+	Playable											17 / 20
+		
+	Fixes From Milestone 1								9 / 10
+	
+Documentation										20 / 20
+	Changes from Milestone 1							10 / 10
+		Data structure changes								5 / 5
+		UML changes											5 / 5
+	JavaDoc												5 / 5
+		Included											1 / 1
+		Updated												4 / 4
+	README												5 / 5
+	
+Coding Style										9 / 10
+	Proper coding style									3 / 4
+	Comments											2 / 2
+	Authorship											2 / 2
+	Version Control										2 / 2
+	
+Total											89 / 100
+
+DELIVERABLES
+	TEST:
+		- For next milestone please test conditions where the method should fail to test its robustness
+		- Please include tests for GameMode
+		- Please include tests for OffensivePlant's methods. Although its an abstract class, its methods are still used by other classes and should be tested
+	MVC:
+		- The controller in GameView should not be updating the view. The model should nofitify the view that it has been changed and the view should update itselt.
+		
+	BUGS:
+		- If there are 3 or more zombies in a square, the plant image will not draw in the square
+		- Game remembers plant selection choice even after navigating out of plant selection menu
+	
+DOCUMENTATION
+	- Please include all classes or interfaces that you extended or implemented from in your class diagram. This includes ActionListener, Observer and Obserable
+	JAVADOC:
+		- Please make sure you fill in the discription of what each class represents to allow future users of the class to understand what it represents
+	
+CODING STYLE
+	- You might want to consider breaking the pvz package into sub-packages
+	- Make sure you author who wrote each test class
+	- Please specify why you chose to use package variables over private variables in your design docuemnt for next milestone. Note: Since all classes are in the same package, a package scope variable is visible to all classes.
+	VERSION CONTROL:
+		- I have noticed that there is an imbalanced in work done. If the weight of the next milestone is not shared between the group members I will have to weight the marks for certain individuals.
