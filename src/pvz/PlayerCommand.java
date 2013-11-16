@@ -51,19 +51,19 @@ public class PlayerCommand{
 	/**
 	 * The x input
 	 */
-	int row;
+	private int row;
 	/**
 	 * The y input
 	 */
-	int col;
+	private int col;
 	/**
 	 * The argument
 	 */
-	String arg;
+	private String arg;
 	/**
 	 * The command type
 	 */
-	CommandType commandType;
+	private CommandType commandType;
 
 	/**
 	 * Returns the command type

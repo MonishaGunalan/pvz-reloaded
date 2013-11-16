@@ -3,6 +3,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Observable;
 
 /**
  * The GameModel is the model for the Plant vs Zombie game
@@ -12,15 +13,15 @@ import java.io.IOException;
  * @version 1.0
  * @since 1.7
  */
-public class GameModel {
+public class GameModel extends Observable {
 	/**
 	 * The Player playing the game
 	 */
-	Player player;
+	private Player player;
 	/**
 	 * The level that is loaded
 	 */
-	Level level;
+	private Level level;
 
 	/**
 	 * The location where the player data will be stored (Not needed)
@@ -74,7 +75,12 @@ public class GameModel {
 	 * @return
 	 */
 	public boolean play(PlayerCommand command){
-		return player.play(command);
+		boolean result = player.play(command);
+		if (result){
+			setChanged();
+			this.notifyObservers();
+		}
+		return result;
 	}
 	
 	/**
