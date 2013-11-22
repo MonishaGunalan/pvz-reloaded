@@ -21,7 +21,7 @@ Tasks
 	
 - Add more Levels
 
-- Add unlimited Undo and Redo
+- Add unlimited Undo and Redo 
 
 - Fix the data structure for Level
 
@@ -48,7 +48,34 @@ Tasks
 
 
 
+Task Assignment
+===============
 
+Chris
+-----
+- MVC
+- Game model test case
+
+Tianming
+--------
+- undo & redo
+- Fix data structure for level
+
+Monisha
+-------
+- UML
+- Divide into sub packages
+- Add more levels
+
+Arzaan
+------
+
+
+
+Common Tasks
+------------
+- Class Description
+- Add test case for failures 
 
 
 
