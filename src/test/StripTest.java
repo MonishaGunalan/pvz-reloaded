@@ -1,10 +1,4 @@
 package test;
-/*
- * This class contains unit testing for all the methods in the class Strip
- * @author Monisha Gunalan
- * 100871444
- 
- */
 
 import org.junit.After;
 import org.junit.Before;
@@ -15,6 +9,12 @@ import pvz.Strip;
 
 import static org.junit.Assert.*;
 import junit.framework.TestCase;
+/**
+ * This class contains unit testing for all the methods in the class Strip
+ * @author Monisha Gunalan
+ * 100871444
+ 
+ */
 
 public class StripTest {
 

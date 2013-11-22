@@ -9,6 +9,11 @@ import pvz.Zombie;
 import pvz.ZombieFactory;
 import pvz.Zombie.Type;
 
+/**
+ * 
+ * @author Tianming Zhuang
+ *
+ */
 public class ZombieFactoryTest {
 	@Test
 	public void testMakeZombieWithNullType(){

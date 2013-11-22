@@ -1,11 +1,5 @@
 package test;
-/*
- * This class contains unit testing for all 
- * methods in the abstract class Plant
- * @author Tianming Zhuang
- * 100875151
- 
- */
+
 import static org.junit.Assert.*;
 
 import org.junit.*;
@@ -18,7 +12,13 @@ import pvz.Strip;
 import pvz.Zombie;
 import pvz.Zombie.Type;
 
-
+/**
+ * This class contains unit testing for all 
+ * methods in the abstract class Plant
+ * @author Tianming Zhuang
+ * 100875151
+ 
+ */
 public class PlantTest {
 	private Level testLevel1;
 	private Field testField1;

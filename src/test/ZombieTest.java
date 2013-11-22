@@ -5,7 +5,7 @@ package test;
  * @author Tianming Zhuang
  * 100875151
 
-*/
+ */
 import static org.junit.Assert.*;
 
 import org.junit.*;
@@ -21,7 +21,11 @@ import pvz.Zombie;
 import pvz.Field.Direction;
 import pvz.Zombie.Type;
 
-
+/**
+ * 
+ * @author Tianming Zhuang
+ *
+ */
 public class ZombieTest {
 	private Level testLevel1;
 	private Field testField1;
@@ -31,56 +35,59 @@ public class ZombieTest {
 	private String[] terrainType = { "mud", "grass", "grass", "grass", "mud" };
 
 	@Before
-		public void setUp() throws Exception {
-			testLevel1 = new Level(1);
-			testField1 = new Field(terrainType, testLevel1);
-			testStrip1 = new Strip("grass", 3, testField1);
-			testSquare1 = new Square("grass", 3, 2, testStrip1);
-			testZombie1 = new NormalZombie();
+	public void setUp() throws Exception {
+		testLevel1 = new Level(1);
+		testField1 = new Field(terrainType, testLevel1);
+		testStrip1 = new Strip("grass", 3, testField1);
+		testSquare1 = new Square("grass", 3, 2, testStrip1);
+		testZombie1 = new Zombie(10){
 
-			testZombie1.setSquare(testSquare1);
-		}
+			@Override
+			public Type getType() {
+				// TODO Auto-generated method stub
+				return null;
+			}
 
-	@Test
-		public void getDmg(){
-			assertTrue("Default dmg", 
-					testZombie1.getDmg() == Zombie.DEFAULT_ATK);
-		}
+		};
 
-	@Test
-		public void getMoveTriggerAmt(){
-			assertTrue("Default move trigger", 
-					testZombie1.getMoveTriggerAmt() == Zombie.DEFAULT_MOVE_TRIGGER);
-		}
+		testZombie1.setSquare(testSquare1);
+	}
 
 	@Test
-		public void getAttackTriggerAmt(){
-			assertTrue("Default attack trigger", 
-					testZombie1.getAttackTriggerAmt() == Zombie.DEFAULT_ATTACK_TRIGGER);
-		}
+	public void getDmg(){
+		assertTrue("Default dmg", 
+				testZombie1.getDmg() == Zombie.DEFAULT_ATK);
+	}
 
-	
 	@Test
-		public void hitPlant(){
-			// Make a plant
-			Plant p = PlantFactory.makePlant(Plant.Type.SUNFLOWER, testSquare1);
-			// Get its initial hp
-			final int initPlantHP = p.getCurrentHP();
-			// Hit it
-			testZombie1.hit(p);
-			// Find HP after hit
-			final int finalPlantHP = p.getCurrentHP();
+	public void getMoveTriggerAmt(){
+		assertTrue("Default move trigger", 
+				testZombie1.getMoveTriggerAmt() == Zombie.DEFAULT_MOVE_TRIGGER);
+	}
 
-			// Check if plant hp was reduced by correct amount
-			final boolean plantHit = (finalPlantHP == initPlantHP - Zombie.DEFAULT_ATK);
-
-			assertTrue("Plant hp should have been reduced", plantHit);
-		}
+	@Test
+	public void getAttackTriggerAmt(){
+		assertTrue("Default attack trigger", 
+				testZombie1.getAttackTriggerAmt() == Zombie.DEFAULT_ATTACK_TRIGGER);
+	}
 
 
 	@Test
-		public void getType(){
-			assertTrue("Check that zombie type is normal", testZombie1.getType() == Zombie.Type.NORMAL);
-		}
+	public void hitPlant(){
+		// Make a plant
+		Plant p = PlantFactory.makePlant(Plant.Type.SUNFLOWER, testSquare1);
+		// Get its initial hp
+		final int initPlantHP = p.getCurrentHP();
+		// Hit it
+		testZombie1.hit(p);
+		// Find HP after hit
+		final int finalPlantHP = p.getCurrentHP();
+
+		// Check if plant hp was reduced by correct amount
+		final boolean plantHit = (finalPlantHP == initPlantHP - Zombie.DEFAULT_ATK);
+
+		assertTrue("Plant hp should have been reduced", plantHit);
+	}
+
 
 }

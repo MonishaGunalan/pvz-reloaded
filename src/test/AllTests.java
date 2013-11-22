@@ -12,6 +12,7 @@ import org.junit.runners.Suite.SuiteClasses;
 
 import pvz.BulletFactory;
 import pvz.NormalZombie;
+import pvz.OffensivePlant;
 import pvz.PeaShooterPlant;
 import pvz.PerishableUnit;
 import pvz.SunGenerator;
@@ -27,7 +28,7 @@ import pvz.ZombieFactory;
 		PlantFactoryTest.class, LevelTest.class, PlayerCommandTest.class,
 		FieldTest.class, StripTest.class, SquareTest.class, BulletTest.class,
 		PeaBulletTest.class, CooldownTest.class,
-		GeneratorPlantTest.class })
+		GeneratorPlantTest.class, OffensivePlantTest.class })
 public class AllTests {
 
 }

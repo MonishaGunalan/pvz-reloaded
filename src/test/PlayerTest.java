@@ -10,16 +10,14 @@ import pvz.Field;
 import pvz.Level;
 import pvz.Plant;
 import pvz.Player;
-import pvz.Player.PlayStatus;
 import pvz.PlayerCommand;
 import pvz.Square;
 import pvz.Strip;
-import pvz.Plant.Type;
-import pvz.PlayerCommand.CommandType;
+
 
 /**
  * 
- * @author Christopher Ngyen
+ * @author Christopher Nguyen
  *
  */
 public class PlayerTest {
@@ -54,7 +52,6 @@ public class PlayerTest {
 
 	@Test
 	public void testGrowSunflower(){
-
 		when(mockField.getTotalSun()).thenReturn(9999);
 		assertTrue(player.grow(row, col, Plant.Type.SUNFLOWER) == Player.PlayStatus.NORMAL);
 
@@ -88,7 +85,6 @@ public class PlayerTest {
 
 	@Test
 	public void testGrowSunflowerAfterCooldown(){
-
 
 		when(mockField.getTotalSun()).thenReturn(9999);
 		player.grow(row, col, Plant.Type.SUNFLOWER);
