@@ -49,6 +49,15 @@ Tasks
 
 - update the field size - longer field
 
+- UML
+
+- Sequence Diagram
+
+- Generate Java Doc
+
+
+
+
 
 
 Task Assignment
@@ -59,6 +68,7 @@ Chris
 - Fix bug in MVC
 - Game model test case
 - Add more plants & zombies
+- add test cases for abstract classes
 
 Tianming
 --------
@@ -70,8 +80,8 @@ Monisha
 - UML
 - Divide into sub packages
 - Add more levels
-- update the field size- make the field longer
-- add test cases for abstract classes
+- update the field size - make the field longer
+
 
 Arzaan
 ------
