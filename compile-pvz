@@ -1,0 +1,1 @@
+javac src/pvz/*.java -d bin/

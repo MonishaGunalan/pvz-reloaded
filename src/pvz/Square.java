@@ -225,6 +225,7 @@ public class Square {
 	public boolean remove(Bullet b) {
 		// System.out.println("removing bullet @ " + getRow() + "," + getCol());
 		if (hasBullet()) {
+			numBullet --;
 			return bullets.remove(b);
 		}
 		return false;
@@ -252,7 +253,7 @@ public class Square {
 		// System.out.println("Checking for zombie after plant..");
 		int currentPosn = this.getCol();
 		boolean hasZombie = false;
-		for (int i = currentPosn; i < Field.DEFAULT_MAX_ROW; i++) {
+		for (int i = currentPosn; i < Field.DEFAULT_MAX_POSN; i++) {
 			hasZombie |= strip.getSquare(i).hasZombie();
 		}
 

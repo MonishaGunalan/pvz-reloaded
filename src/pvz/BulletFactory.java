@@ -1,8 +1,10 @@
-package pvz;
 /*
  * @author Tianming Zhuang
  * 100875151
+ *
+ * This class is used to produce
  */
+package pvz;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Collections;

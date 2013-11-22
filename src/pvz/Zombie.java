@@ -19,7 +19,7 @@ public abstract class Zombie
 	/**
 	 * The Default attack trigger of zombie
 	 */
-	public static final int DEFAULT_ATTACK_TRIGGER = 0;
+	public static final int DEFAULT_ATTACK_TRIGGER = 2;
 	/**
 	 * The Default move trigger of zombie
 	 */

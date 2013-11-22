@@ -1,0 +1,1 @@
+javac -cp /home/tianming/lib/junit-4.11.jar:src:lib/* src/test/*.java -d bin

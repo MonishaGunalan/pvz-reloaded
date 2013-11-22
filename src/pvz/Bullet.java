@@ -48,6 +48,7 @@ extends Unit {
 	 * @param zombie
 	 */
 	protected void hit(Zombie zombie) {
+		System.out.println(this + " hitting " + zombie);
 		zombie.reduceHP(getDmg());
 		//System.out.println("Attemption to remove bullet; successful? " + square.remove(this));
 		getSquare().getStrip().getField().getLevel().deleteObserver(this);
@@ -86,6 +87,7 @@ extends Unit {
 				// Trigger the CD
 				moveCD.trigger();
 			} else {
+				// If destination is null, destory bullet
 				getSquare().remove(this);
 			}
 		}
