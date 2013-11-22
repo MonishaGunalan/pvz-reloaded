@@ -12,6 +12,39 @@ Milestone 2 : 7.12 / 8
 ***********************
 
 
+Tasks
+=====
+
+- Add more types of units
+	* Plants
+	* Zombies
+	
+- Add more Levels
+
+- Add unlimited Undo and Redo
+
+- Fix the data structure for Level
+
+- Divide the PvZ packages into sub packages
+
+- Add test cases 
+	* Game model
+	* failures
+	* abstract classes
+	
+- Add class comments(description of class in the header) with author name
+
+- Fix the MVC functionality
+	* The controller in GameView should not be updating the view.
+	* The model should nofitify the view that it has been changed and the view should update itself
+	
+- Fix bug with GUI- Zombies and Plants
+		* If there are 3 or more zombies in a square, the plant image will not draw in the square
+		* Game remembers plant selection choice even after navigating out of plant selection menu
+		
+- Include all interfaces and inheritance class in UML 
+	* Eg: ActionListener, Observer and Observable
+
 
 
 
