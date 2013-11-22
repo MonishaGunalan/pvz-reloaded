@@ -51,8 +51,6 @@ Tasks
 
 - UML
 
-- Sequence Diagram
-
 - Generate Java Doc
 
 
@@ -69,11 +67,13 @@ Chris
 - Game model test case
 - Add more plants & zombies
 - add test cases for abstract classes
+- Fix bug with GUI- Zombies and Plants
 
 Tianming
 --------
 - undo & redo
 - Fix data structure for level
+- test case for game model
 
 Monisha
 -------
@@ -81,18 +81,19 @@ Monisha
 - Divide into sub packages
 - Add more levels
 - update the field size - make the field longer
-
+- Generate Java doc
 
 Arzaan
 ------
-
-
+- Sequence diagram for Undo/Redo
+- Fix the test case from Milestone for the test class you were responsible   	for 
 
 
 Common Tasks
 ------------
 - Class Description
 - Add test case for failures 
+- look for smelly code and fix it
 
 
 
