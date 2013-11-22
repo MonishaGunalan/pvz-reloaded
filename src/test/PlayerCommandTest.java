@@ -8,10 +8,11 @@ import org.junit.Test;
 import pvz.PlayerCommand;
 import pvz.PlayerCommand.CommandType;
 
-
-
-
-
+/**
+ * 
+ * @author Chirstopher Nguyen
+ *
+ */
 public class PlayerCommandTest {
 
 	PlayerCommand playerCommand;

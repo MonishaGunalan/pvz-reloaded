@@ -12,6 +12,7 @@ import java.util.Observer;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -21,6 +22,11 @@ import javax.swing.JPanel;
  * 
  */
 public class GameFrame extends JFrame implements ActionListener, MouseListener, Observer {
+
+	/**
+	 * Option for when the level has finished
+	 */
+	String [] options = {"Next Level", "Save and Quit"};
 	private JPanel commandPanel, seedPanel, consolePanel, statusPanel;
 	/**
 	 * The panel that contains all the game object
@@ -30,7 +36,7 @@ public class GameFrame extends JFrame implements ActionListener, MouseListener, 
 	 * Buttons that allow user intraction
 	 */
 	private JButton plantButton, doNothingButton, undoButton, redoButton,
-			sunflowerButton, peashooterButton, cancelButton;
+	sunflowerButton, peashooterButton, cancelButton;
 	/**
 	 * Labels display to user
 	 */
@@ -95,7 +101,7 @@ public class GameFrame extends JFrame implements ActionListener, MouseListener, 
 
 		this.add(gamePanel, BorderLayout.CENTER);
 		this.add(consolePanel, BorderLayout.SOUTH);
-		this.setSize(700, 700);
+		this.setSize(140*Field.DEFAULT_MAX_POSN, 700);
 		this.setResizable(false);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -138,9 +144,9 @@ public class GameFrame extends JFrame implements ActionListener, MouseListener, 
 				this.add(seedPanel, BorderLayout.NORTH);
 			} else if (e.getSource() == doNothingButton) {
 				// Play a turn with DO NOTHING
-				model.play(new PlayerCommand(
+				play(new PlayerCommand(
 						PlayerCommand.CommandType.DO_NOTHING, 0, 0, ""));
-				//updateLevel();
+				updateLevel();
 			} else if ((e.getSource() == sunflowerButton)) {
 				// Set the selected plant to sunflower
 				plantMode = Plant.Type.SUNFLOWER;
@@ -179,26 +185,18 @@ public class GameFrame extends JFrame implements ActionListener, MouseListener, 
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -221,27 +219,55 @@ public class GameFrame extends JFrame implements ActionListener, MouseListener, 
 			}
 			// Get the coordinates of the square and tell the model to plant in
 			// the location
-			if (model.play(new PlayerCommand(
-					PlayerCommand.CommandType.PLANT_SEED, squareLabel.getRow(),
-					squareLabel.getCol(), s))) {
-				// if plant is successful update the board
-			//	updateLevel();
-				hideSeedPanel();
-				plantMode = null;
-			} else {
-				// TODO::Update the model with more meaningful error message
-				userMessage.setText("Error");
-			}
-			revalidate();
-			repaint();
-
+			play(new PlayerCommand(	PlayerCommand.CommandType.PLANT_SEED, squareLabel.getRow(),	squareLabel.getCol(), s)); 
 		}
+	}
+
+
+	private void play(PlayerCommand playerCommand){
+		model.play(playerCommand);
 	}
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		// TODO Auto-generated method stub
-		updateLevel();
+		Player.PlayStatus status = (Player.PlayStatus)arg1;
+		switch(status){
+		case COOLDOWN_NOT_READY:
+			System.out.println("Got here cooldown");
+			JOptionPane.showMessageDialog(this, "Cooldown not ready");
+			break;
+		case GAMEOVER:
+			int choice = JOptionPane.showConfirmDialog(this, "You have lost.\nWould you like to try the level again?");
+			if (choice == 0){
+				//restart new game here
+			}
+			break;
+		case INVALID_COMMAND:
+			JOptionPane.showMessageDialog(this, "Invalid Command");
+			break;
+		case INVALID_POSITION:
+			JOptionPane.showMessageDialog(this, "You cannot place that there!");
+			break;
+		case NORMAL:
+			updateLevel();
+			if (plantMode != null){
+				hideSeedPanel();
+				plantMode = null;
+			}
+			break;
+		case NOT_ENOUGH_SUN:
+			JOptionPane.showMessageDialog(this, "You require more sun points.");
+			break;
+		case VICTORY:
+			JOptionPane.showOptionDialog(this, "Congratulation on beating the level!!" , "Victory!!!", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+			break;
+		default:
+			break;
+
+		}
+		revalidate();
+		repaint();
 	}
 
 }

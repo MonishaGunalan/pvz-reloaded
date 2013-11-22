@@ -27,17 +27,17 @@ public class GameModel extends Observable {
 	 * The location where the player data will be stored (Not needed)
 	 */
 	public static final String playerDataFileLocation = "../rsrc/PlayerData.txt";
-	
-	
+
+
 	/**
 	 * The public constructor for Game Model
 	 * If player data exists it is loaded and level and player is initialized
 	 * 
 	 */
 	public GameModel(){
-		
+
 		File f = new File(playerDataFileLocation);
-		
+
 		//if the file exists then read the file and initialize based on the file
 		if (f.exists()){
 			try {
@@ -58,31 +58,31 @@ public class GameModel extends Observable {
 			level = new Level(1);
 			player = new Player(level);	
 		}
-		
-		
+
+
 	}	
-	
+
 	/**
 	 * Play the game
 	 */
 	public void play(){
 		player.play();
 	}
-	
+
 	/**
 	 * Play the game with a given a command
 	 * @param command
 	 * @return
 	 */
-	public boolean play(PlayerCommand command){
-		boolean result = player.play(command);
-		if (result){
-			setChanged();
-			this.notifyObservers();
-		}
-		return result;
+	public void play(PlayerCommand command){
+		Player.PlayStatus result = player.play(command);
+
+		setChanged();
+		this.notifyObservers(result);
+
+
 	}
-	
+
 	/**
 	 * Get the player
 	 * @return the player
@@ -90,7 +90,7 @@ public class GameModel extends Observable {
 	public Player getPlayer(){
 		return player;
 	}
-	
+
 	/**
 	 * Get the level
 	 * @return return the level
@@ -98,7 +98,7 @@ public class GameModel extends Observable {
 	public Level getLevel(){
 		return level;
 	}
-	
+
 	/**
 	 * @param args
 	 */

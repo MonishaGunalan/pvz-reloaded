@@ -10,6 +10,7 @@ import pvz.Field;
 import pvz.Level;
 import pvz.Plant;
 import pvz.Player;
+import pvz.Player.PlayStatus;
 import pvz.PlayerCommand;
 import pvz.Square;
 import pvz.Strip;
@@ -55,7 +56,7 @@ public class PlayerTest {
 	public void testGrowSunflower(){
 
 		when(mockField.getTotalSun()).thenReturn(9999);
-		assertTrue(player.grow(row, col, Plant.Type.SUNFLOWER));
+		assertTrue(player.grow(row, col, Plant.Type.SUNFLOWER) == Player.PlayStatus.NORMAL);
 
 	}
 
@@ -64,7 +65,7 @@ public class PlayerTest {
 
 
 		when(mockField.getTotalSun()).thenReturn(9999);
-		assertTrue(player.grow(row, col, Plant.Type.PEASHOOTER));
+		assertTrue(player.grow(row, col, Plant.Type.PEASHOOTER) == Player.PlayStatus.NORMAL);
 
 	}
 
@@ -72,7 +73,7 @@ public class PlayerTest {
 	public void testGrowSunWithNoSun(){
 
 		when(mockField.getTotalSun()).thenReturn(0);
-		assertFalse(player.grow(row, col, Plant.Type.SUNFLOWER));
+		assertTrue(player.grow(row, col, Plant.Type.SUNFLOWER) == Player.PlayStatus.NOT_ENOUGH_SUN);
 
 	}
 
@@ -81,7 +82,7 @@ public class PlayerTest {
 
 		when(mockField.getTotalSun()).thenReturn(9999);
 		player.grow(row, col, Plant.Type.SUNFLOWER);
-		assertFalse(player.grow(row, col+1, Plant.Type.SUNFLOWER));
+		assertTrue(player.grow(row, col+1, Plant.Type.SUNFLOWER) == Player.PlayStatus.COOLDOWN_NOT_READY);
 
 	}
 
@@ -94,13 +95,13 @@ public class PlayerTest {
 		for (int i = 0; i < 5; i++){
 			player.triggerCooldowns();
 		}
-		assertTrue(player.grow(row, col+1, Plant.Type.SUNFLOWER));
+		assertTrue(player.grow(row, col+1, Plant.Type.SUNFLOWER) == Player.PlayStatus.NORMAL);
 
 	}
 
 	@Test
 	public void testPlayWithNullPlayerCommand() {
-		assertFalse(player.play(null));
+		assertTrue(player.play(null) == Player.PlayStatus.INVALID_COMMAND);
 	}
 
 	@Test
@@ -110,7 +111,7 @@ public class PlayerTest {
 		when(mockCommand.getArg()).thenReturn("sunflower");
 		when(mockCommand.getRow()).thenReturn(0);
 		when(mockCommand.getCol()).thenReturn(0);
-		assertTrue(player.play(mockCommand));
+		assertTrue(player.play(mockCommand) == Player.PlayStatus.NORMAL);
 	}
 	
 	@Test
@@ -120,13 +121,13 @@ public class PlayerTest {
 		when(mockCommand.getArg()).thenReturn("peashooter");
 		when(mockCommand.getRow()).thenReturn(0);
 		when(mockCommand.getCol()).thenReturn(0);
-		assertTrue(player.play(mockCommand));
+		assertTrue(player.play(mockCommand) == Player.PlayStatus.NORMAL);
 	}
 	
 	@Test
 	public void testPlayWithDoNothing() {
 		when(mockCommand.getCommandType()).thenReturn(PlayerCommand.CommandType.DO_NOTHING);
-		assertTrue(player.play(mockCommand));
+		assertTrue(player.play(mockCommand) == Player.PlayStatus.NORMAL);
 	}
 
 }

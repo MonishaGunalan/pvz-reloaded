@@ -46,7 +46,7 @@ public class GamePanel extends JPanel {
 	public void updateLevel(){
 		for (int i =0; i < Field.DEFAULT_MAX_ROW; i++){
 			Strip strip = level.getField().getStrip()[i];
-			for (int j = 0; j < Field.DEFAULT_MAX_ROW; j++){
+			for (int j = 0; j < Field.DEFAULT_MAX_POSN; j++){
 				grid[i][j].updateSquare(strip.getSquare(j));
 				grid[i][j].repaint();
 			}

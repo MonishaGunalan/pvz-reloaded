@@ -16,7 +16,13 @@ import java.util.Scanner;
 public class Player {
 
 	public enum PlayStatus{
-		
+		GAMEOVER,
+		VICTORY,
+		NOT_ENOUGH_SUN,
+		INVALID_POSITION,
+		COOLDOWN_NOT_READY,
+		INVALID_COMMAND,
+		NORMAL;
 	}
 	/**
 	 * The starting score;
@@ -74,9 +80,9 @@ public class Player {
 	 * The helper function if using text version that will handle the command
 	 * @param command The command to be input
 	 */
-	public boolean play (PlayerCommand command){
+	public PlayStatus play (PlayerCommand command){
 		if (command == null){
-			return false;
+			return PlayStatus.INVALID_COMMAND;
 		}
 		switch(command.getCommandType()){
 			case PLANT_SEED:
@@ -88,20 +94,23 @@ public class Player {
 					p = Plant.Type.valueOf(plant.toUpperCase());
 				}catch(IllegalArgumentException e){
 					System.out.println("No such plant!");
-					return false;
+					return PlayStatus.INVALID_COMMAND;
 				}
-				boolean growSuccessful = false;
+				PlayStatus growSuccessful = null;
 				//try to grow the plant
 				if (p != null){
 					growSuccessful = grow(command.getRow(),command.getCol(),p);
 
 				}
 				//increment turn if the grow was successful
-				if (growSuccessful){
+				if (growSuccessful == PlayStatus.NORMAL){
 					level.incrementTurn();
 					triggerCooldowns();
+				} else{
+					return growSuccessful;
 				}
-				return growSuccessful;
+				break;
+
 			case UNDO:
 				//TODO 
 				break;
@@ -115,9 +124,13 @@ public class Player {
 				break;
 			default:
 		}
-		return true;
-
-
+		//if (level.isGameOver())
+		//return PlayStatus.GAME_OVER;
+		//}else if (level.isVictoious())
+		//return PlayStatus.victory
+		//else{
+		return PlayStatus.NORMAL;
+		//}
 
 	}
 
@@ -136,14 +149,14 @@ public class Player {
 	 * @param plantType
 	 * @return The boolean if the the plant was grown
 	 */
-	public boolean grow(int row, int col, Plant.Type plantType){
+	public Player.PlayStatus grow(int row, int col, Plant.Type plantType){
 
 		int plantCost = PlantFactory.getCost(plantType);
 		//TODO:: return with more meaningful error messages
 		Cooldown plantTypeCD = triggeredCooldowns.get(plantType);
 		if (!plantTypeCD.isAvailable()){
 			System.out.println("Plant Still On cooldown for " + plantTypeCD.getCooldown() + " more turns!");
-			return false;
+			return Player.PlayStatus.COOLDOWN_NOT_READY;
 		}
 
 		// Get reference to indicated square
@@ -153,11 +166,11 @@ public class Player {
 		if (square.hasPlant()){
 			// Occupied square
 			System.out.println("There is already a plant present in the square!");
-			return false;
+			return Player.PlayStatus.INVALID_POSITION;
 		} else if (plantCost > level.getField().getTotalSun()){
 			// Not enough sun
 			System.out.println("Insufficient funds!");
-			return false;
+			return Player.PlayStatus.NOT_ENOUGH_SUN;
 		}
 
 		//Make the plant and update the level based on the plant
@@ -169,10 +182,10 @@ public class Player {
 			level.getField().useSun(plantCost);
 			level.addObserver(plant);
 			triggeredCooldowns.get(plantType).trigger();
-			return true;
+			return Player.PlayStatus.NORMAL;
 		}
 
-		return false;
+		return Player.PlayStatus.INVALID_COMMAND;
 	}
 
 	/**
