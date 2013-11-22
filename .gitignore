@@ -6,3 +6,10 @@
 *.war
 *.ear
 /bin
+
+# TM specific
+compile-pvz
+compile-test
+main
+gui
+test

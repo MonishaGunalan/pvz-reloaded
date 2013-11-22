@@ -6,8 +6,16 @@ package pvz;
  * 
  * @author Monisha Gunalan 100871444
  */
+import java.io.Serializable;
 
-public class Field {
+public class Field
+	implements Serializable {
+	/**
+	 * Serialization UID
+	 * Do not change unless serialization with previous versions become
+	 * incompatible
+	 */
+	static final long serialVersionUID = -2201619968380616672L;
 
 	/**
 	 * The default number of rows in the field
@@ -104,6 +112,8 @@ public class Field {
 	 */
 	public String toString() {
 		String s = "";
+		s += "Current turn: " + level.getTurnNumber();
+		s += "\n";
 		for (int i = 0; i < Field.DEFAULT_MAX_ROW; i++) {
 			s += strips[i].toString();
 		}

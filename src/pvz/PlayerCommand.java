@@ -93,8 +93,7 @@ public class PlayerCommand{
 	 * 
 	 * @param c		The Scanner to get additional information from player
 	 */
-	public PlayerCommand ( Scanner c){
-
+	public PlayerCommand (Scanner c){
 		//Loop until a valid command has been given
 		do{
 			System.out.println(PlayerCommand.getCommandOptions());

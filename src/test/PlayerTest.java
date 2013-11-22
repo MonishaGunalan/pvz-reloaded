@@ -28,6 +28,7 @@ public class PlayerTest {
 	Square square, square2;
 	Strip strip;
 	Field mockField;
+	GameModel model;
 	int row, col;
 	@Before
 	public void setUp() throws Exception {
@@ -35,7 +36,8 @@ public class PlayerTest {
 		row = 0;
 		col = 0;
 		strip = mock(Strip.class);
-		player = new Player(mockLevel);
+		model = new GameModel();
+		player = new Player(mockLevel, model);
 		mockCommand = mock(PlayerCommand.class);
 		square = new Square("",row,col,strip);
 		square2 = new Square("",row,col+1,strip);

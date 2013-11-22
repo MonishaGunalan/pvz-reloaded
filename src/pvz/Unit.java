@@ -13,10 +13,18 @@ import java.util.Set;
 import java.util.HashSet;
 import java.util.Observer;
 import java.util.Observable;
+import java.io.Serializable;
 
 public abstract class Unit 
 	extends Observable
-	implements Observer {
+	implements Observer, Serializable 	{
+	/**
+	 * Serialization UID
+	 * Do not change unless serialization with previous versions become
+	 * incompatible
+	 */
+	protected static final long serialVersionUID = -4298517245617902070L;
+
 	/**
 	 * The square the unit is located
 	 */

@@ -6,7 +6,16 @@ import java.util.List;
  * @author Monisha Gunalan
  * 100871444
  */
-public class Square {
+import java.io.Serializable;
+
+public class Square
+	implements Serializable {
+	/**
+	 * Serialization UID
+	 * Do not change unless serialization with previous versions become
+	 * incompatible
+	 */
+	static final long serialVersionUID = 1049118517451004034L;
 
 	/**
 	 * The plant located in the square

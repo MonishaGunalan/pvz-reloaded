@@ -31,6 +31,10 @@ public class Player {
 	 * The current level the player is playing
 	 */
 	private Level level;
+	/**
+	 * Model in charge of this game
+	 */
+	private GameModel model;
 
 	/**
 	 * This map contains the mapping of all plant type to their active cooldown
@@ -42,8 +46,9 @@ public class Player {
 	 * public constructor for player
 	 * @param level	The level the player starts at
 	 */
-	public Player(Level level){
+	public Player(Level level, GameModel model){
 		this.level = level;
+		this.model = model;
 
 		triggeredCooldowns = new HashMap<Plant.Type, Cooldown>();
 		for (Plant.Type p: Plant.Type.values()){
@@ -73,6 +78,7 @@ public class Player {
 	/**
 	 * The helper function if using text version that will handle the command
 	 * @param command The command to be input
+	 * @return
 	 */
 	public boolean play (PlayerCommand command){
 		if (command == null){
@@ -103,10 +109,10 @@ public class Player {
 				}
 				return growSuccessful;
 			case UNDO:
-				//TODO 
+				model.undo();
 				break;
 			case REDO:
-				//TODO 
+				model.redo();
 				break;
 			case DO_NOTHING:
 				//Player does nothing that turn, just increment to the next turn
