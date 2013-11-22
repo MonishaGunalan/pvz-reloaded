@@ -44,7 +44,10 @@ Tasks
 		
 - Include all interfaces and inheritance class in UML 
 	* Eg: ActionListener, Observer and Observable
+	
+- Update sequence diagram for undo/redo
 
+- update the field size - longer field
 
 
 
@@ -53,8 +56,9 @@ Task Assignment
 
 Chris
 -----
-- MVC
+- Fix bug in MVC
 - Game model test case
+- Add more plants & zombies
 
 Tianming
 --------
@@ -66,9 +70,12 @@ Monisha
 - UML
 - Divide into sub packages
 - Add more levels
+- update the field size- make the field longer
+- add test cases for abstract classes
 
 Arzaan
 ------
+
 
 
 
