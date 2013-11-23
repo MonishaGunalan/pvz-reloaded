@@ -1,0 +1,32 @@
+Level5
+25
+GRASS 5
+10 normal
+32 polevaulting
+47 conehead
+60 normal
+70 normal
+GRASS 5
+19 normal
+38 polevaulting
+50 normal
+69 normal
+75 normal
+GRASS 5
+16 normal
+28 normal
+42 normal
+66 polevaulting
+74 normal
+GRASS 5
+25 normal
+35 normal
+56 normal
+64 normal
+72 normal
+GRASS 5
+13 normal
+22 normal
+53 conehead
+63 flag
+68 normal
