@@ -1,0 +1,23 @@
+Level3
+17
+MUD 0
+GRASS 5
+18 normal
+38 normal
+46 normal
+52 flag
+60 normal
+GRASS 6
+10 normal
+22 normal
+30 conehead
+50 normal
+54 normal
+57 conehead
+GRASS 6
+14 normal
+26 normal
+34 normal
+42 normal
+58 normal
+MUD	0
