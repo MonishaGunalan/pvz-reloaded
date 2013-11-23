@@ -1,0 +1,30 @@
+Level4
+23
+GRASS 4
+26 normal
+41 normal
+45 conehead
+62 normal
+GRASS 5
+10 normal
+38 conehead
+48 normal
+59 normal
+64 normal
+GRASS 5
+13 normal
+19 conehead
+57 normal
+65 conehead
+69 normal
+GRASS 4
+23 normal
+31 normal
+55 flag
+60 normal
+GRASS 5
+16 normal
+27 normal
+35 normal
+51 conehead
+67 normal
