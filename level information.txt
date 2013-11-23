@@ -69,4 +69,8 @@ Types of Zombies
 	- conehead zombie
 	- pole vaulting zombie
 
+	HP:
+
+ConeHead Zombie: 12 HP
+flag Zombie: 10 HP
 
