@@ -12,6 +12,10 @@ import java.util.ArrayDeque;
 /**
  * The GameModel is the model for the Plant vs Zombie game
  * it is also the entry point for playing the game on text based
+ *
+ * This class observes its Level so it writes to history
+ * each turn.
+ *
  * @author Christopher Nguyen
  * @version 1.0
  * @since 1.7
@@ -78,8 +82,6 @@ public class GameModel  extends Observable
 		// Register this to level so it knows when turn increments
 		// for history writing
 		level.addObserver(this);
-
-
 	}	
 
 	/**

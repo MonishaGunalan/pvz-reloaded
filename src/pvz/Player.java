@@ -28,7 +28,6 @@ public class Player {
 	 * The starting score;
 	 */
 	public final int START_SCORE = 0;
-
 	/**
 	 * The current score of the player (Not implemented)
 	 */
@@ -41,12 +40,10 @@ public class Player {
 	 * Model in charge of this game
 	 */
 	private GameModel model;
-
 	/**
 	 * This map contains the mapping of all plant type to their active cooldown
 	 */
 	private Map<Plant.Type, Cooldown> triggeredCooldowns;
-
 
 	/**
 	 * public constructor for player
