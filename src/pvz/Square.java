@@ -234,8 +234,8 @@ public class Square
 	public boolean remove(Bullet b) {
 		// System.out.println("removing bullet @ " + getRow() + "," + getCol());
 		if (hasBullet()) {
-			return bullets.remove(b);
 			numBullet--;
+			return bullets.remove(b);
 		}
 		return false;
 	}
