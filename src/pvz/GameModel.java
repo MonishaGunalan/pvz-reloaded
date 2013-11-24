@@ -61,7 +61,7 @@ public class GameModel  extends Observable
 				int levelNum = Integer.parseInt(reader.readLine());
 				int score =  Integer.parseInt(reader.readLine());
 				level = new Level(levelNum);
-				player = new Player(level, this);
+				player = new Player(this);
 				player.setScore(score);
 			} catch (NumberFormatException e ) {
 				// TODO Auto-generated catch block
@@ -72,7 +72,7 @@ public class GameModel  extends Observable
 		} else {
 			//If no file exists initialize with level 1
 			level = new Level(1);
-			player = new Player(level, this);	
+			player = new Player(this);	
 		}
 		System.out.println("initializing deques...");
 
