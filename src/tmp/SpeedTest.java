@@ -1,8 +1,8 @@
-package pvz;
+package tmp;
 import java.util.Hashtable;
 import java.util.Vector;
 import java.util.Date;
-
+import pvz.*;
 public class SpeedTest {
 
 	public static void main(String[] args) {
