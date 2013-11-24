@@ -21,13 +21,14 @@ import pvz.Zombie;
 import pvz.ZombieFactory;
 
 @RunWith(Suite.class)
-@SuiteClasses({ PlayerTest.class, NormalZombieTest.class, PerishableUnitTest.class,
-		ZombieTest.class, UnitTest.class, SunflowerPlantTest.class, PeaShooterPlantTest.class,
-		ZombieFactoryTest.class, BulletFactoryTest.class, SunGeneratorTest.class,
-		PlantFactoryTest.class, LevelTest.class, PlayerCommandTest.class,
-		FieldTest.class, StripTest.class, SquareTest.class, BulletTest.class,
-		PeaBulletTest.class, CooldownTest.class,
-		GeneratorPlantTest.class })
+@SuiteClasses({ PlayerTest.class, NormalZombieTest.class,
+		PerishableUnitTest.class, ZombieTest.class, UnitTest.class,
+		SunflowerPlantTest.class, PeaShooterPlantTest.class,
+		ZombieFactoryTest.class, BulletFactoryTest.class,
+		SunGeneratorTest.class, PlantFactoryTest.class, LevelTest.class,
+		PlayerCommandTest.class, FieldTest.class, StripTest.class,
+		SquareTest.class, BulletTest.class, PeaBulletTest.class,
+		CooldownTest.class, GeneratorPlantTest.class })
 public class AllTests {
 
 }

@@ -120,13 +120,16 @@ public class Level extends Observable implements Observer {
 						String[] rowContents = bufferedReader.readLine().split(
 								" ");
 						if (rowContents.length <= 1) {
-							// Something must be wrong with the level config file
-							System.out.println("Invalid level " + levelNumber + " config file");
+							// Something must be wrong with the level config
+							// file
+							System.out.println("Invalid level " + levelNumber
+									+ " config file");
 							System.exit(-1);
 							// TODO throw an exception of some kind
-							//throw new InvalidFormatException("Invalid level " + levelNumber + " config file");
+							// throw new InvalidFormatException("Invalid level "
+							// + levelNumber + " config file");
 						}
-						
+
 						// read the terrian type for each row
 						fieldRows[i] = rowContents[0];
 						// read number of Zombies enetering a specic row
