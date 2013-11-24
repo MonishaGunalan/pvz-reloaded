@@ -3,8 +3,8 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.Collections;
 /**
- * @author Tianming Zhuang
- * 100875151
+ * @author Tianming Zhuang/Arzaan Irani
+ * 100875151/100826631
  */
 public class ZombieFactory {
 	
@@ -17,6 +17,8 @@ public class ZombieFactory {
 		Map<Zombie.Type, Class<? extends Zombie>> aTable = new HashMap<Zombie.Type, Class<? extends Zombie>>();
 
 		aTable.put(Zombie.Type.NORMAL, NormalZombie.class);
+		aTable.put(Zombie.Type.FLAG, FlagZombie.class);
+		aTable.put(Zombie.Type.CONE, ConeZombie.class);
 
 		zombieTable = Collections.unmodifiableMap(aTable);
 	}
