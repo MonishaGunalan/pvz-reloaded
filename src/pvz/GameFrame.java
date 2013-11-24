@@ -6,6 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -19,16 +21,14 @@ import javax.swing.JPanel;
  * @author Christopher Nguyen
  * 
  */
-<<<<<<< HEAD
+
 public class GameFrame extends JFrame implements ActionListener, MouseListener, Observer {
 
 	/**
 	 * Option for when the level has finished
 	 */
 	String [] options = {"Next Level", "Save and Quit"};
-=======
-public class GameFrame extends JFrame implements ActionListener, MouseListener {
->>>>>>> f694fafd71dbfcd3472f2407956741991afa4c06
+
 	private JPanel commandPanel, seedPanel, consolePanel, statusPanel;
 	/**
 	 * The pannel that contains all the game object
@@ -148,7 +148,6 @@ public class GameFrame extends JFrame implements ActionListener, MouseListener {
 				// Play a turn with DO NOTHING
 				play(new PlayerCommand(
 						PlayerCommand.CommandType.DO_NOTHING, 0, 0, ""));
-				updateLevel();
 			} else if ((e.getSource() == sunflowerButton)) {
 				// Set the selected plant to sunflower
 				plantMode = Plant.Type.SUNFLOWER;
@@ -220,7 +219,7 @@ public class GameFrame extends JFrame implements ActionListener, MouseListener {
 			}
 			// Get the coordinates of the square and tell the model to plant in
 			// the location
-<<<<<<< HEAD
+
 			play(new PlayerCommand(	PlayerCommand.CommandType.PLANT_SEED, squareLabel.getRow(),	squareLabel.getCol(), s)); 
 		}
 	}
@@ -240,10 +239,16 @@ public class GameFrame extends JFrame implements ActionListener, MouseListener {
 			JOptionPane.showMessageDialog(this, "Cooldown not ready");
 			break;
 		case GAMEOVER:
+			updateLevel();
+			if (plantMode != null){
+				hideSeedPanel();
+				plantMode = null;
+			}
 			int choice = JOptionPane.showConfirmDialog(this, "You have lost.\nWould you like to try the level again?");
 			if (choice == 0){
 				//restart new game here
 			}
+
 			break;
 		case INVALID_COMMAND:
 			JOptionPane.showMessageDialog(this, "Invalid Command");
@@ -262,6 +267,11 @@ public class GameFrame extends JFrame implements ActionListener, MouseListener {
 			JOptionPane.showMessageDialog(this, "You require more sun points.");
 			break;
 		case VICTORY:
+			updateLevel();
+			if (plantMode != null){
+				hideSeedPanel();
+				plantMode = null;
+			}
 			JOptionPane.showOptionDialog(this, "Congratulation on beating the level!!" , "Victory!!!", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 			break;
 		default:
@@ -272,23 +282,7 @@ public class GameFrame extends JFrame implements ActionListener, MouseListener {
 		repaint();
 	}
 
-=======
-			if (model.play(new PlayerCommand(
-					PlayerCommand.CommandType.PLANT_SEED, squareLabel.getRow(),
-					squareLabel.getCol(), s))) {
-				// if plant is successful update the board
-				updateLevel();
-				hideSeedPanel();
-				plantMode = null;
-			} else {
-				// TODO::Update the model with more meaningful error message
-				userMessage.setText("Error");
-			}
-			revalidate();
-			repaint();
 
-		}
-	}
 
->>>>>>> f694fafd71dbfcd3472f2407956741991afa4c06
+
 }
