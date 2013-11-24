@@ -44,11 +44,11 @@ public class GameFrame extends JFrame implements ActionListener, MouseListener, 
 	 * Labels display to user
 	 */
 	private JLabel sunLabel, scoreLabel, userMessage;
-	/*
+	/**
 	 * The game model
 	 */
 	private GameModel model;
-	/*
+	/**
 	 * Which plant is currently being selected
 	 */
 	private Plant.Type plantMode;
@@ -185,9 +185,11 @@ public class GameFrame extends JFrame implements ActionListener, MouseListener, 
 	 */
 	public void hideSeedPanel() {
 		this.remove(seedPanel);
+		plantMode = null;
 		this.add(commandPanel, BorderLayout.NORTH);
 		revalidate();
 		repaint();
+
 	}
 
 	@Override
@@ -243,14 +245,13 @@ public class GameFrame extends JFrame implements ActionListener, MouseListener, 
 
 		switch(status){
 		case COOLDOWN_NOT_READY:
-			System.out.println("Got here cooldown");
 			JOptionPane.showMessageDialog(this, "Cooldown not ready");
 			break;
 		case GAMEOVER:
 			updateLevel();
 			if (plantMode != null){
 				hideSeedPanel();
-				plantMode = null;
+
 			}
 			int choice = JOptionPane.showConfirmDialog(this, "You have lost.\nWould you like to try the level again?");
 			if (choice == 0){
@@ -268,7 +269,6 @@ public class GameFrame extends JFrame implements ActionListener, MouseListener, 
 			updateLevel();
 			if (plantMode != null){
 				hideSeedPanel();
-				plantMode = null;
 			}
 			break;
 		case NOT_ENOUGH_SUN:
@@ -278,16 +278,13 @@ public class GameFrame extends JFrame implements ActionListener, MouseListener, 
 			updateLevel();
 			if (plantMode != null){
 				hideSeedPanel();
-				plantMode = null;
 			}
 			JOptionPane.showOptionDialog(this, "Congratulation on beating the level!!" , "Victory!!!", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 			break;
 		case COMMAND_FAILED:
-			System.out.println("Command Failed!");
 			JOptionPane.showMessageDialog(this, "Command Failed");
 			break;
 		default:
-			System.out.println("Default?");
 			break;
 
 
