@@ -9,10 +9,10 @@ GRASS 5
 GRASS 6
 18 normal
 50 normal
-92 conehead
+92 cone
 102 normal
 108 normal
-130 conehead
+130 cone
 GRASS 6
 26 normal
 42 normal

@@ -2,12 +2,12 @@ Level5
 GRASS 5
 22 normal
 46 normal
-76 conehead
+76 cone
 94 normal
 115 normal
 GRASS 5
 28 normal
-52 conehead
+52 cone
 100 normal
 108 normal
 118 normal
@@ -15,7 +15,7 @@ GRASS 5
 34 normal
 70 normal
 82 normal
-121 conehead
+121 cone
 129 normal
 GRASS 5
 16 normal
@@ -26,6 +26,6 @@ GRASS 5
 GRASS 5
 10 normal
 40 normal
-64 conehead
+64 cone
 105 flag
 126 normal
