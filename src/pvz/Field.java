@@ -1,4 +1,5 @@
 package pvz;
+import java.io.Serializable;
 
 /**
  * Field contains a list of strips which in turn contains square this class
@@ -6,7 +7,7 @@ package pvz;
  * 
  * @author Monisha Gunalan 100871444
  */
-import java.io.Serializable;
+
 
 public class Field
 	implements Serializable {

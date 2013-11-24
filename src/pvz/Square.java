@@ -1,13 +1,13 @@
 package pvz;
 import java.util.ArrayList;
 import java.util.List;
+import java.io.Serializable;
+
 /**
  * This class implements the square. The square can contain, plants, zombies and bullets
  * @author Monisha Gunalan
  * 100871444
  */
-import java.io.Serializable;
-
 public class Square
 	implements Serializable {
 	/**

@@ -1,5 +1,5 @@
 package pvz;
-
+import java.io.Serializable;
 
 /**
  * This class implements the strip contained in the field Strips contains a list
@@ -7,7 +7,7 @@ package pvz;
  * 
  * @author Monisha Gunalan 100871444
  */
-import java.io.Serializable;
+
 
 public class Strip
 	implements Serializable {
