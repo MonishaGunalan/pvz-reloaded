@@ -42,7 +42,7 @@ public class Field {
 
 	/**
 	 * The possible direction units can move
-	 *
+	 * 
 	 */
 	public enum Direction {
 		LEFT, RIGHT;
