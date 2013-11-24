@@ -17,7 +17,6 @@ import javax.swing.JLabel;
 /**
  * 
  * @author Christopher Nguyen
- * @author Arzaan irani (added in more zombies)
  *
  */
 public class SquareLabel extends JLabel {
@@ -56,10 +55,6 @@ public class SquareLabel extends JLabel {
 			aTable.put(PeaShooterPlant.class, sampleImage);
 			sampleImage = ImageIO.read(new File("rsrc/Zombie.png"));
 			aTable.put(NormalZombie.class, sampleImage);
-			sampleImage = ImageIO.read(new File("rsrc/ConeZombie.png"));
-			aTable.put(ConeZombie.class, sampleImage);
-			sampleImage = ImageIO.read(new File("rsrc/FlagZombie.png"));
-			aTable.put(FlagZombie.class, sampleImage);
 			sampleImage = ImageIO.read(new File("rsrc/PeashooterBullet.png"));
 			aTable.put(PeaBullet.class, sampleImage);
 		} catch (IOException e) {

@@ -9,7 +9,7 @@ public class PeaBullet
 	/**
 	 * The trigger time for move
 	 */
-	private static final int MOVE_TRIGGER = 0;
+	private static final int MOVE_TRIGGER = 2;
 	/**
 	 * The damage that the bullet does
 	 */

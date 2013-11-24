@@ -6,7 +6,16 @@ import java.util.List;
  * @author Monisha Gunalan
  * 100871444
  */
-public class Square {
+import java.io.Serializable;
+
+public class Square
+	implements Serializable {
+	/**
+	 * Serialization UID
+	 * Do not change unless serialization with previous versions become
+	 * incompatible
+	 */
+	static final long serialVersionUID = 1049118517451004034L;
 
 	/**
 	 * The plant located in the square
@@ -225,7 +234,6 @@ public class Square {
 	public boolean remove(Bullet b) {
 		// System.out.println("removing bullet @ " + getRow() + "," + getCol());
 		if (hasBullet()) {
-			numBullet --;
 			return bullets.remove(b);
 		}
 		return false;
@@ -253,7 +261,7 @@ public class Square {
 		// System.out.println("Checking for zombie after plant..");
 		int currentPosn = this.getCol();
 		boolean hasZombie = false;
-		for (int i = currentPosn; i < Field.DEFAULT_MAX_POSN; i++) {
+		for (int i = currentPosn; i < Field.DEFAULT_MAX_ROW; i++) {
 			hasZombie |= strip.getSquare(i).hasZombie();
 		}
 

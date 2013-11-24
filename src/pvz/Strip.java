@@ -6,8 +6,17 @@ package pvz;
  * 
  * @author Monisha Gunalan 100871444
  */
+import java.io.Serializable;
 
-public class Strip {
+public class Strip
+	implements Serializable {
+	/**
+	 * Serialization UID
+	 * Do not change unless serialization with previous versions become
+	 * incompatible
+	 */
+	static final long serialVersionUID = -7228675675509561302L;
+
 	/**
 	 * The row the field is located (used for moving up and down squares)
 	 */

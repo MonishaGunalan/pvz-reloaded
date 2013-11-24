@@ -6,8 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.Observable;
-import java.util.Observer;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -20,10 +18,10 @@ import javax.swing.JPanel;
  * @author Christopher Nguyen
  * 
  */
-public class GameFrame extends JFrame implements ActionListener, MouseListener, Observer {
+public class GameFrame extends JFrame implements ActionListener, MouseListener {
 	private JPanel commandPanel, seedPanel, consolePanel, statusPanel;
 	/**
-	 * The panel that contains all the game object
+	 * The pannel that contains all the game object
 	 */
 	private GamePanel gamePanel;
 	/**
@@ -54,7 +52,7 @@ public class GameFrame extends JFrame implements ActionListener, MouseListener, 
 		// Initialize all the objects
 		model = new GameModel();
 		gamePanel = new GamePanel(this, model.getLevel());
-		model.addObserver(this);
+
 		commandPanel = new JPanel();
 		commandPanel.setLayout(new GridLayout(1, 4));
 
@@ -140,7 +138,7 @@ public class GameFrame extends JFrame implements ActionListener, MouseListener, 
 				// Play a turn with DO NOTHING
 				model.play(new PlayerCommand(
 						PlayerCommand.CommandType.DO_NOTHING, 0, 0, ""));
-				//updateLevel();
+				updateLevel();
 			} else if ((e.getSource() == sunflowerButton)) {
 				// Set the selected plant to sunflower
 				plantMode = Plant.Type.SUNFLOWER;
@@ -148,7 +146,6 @@ public class GameFrame extends JFrame implements ActionListener, MouseListener, 
 				// Set the selected plant to peashooter
 				plantMode = Plant.Type.PEASHOOTER;
 			} else if (((JButton) e.getSource()).getText().equals("Cancel")) {
-				plantMode = null;
 				hideSeedPanel();
 			}
 		}
@@ -225,7 +222,7 @@ public class GameFrame extends JFrame implements ActionListener, MouseListener, 
 					PlayerCommand.CommandType.PLANT_SEED, squareLabel.getRow(),
 					squareLabel.getCol(), s))) {
 				// if plant is successful update the board
-			//	updateLevel();
+				updateLevel();
 				hideSeedPanel();
 				plantMode = null;
 			} else {
@@ -236,12 +233,6 @@ public class GameFrame extends JFrame implements ActionListener, MouseListener, 
 			repaint();
 
 		}
-	}
-
-	@Override
-	public void update(Observable arg0, Object arg1) {
-		// TODO Auto-generated method stub
-		updateLevel();
 	}
 
 }

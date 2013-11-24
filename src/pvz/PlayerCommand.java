@@ -51,19 +51,19 @@ public class PlayerCommand{
 	/**
 	 * The x input
 	 */
-	private int row;
+	int row;
 	/**
 	 * The y input
 	 */
-	private int col;
+	int col;
 	/**
 	 * The argument
 	 */
-	private String arg;
+	String arg;
 	/**
 	 * The command type
 	 */
-	private CommandType commandType;
+	CommandType commandType;
 
 	/**
 	 * Returns the command type
@@ -93,8 +93,7 @@ public class PlayerCommand{
 	 * 
 	 * @param c		The Scanner to get additional information from player
 	 */
-	public PlayerCommand ( Scanner c){
-
+	public PlayerCommand (Scanner c){
 		//Loop until a valid command has been given
 		do{
 			System.out.println(PlayerCommand.getCommandOptions());
