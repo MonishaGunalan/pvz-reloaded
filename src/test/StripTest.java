@@ -5,21 +5,24 @@ import org.junit.Before;
 import org.junit.Test;
 
 import pvz.Field;
+import pvz.Level;
 import pvz.Strip;
 
 import static org.junit.Assert.*;
 import junit.framework.TestCase;
+
 /**
  * This class contains unit testing for all the methods in the class Strip
- * @author Monisha Gunalan
- * 100871444
- 
+ * 
+ * @author Monisha Gunalan 100871444
  */
 
 public class StripTest {
 
 	private Strip testStrip;
-	private Field testField1;
+	private Field testField1, testField2;
+	private Level testLevel1;
+	private String[] terrainType = { "mud", "grass", "grass", "grass", "mud" };
 
 	@Before
 	/**
@@ -27,7 +30,9 @@ public class StripTest {
 	 * @throws Exception
 	 */
 	public void setUp() throws Exception {
-		testStrip = new Strip("grass", 3, null);
+		testLevel1 = new Level(1);
+		testField1 = new Field(terrainType, testLevel1);
+		testStrip = new Strip("grass", 3, testField1);
 	}
 
 	/**
@@ -37,6 +42,15 @@ public class StripTest {
 	public void testGetField() {
 		assertSame("The field that contains the strip should be testField1",
 				testField1, testStrip.getField());
+	}
+
+	/**
+	 * Method to test 'getField' method in class Strip
+	 */
+	@Test
+	public void testGetField2() {
+		assertNotSame("The field that contains the strip should be testField1",
+				testField2, testStrip.getField());
 	}
 
 	/**
@@ -85,8 +99,13 @@ public class StripTest {
 				testStrip.getSquare(Field.DEFAULT_MAX_POSN));
 	}
 
-	@After
-	public void tearDown() throws Exception {
+	/**
+	 * Method to test 'getSquare' method in class Strip
+	 */
+	@Test
+	public void testGetSquare5() {
+		assertNotNull("The square in the requested position should be null.",
+				testStrip.getSquare(2));
 	}
 
 }
