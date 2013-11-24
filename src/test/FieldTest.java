@@ -1,9 +1,10 @@
 package test;
+
 /**
  * This class contains unit testing for all the methods in the class Field
  * @author Monisha Gunalan
  * 100871444
- 
+
  */
 
 import org.junit.After;
@@ -37,7 +38,7 @@ public class FieldTest {
 	 */
 	@Test
 	public void testGetLevel() {
-		assertEquals("Total strips in field should be" + testLevel + ".",
+		assertEquals("The field should be in level " + testLevel.getLevelNumber() + ".",
 				testLevel, testField.getLevel());
 	}
 
@@ -80,8 +81,6 @@ public class FieldTest {
 		assertEquals("Total sun points should be " + sunPoints + ".",
 				sunPoints, testField.getTotalSun());
 	}
-
-
 
 	/**
 	 * Method to test 'useSun' method in class Field
