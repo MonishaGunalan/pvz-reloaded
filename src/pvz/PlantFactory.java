@@ -1,14 +1,11 @@
 package pvz;
-/*
- * @author Chris Nguyen
- * 100793244
- * 
- */
+
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Collections;
 /**
- * This class represents the possible commands the Player could do
+ * Factory class for the Plant, it creates an instance of the plant needed
+ * using the mapping found in plantTable
  *
  * @author Christopher Nguyen
  * @version 1.0

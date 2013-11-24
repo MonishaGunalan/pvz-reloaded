@@ -48,7 +48,7 @@ public class Level extends Observable implements Observer, Serializable {
 	 *            level number
 	 */
 	public Level(int levelNumber) {
-		String fileName = "level" + levelNumber + ".txt";
+		String fileName = "rsrc/level" + levelNumber + ".txt";
 		this.levelNumber = levelNumber;
 		createZombieList();
 		String[] fieldRows = this.loadLevel(fileName, levelNumber);
@@ -206,6 +206,7 @@ public class Level extends Observable implements Observer, Serializable {
 				System.out.println("Putting a zombie on "
 						+ lastSquareInStrip.getLoc());
 				z.setSquare(lastSquareInStrip);
+				lastSquareInStrip.evaluateZombie(z);
 			}
 
 		}

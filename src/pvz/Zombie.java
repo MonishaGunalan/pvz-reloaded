@@ -1,4 +1,6 @@
 package pvz;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
 
 /**
@@ -147,6 +149,7 @@ public abstract class Zombie
 				return;
 			}
 			this.setSquare(dest);
+			this.getSquare().evaluateZombie(this);
 			// Trigger the CD
 			moveCD.trigger();
 		}

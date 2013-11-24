@@ -352,4 +352,19 @@ public class Square
 	public Strip getStrip() {
 		return this.strip;
 	}
+	
+	/**
+	 * Evaluates a specific zombie after it has been brought into the square
+	 * either by  move or  by spawn
+	 * @param z
+	 */
+	public void evaluateZombie(Zombie z){
+		List<Bullet> bulletList = new ArrayList<Bullet>(this.bullets);
+		for (Bullet b: bulletList){
+			b.hit(z);
+			if (z.getCurrentHP() <= 0){
+				break;
+			}
+		}
+	}
 }
