@@ -1,5 +1,6 @@
 package pvz;
 
+
 /**
  * This class implements the strip contained in the field Strips contains a list
  * of squares. Strips represent the rows of the field
@@ -78,11 +79,13 @@ public class Strip
 	 * 
 	 * @return a square in the requested position
 	 */
-	public Square getSquare(int posn) {
-		if (posn < 0 || posn >= Field.DEFAULT_MAX_POSN) {
+	public Square getSquare(int posn){
+		try{
+			return squares[posn];
+		}catch(ArrayIndexOutOfBoundsException ex) {
+			System.out.println("The requested position is  outside the field");
 			return null;
 		}
-		return squares[posn];
 	}
 
 	/**
