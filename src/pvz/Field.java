@@ -25,7 +25,7 @@ public class Field
 	/**
 	 * The default number of columns in a row
 	 */
-	public static final int DEFAULT_MAX_POSN = 5;
+	public static final int DEFAULT_MAX_POSN = 10;
 	/**
 	 * The number of periods before the field generates sun points
 	 */
