@@ -14,8 +14,10 @@ import java.util.Map;
 import javax.imageio.ImageIO;
 import javax.swing.JLabel;
 
+import pvz.Strip.Terrain;
+
 /**
- * The GUI representation of a square
+ * 
  * @author Christopher Nguyen
  *
  */
@@ -24,6 +26,8 @@ public class SquareLabel extends JLabel {
 	 * row of square
 	 */
 	private int row;
+	
+	private Square terrain;
 	/**
 	 * column of square
 	 */
@@ -115,13 +119,7 @@ public class SquareLabel extends JLabel {
 		int height = this.getHeight();
 		
 		
-		g.setColor(Color.YELLOW);//mud
-		g.drawRect(0, 0, this.getWidth(), this.getHeight());
-		
-		
 		// TODO:: change default of grass
-		g.setColor(Color.GREEN);
-		g.fillRect(0, 0, this.getWidth(), this.getHeight());
 		g.setColor(Color.BLACK);
 		g.drawRect(0, 0, this.getWidth(), this.getHeight());
 		// draw the plant
@@ -158,6 +156,22 @@ public class SquareLabel extends JLabel {
 	 */
 	public int getCol() {
 		return col;
+	}
+	
+	public SquareLabel getStrip(Strip.Terrain ter) {
+		SquareLabel s = null;
+		Graphics g = null;
+		switch (ter) {
+		case MUD:
+			g.setColor(Color.getHSBColor(156, 93, 82));//mud
+			g.drawRect(0, 0, this.getWidth(), this.getHeight());
+			break;
+		case GRASS:
+			g.setColor(Color.GREEN);
+			g.fillRect(0, 0, this.getWidth(), this.getHeight());
+			break;
+		}
+		return s;
 	}
 
 }

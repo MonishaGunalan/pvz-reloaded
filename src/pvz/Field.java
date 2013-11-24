@@ -61,10 +61,6 @@ public class Field
 	 */
 	private Strip[] strips;
 	
-	/**
-	 * The Mudstrips of the field
-	 */
-	private Strip[] mudStrips;
 
 	/**
 	 * @param TerrianType
@@ -75,10 +71,6 @@ public class Field
 		strips = new Strip[DEFAULT_MAX_ROW];
 		for (int i = 0; i < DEFAULT_MAX_ROW; i++) {
 			strips[i] = new Strip(terrainType[i], i, this);
-		}
-		mudStrips = new Strip[DEFAULT_MAX_ROW];
-		for (int i = 0; i < DEFAULT_MAX_ROW; i++) {
-			mudStrips[i] = new Strip(terrainType[i], i, this);
 		}
 		
 		// Reference to current level
