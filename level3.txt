@@ -1,5 +1,4 @@
 Level3
-17
 MUD 0
 GRASS 5
 18 normal
@@ -20,4 +19,5 @@ GRASS 6
 34 normal
 42 normal
 58 normal
-MUD	0
+62 normal
+MUD 0

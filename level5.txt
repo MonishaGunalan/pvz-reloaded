@@ -1,14 +1,13 @@
 Level5
-25
 GRASS 5
 10 normal
-32 polevaulting
+32 normal
 47 conehead
 60 normal
 70 normal
 GRASS 5
 19 normal
-38 polevaulting
+38 conehead
 50 normal
 69 normal
 75 normal
@@ -16,7 +15,7 @@ GRASS 5
 16 normal
 28 normal
 42 normal
-66 polevaulting
+66 conehead
 74 normal
 GRASS 5
 25 normal
