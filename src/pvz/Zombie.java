@@ -5,7 +5,7 @@ import java.util.Observable;
  * This class is the parent of all zombie types.<!-- --> It contains default information
  * shared by several of its subclasses.<!-- -->
  *
- * @author Tianming Zhuang
+ * @author Tianming Zhuang/Arzaan Irani
  * @version 1.0
  * @since 1.7
  */
@@ -19,7 +19,7 @@ public abstract class Zombie
 	/**
 	 * The Default attack trigger of zombie
 	 */
-	public static final int DEFAULT_ATTACK_TRIGGER = 0;
+	public static final int DEFAULT_ATTACK_TRIGGER = 2;
 	/**
 	 * The Default move trigger of zombie
 	 */
@@ -61,7 +61,7 @@ public abstract class Zombie
 	 * The type of zombies
 	 *
 	 */
-	public enum Type{ NORMAL; }
+	public enum Type{ NORMAL, CONE, FLAG; }
 
 	/**
 	 * Protected constructor initialing to defaults values
