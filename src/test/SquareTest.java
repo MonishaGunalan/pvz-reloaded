@@ -1,9 +1,10 @@
 package test;
+
 /**
  * This class contains unit testing for all the methods in the class Square
  * @author Monisha Gunalan
  * 100871444
- 
+
  */
 import static org.junit.Assert.*;
 
@@ -23,13 +24,12 @@ import pvz.SunflowerPlant;
 import pvz.Zombie;
 import pvz.Field.Direction;
 
-
 import junit.framework.TestCase;
 
 public class SquareTest {
 	private Square testSquare1, testSquare2, testSquare3, testSquare4;
 	private Zombie testZombie;
-	private Strip testStrip1;
+	private Strip testStrip1, testStrip2;
 	private Plant testPlant;
 	private Bullet testBullet;
 	private Field testField2;
@@ -42,7 +42,7 @@ public class SquareTest {
 	 * @throws Exception
 	 */
 	public void setUp() throws Exception {
-		
+
 		testLevel2 = new Level(1);
 		testField2 = new Field(terrainType, testLevel2);
 		testStrip1 = new Strip("grass", 3, testField2);
@@ -92,9 +92,22 @@ public class SquareTest {
 	 * the constructor
 	 */
 	@Test
-	public void testGetPlant() {
+	public void testGetPlant1() {
 		assertNull("The initial value of plant in square should be null.",
 				testSquare1.getPlant());
+	}
+
+	/**
+	 * Test Failure condition Test method getPlant in class square after adding
+	 * a plant
+	 * 
+	 */
+	@Test
+	public void testGetPlant2() {
+		testSquare3.add(testPlant);
+		assertNotNull(
+				"The value of the plant in the square should not be null.",
+				testSquare3.getPlant());
 	}
 
 	/**
@@ -102,9 +115,21 @@ public class SquareTest {
 	 * square yet so it returns a null
 	 */
 	@Test
-	public void testGetFirstZombie() {
+	public void testGetFirstZombie0() {
 		assertNull(
 				"The initial value of first zombie in square should be null.",
+				testSquare1.getFirstZombie());
+	}
+
+	/**
+	 * Test method getFirstZombie in class square. The test should not return
+	 * null after a zombie is added to the square
+	 */
+	@Test
+	public void testGetFirstZombie2() {
+		testSquare1.add(testZombie);
+		assertNotNull(
+				"The value of first zombie in square should not be null.",
 				testSquare1.getFirstZombie());
 	}
 
@@ -127,6 +152,18 @@ public class SquareTest {
 	public void testGetSquare1() {
 		assertSame("There should be a  square in requested direction.",
 				testStrip1.getSquare(2),
+				testStrip1.getSquare(3).getSquare(Field.Direction.LEFT));
+	}
+
+	/**
+	 * Test method getSquare in class square.getSquare method returns te nearest
+	 * square in the requested direction. The test fails if square returns
+	 * itself instead of returning the next square
+	 */
+	@Test
+	public void testGetSquare2() {
+		assertNotSame("There should be a  square in requested direction.",
+				testStrip1.getSquare(3),
 				testStrip1.getSquare(3).getSquare(Field.Direction.LEFT));
 	}
 
@@ -298,10 +335,20 @@ public class SquareTest {
 		assertSame("The strip should be testStrip1.", testStrip1,
 				testSquare3.getStrip());
 	}
+	
+
+	/**
+	 * Test method 'getStrip' in class square
+	 */
+	@Test
+	public void testGetStrip1() {
+		assertNotSame("The strip should be testStrip1.", testStrip2,
+				testSquare3.getStrip());
+	}
 
 	@After
 	public void tearDown() throws Exception {
-		
+
 	}
 
 }
