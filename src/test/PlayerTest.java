@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import pvz.Field;
+import pvz.GameModel;
 import pvz.Level;
 import pvz.Plant;
 import pvz.Player;

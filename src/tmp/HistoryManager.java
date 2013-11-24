@@ -1,6 +1,7 @@
-package pvz;
+package tmp;
 import java.util.Deque;
 import java.util.ArrayDeque;
+import pvz.*;
 public class HistoryManager {
 	private Deque<Level> undoStack;
 	private Deque<Level> redoStack;
@@ -31,7 +32,7 @@ public class HistoryManager {
 			undoStack.addFirst(savedLevel);
 			
 			// Pop from undo stack and set to current level
-			model.setLevel(redoStack.removeFirst());
+			//model.setLevel(redoStack.removeFirst());
 
 			return true;
 		}
@@ -55,7 +56,7 @@ public class HistoryManager {
 			redoStack.addFirst(savedLevel);
 			
 			// Pop from undo stack and set to current level
-			model.setLevel(undoStack.removeFirst());
+		//	model.setLevel(undoStack.removeFirst());
 
 			return true;
 		}
