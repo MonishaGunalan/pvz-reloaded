@@ -6,8 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.Observable;
-import java.util.Observer;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -21,15 +19,19 @@ import javax.swing.JPanel;
  * @author Christopher Nguyen
  * 
  */
+<<<<<<< HEAD
 public class GameFrame extends JFrame implements ActionListener, MouseListener, Observer {
 
 	/**
 	 * Option for when the level has finished
 	 */
 	String [] options = {"Next Level", "Save and Quit"};
+=======
+public class GameFrame extends JFrame implements ActionListener, MouseListener {
+>>>>>>> f694fafd71dbfcd3472f2407956741991afa4c06
 	private JPanel commandPanel, seedPanel, consolePanel, statusPanel;
 	/**
-	 * The panel that contains all the game object
+	 * The pannel that contains all the game object
 	 */
 	private GamePanel gamePanel;
 	/**
@@ -60,7 +62,7 @@ public class GameFrame extends JFrame implements ActionListener, MouseListener, 
 		// Initialize all the objects
 		model = new GameModel();
 		gamePanel = new GamePanel(this, model.getLevel());
-		model.addObserver(this);
+
 		commandPanel = new JPanel();
 		commandPanel.setLayout(new GridLayout(1, 4));
 
@@ -154,7 +156,6 @@ public class GameFrame extends JFrame implements ActionListener, MouseListener, 
 				// Set the selected plant to peashooter
 				plantMode = Plant.Type.PEASHOOTER;
 			} else if (((JButton) e.getSource()).getText().equals("Cancel")) {
-				plantMode = null;
 				hideSeedPanel();
 			}
 		}
@@ -219,6 +220,7 @@ public class GameFrame extends JFrame implements ActionListener, MouseListener, 
 			}
 			// Get the coordinates of the square and tell the model to plant in
 			// the location
+<<<<<<< HEAD
 			play(new PlayerCommand(	PlayerCommand.CommandType.PLANT_SEED, squareLabel.getRow(),	squareLabel.getCol(), s)); 
 		}
 	}
@@ -270,4 +272,23 @@ public class GameFrame extends JFrame implements ActionListener, MouseListener, 
 		repaint();
 	}
 
+=======
+			if (model.play(new PlayerCommand(
+					PlayerCommand.CommandType.PLANT_SEED, squareLabel.getRow(),
+					squareLabel.getCol(), s))) {
+				// if plant is successful update the board
+				updateLevel();
+				hideSeedPanel();
+				plantMode = null;
+			} else {
+				// TODO::Update the model with more meaningful error message
+				userMessage.setText("Error");
+			}
+			revalidate();
+			repaint();
+
+		}
+	}
+
+>>>>>>> f694fafd71dbfcd3472f2407956741991afa4c06
 }

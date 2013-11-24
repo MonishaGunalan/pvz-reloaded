@@ -6,13 +6,21 @@ package pvz;
 
 import java.util.Observer;
 import java.util.Observable;
+import java.io.Serializable;
 
 /**
  * @author Tianming
  *
  */
 public class SunGenerator 
-	implements Observer {
+	implements Observer, Serializable {
+	/**
+	 * Serialization UID
+	 * Do not change unless serialization with previous versions become
+	 * incompatible
+	 */
+	static final long serialVersionUID = 749710305764016775L;
+
 	private final int GEN_TRIGGER;
 	private final int GEN_AMT;
 

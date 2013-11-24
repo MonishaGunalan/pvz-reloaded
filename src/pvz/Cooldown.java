@@ -3,7 +3,16 @@ package pvz;
  * @author Tianming Zhuang
  * 100875151
  */
-public class Cooldown {
+import java.io.Serializable;
+public class Cooldown 
+	implements Serializable{
+	/**
+	 * Serialization UID
+	 * Do not change unless serialization with previous versions become
+	 * incompatible
+	 */
+	protected static final long serialVersionUID = 926265762751165555L;
+
 	/**
 	 *  Amount to trigger cd by
 	 */

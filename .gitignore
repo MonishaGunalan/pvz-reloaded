@@ -6,3 +6,11 @@
 *.war
 *.ear
 /bin
+/lib
+
+# Compile scripts
+compile-pvz
+compile-test
+main
+gui
+test

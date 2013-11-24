@@ -15,10 +15,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
+import java.io.Serializable;
 
 public class Level 
 	extends Observable
-	implements Observer {
+	implements Observer, Serializable {
+	/**
+	 * Serialization UID
+	 * Do not change unless serialization with previous versions become
+	 * incompatible
+	 */
+	static final long serialVersionUID = 4414314726650789404L;
 
 	/**
 	 * The current level number
@@ -40,10 +47,13 @@ public class Level
 	 * The list of zombies to be brought into the level
 	 */
 	private ArrayList<java.util.Map.Entry<Integer, Zombie>>[] zombieList;
+	/**
+	 * Model referecing this level
+	 */
+	//private GameModel model;
 
 	/**
-	 * instantiate a new field with field row and column
-	 * 
+	 * Constructor
 	 * @param levelNumber level number
 	 */
 	public Level(int levelNumber) {
@@ -178,6 +188,8 @@ public class Level
 		setChanged();
 		notifyObservers();
 		//	}
+		// Write turn to history
+		//model.writeHistory();
 	}
 
 	/**
@@ -215,5 +227,4 @@ public class Level
 	public Square getSquare(int row, int col){
 		return field.getStrip()[row].getSquare(col);
 	}
-
 }
