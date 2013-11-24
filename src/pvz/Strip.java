@@ -1,5 +1,5 @@
 package pvz;
-import java.io.Serializable;
+
 
 /**
  * This class implements the strip contained in the field Strips contains a list
@@ -7,7 +7,7 @@ import java.io.Serializable;
  * 
  * @author Monisha Gunalan 100871444
  */
-
+import java.io.Serializable;
 
 public class Strip
 	implements Serializable {
@@ -34,7 +34,14 @@ public class Strip
 	 * The field it is located in
 	 */
 	private Field field;
-
+	/**
+	 * The possible Terrains
+	 * 
+	 */
+	public enum Terrain {
+		MUD, GRASS;
+	}
+	
 	/**
 	 * Constructor - creates squares which are contained in a strip
 	 * 
@@ -57,7 +64,7 @@ public class Strip
 		}
 
 	}
-
+	
 	/**
 	 * 
 	 * @return return the field that contains this strip

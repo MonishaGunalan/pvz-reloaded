@@ -1,5 +1,4 @@
 package pvz;
-import java.io.Serializable;
 
 /**
  * Field contains a list of strips which in turn contains square this class
@@ -7,7 +6,7 @@ import java.io.Serializable;
  * 
  * @author Monisha Gunalan 100871444
  */
-
+import java.io.Serializable;
 
 public class Field
 	implements Serializable {
@@ -61,6 +60,11 @@ public class Field
 	 * The strips of the field
 	 */
 	private Strip[] strips;
+	
+	/**
+	 * The Mudstrips of the field
+	 */
+	private Strip[] mudStrips;
 
 	/**
 	 * @param TerrianType
@@ -72,7 +76,11 @@ public class Field
 		for (int i = 0; i < DEFAULT_MAX_ROW; i++) {
 			strips[i] = new Strip(terrainType[i], i, this);
 		}
-
+		mudStrips = new Strip[DEFAULT_MAX_ROW];
+		for (int i = 0; i < DEFAULT_MAX_ROW; i++) {
+			mudStrips[i] = new Strip(terrainType[i], i, this);
+		}
+		
 		// Reference to current level
 		this.level = level;
 
