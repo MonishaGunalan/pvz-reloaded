@@ -29,7 +29,7 @@ public class FieldTest {
 	 * @throws Exception
 	 */
 	public void setUp() throws Exception {
-		testLevel = new Level(1);
+		testLevel = new Level(2);
 		testField = new Field(terrainType, testLevel);
 	}
 

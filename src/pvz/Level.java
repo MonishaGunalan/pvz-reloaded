@@ -5,8 +5,7 @@ package pvz;
  * it keeps track of the current score, sun points and level
  *
  * @author Monisha Gunalan
- * @version 1.0
- * @since 1.7
+ * 100871444
  */
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -186,15 +185,14 @@ public class Level extends Observable implements Observer {
 	 * increment the turn number for ever user input
 	 */
 	public void incrementTurn() {
-		// if (turnNumber < numTurns) {
 		// Increment the turn
 		turnNumber++;
 		// Bring in new zombies and notify all observers that the turn has
-		// incremente
+		// incremented
 		bringNewZombiesIn();
 		setChanged();
 		notifyObservers();
-		// }
+		
 	}
 
 	/**
