@@ -44,11 +44,11 @@ public class GameFrame extends JFrame implements ActionListener, MouseListener, 
 	 * Labels display to user
 	 */
 	private JLabel sunLabel, scoreLabel, userMessage;
-	/*
+	/**
 	 * The game model
 	 */
 	private GameModel model;
-	/*
+	/**
 	 * Which plant is currently being selected
 	 */
 	private Plant.Type plantMode;
@@ -63,7 +63,7 @@ public class GameFrame extends JFrame implements ActionListener, MouseListener, 
 		// Initialize all the objects
 		model = new GameModel();
 		gamePanel = new GamePanel(this, model.getLevel());
-
+		model.addObserver(this);
 		commandPanel = new JPanel();
 		commandPanel.setLayout(new GridLayout(1, 4));
 
@@ -73,9 +73,9 @@ public class GameFrame extends JFrame implements ActionListener, MouseListener, 
 		doNothingButton = new JButton("Do Nothing");
 		doNothingButton.addActionListener(this);
 		undoButton = new JButton("Undo");
-		undoButton.setEnabled(false);
+		undoButton.addActionListener(this);
 		redoButton = new JButton("Redo");
-		redoButton.setEnabled(false);
+		redoButton.addActionListener(this);
 		commandPanel.add(plantButton);
 		commandPanel.add(undoButton);
 		commandPanel.add(redoButton);
@@ -157,6 +157,12 @@ public class GameFrame extends JFrame implements ActionListener, MouseListener, 
 				plantMode = Plant.Type.PEASHOOTER;
 			} else if (((JButton) e.getSource()).getText().equals("Cancel")) {
 				hideSeedPanel();
+			} else if(e.getSource() == redoButton){
+				play(new PlayerCommand(
+						PlayerCommand.CommandType.REDO, 0, 0, ""));
+			} else if(e.getSource() == undoButton){
+				play(new PlayerCommand(
+						PlayerCommand.CommandType.UNDO, 0, 0, ""));
 			}
 		}
 		revalidate();
@@ -179,9 +185,11 @@ public class GameFrame extends JFrame implements ActionListener, MouseListener, 
 	 */
 	public void hideSeedPanel() {
 		this.remove(seedPanel);
+		plantMode = null;
 		this.add(commandPanel, BorderLayout.NORTH);
 		revalidate();
 		repaint();
+
 	}
 
 	@Override
@@ -234,16 +242,16 @@ public class GameFrame extends JFrame implements ActionListener, MouseListener, 
 	public void update(Observable arg0, Object arg1) {
 		// TODO Auto-generated method stub
 		Player.PlayStatus status = (Player.PlayStatus)arg1;
+
 		switch(status){
 		case COOLDOWN_NOT_READY:
-			System.out.println("Got here cooldown");
 			JOptionPane.showMessageDialog(this, "Cooldown not ready");
 			break;
 		case GAMEOVER:
 			updateLevel();
 			if (plantMode != null){
 				hideSeedPanel();
-				plantMode = null;
+
 			}
 			int choice = JOptionPane.showConfirmDialog(this, "You have lost.\nWould you like to try the level again?");
 			if (choice == 0){
@@ -261,7 +269,6 @@ public class GameFrame extends JFrame implements ActionListener, MouseListener, 
 			updateLevel();
 			if (plantMode != null){
 				hideSeedPanel();
-				plantMode = null;
 			}
 			break;
 		case NOT_ENOUGH_SUN:
@@ -271,12 +278,15 @@ public class GameFrame extends JFrame implements ActionListener, MouseListener, 
 			updateLevel();
 			if (plantMode != null){
 				hideSeedPanel();
-				plantMode = null;
 			}
 			JOptionPane.showOptionDialog(this, "Congratulation on beating the level!!" , "Victory!!!", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 			break;
+		case COMMAND_FAILED:
+			JOptionPane.showMessageDialog(this, "Command Failed");
+			break;
 		default:
 			break;
+
 
 		}
 		revalidate();

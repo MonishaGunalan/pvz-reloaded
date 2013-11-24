@@ -3,10 +3,10 @@ MUD 0
 MUD 0
 GRASS 6
 10 normal
-15 normal
 20 normal
-25 normal
-27 normal
-29 normal
+30 normal
+40 normal
+50 normal
+60 normal
 MUD 0
 MUD 0

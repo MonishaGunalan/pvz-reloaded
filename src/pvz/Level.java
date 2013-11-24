@@ -1,12 +1,4 @@
 package pvz;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
-import java.io.Serializable;
 
 /**
  * The level keeps track of
@@ -15,7 +7,14 @@ import java.io.Serializable;
  * @author Monisha Gunalan
  * 100871444
  */
-
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
+import java.io.Serializable;
 
 public class Level extends Observable implements Observer, Serializable {
 	/**
@@ -126,22 +125,23 @@ public class Level extends Observable implements Observer, Serializable {
 									+ " config file");
 							System.exit(-1);
 						}
+						if (Strip.Terrain.MUD != null){
+							// read the terrian type for each row
+							fieldRows[i] = rowContents[0];
+							// read number of Zombies enetering a specic row
+							numZombieInRow[i] = Integer.parseInt(rowContents[1]);
 
-						// read the terrian type for each row
-						fieldRows[i] = rowContents[0];
-						// read number of Zombies enetering a specic row
-						numZombieInRow[i] = Integer.parseInt(rowContents[1]);
+							while (numZombieInRow[i] > 0) {
+								// read the turn number in which the Zombie enters
+								// the field and the type
+								String[] rowContents1 = bufferedReader.readLine()
+										.split(" ");
+								int turn = Integer.parseInt(rowContents1[0]);
+								String type = rowContents1[1];
+								spawnZombie(i, turn, type);
+								numZombieInRow[i]--;
 
-						while (numZombieInRow[i] > 0) {
-							// read the turn number in which the Zombie enters
-							// the field and the type
-							String[] rowContents1 = bufferedReader.readLine()
-									.split(" ");
-							int turn = Integer.parseInt(rowContents1[0]);
-							String type = rowContents1[1];
-							spawnZombie(i, turn, type);
-							numZombieInRow[i]--;
-
+							}
 						}
 					}
 				}
@@ -157,7 +157,7 @@ public class Level extends Observable implements Observer, Serializable {
 		}
 		return fieldRows;
 	}
-
+		
 	/**
 	 * @return level Number
 	 */
@@ -206,6 +206,7 @@ public class Level extends Observable implements Observer, Serializable {
 				System.out.println("Putting a zombie on "
 						+ lastSquareInStrip.getLoc());
 				z.setSquare(lastSquareInStrip);
+				lastSquareInStrip.evaluateZombie(z);
 			}
 
 		}

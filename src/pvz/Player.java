@@ -22,6 +22,7 @@ public class Player {
 		INVALID_POSITION,
 		COOLDOWN_NOT_READY,
 		INVALID_COMMAND,
+		COMMAND_FAILED,
 		NORMAL;
 	}
 	/**
@@ -110,11 +111,17 @@ public class Player {
 				break;
 
 			case UNDO:
-				model.undo();
-				break;
+				if (model.undo()){
+					return PlayStatus.NORMAL;
+				}else {
+					return PlayStatus.COMMAND_FAILED;
+				}
 			case REDO:
-				model.redo();
-				break;
+				if (model.redo()){
+					return PlayStatus.NORMAL;
+				}else {
+					return PlayStatus.COMMAND_FAILED;
+				}
 			case DO_NOTHING:
 				//Player does nothing that turn, just increment to the next turn
 				model.getLevel().incrementTurn();
