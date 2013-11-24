@@ -126,7 +126,6 @@ public class Player {
 				}
 			case REDO:
 				if (model.redo()){
-					System.out.println("Redo Successful");
 					return PlayStatus.NORMAL;
 				}else {
 					return PlayStatus.COMMAND_FAILED;

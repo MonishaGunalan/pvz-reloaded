@@ -15,7 +15,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JLabel;
 
 /**
- * 
+ * The GUI representation of a square
  * @author Christopher Nguyen
  *
  */
@@ -24,8 +24,6 @@ public class SquareLabel extends JLabel {
 	 * row of square
 	 */
 	private int row;
-	
-	private Square terrain;
 	/**
 	 * column of square
 	 */
@@ -116,7 +114,7 @@ public class SquareLabel extends JLabel {
 		int width = this.getWidth();
 		int height = this.getHeight();
 		
-
+		
 		g.setColor(Color.YELLOW);//mud
 		g.drawRect(0, 0, this.getWidth(), this.getHeight());
 		
