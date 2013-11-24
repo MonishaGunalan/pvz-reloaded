@@ -17,6 +17,8 @@ public class ZombieFactory {
 		Map<Zombie.Type, Class<? extends Zombie>> aTable = new HashMap<Zombie.Type, Class<? extends Zombie>>();
 
 		aTable.put(Zombie.Type.NORMAL, NormalZombie.class);
+		aTable.put(Zombie.Type.FLAG, FlagZombie.class);
+		aTable.put(Zombie.Type.CONE, ConeZombie.class);
 
 		zombieTable = Collections.unmodifiableMap(aTable);
 	}
