@@ -55,6 +55,10 @@ public class SquareLabel extends JLabel {
 			aTable.put(PeaShooterPlant.class, sampleImage);
 			sampleImage = ImageIO.read(new File("rsrc/Zombie.png"));
 			aTable.put(NormalZombie.class, sampleImage);
+			sampleImage = ImageIO.read(new File("rsrc/ConeZombie.png"));
+			aTable.put(ConeZombie.class, sampleImage);
+			sampleImage = ImageIO.read(new File("rsrc/FlagZombie.png"));
+			aTable.put(FlagZombie.class, sampleImage);
 			sampleImage = ImageIO.read(new File("rsrc/PeashooterBullet.png"));
 			aTable.put(PeaBullet.class, sampleImage);
 		} catch (IOException e) {
@@ -109,6 +113,12 @@ public class SquareLabel extends JLabel {
 		// TODO:: figure out if this belongs on instance scope
 		int width = this.getWidth();
 		int height = this.getHeight();
+		
+		
+		g.setColor(Color.YELLOW);//mud
+		g.drawRect(0, 0, this.getWidth(), this.getHeight());
+		
+		
 		// TODO:: change default of grass
 		g.setColor(Color.GREEN);
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
