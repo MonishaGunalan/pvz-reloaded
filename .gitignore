@@ -8,7 +8,7 @@
 /bin
 /lib
 
-# TM specific
+# Compile scripts
 compile-pvz
 compile-test
 main
