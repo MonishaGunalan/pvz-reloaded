@@ -6,7 +6,6 @@
 *.war
 *.ear
 /bin
-/lib
 
 # Compile scripts
 compile-pvz
