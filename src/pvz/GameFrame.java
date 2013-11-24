@@ -16,12 +16,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
- * This is the main entry point for the PVZ GUI
+ * 
+ * The frame and entry point for the PVZ GUI. The frame contains all the panels for selecting 
+ * plants and viewing the game itself
  * 
  * @author Christopher Nguyen
  * 
  */
-
 public class GameFrame extends JFrame implements ActionListener, MouseListener, Observer {
 
 	/**

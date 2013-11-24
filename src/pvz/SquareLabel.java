@@ -15,7 +15,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JLabel;
 
 /**
- * 
+ * The GUI representation of a square
  * @author Christopher Nguyen
  *
  */

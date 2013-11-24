@@ -12,7 +12,6 @@ import java.util.ArrayDeque;
 /**
  * The GameModel is the model for the Plant vs Zombie game
  * it is also the entry point for playing the game on text based
- *
  * @author Christopher Nguyen
  * @version 1.0
  * @since 1.7
