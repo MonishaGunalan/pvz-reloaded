@@ -3,8 +3,5 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="C:/Users/nthomas/Desktop/3110/pvz-reloaded/lib/com.springsource.org.hamcrest.core-1.1.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/nthomas/Desktop/3110/pvz-reloaded/lib/com.springsource.org.objenesis-1.0.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/nthomas/Desktop/3110/pvz-reloaded/lib/mockito-core-1.9.5.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
