@@ -1,5 +1,4 @@
 Level4
-23
 GRASS 4
 26 normal
 41 normal

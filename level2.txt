@@ -1,8 +1,7 @@
 Level2
-12
 MUD 0
 MUD 0
-GRASS 6
+GRASS 12
 10 normal
 15 normal
 20 normal
@@ -15,5 +14,5 @@ GRASS 6
 46 normal
 48 normal
 50 normal
-MUD	0
-MUD	0
+MUD 0
+MUD 0
