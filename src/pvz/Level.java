@@ -5,8 +5,7 @@ package pvz;
  * it keeps track of the current score, sun points and level
  *
  * @author Monisha Gunalan
- * @version 1.0
- * @since 1.7
+ * 100871444
  */
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -17,13 +16,10 @@ import java.util.Observable;
 import java.util.Observer;
 import java.io.Serializable;
 
-public class Level 
-	extends Observable
-	implements Observer, Serializable {
+public class Level extends Observable implements Observer, Serializable {
 	/**
-	 * Serialization UID
-	 * Do not change unless serialization with previous versions become
-	 * incompatible
+	 * Serialization UID Do not change unless serialization with previous
+	 * versions become incompatible
 	 */
 	static final long serialVersionUID = 4414314726650789404L;
 
@@ -40,24 +36,18 @@ public class Level
 	 */
 	private int turnNumber;
 	/**
-	 * The number of turns the level is supposed to finish by
-	 */
-	private int numTurns;
-	/**
 	 * The list of zombies to be brought into the level
 	 */
 	private ArrayList<java.util.Map.Entry<Integer, Zombie>>[] zombieList;
-	/**
-	 * Model referecing this level
-	 */
-	//private GameModel model;
 
 	/**
-	 * Constructor
-	 * @param levelNumber level number
+	 * Constructor instantiate a new field with field row and column
+	 * 
+	 * @param levelNumber
+	 *            level number
 	 */
 	public Level(int levelNumber) {
-		String fileName = "level" + levelNumber +".txt";
+		String fileName = "level" + levelNumber + ".txt";
 		this.levelNumber = levelNumber;
 		createZombieList();
 		String[] fieldRows = this.loadLevel(fileName, levelNumber);
@@ -77,19 +67,22 @@ public class Level
 
 	}
 
-
 	/**
 	 * Create Zombies in the specified row#
 	 * 
-	 * @param row row number of the field
+	 * @param row
+	 *            row number of the field
 	 * 
-	 * @param turn the turn in which the Zombie enters the field
+	 * @param turn
+	 *            the turn in which the Zombie enters the field
 	 * 
-	 * @param type the type of the zombie
+	 * @param type
+	 *            the type of the zombie
 	 */
 	public void spawnZombie(int row, int turn, String type) {
-		if (row <0 || row >= Field.DEFAULT_MAX_ROW || turn <0  || type == null){
-			throw new IllegalArgumentException("Wrong paremeters passed for spawning zombie");
+		if (row < 0 || row >= Field.DEFAULT_MAX_ROW || turn < 0 || type == null) {
+			throw new IllegalArgumentException(
+					"Wrong paremeters passed for spawning zombie");
 		}
 		Zombie.Type zombieType = Zombie.Type.valueOf(type.toUpperCase());
 		Zombie z = ZombieFactory.makeZombie(zombieType);
@@ -99,9 +92,11 @@ public class Level
 	/**
 	 * Read File to get the information about this level
 	 * 
-	 * @param fileName the name of the file which contains level information
+	 * @param fileName
+	 *            the name of the file which contains level information
 	 * 
-	 * @param levelNumber level number
+	 * @param levelNumber
+	 *            level number
 	 */
 	public String[] loadLevel(String fileName, int levelNumber) {
 		// This will reference one line at a time
@@ -119,16 +114,23 @@ public class Level
 
 			while ((line = bufferedReader.readLine()) != null) {
 				if (line.equals(readLevel)) {
-					// total turns allowed for the user to play
-					numTurns = Integer.parseInt(bufferedReader.readLine());
 
 					for (int i = 0; i < Field.DEFAULT_MAX_ROW; i++) {
 						String[] rowContents = bufferedReader.readLine().split(
 								" ");
+						if (rowContents.length <= 1) {
+							// Something must be wrong with the level config
+							// file
+							System.out.println("Invalid level " + levelNumber
+									+ " config file");
+							System.exit(-1);
+						}
+
 						// read the terrian type for each row
 						fieldRows[i] = rowContents[0];
 						// read number of Zombies enetering a specic row
 						numZombieInRow[i] = Integer.parseInt(rowContents[1]);
+
 						while (numZombieInRow[i] > 0) {
 							// read the turn number in which the Zombie enters
 							// the field and the type
@@ -180,16 +182,13 @@ public class Level
 	 * increment the turn number for ever user input
 	 */
 	public void incrementTurn() {
-		//if (turnNumber < numTurns) {
-		//Increment the turn
+		// Increment the turn
 		turnNumber++;
-		//Bring in new zombies and notify all observers that the turn has incremente 
+		// Bring in new zombies and notify all observers that the turn has
+		// incremented
 		bringNewZombiesIn();
 		setChanged();
 		notifyObservers();
-		//	}
-		// Write turn to history
-		//model.writeHistory();
 	}
 
 	/**
@@ -197,11 +196,14 @@ public class Level
 	 */
 	public void bringNewZombiesIn() {
 		for (int i = 0; i < Field.DEFAULT_MAX_ROW; i++) {
-			if (!zombieList[i].isEmpty() && zombieList[i].get(0).getKey() == turnNumber) {
+			if (!zombieList[i].isEmpty()
+					&& zombieList[i].get(0).getKey() == turnNumber) {
 				Zombie z = zombieList[i].remove(0).getValue();
 				addObserver(z);
-				Square lastSquareInStrip = this.field.getStrip()[i].getSquares()[Field.DEFAULT_MAX_POSN - 1];
-				System.out.println("Putting a zombie on " + lastSquareInStrip.getLoc());
+				Square lastSquareInStrip = this.field.getStrip()[i]
+						.getSquares()[Field.DEFAULT_MAX_POSN - 1];
+				System.out.println("Putting a zombie on "
+						+ lastSquareInStrip.getLoc());
 				z.setSquare(lastSquareInStrip);
 			}
 
@@ -217,14 +219,17 @@ public class Level
 			System.out.println("Zombie ate your brains!");
 		}
 	}
-	
+
 	/**
 	 * Gets a square based on the row and col position
-	 * @param row The row to get the square from
-	 * @param col The col to get the square from
+	 * 
+	 * @param row
+	 *            The row to get the square from
+	 * @param col
+	 *            The col to get the square from
 	 * @return The square
 	 */
-	public Square getSquare(int row, int col){
+	public Square getSquare(int row, int col) {
 		return field.getStrip()[row].getSquare(col);
 	}
 }
