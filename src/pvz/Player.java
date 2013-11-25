@@ -29,32 +29,24 @@ public class Player {
 	 * The starting score;
 	 */
 	public final int START_SCORE = 0;
-
 	/**
 	 * The current score of the player (Not implemented)
 	 */
 	private int score;
 	/**
-	 * The current level the player is playing
-	 */
-	private Level level;
-	/**
 	 * Model in charge of this game
 	 */
 	private GameModel model;
-
 	/**
 	 * This map contains the mapping of all plant type to their active cooldown
 	 */
 	private Map<Plant.Type, Cooldown> triggeredCooldowns;
 
-
 	/**
 	 * public constructor for player
-	 * @param level	The level the player starts at
+	 * @param The model the player is interacting with
 	 */
-	public Player(Level level, GameModel model){
-		this.level = level;
+	public Player(GameModel model){
 		this.model = model;
 
 		triggeredCooldowns = new HashMap<Plant.Type, Cooldown>();
@@ -74,11 +66,11 @@ public class Player {
 		Scanner c = new Scanner(System.in);
 		while (true){
 			//Get the player command
-			System.out.println("Current Sun Points: " + level.getField().getTotalSun());
+			System.out.println("Current Sun Points: " + model.getLevel().getField().getTotalSun());
 			PlayerCommand command = getPlayerCommand(c);
 			//call the helper method
 			play(command);
-			System.out.println(level.getField().toString());
+			System.out.println(model.getLevel().getField().toString());
 		}
 	}
 
@@ -111,7 +103,7 @@ public class Player {
 				}
 				//increment turn if the grow was successful
 				if (growSuccessful == PlayStatus.NORMAL){
-					level.incrementTurn();
+					model.getLevel().incrementTurn();
 					triggerCooldowns();
 				} else{
 					return growSuccessful;
@@ -132,14 +124,14 @@ public class Player {
 				}
 			case DO_NOTHING:
 				//Player does nothing that turn, just increment to the next turn
-				level.incrementTurn();
+				model.getLevel().incrementTurn();
 				triggerCooldowns();
 				break;
 			default:
 		}
-		//if (level.isGameOver())
+		//if (model.getLevel().isGameOver())
 		//return PlayStatus.GAME_OVER;
-		//}else if (level.isVictoious())
+		//}else if (model.getLevel().isVictoious())
 		//return PlayStatus.victory
 		//else{
 		return PlayStatus.NORMAL;
@@ -173,14 +165,14 @@ public class Player {
 		}
 
 		// Get reference to indicated square
-		Square square = level.getSquare(row, col);
+		Square square = model.getLevel().getSquare(row, col);
 
 		// Check if it can be plant in the location
 		if (square.hasPlant()){
 			// Occupied square
 			System.out.println("There is already a plant present in the square!");
 			return Player.PlayStatus.INVALID_POSITION;
-		} else if (plantCost > level.getField().getTotalSun()){
+		} else if (plantCost > model.getLevel().getField().getTotalSun()){
 			// Not enough sun
 			System.out.println("Insufficient funds!");
 			return Player.PlayStatus.NOT_ENOUGH_SUN;
@@ -192,8 +184,8 @@ public class Player {
 			System.out.println("Plant Created");
 			System.out.println(plant.getClass().getName());
 			System.out.println("Using " + plantCost + " amount of sun.");
-			level.getField().useSun(plantCost);
-			level.addObserver(plant);
+			model.getLevel().getField().useSun(plantCost);
+			model.getLevel().addObserver(plant);
 			triggeredCooldowns.get(plantType).trigger();
 			return Player.PlayStatus.NORMAL;
 		}
@@ -219,7 +211,7 @@ public class Player {
 
 		try {
 			BufferedWriter out = new BufferedWriter(new FileWriter(GameModel.playerDataFileLocation));
-			out.write(level.getLevelNumber());
+			out.write(model.getLevel().getLevelNumber());
 			out.write(score);
 			out.close();
 		} catch (IOException e) {
