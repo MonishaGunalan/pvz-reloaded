@@ -4,10 +4,9 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.Observable;
 import java.util.Observer;
-import java.io.Serializable;
 
 /**
  * The level keeps track of it keeps track of the current score, sun points and
@@ -43,7 +42,6 @@ public class Level extends Observable implements Observer, Serializable {
 	 * The list of zombies to be brought into the level
 	 */
 	private ZombieRow[] zombieList;
-	private ArrayList<java.util.Map.Entry<Integer, Zombie>>[] zombieList;
 	/**
 	 * Win if all zombies are dead. Lose
 	 * conditions are checked first.
@@ -64,14 +62,12 @@ public class Level extends Observable implements Observer, Serializable {
 	public Level(int levelNumber) {
 		String fileName = "rsrc/level" + levelNumber + ".txt";
 		this.levelNumber = levelNumber;
+		turnNumber = 0;
+		totalZombies = 0;
+		hasLost = false;
 		createZombieList();
 		String[] fieldRows = this.loadLevel(fileName, levelNumber);
 		field = new Field(fieldRows, this);
-		turnNumber = 0;
-		totalZombies = 0;
-		// Win/lose
-		hasWon = false;
-		hasLost = false;
 	}
 
 	/**
@@ -224,7 +220,7 @@ public class Level extends Observable implements Observer, Serializable {
 		for (int i = 0; i < Field.DEFAULT_MAX_ROW; i++) {
 			if (!zombieList[i].isEmpty()) {
 				Zombie z = zombieList[i].getZombie(turnNumber);
-				if(z == null){
+				if (z == null) {
 					break;
 				}
 				addObserver(z);
@@ -242,17 +238,13 @@ public class Level extends Observable implements Observer, Serializable {
 	 * Update method from zombie if it has reached the end
 	 */
 	public void update(Observable o, Object arg) {
-		if (arg instanceof Zombie) {
-			// Zombie has reached end strip moving left. Handle here
-			//System.out.println("Zombie ate your brains!");
-			hasLost = true;
-		} else if (arg instanceof String) {
+		if (arg instanceof String) {
 			String s = (String)arg;
 			switch (s) {
-				case "zombie died":
-					totalZombies--;
-				case default:
-					break;
+				case "zombie won": hasLost = true;
+								   break;
+				case "zombie died": totalZombies--;
+									break;
 			}
 		}
 	}
@@ -274,6 +266,7 @@ public class Level extends Observable implements Observer, Serializable {
 	 * @return totalZombies The total number of Zombies
 	 */
 	public int getTotalZombies() {
+		//System.out.println("getTotalZombies = " + totalZombies);
 		return totalZombies;
 	}
 
