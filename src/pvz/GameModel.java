@@ -17,8 +17,7 @@ import java.util.ArrayDeque;
  * @version 1.0
  * @since 1.7
  */
-public class GameModel 
-	extends Observable {
+public class GameModel extends Observable {
 	/**
 	 * The Player playing the game
 	 */

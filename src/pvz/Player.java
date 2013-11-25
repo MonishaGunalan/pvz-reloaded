@@ -211,23 +211,6 @@ public class Player {
 
 
 	/**
-	 * Save the player state Not used
-	 */
-	public void save(){
-
-		try {
-			BufferedWriter out = new BufferedWriter(new FileWriter(GameModel.playerDataFileLocation));
-			out.write(model.getLevel().getLevelNumber());
-			out.write(score);
-			out.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
-
-	/**
 	 * Setter method for score
 	 * @param score
 	 */
