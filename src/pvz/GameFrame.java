@@ -62,7 +62,7 @@ public class GameFrame extends JFrame implements ActionListener, MouseListener, 
 
 		// Initialize all the objects
 		model = new GameModel();
-		gamePanel = new GamePanel(this, model.getLevel());
+		gamePanel = new GamePanel(this, model);
 		model.addObserver(this);
 		commandPanel = new JPanel();
 		commandPanel.setLayout(new GridLayout(1, 4));

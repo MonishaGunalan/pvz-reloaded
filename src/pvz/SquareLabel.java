@@ -26,8 +26,7 @@ public class SquareLabel extends JLabel {
 	 * row of square
 	 */
 	private int row;
-	
-	private Square terrain;
+
 	/**
 	 * column of square
 	 */
@@ -44,6 +43,10 @@ public class SquareLabel extends JLabel {
 	 * The type of plant in the square
 	 */
 	private Class<? extends Plant> type;
+	/**
+	 * The terrain of the square
+	 */
+	private Strip.Terrain terrainType;
 	/**
 	 * Mapping of classes to images
 	 */
@@ -78,11 +81,13 @@ public class SquareLabel extends JLabel {
 	 * @param row
 	 * @param col
 	 */
-	public SquareLabel(int row, int col) {
+	public SquareLabel(int row, int col, Square square) {
 		this.row = row;
 		this.col = col;
 		zombieList = new ArrayList<Class<? extends Zombie>>();
 		bulletList = new ArrayList<Class<? extends Bullet>>();
+		updateSquare(square);
+		//this.terrainType = square.getStrip().getTerrain();
 	}
 
 	/**
@@ -114,12 +119,11 @@ public class SquareLabel extends JLabel {
 	 * Paint the square with the appropriate images
 	 */
 	public void paintComponent(Graphics g) {
-		// TODO:: figure out if this belongs on instance scope
 		int width = this.getWidth();
 		int height = this.getHeight();
 		
+		//Check what type of terrain it is here then draws it
 		
-		// TODO:: change default of grass
 		g.setColor(Color.BLACK);
 		g.drawRect(0, 0, this.getWidth(), this.getHeight());
 		// draw the plant

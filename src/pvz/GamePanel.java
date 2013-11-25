@@ -17,23 +17,23 @@ public class GamePanel extends JPanel {
 	/**
 	 * The model of the panel
 	 */
-	private Level level;
+	private GameModel model;
 
 	/**
 	 * Creates the grid and assigns a mouseListener to the labels
 	 * @param mouseListener
 	 * @param level
 	 */
-	public GamePanel(MouseListener mouseListener, Level level){
+	public GamePanel(MouseListener mouseListener, GameModel model){
 		super();
-		this.level = level;
+		this.model = model;
 		this.setLayout(new GridLayout(Field.DEFAULT_MAX_ROW,Field.DEFAULT_MAX_POSN));
 		grid = new SquareLabel[Field.DEFAULT_MAX_ROW][Field.DEFAULT_MAX_POSN];
 		
 		for (int i =0; i <Field.DEFAULT_MAX_ROW; i++){
+			Strip strip = model.getLevel().getField().getStrip()[i];
 			for (int j =0; j< Field.DEFAULT_MAX_POSN; j++){
-				grid[i][j] = new SquareLabel(i,j);
-				//Set to null for now
+				grid[i][j] = new SquareLabel(i,j,strip.getSquare(j));
 				grid[i][j].addMouseListener(mouseListener);
 				this.add(grid[i][j]);
 			}
@@ -45,7 +45,7 @@ public class GamePanel extends JPanel {
 	 */
 	public void updateLevel(){
 		for (int i =0; i < Field.DEFAULT_MAX_ROW; i++){
-			Strip strip = level.getField().getStrip()[i];
+			Strip strip = model.getLevel().getField().getStrip()[i];
 			for (int j = 0; j < Field.DEFAULT_MAX_POSN; j++){
 				grid[i][j].updateSquare(strip.getSquare(j));
 				grid[i][j].repaint();
