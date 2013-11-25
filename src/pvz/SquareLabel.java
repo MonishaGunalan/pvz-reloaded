@@ -18,7 +18,7 @@ import pvz.Strip.Terrain;
 
 /**
  * 
- * @author Christopher Nguyen
+ * @author Christopher Nguyen / Arzaan Irani
  *
  */
 public class SquareLabel extends JLabel {
@@ -119,11 +119,24 @@ public class SquareLabel extends JLabel {
 
 	/**
 	 * Paint the square with the appropriate images
+	 * 
+	 * @param g
 	 */
 	public void paintComponent(Graphics g) {
 		int width = this.getWidth();
 		int height = this.getHeight();
 		
+		switch (terrainType) {
+		case MUD:
+			g.setColor(Color.getHSBColor(156, 93, 82));//mud
+			g.drawRect(0, 0, this.getWidth(), this.getHeight());
+			break;
+		case GRASS:
+			g.setColor(Color.GREEN);
+			g.fillRect(0, 0, this.getWidth(), this.getHeight());
+			break;
+		}
+			
 		//Check what type of terrain it is here then draws it
 		
 		g.setColor(Color.BLACK);
@@ -164,20 +177,6 @@ public class SquareLabel extends JLabel {
 		return col;
 	}
 	
-	public SquareLabel getStrip(Strip.Terrain ter) {
-		SquareLabel s = null;
-		Graphics g = null;
-		switch (ter) {
-		case MUD:
-			g.setColor(Color.getHSBColor(156, 93, 82));//mud
-			g.drawRect(0, 0, this.getWidth(), this.getHeight());
-			break;
-		case GRASS:
-			g.setColor(Color.GREEN);
-			g.fillRect(0, 0, this.getWidth(), this.getHeight());
-			break;
-		}
-		return s;
-	}
+
 
 }

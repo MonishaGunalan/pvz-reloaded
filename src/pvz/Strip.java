@@ -5,7 +5,7 @@ package pvz;
  * This class implements the strip contained in the field Strips contains a list
  * of squares. Strips represent the rows of the field
  * 
- * @author Monisha Gunalan 100871444
+ * @author Monisha Gunalan 100871444 / Arzaan Irani 100826631
  */
 import java.io.Serializable;
 
@@ -28,27 +28,29 @@ public class Strip
 	 * The squares in the strip
 	 */
 	private Square[] squares;
-	/**
-	 * The terrain type of the strip
-	 */
-	private String terrain;
+	
 	/**
 	 * The field it is located in
 	 */
 	private Field field;
 	/**
 	 * The possible Terrains
-	 * 
 	 */
 	public enum Terrain {
 		MUD, GRASS;
 	}
 	
 	/**
+	 * Terrains
+	 */
+	private Terrain terrain;
+	
+	
+	/**
 	 * Constructor - creates squares which are contained in a strip
 	 * 
 	 * @param terrain
-	 *            the terrain type of the field
+	 *            the  enum type of terrain
 	 * 
 	 * @param fieldRow
 	 *            the index of the strip in a field
@@ -58,11 +60,11 @@ public class Strip
 	 */
 	public Strip(String terrain, int fieldRow, Field field) {
 		this.fieldRow = fieldRow;
-		this.terrain = terrain;
+		this.terrain = Terrain.valueOf(terrain);
 		this.field = field;
 		squares = new Square[Field.DEFAULT_MAX_POSN];
 		for (int j = 0; j < Field.DEFAULT_MAX_POSN; j++) {
-			squares[j] = new Square(terrain, fieldRow, j, this);
+			squares[j] = new Square(fieldRow, j, this);
 		}
 
 	}
@@ -109,8 +111,13 @@ public class Strip
 		return s;
 	}
 
+	/**
+	 * Gets the Terrain
+	 * 
+	 * @return
+	 */
 	public Terrain getTerrain() {
-		return null;
+		return this.terrain;
 	}
 
 }
