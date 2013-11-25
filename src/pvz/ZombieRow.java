@@ -1,5 +1,6 @@
 package pvz;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -10,7 +11,7 @@ import java.util.Iterator;
  * @author Monisha Gunalan 100871444
  */
 
-public class ZombieRow {
+public class ZombieRow implements Serializable{
 
 	/**
 	 * The list of ZombieTurns in in this row
