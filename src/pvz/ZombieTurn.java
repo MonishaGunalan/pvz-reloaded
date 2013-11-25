@@ -1,5 +1,7 @@
 package pvz;
 
+import java.io.Serializable;
+
 /**
  * The class represents the object which has the zombie and its turn to spawn on
  * the field
@@ -7,7 +9,7 @@ package pvz;
  * @author Monisha Gunalan 100871444
  */
 
-public class ZombieTurn {
+public class ZombieTurn implements Serializable{
 	/**
 	 * Turn number of the Zombie at which it should spawn
 	 */
