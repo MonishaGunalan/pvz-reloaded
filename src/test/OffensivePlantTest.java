@@ -1,12 +1,10 @@
 package test;
-import static org.mockito.Mockito.*;
 import static org.junit.Assert.*;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
 import pvz.Field;
+import pvz.GameModel;
 import pvz.Level;
 import pvz.OffensivePlant;
 import pvz.Square;
@@ -23,20 +21,28 @@ public class OffensivePlantTest {
 	OffensivePlant plant;
 
 	Strip strip;
-	Zombie mockZombie;
-	Field mockField;
-	Level mockLevel;
+	Zombie zombie;
+	Field field;
+	Level level;
 
 	@Before
 	public void setUp() throws Exception {
 		//Mock the clases so we do not have to worry about the implemenation of the classes
-		mockLevel = mock(Level.class);
-		mockField = mock(Field.class);
-		when(mockLevel.getField()).thenReturn(mockField);
-		when(mockField.getLevel()).thenReturn(mockLevel);
-		mockZombie = mock(Zombie.class);
-		strip = new Strip(null, 0, mockField);
-		strip.getSquare(5).add(mockZombie);
+		GameModel model = new GameModel();
+		level = model.getLevel();
+		field = level.getField();
+		strip = field.getStrip()[0];
+
+		zombie = new Zombie(2){
+
+			@Override
+			public Type getType() {
+				// TODO Auto-generated method stub
+				return null;
+			}
+			
+		};
+		strip.getSquare(5).add(zombie);
 		plant = new OffensivePlant(10, strip.getSquare(0) ){
 
 		};

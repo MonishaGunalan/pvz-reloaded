@@ -12,6 +12,10 @@ import java.util.ArrayDeque;
 /**
  * The GameModel is the model for the Plant vs Zombie game
  * it is also the entry point for playing the game on text based
+ *
+ * This class observes its Level so it writes to history
+ * each turn.
+ *
  * @author Christopher Nguyen
  * @version 1.0
  * @since 1.7
@@ -57,7 +61,7 @@ public class GameModel  extends Observable
 				int levelNum = Integer.parseInt(reader.readLine());
 				int score =  Integer.parseInt(reader.readLine());
 				level = new Level(levelNum);
-				player = new Player(level, this);
+				player = new Player(this);
 				player.setScore(score);
 			} catch (NumberFormatException e ) {
 				// TODO Auto-generated catch block
@@ -68,7 +72,7 @@ public class GameModel  extends Observable
 		} else {
 			//If no file exists initialize with level 1
 			level = new Level(1);
-			player = new Player(level, this);	
+			player = new Player(this);	
 		}
 		System.out.println("initializing deques...");
 
@@ -78,8 +82,6 @@ public class GameModel  extends Observable
 		// Register this to level so it knows when turn increments
 		// for history writing
 		level.addObserver(this);
-
-
 	}	
 
 	/**
