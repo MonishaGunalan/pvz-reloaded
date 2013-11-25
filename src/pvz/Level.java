@@ -9,12 +9,12 @@ import java.util.Observable;
 import java.util.Observer;
 
 /**
- * The level keeps track of it keeps track of the current score, sun points and
- * level
- * 
- * @author Monisha Gunalan 100871444
+ * The level keeps track of
+ * it keeps track of the current score, sun points and level
+ *
+ * @author Monisha Gunalan
+ * 100871444
  */
-
 public class Level extends Observable implements Observer, Serializable {
 	/**
 	 * Serialization UID Do not change unless serialization with previous
@@ -42,11 +42,6 @@ public class Level extends Observable implements Observer, Serializable {
 	 * The list of zombies to be brought into the level
 	 */
 	private ZombieRow[] zombieList;
-	/**
-	 * Win if all zombies are dead. Lose
-	 * conditions are checked first.
-	 */
-	private boolean hasWon;
 	/**
 	 * Lose if a zombie reaches are end of a strip. Lose
 	 * conditions are checked first.
@@ -79,7 +74,6 @@ public class Level extends Observable implements Observer, Serializable {
 		for (int i = 0; i < Field.DEFAULT_MAX_ROW; i++) {
 			zombieList[i] = new ZombieRow();
 		}
-
 	}
 
 	/**
@@ -148,8 +142,7 @@ public class Level extends Observable implements Observer, Serializable {
 							numZombieInRow[i] = Integer
 									.parseInt(rowContents[1]);
 							totalZombies += Integer.parseInt(rowContents[1]);
-							System.out
-									.println("totalZombies = " + totalZombies);
+							//System.out.println("totalZombies = " + totalZombies);
 
 							while (numZombieInRow[i] > 0) {
 								// read the turn number in which the Zombie
@@ -220,16 +213,14 @@ public class Level extends Observable implements Observer, Serializable {
 		for (int i = 0; i < Field.DEFAULT_MAX_ROW; i++) {
 			if (!zombieList[i].isEmpty()) {
 				Zombie z = zombieList[i].getZombie(turnNumber);
-				if (z == null) {
-					break;
-				}
-				addObserver(z);
-				Square lastSquareInStrip = this.field.getStrip()[i]
+				if (z != null) {
+					addObserver(z);
+					Square lastSquareInStrip = this.field.getStrip()[i]
 						.getSquares()[Field.DEFAULT_MAX_POSN - 1];
-				System.out.println("Putting a zombie on "
-						+ lastSquareInStrip.getLoc());
-				z.setSquare(lastSquareInStrip);
-				lastSquareInStrip.evaluateZombie(z);
+					//System.out.println("Putting a zombie on " + lastSquareInStrip.getLoc());
+					z.setSquare(lastSquareInStrip);
+					lastSquareInStrip.evaluateZombie(z);
+				}
 			}
 		}
 	}
@@ -241,9 +232,9 @@ public class Level extends Observable implements Observer, Serializable {
 		if (arg instanceof String) {
 			String s = (String)arg;
 			switch (s) {
-				case "zombie won": hasLost = true;
-								   break;
 				case "zombie died": totalZombies--;
+									break;
+				case "zombie won": hasLost = true;
 									break;
 			}
 		}
@@ -270,4 +261,21 @@ public class Level extends Observable implements Observer, Serializable {
 		return totalZombies;
 	}
 
+	/**
+	 * Checks lose conditions.
+	 * @return True is the a zombie has reached the
+	 * end of a strip.
+	 */
+	public boolean isGameOver() {
+		return hasLost;
+	}
+
+	/**
+	 * Checks win conditions.
+	 * @return True is the user has killed all the 
+	 * zombies in the level
+	 */
+	public boolean isVictorious() {
+		return totalZombies == 0;
+	}
 }

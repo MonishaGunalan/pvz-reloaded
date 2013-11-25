@@ -140,11 +140,11 @@ public class Field
 	 */
 	public void useSun(int amt) {
 		int currentSunPoints = getTotalSun();
-		System.out.println("before sun:" + getTotalSun());
+		//System.out.println("before sun:" + getTotalSun());
 		if (currentSunPoints >= amt) {
 			this.totalSun -= amt;
 		}
-		System.out.println("after sun:" + getTotalSun());
+		//System.out.println("after sun:" + getTotalSun());
 	}
 
 }
