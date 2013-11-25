@@ -7,8 +7,10 @@
 *.ear
 /bin
 /lib
+/html
 
 # Compile scripts
+generate-docs
 compile-pvz
 compile-test
 main
