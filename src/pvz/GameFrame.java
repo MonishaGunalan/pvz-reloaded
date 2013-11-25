@@ -20,7 +20,7 @@ import javax.swing.JPanel;
  * The frame and entry point for the PVZ GUI. The frame contains all the panels for selecting 
  * plants and viewing the game itself
  * 
- * @author Christopher Nguyen
+ * @author Christopher Nguyen / Arzaan irani (Implemented wallnut)
  * 
  */
 public class GameFrame extends JFrame implements ActionListener, MouseListener, Observer {
@@ -39,7 +39,7 @@ public class GameFrame extends JFrame implements ActionListener, MouseListener, 
 	 * Buttons that allow user intraction
 	 */
 	private JButton plantButton, doNothingButton, undoButton, redoButton,
-	sunflowerButton, peashooterButton, cancelButton;
+	sunflowerButton, peashooterButton,wallnutButton, cancelButton;
 	/**
 	 * Labels display to user
 	 */
@@ -124,10 +124,15 @@ public class GameFrame extends JFrame implements ActionListener, MouseListener, 
 				+ PlantFactory.getCost(Plant.Type.PEASHOOTER) + "</html>");
 		peashooterButton.addActionListener(this);
 		seedPanel.add(peashooterButton);
+		wallnutButton = new JButton("<html>Wallnut<br>sun: "
+				+ PlantFactory.getCost(Plant.Type.WALLNUT) + "</html>");
+		wallnutButton.addActionListener(this);
+		seedPanel.add(wallnutButton);
 		JButton button = new JButton("Cancel");
 		button.addActionListener(this);
 		seedPanel.add(button);
 
+		seedPanel.add(new JLabel(""));
 		seedPanel.add(new JLabel(""));
 		seedPanel.add(new JLabel(""));
 
@@ -155,6 +160,9 @@ public class GameFrame extends JFrame implements ActionListener, MouseListener, 
 			} else if (e.getSource() == peashooterButton) {
 				// Set the selected plant to peashooter
 				plantMode = Plant.Type.PEASHOOTER;
+			} else if (e.getSource() == wallnutButton) {
+				// Set the selected plant to wallnut
+				plantMode = Plant.Type.WALLNUT;
 			} else if (((JButton) e.getSource()).getText().equals("Cancel")) {
 				hideSeedPanel();
 			} else if(e.getSource() == redoButton){
@@ -224,6 +232,9 @@ public class GameFrame extends JFrame implements ActionListener, MouseListener, 
 
 			} else if (plantMode == Plant.Type.PEASHOOTER) {
 				s = "PEASHOOTER";
+				
+			} else if (plantMode == Plant.Type.WALLNUT) {
+				s = "WALLNUT";
 
 			}
 			// Get the coordinates of the square and tell the model to plant in

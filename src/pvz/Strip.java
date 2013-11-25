@@ -9,6 +9,8 @@ package pvz;
  */
 import java.io.Serializable;
 
+import pvz.Strip.Terrain;
+
 public class Strip
 	implements Serializable {
 	/**
@@ -105,6 +107,10 @@ public class Strip
 		}
 		s += " \n";
 		return s;
+	}
+
+	public Terrain getTerrain() {
+		return null;
 	}
 
 }
