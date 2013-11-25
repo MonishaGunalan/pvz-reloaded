@@ -7,7 +7,7 @@ import java.util.Collections;
  * Factory class for the Plant, it creates an instance of the plant needed
  * using the mapping found in plantTable
  *
- * @author Christopher Nguyen
+ * @author Christopher Nguyen / Arzaan irani (Implemented wallnut)
  * @version 1.0
  * @since 1.7
  */
@@ -32,12 +32,21 @@ public class PlantFactory {
 	 * Peashooter cost
 	 */
 	private static final int PEASHOOTER_COST = 100;
+	/**
+	 * Wallnut cooldown
+	 */
+	private static final int WALLNUT_CD = 4;
+	/**
+	 * Wallnut cost
+	 */
+	private static final int WALLNUT_COST = 50;
 
 	static {
 		//Instanciate to map static time
 		Map<Plant.Type, PlantData> aTable = new HashMap<Plant.Type, PlantData>();
 		aTable.put(Plant.Type.SUNFLOWER, new PlantData(SunflowerPlant.class, SUNFLOWER_CD, SUNFLOWER_COST));
 		aTable.put(Plant.Type.PEASHOOTER, new PlantData(PeaShooterPlant.class, PEASHOOTER_CD, PEASHOOTER_COST));
+		aTable.put(Plant.Type.WALLNUT, new PlantData(WallnutPlant.class, WALLNUT_CD, WALLNUT_COST));
 
 		plantTable = Collections.unmodifiableMap(aTable);
 	}

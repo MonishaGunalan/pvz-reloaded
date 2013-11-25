@@ -1,6 +1,6 @@
 package pvz;
 /**
- * @author Tianming Zhuang
+ * @author Tianming Zhuang / Arzaan irani (Implemented wallnut)
  * 100875151
  */
 public abstract class Plant 
@@ -10,7 +10,7 @@ public abstract class Plant
 	 * The possible types a plant can have
 	 *
 	 */
-	public enum Type{SUNFLOWER, PEASHOOTER;}
+	public enum Type{SUNFLOWER, PEASHOOTER, WALLNUT;}
 
 	/**
 	 * Constructor
