@@ -21,7 +21,7 @@ import java.util.ArrayDeque;
  * @since 1.7
  */
 public class GameModel  extends Observable
-	implements Observer{
+implements Observer{
 	/**
 	 * The Player playing the game
 	 */
@@ -39,11 +39,6 @@ public class GameModel  extends Observable
 	 */
 	private Deque<Level> redoStack;
 
-	/**
-	 * The location where the player data will be stored (Not needed)
-	 */
-	public static final String playerDataFileLocation = "../rsrc/PlayerData.txt";
-
 
 	/**
 	 * The public constructor for Game Model
@@ -51,29 +46,10 @@ public class GameModel  extends Observable
 	 * 
 	 */
 	public GameModel(){
+		//For now new games initialize with level 1
+		level = new Level(1);
+		player = new Player(this);	
 
-		File f = new File(playerDataFileLocation);
-
-	//if the file exists then read the file and initialize based on the file
-		if (f.exists()){
-			try {
-				BufferedReader reader = new BufferedReader(new FileReader(f));
-				int levelNum = Integer.parseInt(reader.readLine());
-				int score =  Integer.parseInt(reader.readLine());
-				level = new Level(levelNum);
-				player = new Player(this);
-				player.setScore(score);
-			} catch (NumberFormatException e ) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}catch(IOException e){
-				e.printStackTrace();
-			}
-		} else {
-			//If no file exists initialize with level 1
-			level = new Level(1);
-			player = new Player(this);	
-		}
 		System.out.println("initializing deques...");
 
 		// Initialize undo and redo stacks
