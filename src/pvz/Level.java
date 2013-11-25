@@ -52,11 +52,12 @@ public class Level extends Observable implements Observer, Serializable {
 	public Level(int levelNumber) {
 		String fileName = "rsrc/level" + levelNumber + ".txt";
 		this.levelNumber = levelNumber;
+		turnNumber = 0;
+		totalZombies = 0;
 		createZombieList();
 		String[] fieldRows = this.loadLevel(fileName, levelNumber);
 		field = new Field(fieldRows, this);
-		turnNumber = 0;
-		totalZombies = 0;
+
 	}
 
 	/**
@@ -209,7 +210,7 @@ public class Level extends Observable implements Observer, Serializable {
 		for (int i = 0; i < Field.DEFAULT_MAX_ROW; i++) {
 			if (!zombieList[i].isEmpty()) {
 				Zombie z = zombieList[i].getZombie(turnNumber);
-				if(z == null){
+				if (z == null) {
 					break;
 				}
 				addObserver(z);
@@ -251,7 +252,9 @@ public class Level extends Observable implements Observer, Serializable {
 	 * @return totalZombies The total number of Zombies
 	 */
 	public int getTotalZombies() {
+		System.out.println("getTotalZombies = " + totalZombies);
 		return totalZombies;
+
 	}
 
 }
