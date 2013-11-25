@@ -11,9 +11,10 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
+import java.io.Serializable;
 
 public class Level extends Observable implements Observer, Serializable {
 	/**
@@ -42,6 +43,17 @@ public class Level extends Observable implements Observer, Serializable {
 	 * The list of zombies to be brought into the level
 	 */
 	private ZombieRow[] zombieList;
+	private ArrayList<java.util.Map.Entry<Integer, Zombie>>[] zombieList;
+	/**
+	 * Win if all zombies are dead. Lose
+	 * conditions are checked first.
+	 */
+	private boolean hasWon;
+	/**
+	 * Lose if a zombie reaches are end of a strip. Lose
+	 * conditions are checked first.
+	 */
+	private boolean hasLost;
 
 	/**
 	 * Constructor instantiate a new field with field row and column
@@ -57,6 +69,9 @@ public class Level extends Observable implements Observer, Serializable {
 		field = new Field(fieldRows, this);
 		turnNumber = 0;
 		totalZombies = 0;
+		// Win/lose
+		hasWon = false;
+		hasLost = false;
 	}
 
 	/**
@@ -226,8 +241,16 @@ public class Level extends Observable implements Observer, Serializable {
 	public void update(Observable o, Object arg) {
 		if (arg instanceof Zombie) {
 			// Zombie has reached end strip moving left. Handle here
-			System.out.println("Zombie ate your brains!");
-			totalZombies--;
+			//System.out.println("Zombie ate your brains!");
+			hasLost = true;
+		} else if (arg instanceof String) {
+			String s = (String)arg;
+			switch (s) {
+				case "zombie died":
+					totalZombies--;
+				case default:
+					break;
+			}
 		}
 	}
 

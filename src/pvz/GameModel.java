@@ -13,15 +13,12 @@ import java.util.ArrayDeque;
  * The GameModel is the model for the Plant vs Zombie game
  * it is also the entry point for playing the game on text based
  *
- * This class observes its Level so it writes to history
- * each turn.
- *
  * @author Christopher Nguyen
  * @version 1.0
  * @since 1.7
  */
-public class GameModel  extends Observable
-	implements Observer{
+public class GameModel 
+	extends Observable {
 	/**
 	 * The Player playing the game
 	 */
@@ -81,7 +78,7 @@ public class GameModel  extends Observable
 		redoStack = new ArrayDeque<Level>();
 		// Register this to level so it knows when turn increments
 		// for history writing
-		level.addObserver(this);
+		//level.addObserver(this);
 	}	
 
 	/**
@@ -197,7 +194,7 @@ public class GameModel  extends Observable
 	 * @param level Level to be saved
 	 * @return True if successful, false otherwise
 	 */
-	private boolean writeHistory() {
+	public boolean writeHistory() {
 		if (this.level != null)  {
 			if (redoStack == null) {
 				System.out.println("redostack level is null =(");
@@ -211,16 +208,17 @@ public class GameModel  extends Observable
 
 			// Push deep copy onto redo stack
 			undoStack.addFirst(savedLevel);
+			System.out.println("Writing to history!");
 			return true;
 		}
 
 		return false;
 	}
 
-	@Override
-	public void update(Observable o, Object args) {
-		this.writeHistory();
-	}
+	//@Override
+	//public void update(Observable o, Object args) {
+		//this.writeHistory();
+	//}
 
 	private void printStackSizes() {
 		System.out.println("Undo stack size: " + undoStack.size());

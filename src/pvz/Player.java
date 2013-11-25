@@ -77,7 +77,7 @@ public class Player {
 	/**
 	 * The helper function if using text version that will handle the command
 	 * @param command The command to be input
-	 * @return
+	 * @return The status of the play
 	 */
 	public PlayStatus play (PlayerCommand command){
 		if (command == null){
@@ -85,6 +85,9 @@ public class Player {
 		}
 		switch(command.getCommandType()){
 			case PLANT_SEED:
+				// Save previous state to undo stack before
+				// we modify the level state
+				model.writeHistory();
 				//Try to create the plant based on the playercommand
 				Plant.Type p = null;
 				String plant = command.getArg();
@@ -123,19 +126,22 @@ public class Player {
 					return PlayStatus.COMMAND_FAILED;
 				}
 			case DO_NOTHING:
+				// Save previous state to undo stack before
+				// we modify the level state
+				model.writeHistory();
 				//Player does nothing that turn, just increment to the next turn
 				model.getLevel().incrementTurn();
 				triggerCooldowns();
 				break;
 			default:
 		}
-		//if (model.getLevel().isGameOver())
-		//return PlayStatus.GAME_OVER;
-		//}else if (model.getLevel().isVictoious())
-		//return PlayStatus.victory
-		//else{
-		return PlayStatus.NORMAL;
-		//}
+		if (model.getLevel().isGameOver()) {
+			return PlayStatus.GAME_OVER;
+		}else if (model.getLevel().isVictorious())
+			return PlayStatus.VICTORY
+		else{
+			return PlayStatus.NORMAL;
+		}
 
 	}
 
