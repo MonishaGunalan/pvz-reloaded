@@ -23,12 +23,12 @@ import javax.swing.JPanel;
  * @author Christopher Nguyen / Arzaan irani (Implemented wallnut)
  * 
  */
-public class GameFrame extends JFrame implements ActionListener, MouseListener, Observer {
+public class GameFrame extends JFrame implements Observer {
 
 	/**
 	 * Option for when the level has finished
 	 */
-	String [] options = {"Next Level", "Save and Quit"};
+	private String [] options = {"Next Level", "Save and Quit"};
 
 	private JPanel commandPanel, seedPanel, consolePanel, statusPanel;
 	/**
@@ -36,9 +36,10 @@ public class GameFrame extends JFrame implements ActionListener, MouseListener, 
 	 */
 	private GamePanel gamePanel;
 	/**
-	 * Buttons that allow user intraction
+	 * The buttons are make package wide so the controller has access to the buttons 
+	 * Buttons that allow user interaction
 	 */
-	private JButton plantButton, doNothingButton, undoButton, redoButton,
+	JButton plantButton, doNothingButton, undoButton, redoButton,
 	sunflowerButton, peashooterButton,wallnutButton, cancelButton;
 	/**
 	 * Labels display to user
@@ -49,6 +50,10 @@ public class GameFrame extends JFrame implements ActionListener, MouseListener, 
 	 */
 	private GameModel model;
 	/**
+	 * The game controller
+	 */
+	private GameController controller;
+	/**
 	 * Which plant is currently being selected
 	 */
 	private Plant.Type plantMode;
@@ -56,26 +61,26 @@ public class GameFrame extends JFrame implements ActionListener, MouseListener, 
 	/**
 	 * Public constructor
 	 */
-	public GameFrame() {
+	public GameFrame(GameController controller, GameModel model) {
 		super("Plants Vs Zombie");
 		this.setLayout(new BorderLayout());
-
+		this.controller = controller;
 		// Initialize all the objects
-		model = new GameModel();
-		gamePanel = new GamePanel(this, model);
-		model.addObserver(this);
+		this.model = model;
+		gamePanel = new GamePanel(controller, model);
+
 		commandPanel = new JPanel();
 		commandPanel.setLayout(new GridLayout(1, 4));
 
 		// initialize all the command buttons
 		plantButton = new JButton("Plant");
-		plantButton.addActionListener(this);
+		plantButton.addActionListener(controller);
 		doNothingButton = new JButton("Do Nothing");
-		doNothingButton.addActionListener(this);
+		doNothingButton.addActionListener(controller);
 		undoButton = new JButton("Undo");
-		undoButton.addActionListener(this);
+		undoButton.addActionListener(controller);
 		redoButton = new JButton("Redo");
-		redoButton.addActionListener(this);
+		redoButton.addActionListener(controller);
 		commandPanel.add(plantButton);
 		commandPanel.add(undoButton);
 		commandPanel.add(redoButton);
@@ -118,18 +123,18 @@ public class GameFrame extends JFrame implements ActionListener, MouseListener, 
 		// TODO:: change with scrollable
 		sunflowerButton = new JButton("<html>Sunflower<br>sun: "
 				+ PlantFactory.getCost(Plant.Type.SUNFLOWER) + "</html>");
-		sunflowerButton.addActionListener(this);
+		sunflowerButton.addActionListener(controller);
 		seedPanel.add(sunflowerButton);
 		peashooterButton = new JButton("<html>Peashooter<br>sun: "
 				+ PlantFactory.getCost(Plant.Type.PEASHOOTER) + "</html>");
-		peashooterButton.addActionListener(this);
+		peashooterButton.addActionListener(controller);
 		seedPanel.add(peashooterButton);
 		wallnutButton = new JButton("<html>Wallnut<br>sun: "
 				+ PlantFactory.getCost(Plant.Type.WALLNUT) + "</html>");
-		wallnutButton.addActionListener(this);
+		wallnutButton.addActionListener(controller);
 		seedPanel.add(wallnutButton);
 		JButton button = new JButton("Cancel");
-		button.addActionListener(this);
+		button.addActionListener(controller);
 		seedPanel.add(button);
 
 		seedPanel.add(new JLabel(""));
@@ -138,45 +143,6 @@ public class GameFrame extends JFrame implements ActionListener, MouseListener, 
 
 	}
 
-	public static void main(String[] args) {
-		new GameFrame();
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		if (e.getSource() instanceof JButton) {
-			if (e.getSource() == plantButton) {
-				// Switch to the seed panel
-				this.remove(commandPanel);
-				this.add(seedPanel, BorderLayout.NORTH);
-			} else if (e.getSource() == doNothingButton) {
-				// Play a turn with DO NOTHING
-				play(new PlayerCommand(
-						PlayerCommand.CommandType.DO_NOTHING, 0, 0, ""));
-			} else if ((e.getSource() == sunflowerButton)) {
-				// Set the selected plant to sunflower
-				plantMode = Plant.Type.SUNFLOWER;
-			} else if (e.getSource() == peashooterButton) {
-				// Set the selected plant to peashooter
-				plantMode = Plant.Type.PEASHOOTER;
-			} else if (e.getSource() == wallnutButton) {
-				// Set the selected plant to wallnut
-				plantMode = Plant.Type.WALLNUT;
-			} else if (((JButton) e.getSource()).getText().equals("Cancel")) {
-				hideSeedPanel();
-			} else if(e.getSource() == redoButton){
-				play(new PlayerCommand(
-						PlayerCommand.CommandType.REDO, 0, 0, ""));
-			} else if(e.getSource() == undoButton){
-				play(new PlayerCommand(
-						PlayerCommand.CommandType.UNDO, 0, 0, ""));
-			}
-		}
-		revalidate();
-		repaint();
-
-	}
 
 	/**
 	 * Updates the Game board
@@ -197,57 +163,19 @@ public class GameFrame extends JFrame implements ActionListener, MouseListener, 
 		this.add(commandPanel, BorderLayout.NORTH);
 		revalidate();
 		repaint();
-
 	}
 
-	@Override
-	public void mouseClicked(MouseEvent e) {
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-
-		if (e.getComponent() instanceof SquareLabel) {
-			SquareLabel squareLabel = (SquareLabel) e.getComponent();
-			System.out.println(squareLabel.getRow() + " "
-					+ squareLabel.getCol());
-			String s = "";
-			// Do nothing if not in plant mode
-			if (plantMode == null) {
-				return;
-			} else if (plantMode == Plant.Type.SUNFLOWER) {
-				s = "SUNFLOWER";
-
-			} else if (plantMode == Plant.Type.PEASHOOTER) {
-				s = "PEASHOOTER";
-				
-			} else if (plantMode == Plant.Type.WALLNUT) {
-				s = "WALLNUT";
-
-			}
-			// Get the coordinates of the square and tell the model to plant in
-			// the location
-
-			play(new PlayerCommand(	PlayerCommand.CommandType.PLANT_SEED, squareLabel.getRow(),	squareLabel.getCol(), s)); 
-		}
+	/**
+	 * Show the seed panel
+	 */
+	public void showSeedPanel() {
+		this.remove(commandPanel);
+		this.add(seedPanel, BorderLayout.NORTH);
+		revalidate();
+		repaint();
 	}
 
 
-	private void play(PlayerCommand playerCommand){
-		model.play(playerCommand);
-	}
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
@@ -305,6 +233,13 @@ public class GameFrame extends JFrame implements ActionListener, MouseListener, 
 	}
 
 
+	public Plant.Type getPlantMode(){
+		return this.plantMode;
+	}
+	
+	public void setPlantMode(Plant.Type plantMode){
+		this.plantMode = plantMode;
+	}
 
 
 }
