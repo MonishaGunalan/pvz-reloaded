@@ -7,7 +7,7 @@ import org.junit.Test;
 import pvz.Field;
 import pvz.Level;
 import pvz.Strip;
-
+import pvz.Strip.Terrain;
 import static org.junit.Assert.*;
 import junit.framework.TestCase;
 
@@ -22,7 +22,7 @@ public class StripTest {
 	private Strip testStrip;
 	private Field testField1, testField2;
 	private Level testLevel1;
-	private String[] terrainType = { "mud", "grass", "grass", "grass", "mud" };
+	private String[] terrainType = { "MUD", "GRASS", "GRASS", "GRASS", "MUD" };
 
 	@Before
 	/**
@@ -33,6 +33,14 @@ public class StripTest {
 		testLevel1 = new Level(1);
 		testField1 = new Field(terrainType, testLevel1);
 		testStrip = new Strip("grass", 3, testField1);
+	}
+	
+	/**
+	 * Method to test 'GetTerrainType' method in class strip
+	 */
+	@Test
+	public void testGetTerrainType(){
+		assertSame("If the terrain type of the testStrip is grass", Strip.Terrain.GRASS, testStrip.getTerrain() );
 	}
 
 	/**
