@@ -11,10 +11,9 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.Observable;
 import java.util.Observer;
-import java.io.Serializable;
 
 public class Level extends Observable implements Observer, Serializable {
 	/**
@@ -36,9 +35,13 @@ public class Level extends Observable implements Observer, Serializable {
 	 */
 	private int turnNumber;
 	/**
+	 * The total Number of Zombies in the level
+	 */
+	private int totalZombies;
+	/**
 	 * The list of zombies to be brought into the level
 	 */
-	private ArrayList<java.util.Map.Entry<Integer, Zombie>>[] zombieList;
+	private ZombieRow[] zombieList;
 
 	/**
 	 * Constructor instantiate a new field with field row and column
@@ -53,6 +56,7 @@ public class Level extends Observable implements Observer, Serializable {
 		String[] fieldRows = this.loadLevel(fileName, levelNumber);
 		field = new Field(fieldRows, this);
 		turnNumber = 0;
+		totalZombies = 0;
 	}
 
 	/**
@@ -60,9 +64,9 @@ public class Level extends Observable implements Observer, Serializable {
 	 */
 	public void createZombieList() {
 
-		zombieList = new ArrayList[Field.DEFAULT_MAX_ROW];
+		zombieList = new ZombieRow[Field.DEFAULT_MAX_ROW];
 		for (int i = 0; i < Field.DEFAULT_MAX_ROW; i++) {
-			zombieList[i] = new ArrayList<java.util.Map.Entry<Integer, Zombie>>();
+			zombieList[i] = new ZombieRow();
 		}
 
 	}
@@ -86,7 +90,8 @@ public class Level extends Observable implements Observer, Serializable {
 		}
 		Zombie.Type zombieType = Zombie.Type.valueOf(type.toUpperCase());
 		Zombie z = ZombieFactory.makeZombie(zombieType);
-		zombieList[row].add(new java.util.AbstractMap.SimpleEntry<>(turn, z));
+		ZombieTurn zt = new ZombieTurn(z, turn);
+		zombieList[row].add(zt);
 	}
 
 	/**
@@ -125,17 +130,22 @@ public class Level extends Observable implements Observer, Serializable {
 									+ " config file");
 							System.exit(-1);
 						}
-						if (Strip.Terrain.MUD != null){
+						if (Strip.Terrain.MUD != null) {
 							// read the terrian type for each row
 							fieldRows[i] = rowContents[0];
 							// read number of Zombies enetering a specic row
-							numZombieInRow[i] = Integer.parseInt(rowContents[1]);
+							numZombieInRow[i] = Integer
+									.parseInt(rowContents[1]);
+							totalZombies += Integer.parseInt(rowContents[1]);
+							System.out
+									.println("totalZombies = " + totalZombies);
 
 							while (numZombieInRow[i] > 0) {
-								// read the turn number in which the Zombie enters
+								// read the turn number in which the Zombie
+								// enters
 								// the field and the type
-								String[] rowContents1 = bufferedReader.readLine()
-										.split(" ");
+								String[] rowContents1 = bufferedReader
+										.readLine().split(" ");
 								int turn = Integer.parseInt(rowContents1[0]);
 								String type = rowContents1[1];
 								spawnZombie(i, turn, type);
@@ -157,7 +167,7 @@ public class Level extends Observable implements Observer, Serializable {
 		}
 		return fieldRows;
 	}
-		
+
 	/**
 	 * @return level Number
 	 */
@@ -197,9 +207,8 @@ public class Level extends Observable implements Observer, Serializable {
 	 */
 	public void bringNewZombiesIn() {
 		for (int i = 0; i < Field.DEFAULT_MAX_ROW; i++) {
-			if (!zombieList[i].isEmpty()
-					&& zombieList[i].get(0).getKey() == turnNumber) {
-				Zombie z = zombieList[i].remove(0).getValue();
+			if (!zombieList[i].isEmpty()) {
+				Zombie z = zombieList[i].getZombie(turnNumber);
 				addObserver(z);
 				Square lastSquareInStrip = this.field.getStrip()[i]
 						.getSquares()[Field.DEFAULT_MAX_POSN - 1];
@@ -208,7 +217,6 @@ public class Level extends Observable implements Observer, Serializable {
 				z.setSquare(lastSquareInStrip);
 				lastSquareInStrip.evaluateZombie(z);
 			}
-
 		}
 	}
 
@@ -219,6 +227,7 @@ public class Level extends Observable implements Observer, Serializable {
 		if (arg instanceof Zombie) {
 			// Zombie has reached end strip moving left. Handle here
 			System.out.println("Zombie ate your brains!");
+			totalZombies--;
 		}
 	}
 
@@ -234,4 +243,12 @@ public class Level extends Observable implements Observer, Serializable {
 	public Square getSquare(int row, int col) {
 		return field.getStrip()[row].getSquare(col);
 	}
+
+	/**
+	 * @return totalZombies The total number of Zombies
+	 */
+	public int getTotalZombies() {
+		return totalZombies;
+	}
+
 }
