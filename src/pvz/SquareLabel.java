@@ -60,6 +60,8 @@ public class SquareLabel extends JLabel {
 			aTable.put(SunflowerPlant.class, sampleImage);
 			sampleImage = ImageIO.read(new File("rsrc/peashooter.png"));
 			aTable.put(PeaShooterPlant.class, sampleImage);
+			sampleImage = ImageIO.read(new File("rsrc/wallnut.png"));
+			aTable.put(WallnutPlant.class, sampleImage);
 			sampleImage = ImageIO.read(new File("rsrc/Zombie.png"));
 			aTable.put(NormalZombie.class, sampleImage);
 			sampleImage = ImageIO.read(new File("rsrc/ConeZombie.png"));
