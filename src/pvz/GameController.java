@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-
 import javax.swing.JButton;
 /**
  * The controller class in the MVC, it is the entry point for the GUI
@@ -65,7 +64,6 @@ public class GameController implements ActionListener, MouseListener {
 			}
 			// Get the coordinates of the square and tell the model to plant in
 			// the location
-
 			play(new PlayerCommand(	PlayerCommand.CommandType.PLANT_SEED, squareLabel.getRow(),	squareLabel.getCol(), s)); 
 		}
 	}
@@ -101,6 +99,10 @@ public class GameController implements ActionListener, MouseListener {
 
 	}
 	
+	/**
+	 * Play method
+	 * @param playerCommand
+	 */
 	private void play(PlayerCommand playerCommand){
 		model.play(playerCommand);
 	}

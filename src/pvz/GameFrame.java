@@ -2,13 +2,8 @@ package pvz;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.Observable;
 import java.util.Observer;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -233,10 +228,18 @@ public class GameFrame extends JFrame implements Observer {
 	}
 
 
+	/**
+	 * Returns the Plant mode
+	 * @return plant mode
+	 */
 	public Plant.Type getPlantMode(){
 		return this.plantMode;
 	}
 	
+	/**
+	 * Sets the plant mode
+	 * @param plantMode
+	 */
 	public void setPlantMode(Plant.Type plantMode){
 		this.plantMode = plantMode;
 	}

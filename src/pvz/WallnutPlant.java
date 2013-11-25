@@ -9,10 +9,7 @@ public class WallnutPlant
 	 * The max HP of the plant
 	 */
 	public static final int MAX_HP = 70;
-	/**
-	 * The cooldown time between trigger
-	 */
-	public static final int PLANT_TRIGGER = 3;
+
 
 	/**
 	 * Public constructor of square

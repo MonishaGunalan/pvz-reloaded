@@ -8,11 +8,6 @@ import java.util.Observable;
 public abstract class DefensivePlant
 	extends Plant {
 
-	/**
-	 *  The shoot cooldown
-	 */
-	protected Cooldown shootCD;
-
 
 	/**
 	 * Default constructor
@@ -27,9 +22,6 @@ public abstract class DefensivePlant
 	 * Update the observer
 	 */
 	public void update(Observable o, Object arg) {
-		if (getSquare().hasZombieAfter()) {
-			shootCD.trigger();
-		}
 		super.tickCooldowns();
 	}
 }
