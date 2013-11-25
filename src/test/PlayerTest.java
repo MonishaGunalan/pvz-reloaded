@@ -28,7 +28,7 @@ public class PlayerTest {
 		field = level.getField();
 		strip = field.getStrip()[row];
 
-		player = new Player(model);
+		player = new Player(level,model);
 		square = strip.getSquare(col);
 		square2 = strip.getSquare(col+1);
 
