@@ -60,7 +60,7 @@ public class Strip
 	 */
 	public Strip(String terrain, int fieldRow, Field field) {
 		this.fieldRow = fieldRow;
-		this.terrain = Terrain.valueOf(terrain);
+		this.terrain = Terrain.valueOf(terrain.toUpperCase());
 		this.field = field;
 		squares = new Square[Field.DEFAULT_MAX_POSN];
 		for (int j = 0; j < Field.DEFAULT_MAX_POSN; j++) {
