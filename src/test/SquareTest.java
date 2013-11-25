@@ -46,10 +46,10 @@ public class SquareTest {
 		testLevel2 = new Level(1);
 		testField2 = new Field(terrainType, testLevel2);
 		testStrip1 = new Strip("grass", 3, testField2);
-		testSquare1 = new Square("grass", 3, 2, testStrip1);
-		testSquare2 = new Square("grass", 1, 1, testStrip1);
-		testSquare3 = new Square("grass", 3, 3, testStrip1);
-		testSquare4 = new Square("grass", 3, 1, testStrip1);
+		testSquare1 = new Square( 3, 2, testStrip1);
+		testSquare2 = new Square( 1, 1, testStrip1);
+		testSquare3 = new Square( 3, 3, testStrip1);
+		testSquare4 = new Square( 3, 1, testStrip1);
 		testZombie = new NormalZombie();
 		testPlant = new SunflowerPlant(testSquare3);
 		testBullet = new PeaBullet();
