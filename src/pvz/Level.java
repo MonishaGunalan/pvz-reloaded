@@ -138,8 +138,6 @@ public class Level extends Observable implements Observer, Serializable {
 							numZombieInRow[i] = Integer
 									.parseInt(rowContents[1]);
 							totalZombies += Integer.parseInt(rowContents[1]);
-							System.out
-									.println("totalZombies = " + totalZombies);
 
 							while (numZombieInRow[i] > 0) {
 								// read the turn number in which the Zombie
@@ -252,7 +250,7 @@ public class Level extends Observable implements Observer, Serializable {
 	 * @return totalZombies The total number of Zombies
 	 */
 	public int getTotalZombies() {
-		System.out.println("getTotalZombies = " + totalZombies);
+
 		return totalZombies;
 
 	}
