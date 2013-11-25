@@ -1,12 +1,5 @@
 package pvz;
 
-/**
- * The level keeps track of
- * it keeps track of the current score, sun points and level
- *
- * @author Monisha Gunalan
- * 100871444
- */
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -14,6 +7,13 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.Observable;
 import java.util.Observer;
+
+/**
+ * The level keeps track of it keeps track of the current score, sun points and
+ * level
+ * 
+ * @author Monisha Gunalan 100871444
+ */
 
 public class Level extends Observable implements Observer, Serializable {
 	/**
@@ -209,6 +209,9 @@ public class Level extends Observable implements Observer, Serializable {
 		for (int i = 0; i < Field.DEFAULT_MAX_ROW; i++) {
 			if (!zombieList[i].isEmpty()) {
 				Zombie z = zombieList[i].getZombie(turnNumber);
+				if(z == null){
+					break;
+				}
 				addObserver(z);
 				Square lastSquareInStrip = this.field.getStrip()[i]
 						.getSquares()[Field.DEFAULT_MAX_POSN - 1];
