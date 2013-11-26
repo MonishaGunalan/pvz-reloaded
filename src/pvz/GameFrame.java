@@ -238,3 +238,5 @@ public class GameFrame extends JFrame implements Observer {
 	 */
 	public void setPlantMode(Plant.Type plantMode){
 		this.plantMode = plantMode;
+	}
+}

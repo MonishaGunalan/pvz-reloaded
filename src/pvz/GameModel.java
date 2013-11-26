@@ -50,6 +50,7 @@ public class GameModel extends Observable {
 	/**
 	 * Number of implemented levels
 	 */
+	public static final int MIN_LEVEL = 1;
 	public static final int MAX_LEVEL = 5;
 
 	/**
@@ -79,6 +80,10 @@ public class GameModel extends Observable {
 	 * @param levelNum The number of the level to load
 	 */
 	public void loadLevel(int levelNum) {
+		// Handle invalid level
+		if (levelNum < MIN_LEVEL || levelNum > MAX_LEVEL) {
+			throw new IllegalArgumentException("No such level to be loaded.");
+		}
 		// Clear history for new level
 		redoStack.clear();
 		undoStack.clear();
