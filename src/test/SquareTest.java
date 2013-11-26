@@ -12,17 +12,17 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import pvz.Bullet;
-import pvz.Field;
-import pvz.Level;
-import pvz.NormalZombie;
-import pvz.PeaBullet;
-import pvz.Plant;
-import pvz.Square;
-import pvz.Strip;
-import pvz.SunflowerPlant;
-import pvz.Zombie;
-import pvz.Field.Direction;
+import pvz.level.Field;
+import pvz.level.Level;
+import pvz.level.Square;
+import pvz.level.Strip;
+import pvz.level.Field.Direction;
+import pvz.unit.Bullet;
+import pvz.unit.NormalZombie;
+import pvz.unit.PeaBullet;
+import pvz.unit.Plant;
+import pvz.unit.SunflowerPlant;
+import pvz.unit.Zombie;
 
 import junit.framework.TestCase;
 

@@ -4,10 +4,10 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import pvz.NormalZombie;
-import pvz.Zombie;
-import pvz.ZombieFactory;
-import pvz.Zombie.Type;
+import pvz.unit.NormalZombie;
+import pvz.unit.Zombie;
+import pvz.unit.ZombieFactory;
+import pvz.unit.Zombie.Type;
 
 /**
  * 

@@ -4,7 +4,14 @@ import junit.framework.TestCase;
 import pvz.*;
 import org.junit.Before;
 import org.junit.Test;
-import pvz.Zombie;
+
+import pvz.level.Field;
+import pvz.level.Level;
+import pvz.level.Square;
+import pvz.level.Strip;
+import pvz.unit.Cooldown;
+import pvz.unit.Plant;
+import pvz.unit.Zombie;
 
 public class CooldownTest {
 	private Level testLevel1;

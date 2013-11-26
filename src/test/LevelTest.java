@@ -4,8 +4,8 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import pvz.Field;
-import pvz.Level;
+import pvz.level.Field;
+import pvz.level.Level;
 /**
  * 
  * @author Christopher Nguyen

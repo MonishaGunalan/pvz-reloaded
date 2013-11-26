@@ -5,8 +5,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import pvz.PlayerCommand;
-import pvz.PlayerCommand.CommandType;
+import pvz.level.PlayerCommand;
+import pvz.level.PlayerCommand.CommandType;
 
 /**
  * 

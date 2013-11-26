@@ -10,13 +10,13 @@ import static org.junit.Assert.*;
 
 import org.junit.*;
 
-import pvz.Field;
-import pvz.Level;
-import pvz.PeaShooterPlant;
-import pvz.Plant;
-import pvz.Square;
-import pvz.Strip;
-import pvz.Zombie;
+import pvz.level.Field;
+import pvz.level.Level;
+import pvz.level.Square;
+import pvz.level.Strip;
+import pvz.unit.PeaShooterPlant;
+import pvz.unit.Plant;
+import pvz.unit.Zombie;
 
 public class PeaShooterPlantTest {
 	private Level testLevel1;

@@ -4,10 +4,10 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import pvz.Bullet;
-import pvz.BulletFactory;
-import pvz.PeaBullet;
-import pvz.Bullet.Type;
+import pvz.unit.Bullet;
+import pvz.unit.BulletFactory;
+import pvz.unit.PeaBullet;
+import pvz.unit.Bullet.Type;
 
 public class BulletFactoryTest {
 	@Test

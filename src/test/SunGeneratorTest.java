@@ -10,12 +10,12 @@ import static org.junit.Assert.*;
 
 import org.junit.*;
 
-import pvz.Field;
-import pvz.Level;
-import pvz.Square;
-import pvz.Strip;
-import pvz.SunGenerator;
-import pvz.Zombie;
+import pvz.level.Field;
+import pvz.level.Level;
+import pvz.level.Square;
+import pvz.level.Strip;
+import pvz.unit.SunGenerator;
+import pvz.unit.Zombie;
 
 public class SunGeneratorTest {
 	private Level testLevel1;

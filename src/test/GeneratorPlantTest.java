@@ -4,6 +4,14 @@ import static org.junit.Assert.*;
 import java.util.Observable;
 
 import pvz.*;
+import pvz.level.Field;
+import pvz.level.Level;
+import pvz.level.Square;
+import pvz.level.Strip;
+import pvz.unit.GeneratorPlant;
+import pvz.unit.NormalZombie;
+import pvz.unit.Zombie;
+
 import org.junit.Before;
 import org.junit.Test;
 
