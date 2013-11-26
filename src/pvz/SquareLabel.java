@@ -128,8 +128,8 @@ public class SquareLabel extends JLabel {
 		
 		switch (terrainType) {
 		case MUD:
-			g.setColor(Color.getHSBColor(156, 93, 82));//mud
-			g.drawRect(0, 0, this.getWidth(), this.getHeight());
+			g.setColor(new Color(139,69,19));//mud
+			g.fillRect(0, 0, this.getWidth(), this.getHeight());
 			break;
 		case GRASS:
 			g.setColor(Color.GREEN);

@@ -217,7 +217,6 @@ public class Level extends Observable implements Observer, Serializable {
 				System.out.println("Putting a zombie on "
 						+ lastSquareInStrip.getLoc());
 				z.setSquare(lastSquareInStrip);
-				lastSquareInStrip.evaluateZombie(z);
 			}
 		}
 	}

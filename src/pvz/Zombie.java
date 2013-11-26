@@ -149,7 +149,6 @@ public abstract class Zombie
 				return;
 			}
 			this.setSquare(dest);
-			this.getSquare().evaluateZombie(this);
 			// Trigger the CD
 			moveCD.trigger();
 		}
@@ -182,7 +181,7 @@ public abstract class Zombie
 		if (getSquare().hasPlant()) {
 			System.out.println(getSquare().getLoc());
 			this.hit(getSquare().getPlant());
-		} else {
+		} else if (!getSquare().hasBullet()) {
 			this.move(Field.Direction.LEFT);
 		}
 		super.tickCooldowns();

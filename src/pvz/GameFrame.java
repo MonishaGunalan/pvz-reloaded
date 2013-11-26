@@ -39,7 +39,7 @@ public class GameFrame extends JFrame implements Observer {
 	/**
 	 * Labels display to user
 	 */
-	private JLabel sunLabel, scoreLabel, userMessage;
+	private JLabel sunLabel, userMessage;
 	/**
 	 * The game model
 	 */
@@ -94,9 +94,7 @@ public class GameFrame extends JFrame implements Observer {
 		statusPanel.add(new JLabel("Sun"));
 		sunLabel = new JLabel();
 		statusPanel.add(sunLabel);
-		statusPanel.add(new JLabel("Score"));
-		scoreLabel = new JLabel();
-		statusPanel.add(scoreLabel);
+
 		consolePanel.add(statusPanel);
 		consolePanel.add(userMessage);
 

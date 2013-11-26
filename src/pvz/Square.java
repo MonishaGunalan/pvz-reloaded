@@ -357,7 +357,7 @@ public class Square
 	 * either by  move or  by spawn
 	 * @param z
 	 */
-	public void evaluateZombie(Zombie z){
+	/*public void evaluateZombie(Zombie z){
 		List<Bullet> bulletList = new ArrayList<Bullet>(this.bullets);
 		for (Bullet b: bulletList){
 			b.hit(z);
@@ -365,5 +365,5 @@ public class Square
 				break;
 			}
 		}
-	}
+	}*/
 }
