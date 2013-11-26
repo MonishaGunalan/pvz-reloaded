@@ -5,16 +5,20 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
-/**
- * The level keeps track of it keeps track of the current score, sun points and
- * level
- * 
- * @author Monisha Gunalan 100871444
- */
+import pvz.Plant.Type;
 
+/**
+ * The level keeps track of
+ * it keeps track of the current score, sun points and level
+ *
+ * @author Monisha Gunalan
+ * 100871444
+ */
 public class Level extends Observable implements Observer, Serializable {
 	/**
 	 * Serialization UID Do not change unless serialization with previous
@@ -42,6 +46,16 @@ public class Level extends Observable implements Observer, Serializable {
 	 * The list of zombies to be brought into the level
 	 */
 	private ZombieRow[] zombieList;
+	/**
+	 * Lose if a zombie reaches are end of a strip. Lose
+	 * conditions are checked first.
+	 */
+	private boolean hasLost;
+
+	/**
+	 * This map contains the mapping of all plant type to their active cooldown
+	 */
+	private Map<Plant.Type, Cooldown> triggeredCooldowns;
 
 	/**
 	 * Constructor instantiate a new field with field row and column
@@ -54,10 +68,15 @@ public class Level extends Observable implements Observer, Serializable {
 		this.levelNumber = levelNumber;
 		turnNumber = 0;
 		totalZombies = 0;
+		hasLost = false;
 		createZombieList();
 		String[] fieldRows = this.loadLevel(fileName, levelNumber);
 		field = new Field(fieldRows, this);
-
+		triggeredCooldowns = new HashMap<Plant.Type, Cooldown>();
+		for (Plant.Type p: Plant.Type.values()){
+			// We need to resolve static function from 
+			triggeredCooldowns.put(p, new Cooldown(PlantFactory.getCooldown(p)));
+		}
 	}
 
 	/**
@@ -69,7 +88,6 @@ public class Level extends Observable implements Observer, Serializable {
 		for (int i = 0; i < Field.DEFAULT_MAX_ROW; i++) {
 			zombieList[i] = new ZombieRow();
 		}
-
 	}
 
 	/**
@@ -138,6 +156,7 @@ public class Level extends Observable implements Observer, Serializable {
 							numZombieInRow[i] = Integer
 									.parseInt(rowContents[1]);
 							totalZombies += Integer.parseInt(rowContents[1]);
+							//System.out.println("totalZombies = " + totalZombies);
 
 							while (numZombieInRow[i] > 0) {
 								// read the turn number in which the Zombie
@@ -208,15 +227,20 @@ public class Level extends Observable implements Observer, Serializable {
 		for (int i = 0; i < Field.DEFAULT_MAX_ROW; i++) {
 			if (!zombieList[i].isEmpty()) {
 				Zombie z = zombieList[i].getZombie(turnNumber);
-				if (z == null) {
-					break;
+				if (z != null) {
+					addObserver(z);
+					Square lastSquareInStrip = this.field.getStrip()[i]
+							.getSquares()[Field.DEFAULT_MAX_POSN - 1];
+
+					System.out.println("Putting a zombie on "
+							+ lastSquareInStrip.getLoc());
+					z.setSquare(lastSquareInStrip);
+
+					//System.out.println("Putting a zombie on " + lastSquareInStrip.getLoc());
+					z.setSquare(lastSquareInStrip);
+
 				}
-				addObserver(z);
-				Square lastSquareInStrip = this.field.getStrip()[i]
-						.getSquares()[Field.DEFAULT_MAX_POSN - 1];
-				System.out.println("Putting a zombie on "
-						+ lastSquareInStrip.getLoc());
-				z.setSquare(lastSquareInStrip);
+
 			}
 		}
 	}
@@ -225,10 +249,14 @@ public class Level extends Observable implements Observer, Serializable {
 	 * Update method from zombie if it has reached the end
 	 */
 	public void update(Observable o, Object arg) {
-		if (arg instanceof Zombie) {
-			// Zombie has reached end strip moving left. Handle here
-			System.out.println("Zombie ate your brains!");
-			totalZombies--;
+		if (arg instanceof String) {
+			String s = (String)arg;
+			switch (s) {
+			case "zombie died": totalZombies--;
+			break;
+			case "zombie won": hasLost = true;
+			break;
+			}
 		}
 	}
 
@@ -249,9 +277,29 @@ public class Level extends Observable implements Observer, Serializable {
 	 * @return totalZombies The total number of Zombies
 	 */
 	public int getTotalZombies() {
-
+		//System.out.println("getTotalZombies = " + totalZombies);
 		return totalZombies;
-
 	}
 
+	/**
+	 * Checks lose conditions.
+	 * @return True is the a zombie has reached the
+	 * end of a strip.
+	 */
+	public boolean isGameOver() {
+		return hasLost;
+	}
+
+	/**
+	 * Checks win conditions.
+	 * @return True is the user has killed all the 
+	 * zombies in the level
+	 */
+	public boolean isVictorious() {
+		return totalZombies == 0;
+	}
+
+	public Map<Plant.Type,Cooldown> getTriggeredCooldowns() {
+		return this.triggeredCooldowns;
+	}
 }

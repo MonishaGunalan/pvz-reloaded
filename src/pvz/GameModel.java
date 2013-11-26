@@ -13,15 +13,11 @@ import java.util.ArrayDeque;
  * The GameModel is the model for the Plant vs Zombie game
  * it is also the entry point for playing the game on text based
  *
- * This class observes its Level so it writes to history
- * each turn.
- *
  * @author Christopher Nguyen
  * @version 1.0
  * @since 1.7
  */
-public class GameModel  extends Observable
-implements Observer{
+public class GameModel extends Observable {
 	/**
 	 * The Player playing the game
 	 */
@@ -39,6 +35,22 @@ implements Observer{
 	 */
 	private Deque<Level> redoStack;
 
+	/**
+	 * Message to print when player wins
+	 */
+	public static final String WIN_MSG = "You have bested the zombie apocalypse. Congratulations survivor!";
+	/**
+	 * Message to print when beats the level
+	 */
+	public static final String LOSE_MSG = "Oh no! The zombies ate your brains!";
+	/**
+	 * Message to print when player loses
+	 */
+	public static final String NEXT_LEVEL_MSG = "You beat the level! But more zombies are coming...";
+	/**
+	 * Number of implemented levels
+	 */
+	public static final int MAX_LEVEL = 5;
 
 	/**
 	 * The public constructor for Game Model
@@ -46,18 +58,12 @@ implements Observer{
 	 * 
 	 */
 	public GameModel(){
-		//For now new games initialize with level 1
 		level = new Level(1);
 		player = new Player(this);	
-
-		System.out.println("initializing deques...");
 
 		// Initialize undo and redo stacks
 		undoStack = new ArrayDeque<Level>();
 		redoStack = new ArrayDeque<Level>();
-		// Register this to level so it knows when turn increments
-		// for history writing
-		level.addObserver(this);
 	}	
 
 	/**
@@ -65,6 +71,18 @@ implements Observer{
 	 */
 	public void play(){
 		player.play();
+	}
+
+	/**
+	 * Starts a new level for the current game
+	 * level for the specified level number.
+	 * @param levelNum The number of the level to load
+	 */
+	public void loadLevel(int levelNum) {
+		// Clear history for new level
+		redoStack.clear();
+		undoStack.clear();
+		this.level = new Level(levelNum);
 	}
 
 	/**
@@ -77,8 +95,6 @@ implements Observer{
 
 		setChanged();
 		this.notifyObservers(result);
-
-
 	}
 	/**
 	 * Get the player
@@ -118,8 +134,8 @@ implements Observer{
 	 * @return True if successful, false otherwise
 	 */
 	public boolean redo() {
-		System.out.println("Calling redo!");
-		System.out.println("Current turn: " + level.getTurnNumber());
+		//System.out.println("Calling redo!");
+		//System.out.println("Current turn: " + level.getTurnNumber());
 		// If there's something on the undo stack
 		if (!redoStack.isEmpty()) {
 			// Make deep copy of current level and push onto 
@@ -129,9 +145,8 @@ implements Observer{
 
 			// Pop from undo stack and set to current level
 			this.level = redoStack.removeFirst();
-			System.out.println("Redo turn: " + level.getTurnNumber());
-
-			printStackSizes();
+			//System.out.println("Redo turn: " + level.getTurnNumber());
+			//printStackSizes();
 			return true;
 		}
 
@@ -146,8 +161,8 @@ implements Observer{
 	 * @return True if successful, false otherwise
 	 */
 	public boolean undo() {
-		System.out.println("Calling undo!");
-		System.out.println("Current turn: " + level.getTurnNumber());
+		//System.out.println("Calling undo!");
+		//System.out.println("Current turn: " + level.getTurnNumber());
 		// If there's something on the undo stack
 		if (!undoStack.isEmpty()) {
 			// Make deep copy of current level and push onto 
@@ -157,9 +172,8 @@ implements Observer{
 
 			// Pop from undo stack and set to current level
 			this.level = undoStack.removeFirst();
-			System.out.println("Undo turn: " + level.getTurnNumber());
-
-			printStackSizes();
+			//System.out.println("Undo turn: " + level.getTurnNumber());
+			//printStackSizes();
 			return true;
 		}
 
@@ -173,11 +187,8 @@ implements Observer{
 	 * @param level Level to be saved
 	 * @return True if successful, false otherwise
 	 */
-	private boolean writeHistory() {
+	public boolean writeHistory() throws java.io.NotSerializableException {
 		if (this.level != null)  {
-			if (redoStack == null) {
-				System.out.println("redostack level is null =(");
-			}
 			// We are moving forward in time, and therefore
 			// we should overwrite the redoStack
 			redoStack.clear();
@@ -185,22 +196,26 @@ implements Observer{
 			// Make a deep copy of the level
 			Level savedLevel = (Level)DeepCopy.copy(level);
 
+			if (savedLevel == null) {
+				throw new java.io.NotSerializableException();
+			}
 			// Push deep copy onto redo stack
 			undoStack.addFirst(savedLevel);
-			return true;
+			//System.out.println("Writing to history!");
+
 		}
 
 		return false;
 	}
 
-	@Override
-	public void update(Observable o, Object args) {
-		this.writeHistory();
-	}
+	//@Override
+	//public void update(Observable o, Object args) {
+		//this.writeHistory();
+	//}
 
-	private void printStackSizes() {
-		System.out.println("Undo stack size: " + undoStack.size());
-		System.out.println("Redo stack size: " + redoStack.size());
-	}
+	//private void printStackSizes() {
+		//System.out.println("Undo stack size: " + undoStack.size());
+		//System.out.println("Redo stack size: " + redoStack.size());
+	//}
 }
 

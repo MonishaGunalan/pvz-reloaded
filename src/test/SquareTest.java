@@ -322,7 +322,7 @@ public class SquareTest {
 	 */
 	@Test
 	public void testGetLoc() {
-		System.out.println(testSquare1.getLoc());
+		//System.out.println(testSquare1.getLoc());
 		assertEquals("The square should be located in row 3 and col 2.",
 				"Square@3,2", testSquare1.getLoc());
 	}

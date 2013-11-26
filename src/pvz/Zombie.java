@@ -144,7 +144,7 @@ public abstract class Zombie
 			if (dest == null) {
 				// Let level know we reached the end so it can handle it
 				setChanged();
-				notifyObservers(this);
+				notifyObservers("zombie won");
 				// Exit function without moving zombie
 				return;
 			}
@@ -168,7 +168,7 @@ public abstract class Zombie
 	 * @param plant
 	 */
 	public void hit(Plant plant) {
-		System.out.println("calling Zombie.hit");
+		//System.out.println("calling Zombie.hit");
 		if (attackCD.isAvailable()) {
 			plant.reduceHP(getDmg());
 			attackCD.trigger();

@@ -3,7 +3,6 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 /**
  * This class represents the player playing the the game
@@ -38,22 +37,13 @@ public class Player {
 	 */
 	private GameModel model;
 	/**
-	 * This map contains the mapping of all plant type to their active cooldown
-	 */
-	private Map<Plant.Type, Cooldown> triggeredCooldowns;
-
-	/**
 	 * public constructor for player
 	 * @param The model the player is interacting with
 	 */
 	public Player(GameModel model){
 		this.model = model;
 
-		triggeredCooldowns = new HashMap<Plant.Type, Cooldown>();
-		for (Plant.Type p: Plant.Type.values()){
-			// We need to resolve static function from 
-			triggeredCooldowns.put(p, new Cooldown(PlantFactory.getCooldown(p)));
-		}
+
 		score = START_SCORE;
 
 	}
@@ -69,15 +59,32 @@ public class Player {
 			System.out.println("Current Sun Points: " + model.getLevel().getField().getTotalSun());
 			PlayerCommand command = getPlayerCommand(c);
 			//call the helper method
-			play(command);
+			PlayStatus currentStatus = play(command);
+			// Print the field to string
 			System.out.println(model.getLevel().getField().toString());
+			//Handle game ending conditions
+			if (currentStatus == PlayStatus.GAMEOVER) {
+				System.out.println(model.LOSE_MSG);
+				break;
+			} else if (currentStatus == PlayStatus.VICTORY)  {
+				int currentLevelNumber = model.getLevel().getLevelNumber();
+				// If we reach max level, print win message and exit
+				if (currentLevelNumber >= model.MAX_LEVEL) {
+					System.out.println(model.WIN_MSG);
+					break;
+				} else {
+					// Load next level
+					System.out.println(model.NEXT_LEVEL_MSG);
+					model.loadLevel(currentLevelNumber + 1);
+				}
+			}
 		}
 	}
 
 	/**
 	 * The helper function if using text version that will handle the command
 	 * @param command The command to be input
-	 * @return
+	 * @return The status of the play
 	 */
 	public PlayStatus play (PlayerCommand command){
 		if (command == null){
@@ -85,6 +92,13 @@ public class Player {
 		}
 		switch(command.getCommandType()){
 			case PLANT_SEED:
+				// Save previous state to undo stack before
+				// we modify the level state
+				try {
+					model.writeHistory();
+				} catch(Exception e) {
+					e.printStackTrace();
+				}
 				//Try to create the plant based on the playercommand
 				Plant.Type p = null;
 				String plant = command.getArg();
@@ -104,7 +118,7 @@ public class Player {
 				//increment turn if the grow was successful
 				if (growSuccessful == PlayStatus.NORMAL){
 					model.getLevel().incrementTurn();
-					triggerCooldowns();
+
 				} else{
 					return growSuccessful;
 				}
@@ -123,20 +137,27 @@ public class Player {
 					return PlayStatus.COMMAND_FAILED;
 				}
 			case DO_NOTHING:
+				// Save previous state to undo stack before
+				// we modify the level state
+				try {
+					model.writeHistory();
+				} catch(Exception e) {
+					e.printStackTrace();
+				}
 				//Player does nothing that turn, just increment to the next turn
 				model.getLevel().incrementTurn();
-				triggerCooldowns();
+
 				break;
 			default:
 		}
-		//if (model.getLevel().isGameOver())
-		//return PlayStatus.GAME_OVER;
-		//}else if (model.getLevel().isVictoious())
-		//return PlayStatus.victory
-		//else{
-		return PlayStatus.NORMAL;
-		//}
-
+		if (model.getLevel().isGameOver()) {
+			System.out.println("Game OVer ");
+			return PlayStatus.GAMEOVER;
+		}else if (model.getLevel().isVictorious())
+			return PlayStatus.VICTORY;
+		else{
+			return PlayStatus.NORMAL;
+		}
 	}
 
 	/**
@@ -158,7 +179,7 @@ public class Player {
 
 		int plantCost = PlantFactory.getCost(plantType);
 		//TODO:: return with more meaningful error messages
-		Cooldown plantTypeCD = triggeredCooldowns.get(plantType);
+		Cooldown plantTypeCD = model.getLevel().getTriggeredCooldowns().get(plantType);
 		if (!plantTypeCD.isAvailable()){
 			System.out.println("Plant Still On cooldown for " + plantTypeCD.getCooldown() + " more turns!");
 			return Player.PlayStatus.COOLDOWN_NOT_READY;
@@ -186,30 +207,12 @@ public class Player {
 			System.out.println("Using " + plantCost + " amount of sun.");
 			model.getLevel().getField().useSun(plantCost);
 			model.getLevel().addObserver(plant);
-			triggeredCooldowns.get(plantType).trigger();
+			model.getLevel().getTriggeredCooldowns().get(plantType).trigger();
 			return Player.PlayStatus.NORMAL;
 		}
 
 		return Player.PlayStatus.INVALID_COMMAND;
 	}
 
-	/**
-	 * Iterate through all the cooldowns and tick any that are active
-	 */
-	public void triggerCooldowns(){
-		//iterate through all it's cooldown and trigger it
-		for (Cooldown cooldown: triggeredCooldowns.values()){
-			cooldown.tick();
-		}
-	}
-
-
-	/**
-	 * Setter method for score
-	 * @param score
-	 */
-	public void setScore(int score){
-		this.score = score;
-	}
 
 }

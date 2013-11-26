@@ -65,17 +65,6 @@ public class PlayerTest {
 	}
 
 	@Test
-	public void testGrowSunflowerAfterCooldown(){
-
-		player.grow(row, col, Plant.Type.SUNFLOWER);
-		for (int i = 0; i < 5; i++){
-			player.triggerCooldowns();
-		}
-		assertTrue(player.grow(row, col+1, Plant.Type.SUNFLOWER) == Player.PlayStatus.NORMAL);
-
-	}
-
-	@Test
 	public void testPlayWithNullPlayerCommand() {
 		assertTrue(player.play(null) == Player.PlayStatus.INVALID_COMMAND);
 	}
@@ -90,7 +79,10 @@ public class PlayerTest {
 	@Test
 	public void testPlayWithPlantSeedPlayerCommandWithPeashooter() {
 		PlayerCommand command = new PlayerCommand(PlayerCommand.CommandType.PLANT_SEED, 0, 0, "peashooter");
-		assertTrue(player.play(command) == Player.PlayStatus.NORMAL);
+		Player.PlayStatus status = player.play(command);
+		System.out.println("STATUS: " + status);
+		//assertTrue(player.play(command) == Player.PlayStatus.NORMAL);
+		assertTrue(status == Player.PlayStatus.NORMAL);
 	}
 	
 	@Test

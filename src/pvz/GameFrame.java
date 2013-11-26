@@ -23,7 +23,7 @@ public class GameFrame extends JFrame implements Observer {
 	/**
 	 * Option for when the level has finished
 	 */
-	private String [] options = {"Next Level", "Save and Quit"};
+	private String [] options = {"Next Level"};
 
 	private JPanel commandPanel, seedPanel, consolePanel, statusPanel;
 	/**
@@ -185,11 +185,8 @@ public class GameFrame extends JFrame implements Observer {
 				hideSeedPanel();
 
 			}
-			int choice = JOptionPane.showConfirmDialog(this, "You have lost.\nWould you like to try the level again?");
-			if (choice == 0){
-				//restart new game here
-			}
-
+			JOptionPane.showMessageDialog(this, "You have lost.");
+			System.exit(0);
 			break;
 		case INVALID_COMMAND:
 			JOptionPane.showMessageDialog(this, "Invalid Command");
@@ -211,7 +208,8 @@ public class GameFrame extends JFrame implements Observer {
 			if (plantMode != null){
 				hideSeedPanel();
 			}
-			JOptionPane.showOptionDialog(this, "Congratulation on beating the level!!" , "Victory!!!", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+			JOptionPane.showMessageDialog(this, "Congratulation on beating the level!!\n Start the next level");
+		//	model.loadLevel();
 			break;
 		case COMMAND_FAILED:
 			JOptionPane.showMessageDialog(this, "Command Failed");
