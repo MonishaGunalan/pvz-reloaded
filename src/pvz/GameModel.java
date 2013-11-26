@@ -86,6 +86,13 @@ public class GameModel extends Observable {
 	}
 
 	/**
+	 * Load the next level, if it exists
+	 */
+	public void loadNextLevel() {
+		this.loadLevel(this.level.getLevelNumber() + 1);
+	}
+
+	/**
 	 * Play the game with a given a command
 	 * @param command
 	 * @return

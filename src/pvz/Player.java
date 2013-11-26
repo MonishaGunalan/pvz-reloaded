@@ -85,7 +85,7 @@ public class Player {
 				} else {
 					// Load next level
 					System.out.println(model.NEXT_LEVEL_MSG);
-					model.loadLevel(currentLevelNumber + 1);
+					model.loadNextLevel();
 				}
 			}
 		}
