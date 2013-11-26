@@ -7,7 +7,6 @@
 *.ear
 /bin
 /lib
-/html
 
 # Compile scripts
 generate-docs
