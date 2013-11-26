@@ -5,6 +5,14 @@ import pvz.level.Square;
 import pvz.unit.Bullet.Type;
 
 /**
+ * This class is the abstract superclass for all plant
+ * types which shoot a projectile at zombies. The default
+ * type of bullet to shoot is a peabullet ({@link Bullet#Type}),
+ * but extending classes can specify their own. 
+ *
+ * Plants should be be directly instantiated but instead use the
+ * static method {@link PlantFactory#makePlant}.
+ *
  * @author Tianming Zhuang
  * 100875151
  */

@@ -6,6 +6,13 @@ import pvz.level.Square;
 import pvz.level.Field.Direction;
 
 /**
+ * This is an abstract superclass for all bullets
+ * in the game. It keeps track of when a bullet can move,
+ * and how much damage it does to a {@link Zombie} it hits.
+ *
+ * All bullets observe the level it is on, and does an action
+ * when level increments turn.
+ *
  * @author Tianming Zhuang
  * 100875151
  */

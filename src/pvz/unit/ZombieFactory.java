@@ -5,6 +5,9 @@ import java.util.Collections;
 
 import pvz.unit.Zombie.Type;
 /**
+ * This class is for creating instances of
+ * classes extending {@link Zombie}.
+ *
  * @author Tianming Zhuang
  * 100875151
  */

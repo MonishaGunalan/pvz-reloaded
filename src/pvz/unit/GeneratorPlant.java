@@ -4,6 +4,12 @@ import java.util.Observable;
 import pvz.level.Square;
 
 /**
+ * Abstract super class for plants that generate sun for the
+ * {@link Field} they are on. 
+ *
+ * Concrete classes of {@link Plant} should be instantiated
+ * using {@link PlantFactory#makePlant}.
+ *
  * @author Tianming Zhuang
  * 100875151
  */

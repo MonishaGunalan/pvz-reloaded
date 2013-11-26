@@ -7,13 +7,15 @@ import java.io.ObjectInputStream;
 
 
 /**
- * Utility for making deep copies (vs. clone()'s shallow copies) of 
- * objects. Objects are first serialized and then deserialized. Error
- * checking is fairly minimal in this implementation. If an object is
- * encountered that cannot be serialized (or that references an object
- * that cannot be serialized) an error is printed to System.err and
- * null is returned. Depending on your specific application, it might
- * make more sense to have copy(...) re-throw the exception.
+ * Utility for making deep copies of objects. Objects are first 
+ * serialized and then deserialized. Error checking is fairly 
+ * minimal in this implementation. If an object is encountered 
+ * that cannot be serialized (or that references an object
+ * that cannot be serialized), an error is printed to System.err and
+ * null is returned. 
+ *
+ * @author Tianming Zhuang
+ * 100875151
  */
 public class DeepCopy {
 

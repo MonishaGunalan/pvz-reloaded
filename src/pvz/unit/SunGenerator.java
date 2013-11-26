@@ -1,5 +1,16 @@
 package pvz.unit;
 /**
+ * Instances of this class are bound to a {@link Field}.
+ * The generator itself observes a the {@link Level} it
+ * is on and each time the turn increments, it produces
+ * sunlight for the field if possible. There is an internal
+ * cooldown tracker which keeps track of if the ability to 
+ * produce sunlight is cooldowned. 
+ *
+ * How often sunlight is generated is controlled by
+ * {@link GEN_TRIGGER} and how much is produced each time is
+ * dictated by {@link GEN_AMT}.
+ *
  * @author Tianming Zhuang
  * 100875151
  */

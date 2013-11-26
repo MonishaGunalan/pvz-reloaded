@@ -2,6 +2,14 @@ package pvz.unit;
 
 
 /**
+ * Concrete class of {@link Bullet} which does a specific
+ * amount of damage and causes no secondary effects on the 
+ * {@link Zombie} it hits.
+ *
+ * The speed at which the bullet moves is dicated by
+ * {@link MOVE_TRIGGER} and how much damage each bullet does
+ * is set in {@link DMG}.
+ *
  * @author Tianming Zhuang
  * 100875151
  */
