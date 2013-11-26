@@ -30,7 +30,7 @@ import pvz.unit.WallnutPlant;
 import pvz.unit.Zombie;
 
 /**
- * 
+ * The Gui representation of the model square
  * @author Christopher Nguyen / Arzaan Irani
  *
  */
