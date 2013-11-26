@@ -134,6 +134,9 @@ public class Square
 	 *            is the element such as zombie, plant bullet
 	 */
 	public void add(Unit unit) {
+		if (this.strip.getTerrain() == Strip.Terrain.MUD) {
+			//throw new 
+		}
 		if (unit instanceof Plant) {
 			add((Plant) unit);
 		} else if (unit instanceof Bullet) {
@@ -305,7 +308,8 @@ public class Square
 	public String toString() {
 		String s = "[";
 		if (strip.getTerrain() == Strip.Terrain.MUD) {
-			s += "-";
+			s += "xxxxx]";
+			return s;
 		}
 
 		if (this.hasPlant()) {
@@ -319,11 +323,6 @@ public class Square
 		} else {
 			s += "  ";
 		}
-		
-		if (strip.getTerrain() == Strip.Terrain.GRASS) {
-			s += " ";
-		}
-
 
 		if (this.hasZombie()) {
 			s += "z" + numZombie;
