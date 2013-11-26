@@ -3,6 +3,9 @@ package pvz.unit;
 import pvz.level.Square;
 
 /**
+ * Abstract super class for all plants. Concrete classes extending 
+ * Plant should be instantiated with {@link PlantFactory#makePlant}.
+ *
  * @author Tianming Zhuang / Arzaan irani (Implemented wallnut)
  * 100875151
  */

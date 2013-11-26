@@ -1,5 +1,12 @@
 package pvz.unit;
 /**
+ * This is a class for encapsulating data for 
+ * game mechanics that require a cooldown. Since
+ * our implementation is turn based, it is used to
+ * keep track of many turns a unit has to wait in
+ * between peroforming actions, for example
+ * {@link Zombie#move}.
+ *
  * @author Tianming Zhuang
  * 100875151
  */

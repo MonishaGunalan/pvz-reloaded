@@ -3,6 +3,10 @@ package pvz.unit;
 import pvz.level.Square;
 
 /**
+ * This class does nothing other than stop
+ * zombies from moving forward until
+ * its HP is depleted.
+ *
  * @author Arzaan Irani
  * 100826631
  */
@@ -11,7 +15,7 @@ public class WallnutPlant
 	/**
 	 * The max HP of the plant
 	 */
-	public static final int MAX_HP = 70;
+	public static final int MAX_HP = 25;
 
 
 	/**

@@ -4,6 +4,12 @@ import java.util.Observable;
 import pvz.level.Square;
 
 /**
+ * Abstract superclass for plants who's only function
+ * is to abosrb damange (they cannot shoot or move).
+ *
+ * Concrete classes of {@link Plant} should be instantiated
+ * using {@link PlantFactory#makePlant}.
+ *
  * @author Arzaan Irani
  * 100826631
  */

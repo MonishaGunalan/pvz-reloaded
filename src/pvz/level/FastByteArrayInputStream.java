@@ -4,6 +4,9 @@ import java.io.IOException;
 
 /**
  * ByteArrayInputStream implementation that does not synchronize methods.
+ *
+ * @author Tianming Zhuang
+ * 100875151
  */
 public class FastByteArrayInputStream extends InputStream {
 	/**

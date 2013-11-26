@@ -3,6 +3,11 @@ package pvz.unit;
 import pvz.level.Square;
 
 /**
+ * This class contains the data for making
+ * a standard peashooter class. HP can is controlled
+ * by {@link MAX_HP}. Attack speed is dictated by
+ * {@link OffensivePlant#DEFAULT_SHOOT_TRIGGER}.
+ *
  * @author Tianming Zhuang
  * 100875151
  */
@@ -12,10 +17,6 @@ public class PeaShooterPlant
 	 * The mas HP of the plant
 	 */
 	public static final int MAX_HP = 3;
-	/**
-	 * The cooldown time between trigger
-	 */
-	public static final int PLANT_TRIGGER = 3;
 
 	/**
 	 * Public constructor of square

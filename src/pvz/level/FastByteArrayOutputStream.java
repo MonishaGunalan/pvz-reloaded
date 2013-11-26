@@ -7,6 +7,9 @@ import java.io.ByteArrayInputStream;
 /**
  * ByteArrayOutputStream implementation that doesn't synchronize methods
  * and doesn't copy the data on toByteArray().
+ *
+ * @Author Tianming Zhuang
+ * 100875151
  */
 public class FastByteArrayOutputStream extends OutputStream {
 	/**

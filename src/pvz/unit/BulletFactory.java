@@ -1,5 +1,8 @@
 package pvz.unit;
-/*
+/**
+ * This class if for instantiating concrete instances
+ * of the {@link Bullet} class.
+ *
  * @author Tianming Zhuang
  * 100875151
  */
