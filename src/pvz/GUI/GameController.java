@@ -47,11 +47,11 @@ public class GameController implements ActionListener, MouseListener {
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-
 		if (e.getComponent() instanceof SquareLabel) {
 			SquareLabel squareLabel = (SquareLabel) e.getComponent();
-			System.out.println(squareLabel.getRow() + " "
-					+ squareLabel.getCol());
+			//System.out.println(squareLabel.getRow() + " "
+				//	+ squareLabel.getCol());
+			//Plant the plant on the square if a plant has been selected
 			String s = "";
 			Plant.Type plantMode = view.getPlantMode();
 			// Do nothing if not in plant mode
