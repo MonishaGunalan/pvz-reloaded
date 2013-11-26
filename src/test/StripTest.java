@@ -4,10 +4,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import pvz.Field;
-import pvz.Level;
-import pvz.Strip;
-import pvz.Strip.Terrain;
+import pvz.level.Field;
+import pvz.level.Level;
+import pvz.level.Strip;
+import pvz.level.Strip.Terrain;
 import static org.junit.Assert.*;
 import junit.framework.TestCase;
 

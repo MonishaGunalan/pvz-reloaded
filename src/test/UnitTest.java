@@ -4,12 +4,12 @@ import static org.junit.Assert.*;
 
 import org.junit.*;
 
-import pvz.Field;
-import pvz.Level;
-import pvz.NormalZombie;
-import pvz.Square;
-import pvz.Strip;
-import pvz.Zombie;
+import pvz.level.Field;
+import pvz.level.Level;
+import pvz.level.Square;
+import pvz.level.Strip;
+import pvz.unit.NormalZombie;
+import pvz.unit.Zombie;
 /**
  * This class contains unit testing for all 
  * methods in the abstract class Unit

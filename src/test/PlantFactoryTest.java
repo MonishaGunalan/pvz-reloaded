@@ -5,6 +5,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 import pvz.*;
+import pvz.level.Level;
+import pvz.level.Square;
+import pvz.unit.PeaShooterPlant;
+import pvz.unit.Plant;
+import pvz.unit.PlantFactory;
 /**
  * 
  * @author Christopher Nguyen

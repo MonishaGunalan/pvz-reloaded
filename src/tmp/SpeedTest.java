@@ -3,6 +3,9 @@ import java.util.Hashtable;
 import java.util.Vector;
 import java.util.Date;
 import pvz.*;
+import pvz.level.DeepCopy;
+import pvz.level.Level;
+import pvz.level.UnoptimizedDeepCopy;
 public class SpeedTest {
 
 	public static void main(String[] args) {

@@ -10,16 +10,16 @@ import static org.junit.Assert.*;
 
 import org.junit.*;
 
-import pvz.Field;
-import pvz.Level;
-import pvz.NormalZombie;
-import pvz.Plant;
-import pvz.PlantFactory;
-import pvz.Square;
-import pvz.Strip;
-import pvz.Zombie;
-import pvz.Field.Direction;
-import pvz.Zombie.Type;
+import pvz.level.Field;
+import pvz.level.Level;
+import pvz.level.Square;
+import pvz.level.Strip;
+import pvz.level.Field.Direction;
+import pvz.unit.NormalZombie;
+import pvz.unit.Plant;
+import pvz.unit.PlantFactory;
+import pvz.unit.Zombie;
+import pvz.unit.Zombie.Type;
 
 /**
  * 

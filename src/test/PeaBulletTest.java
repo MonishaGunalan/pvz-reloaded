@@ -2,6 +2,14 @@ package test;
 import static org.junit.Assert.*;
 import junit.framework.TestCase;
 import pvz.*;
+import pvz.level.Field;
+import pvz.level.Level;
+import pvz.level.Square;
+import pvz.level.Strip;
+import pvz.unit.NormalZombie;
+import pvz.unit.PeaBullet;
+import pvz.unit.Zombie;
+
 import org.junit.Before;
 import org.junit.Test;
 

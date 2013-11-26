@@ -3,14 +3,14 @@ import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import pvz.Field;
-import pvz.GameModel;
-import pvz.Level;
-import pvz.OffensivePlant;
-import pvz.Square;
-import pvz.Strip;
-import pvz.Zombie;
-import pvz.Zombie.Type;
+import pvz.level.Field;
+import pvz.level.GameModel;
+import pvz.level.Level;
+import pvz.level.Square;
+import pvz.level.Strip;
+import pvz.unit.OffensivePlant;
+import pvz.unit.Zombie;
+import pvz.unit.Zombie.Type;
 /**
  * 
  * @author Christopher Nguyen

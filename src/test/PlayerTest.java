@@ -5,6 +5,14 @@ import org.junit.Before;
 import org.junit.Test;
 
 import pvz.*;
+import pvz.level.Field;
+import pvz.level.GameModel;
+import pvz.level.Level;
+import pvz.level.Player;
+import pvz.level.PlayerCommand;
+import pvz.level.Square;
+import pvz.level.Strip;
+import pvz.unit.Plant;
 
 /**
  * 

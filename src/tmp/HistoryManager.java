@@ -2,6 +2,9 @@ package tmp;
 import java.util.Deque;
 import java.util.ArrayDeque;
 import pvz.*;
+import pvz.level.DeepCopy;
+import pvz.level.GameModel;
+import pvz.level.Level;
 public class HistoryManager {
 	private Deque<Level> undoStack;
 	private Deque<Level> redoStack;
