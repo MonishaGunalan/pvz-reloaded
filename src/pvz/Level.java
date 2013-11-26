@@ -216,6 +216,7 @@ public class Level extends Observable implements Observer, Serializable {
 		// Bring in new zombies and notify all observers that the turn has
 		// incremented
 		bringNewZombiesIn();
+		triggerCooldowns();
 		setChanged();
 		notifyObservers();
 	}
@@ -299,7 +300,21 @@ public class Level extends Observable implements Observer, Serializable {
 		return totalZombies == 0;
 	}
 
+	/**
+	 * Returns the cooldowns
+	 * @return
+	 */
 	public Map<Plant.Type,Cooldown> getTriggeredCooldowns() {
 		return this.triggeredCooldowns;
+	}
+
+	/**
+	 * Iterate through all the cooldowns and tick any that are active
+	 */
+	public void triggerCooldowns(){
+		//iterate through all it's cooldown and trigger it
+		for (Cooldown cooldown: triggeredCooldowns.values()){
+			cooldown.tick();
+		}
 	}
 }

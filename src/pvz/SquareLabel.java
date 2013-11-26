@@ -89,7 +89,7 @@ public class SquareLabel extends JLabel {
 		zombieList = new ArrayList<Class<? extends Zombie>>();
 		bulletList = new ArrayList<Class<? extends Bullet>>();
 		updateSquare(square);
-		this.terrainType = square.getStrip().getTerrain();
+		
 	}
 
 	/**
@@ -102,6 +102,7 @@ public class SquareLabel extends JLabel {
 		if (square != null) {
 			zombieList.clear();
 			bulletList.clear();
+			this.terrainType = square.getStrip().getTerrain();
 			for (Zombie z : square.getZombies()) {
 				zombieList.add(z.getClass());
 			}
