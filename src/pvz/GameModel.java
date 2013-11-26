@@ -88,6 +88,8 @@ public class GameModel extends Observable {
 		redoStack.clear();
 		undoStack.clear();
 		this.level = new Level(levelNum);
+		setChanged();
+		this.notifyObservers(Player.PlayStatus.NORMAL);
 	}
 
 	/**

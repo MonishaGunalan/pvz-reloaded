@@ -209,7 +209,7 @@ public class GameFrame extends JFrame implements Observer {
 				hideSeedPanel();
 			}
 			JOptionPane.showMessageDialog(this, "Congratulation on beating the level!!\n Start the next level");
-		//	model.loadLevel();
+			model.loadNextLevel();
 			break;
 		case COMMAND_FAILED:
 			JOptionPane.showMessageDialog(this, "Command Failed");
