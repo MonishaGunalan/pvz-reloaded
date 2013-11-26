@@ -36,10 +36,21 @@ public class GameModel extends Observable {
 	private Deque<Level> redoStack;
 
 	/**
-	 * The location where the player data will be stored (Not needed)
+	 * Message to print when player wins
 	 */
-	public static final String playerDataFileLocation = "../rsrc/PlayerData.txt";
-
+	public static final String WIN_MSG = "You have bested the zombie apocalypse. Congratulations survivor!";
+	/**
+	 * Message to print when beats the level
+	 */
+	public static final String LOSE_MSG = "Oh no! The zombies ate your brains!";
+	/**
+	 * Message to print when player loses
+	 */
+	public static final String NEXT_LEVEL_MSG = "You beat the level! But more zombies are coming...";
+	/**
+	 * Number of implemented levels
+	 */
+	public static final int MAX_LEVEL = 5;
 
 	/**
 	 * The public constructor for Game Model
@@ -47,37 +58,12 @@ public class GameModel extends Observable {
 	 * 
 	 */
 	public GameModel(){
-
-		File f = new File(playerDataFileLocation);
-
-	//if the file exists then read the file and initialize based on the file
-		if (f.exists()){
-			try {
-				BufferedReader reader = new BufferedReader(new FileReader(f));
-				int levelNum = Integer.parseInt(reader.readLine());
-				int score =  Integer.parseInt(reader.readLine());
-				level = new Level(levelNum);
-				player = new Player(this);
-				player.setScore(score);
-			} catch (NumberFormatException e ) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}catch(IOException e){
-				e.printStackTrace();
-			}
-		} else {
-			//If no file exists initialize with level 1
-			level = new Level(1);
-			player = new Player(this);	
-		}
-		System.out.println("initializing deques...");
+		level = new Level(1);
+		player = new Player(this);	
 
 		// Initialize undo and redo stacks
 		undoStack = new ArrayDeque<Level>();
 		redoStack = new ArrayDeque<Level>();
-		// Register this to level so it knows when turn increments
-		// for history writing
-		//level.addObserver(this);
 	}	
 
 	/**
@@ -85,6 +71,18 @@ public class GameModel extends Observable {
 	 */
 	public void play(){
 		player.play();
+	}
+
+	/**
+	 * Starts a new level for the current game
+	 * level for the specified level number.
+	 * @param levelNum The number of the level to load
+	 */
+	public void loadLevel(int levelNum) {
+		// Clear history for new level
+		redoStack.clear();
+		undoStack.clear();
+		this.level = new Level(levelNum);
 	}
 
 	/**
@@ -97,8 +95,6 @@ public class GameModel extends Observable {
 
 		setChanged();
 		this.notifyObservers(result);
-
-
 	}
 	/**
 	 * Get the player
@@ -138,8 +134,8 @@ public class GameModel extends Observable {
 	 * @return True if successful, false otherwise
 	 */
 	public boolean redo() {
-		System.out.println("Calling redo!");
-		System.out.println("Current turn: " + level.getTurnNumber());
+		//System.out.println("Calling redo!");
+		//System.out.println("Current turn: " + level.getTurnNumber());
 		// If there's something on the undo stack
 		if (!redoStack.isEmpty()) {
 			// Make deep copy of current level and push onto 
@@ -149,9 +145,8 @@ public class GameModel extends Observable {
 
 			// Pop from undo stack and set to current level
 			this.level = redoStack.removeFirst();
-			System.out.println("Redo turn: " + level.getTurnNumber());
-
-			printStackSizes();
+			//System.out.println("Redo turn: " + level.getTurnNumber());
+			//printStackSizes();
 			return true;
 		}
 
@@ -166,8 +161,8 @@ public class GameModel extends Observable {
 	 * @return True if successful, false otherwise
 	 */
 	public boolean undo() {
-		System.out.println("Calling undo!");
-		System.out.println("Current turn: " + level.getTurnNumber());
+		//System.out.println("Calling undo!");
+		//System.out.println("Current turn: " + level.getTurnNumber());
 		// If there's something on the undo stack
 		if (!undoStack.isEmpty()) {
 			// Make deep copy of current level and push onto 
@@ -177,9 +172,8 @@ public class GameModel extends Observable {
 
 			// Pop from undo stack and set to current level
 			this.level = undoStack.removeFirst();
-			System.out.println("Undo turn: " + level.getTurnNumber());
-
-			printStackSizes();
+			//System.out.println("Undo turn: " + level.getTurnNumber());
+			//printStackSizes();
 			return true;
 		}
 
@@ -193,11 +187,8 @@ public class GameModel extends Observable {
 	 * @param level Level to be saved
 	 * @return True if successful, false otherwise
 	 */
-	public boolean writeHistory() {
+	public boolean writeHistory() throws java.io.NotSerializableException {
 		if (this.level != null)  {
-			if (redoStack == null) {
-				System.out.println("redostack level is null =(");
-			}
 			// We are moving forward in time, and therefore
 			// we should overwrite the redoStack
 			redoStack.clear();
@@ -205,10 +196,13 @@ public class GameModel extends Observable {
 			// Make a deep copy of the level
 			Level savedLevel = (Level)DeepCopy.copy(level);
 
+			if (savedLevel == null) {
+				throw new java.io.NotSerializableException();
+			}
 			// Push deep copy onto redo stack
 			undoStack.addFirst(savedLevel);
-			System.out.println("Writing to history!");
-			return true;
+			//System.out.println("Writing to history!");
+
 		}
 
 		return false;
@@ -219,9 +213,9 @@ public class GameModel extends Observable {
 		//this.writeHistory();
 	//}
 
-	private void printStackSizes() {
-		System.out.println("Undo stack size: " + undoStack.size());
-		System.out.println("Redo stack size: " + redoStack.size());
-	}
+	//private void printStackSizes() {
+		//System.out.println("Undo stack size: " + undoStack.size());
+		//System.out.println("Redo stack size: " + redoStack.size());
+	//}
 }
 

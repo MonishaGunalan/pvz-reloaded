@@ -74,12 +74,12 @@ public class PerishableUnitTest {
 
 			// Check that number of observers in Level decreased by 1
 			final boolean observerRemoved = (initObservers - finalObservers == 1);
-			System.out.println("initObservers: " + initObservers);
-			System.out.println("finalObservers: " + finalObservers);
-			System.out.println("observersRemoved: " + observerRemoved);
+			//System.out.println("initObservers: " + initObservers);
+			//System.out.println("finalObservers: " + finalObservers);
+			//System.out.println("observersRemoved: " + observerRemoved);
 			// Check that square no longer has a zombie
 			final boolean unitRemoved = !testSquare1.hasZombie();
-			System.out.println("unitRemoved: " + unitRemoved);
+			//System.out.println("unitRemoved: " + unitRemoved);
 
 			assertFalse("Reducing current HP of " + NormalZombie.MAX_HP + " by " + amountToReduce, 
 					observerRemoved && unitRemoved);

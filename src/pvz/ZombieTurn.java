@@ -1,7 +1,5 @@
 package pvz;
-
 import java.io.Serializable;
-
 /**
  * The class represents the object which has the zombie and its turn to spawn on
  * the field

@@ -90,7 +90,10 @@ public class PlayerTest {
 	@Test
 	public void testPlayWithPlantSeedPlayerCommandWithPeashooter() {
 		PlayerCommand command = new PlayerCommand(PlayerCommand.CommandType.PLANT_SEED, 0, 0, "peashooter");
-		assertTrue(player.play(command) == Player.PlayStatus.NORMAL);
+		Player.PlayStatus status = player.play(command);
+		System.out.println("STATUS: " + status);
+		//assertTrue(player.play(command) == Player.PlayStatus.NORMAL);
+		assertTrue(status == Player.PlayStatus.NORMAL);
 	}
 	
 	@Test

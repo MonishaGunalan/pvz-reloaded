@@ -1,5 +1,4 @@
 package test;
-
 import static org.junit.Assert.*;
 
 import org.junit.Before;
@@ -7,7 +6,6 @@ import org.junit.Test;
 
 import pvz.Field;
 import pvz.Level;
-
 /**
  * 
  * @author Christopher Nguyen
@@ -16,7 +14,6 @@ import pvz.Level;
 public class LevelTest {
 
 	Level level;
-
 	@Before
 	public void setUp() throws Exception {
 		level = new Level(1);

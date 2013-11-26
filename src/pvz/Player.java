@@ -69,8 +69,25 @@ public class Player {
 			System.out.println("Current Sun Points: " + model.getLevel().getField().getTotalSun());
 			PlayerCommand command = getPlayerCommand(c);
 			//call the helper method
-			play(command);
+			PlayStatus currentStatus = play(command);
+			// Print the field to string
 			System.out.println(model.getLevel().getField().toString());
+			//Handle game ending conditions
+			if (currentStatus == PlayStatus.GAMEOVER) {
+				System.out.println(model.LOSE_MSG);
+				break;
+			} else if (currentStatus == PlayStatus.VICTORY)  {
+				int currentLevelNumber = model.getLevel().getLevelNumber();
+				// If we reach max level, print win message and exit
+				if (currentLevelNumber >= model.MAX_LEVEL) {
+					System.out.println(model.WIN_MSG);
+					break;
+				} else {
+					// Load next level
+					System.out.println(model.NEXT_LEVEL_MSG);
+					model.loadLevel(currentLevelNumber + 1);
+				}
+			}
 		}
 	}
 
@@ -87,7 +104,11 @@ public class Player {
 			case PLANT_SEED:
 				// Save previous state to undo stack before
 				// we modify the level state
-				model.writeHistory();
+				try {
+					model.writeHistory();
+				} catch(Exception e) {
+					e.printStackTrace();
+				}
 				//Try to create the plant based on the playercommand
 				Plant.Type p = null;
 				String plant = command.getArg();
@@ -128,7 +149,11 @@ public class Player {
 			case DO_NOTHING:
 				// Save previous state to undo stack before
 				// we modify the level state
-				model.writeHistory();
+				try {
+					model.writeHistory();
+				} catch(Exception e) {
+					e.printStackTrace();
+				}
 				//Player does nothing that turn, just increment to the next turn
 				model.getLevel().incrementTurn();
 				triggerCooldowns();
@@ -136,13 +161,12 @@ public class Player {
 			default:
 		}
 		if (model.getLevel().isGameOver()) {
-			return PlayStatus.GAME_OVER;
+			return PlayStatus.GAMEOVER;
 		}else if (model.getLevel().isVictorious())
-			return PlayStatus.VICTORY
+			return PlayStatus.VICTORY;
 		else{
 			return PlayStatus.NORMAL;
 		}
-
 	}
 
 	/**
@@ -208,14 +232,4 @@ public class Player {
 			cooldown.tick();
 		}
 	}
-
-
-	/**
-	 * Setter method for score
-	 * @param score
-	 */
-	public void setScore(int score){
-		this.score = score;
-	}
-
 }

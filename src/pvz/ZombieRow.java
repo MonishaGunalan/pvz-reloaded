@@ -3,6 +3,7 @@ package pvz;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.io.Serializable;
 
 /**
  * The class contains a list of ZombieTurn objects which has the zombies and its
@@ -78,13 +79,11 @@ public class ZombieRow implements Serializable{
 			ZombieTurn zt = it.next();
 			if (zt.getTurn() == turnNumber) {
 				zombie = zt.getZombie();
-				System.out.println("Zombie: " + zombie.getType() + "  turn = "
-						+ zt.getTurn());
+				//System.out.println("Zombie: "+zombie.getType() + "  turn = "+ zt.getTurn());
 				it.remove();
 				return zombie;
 			}
 		}
 		return null;
 	}
-
 }
