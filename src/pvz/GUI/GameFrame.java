@@ -218,7 +218,12 @@ public class GameFrame extends JFrame implements Observer {
 				hideSeedPanel();
 			}
 			JOptionPane.showMessageDialog(this, "Congratulation on beating the level!!\n Start the next level");
-			model.loadNextLevel();
+			try{
+				model.loadNextLevel();
+			}catch(IllegalArgumentException e){
+				JOptionPane.showMessageDialog(this, "Nevermind you have beat the game!!\nPress \"Ok\" to exit");
+				System.exit(0);
+			}
 			break;
 		case COMMAND_FAILED:
 			JOptionPane.showMessageDialog(this, "Command Failed");
@@ -240,7 +245,7 @@ public class GameFrame extends JFrame implements Observer {
 	public Plant.Type getPlantMode(){
 		return this.plantMode;
 	}
-	
+
 	/**
 	 * Sets the plant mode
 	 * @param plantMode
