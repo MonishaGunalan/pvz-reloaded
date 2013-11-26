@@ -20,7 +20,7 @@ public class PlantFactoryTest {
 
 	@Before
 	public void setUp() throws Exception {
-		square = new Square("",0,0,null);
+		square = new Square(0,0,null);
 
 	}
 

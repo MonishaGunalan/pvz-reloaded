@@ -33,7 +33,7 @@ public class SunGeneratorTest {
 		testLevel1 = new Level(1);
 		testField1 = new Field(terrainType, testLevel1);
 		testStrip1 = new Strip("grass", 3, testField1);
-		testSquare1 = new Square("grass", 3, 2, testStrip1);
+		testSquare1 = new Square( 3, 2, testStrip1);
 		testTrigger = 2;
 		testSunAmt = 10;
 		testGenerator1 = new SunGenerator(testTrigger, testSunAmt, testField1);

@@ -49,16 +49,10 @@ public class Square
 	 * The number of bullets on the square
 	 */
 	private int numBullet;
-	/**
-	 * The terrain of the square
-	 */
-	private String terrain;
+
 
 	/**
 	 * constructor: can contain zombies, plant and bullets
-	 * 
-	 * @param terrain
-	 *            terrian type of the field
 	 * 
 	 * @param row
 	 *            the position in the field row
@@ -69,7 +63,7 @@ public class Square
 	 * @param strip
 	 *            the strip which contains this square
 	 */
-	public Square(String terrain, int row, int col, Strip strip) {
+	public Square( int row, int col, Strip strip) {
 		this.row = row;
 		this.col = col;
 		zombies = new ArrayList<Zombie>();
@@ -78,7 +72,6 @@ public class Square
 		this.numZombie = 0;
 		this.numBullet = 0;
 		this.strip = strip;
-		this.terrain = terrain;
 	}
 
 	/**
@@ -307,11 +300,11 @@ public class Square
 	}
 
 	/**
-	 * @return returns a toString representation of the square
+	 * @return returns a toString representation of the square for Zombie, Bullet, Grass, Mud, Plant.
 	 */
 	public String toString() {
 		String s = "[";
-		if (this.terrain.equals("mud")) {
+		if (strip.getTerrain() == Strip.Terrain.MUD) {
 			s += "-";
 		}
 
@@ -326,6 +319,11 @@ public class Square
 		} else {
 			s += "  ";
 		}
+		
+		if (strip.getTerrain() == Strip.Terrain.GRASS) {
+			s += " ";
+		}
+
 
 		if (this.hasZombie()) {
 			s += "z" + numZombie;

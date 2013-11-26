@@ -43,11 +43,6 @@ public class Level extends Observable implements Observer, Serializable {
 	 */
 	private ZombieRow[] zombieList;
 	/**
-	 * Win if all zombies are dead. Lose
-	 * conditions are checked first.
-	 */
-	private boolean hasWon;
-	/**
 	 * Lose if a zombie reaches are end of a strip. Lose
 	 * conditions are checked first.
 	 */
@@ -148,8 +143,6 @@ public class Level extends Observable implements Observer, Serializable {
 							numZombieInRow[i] = Integer
 									.parseInt(rowContents[1]);
 							totalZombies += Integer.parseInt(rowContents[1]);
-							System.out
-									.println("totalZombies = " + totalZombies);
 
 							while (numZombieInRow[i] > 0) {
 								// read the turn number in which the Zombie
