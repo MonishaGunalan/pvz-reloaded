@@ -4,24 +4,20 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import pvz.PeaShooterPlant;
-import pvz.Plant;
-import pvz.PlantFactory;
-import pvz.Square;
-import pvz.Plant.Type;
+import pvz.*;
 /**
  * 
  * @author Christopher Nguyen
  *
  */
 public class PlantFactoryTest {
-
+	Level level;
 	Square square;
 
 	@Before
 	public void setUp() throws Exception {
-		square = new Square(0,0,null);
-
+		level = new Level(1);
+		square = level.getField().getStrip()[2].getSquare(0);
 	}
 
 	@Test
@@ -36,6 +32,9 @@ public class PlantFactoryTest {
 
 	@Test
 	public void testMakePlant(){
+		if (square == null) {
+			System.out.println("WTF");
+		}
 		assertTrue(PlantFactory.makePlant(Plant.Type.PEASHOOTER, square).getClass() == PeaShooterPlant.class);
 	}
 
