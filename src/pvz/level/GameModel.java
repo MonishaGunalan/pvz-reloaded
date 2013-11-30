@@ -116,7 +116,9 @@ public class GameModel extends Observable {
 	 */
 	public void play(PlayerCommand command){
 		Player.PlayStatus result = player.play(command);
-
+		if (result == Player.PlayStatus.GAMEOVER){
+			stopTimer();
+		}
 		setChanged();
 		this.notifyObservers(result);
 	}

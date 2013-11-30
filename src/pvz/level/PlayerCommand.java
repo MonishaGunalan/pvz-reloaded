@@ -91,7 +91,7 @@ public class PlayerCommand{
 	}
 	
 	/**
-	 * 
+	 * Overload constructor
 	 * @param commandType
 	 */
 	public PlayerCommand(CommandType commandType){
