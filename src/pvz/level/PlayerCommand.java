@@ -89,6 +89,14 @@ public class PlayerCommand{
 		this.arg = arg;
 
 	}
+	
+	/**
+	 * 
+	 * @param commandType
+	 */
+	public PlayerCommand(CommandType commandType){
+		this(commandType, 0,0, "");
+	}
 
 	/**
 	 * Constructor for initializing through an inputstream 

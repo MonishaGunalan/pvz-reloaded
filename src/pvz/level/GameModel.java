@@ -8,6 +8,8 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.Deque;
 import java.util.ArrayDeque;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * The GameModel is the model for the Plant vs Zombie game
@@ -52,7 +54,14 @@ public class GameModel extends Observable {
 	 */
 	public static final int MIN_LEVEL = 1;
 	public static final int MAX_LEVEL = 5;
-
+	/**
+	 * The task done at the timer
+	 */
+	private TimerTask task;
+	/**
+	 * The timer
+	 */
+	Timer t;
 	/**
 	 * The public constructor for Game Model
 	 * If player data exists it is loaded and level and player is initialized
@@ -65,6 +74,7 @@ public class GameModel extends Observable {
 		// Initialize undo and redo stacks
 		undoStack = new ArrayDeque<Level>();
 		redoStack = new ArrayDeque<Level>();
+		startTimer();
 	}	
 
 	/**
@@ -152,6 +162,7 @@ public class GameModel extends Observable {
 		//System.out.println("Current turn: " + level.getTurnNumber());
 		// If there's something on the undo stack
 		if (!redoStack.isEmpty()) {
+			stopTimer();
 			// Make deep copy of current level and push onto 
 			// undo stack
 			Level savedLevel = (Level)DeepCopy.copy(this.getLevel());
@@ -161,6 +172,7 @@ public class GameModel extends Observable {
 			this.level = redoStack.removeFirst();
 			//System.out.println("Redo turn: " + level.getTurnNumber());
 			//printStackSizes();
+			startTimer();
 			return true;
 		}
 
@@ -179,6 +191,7 @@ public class GameModel extends Observable {
 		//System.out.println("Current turn: " + level.getTurnNumber());
 		// If there's something on the undo stack
 		if (!undoStack.isEmpty()) {
+			stopTimer();
 			// Make deep copy of current level and push onto 
 			// redo stack
 			Level savedLevel = (Level)DeepCopy.copy(this.getLevel());
@@ -188,6 +201,7 @@ public class GameModel extends Observable {
 			this.level = undoStack.removeFirst();
 			//System.out.println("Undo turn: " + level.getTurnNumber());
 			//printStackSizes();
+			//startTimer();
 			return true;
 		}
 
@@ -220,6 +234,26 @@ public class GameModel extends Observable {
 		}
 
 		return false;
+	}
+	
+	private void startTimer(){
+		task = new TimerTask(){
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				GameModel.this.play(new PlayerCommand(PlayerCommand.CommandType.DO_NOTHING));
+			}
+			
+		};
+		
+		t = new Timer();
+		t.scheduleAtFixedRate(task, 2000, 2000);
+		
+	}
+	
+	private void stopTimer(){
+		t.cancel();
 	}
 
 	//@Override

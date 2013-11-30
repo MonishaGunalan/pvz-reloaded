@@ -90,19 +90,12 @@ public class Player {
 	 * @param command The command to be input
 	 * @return The status of the play
 	 */
-	public PlayStatus play (PlayerCommand command){
+	public synchronized PlayStatus play (PlayerCommand command){
 		if (command == null){
 			return PlayStatus.INVALID_COMMAND;
 		}
 		switch(command.getCommandType()){
 			case PLANT_SEED:
-				// Save previous state to undo stack before
-				// we modify the level state
-				try {
-					model.writeHistory();
-				} catch(Exception e) {
-					e.printStackTrace();
-				}
 				//Try to create the plant based on the playercommand
 				Plant.Type p = null;
 				String plant = command.getArg();
@@ -119,11 +112,8 @@ public class Player {
 					growSuccessful = grow(command.getRow(),command.getCol(),p);
 
 				}
-				//increment turn if the grow was successful
-				if (growSuccessful == PlayStatus.NORMAL){
-					model.getLevel().incrementTurn();
-
-				} else{
+				//Return the command if it was not successful
+				if (growSuccessful != PlayStatus.NORMAL){
 					return growSuccessful;
 				}
 				break;
@@ -155,7 +145,6 @@ public class Player {
 			default:
 		}
 		if (model.getLevel().isGameOver()) {
-			System.out.println("Game OVer ");
 			return PlayStatus.GAMEOVER;
 		}else if (model.getLevel().isVictorious())
 			return PlayStatus.VICTORY;
