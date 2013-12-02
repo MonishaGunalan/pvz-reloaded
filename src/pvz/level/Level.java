@@ -16,6 +16,7 @@ import pvz.unit.PlantFactory;
 import pvz.unit.Zombie;
 import pvz.unit.ZombieFactory;
 import pvz.unit.Plant.Type;
+import pvz.level.SerializableObservable;
 
 /**
  * The level keeps track of
@@ -24,7 +25,9 @@ import pvz.unit.Plant.Type;
  * @author Monisha Gunalan
  * 100871444
  */
-public class Level extends Observable implements Observer, Serializable {
+public class Level 
+	extends SerializableObservable
+	implements Observer, Serializable {
 	/**
 	 * Serialization UID Do not change unless serialization with previous
 	 * versions become incompatible
