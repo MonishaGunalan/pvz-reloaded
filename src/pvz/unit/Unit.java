@@ -12,13 +12,14 @@ package pvz.unit;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.Observer;
-import java.util.Observable;
+//import java.util.Observable;
 import java.io.Serializable;
 
 import pvz.level.Square;
+import pvz.level.SerializableObservable;
 
 public abstract class Unit 
-	extends Observable
+	extends SerializableObservable
 	implements Observer, Serializable 	{
 	/**
 	 * Serialization UID
