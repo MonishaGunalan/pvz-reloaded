@@ -95,54 +95,57 @@ public class Player {
 			return PlayStatus.INVALID_COMMAND;
 		}
 		switch(command.getCommandType()){
-			case PLANT_SEED:
-				//Try to create the plant based on the playercommand
-				Plant.Type p = null;
-				String plant = command.getArg();
-				//Get the plant type
-				try{
-					p = Plant.Type.valueOf(plant.toUpperCase());
-				}catch(IllegalArgumentException e){
-					System.out.println("No such plant!");
-					return PlayStatus.INVALID_COMMAND;
-				}
-				PlayStatus growSuccessful = null;
-				//try to grow the plant
-				if (p != null){
-					growSuccessful = grow(command.getRow(),command.getCol(),p);
+		case PLANT_SEED:
+			//Try to create the plant based on the playercommand
+			Plant.Type p = null;
+			String plant = command.getArg();
+			//Get the plant type
+			try{
+				p = Plant.Type.valueOf(plant.toUpperCase());
+			}catch(IllegalArgumentException e){
+				System.out.println("No such plant!");
+				return PlayStatus.INVALID_COMMAND;
+			}
+			PlayStatus growSuccessful = null;
+			//try to grow the plant
+			if (p != null){
+				growSuccessful = grow(command.getRow(),command.getCol(),p);
 
-				}
-				//Return the command if it was not successful
-				if (growSuccessful != PlayStatus.NORMAL){
-					return growSuccessful;
-				}
-				break;
-
-			case UNDO:
-				if (model.undo()){
-					return PlayStatus.NORMAL;
-				}else {
-					return PlayStatus.COMMAND_FAILED;
-				}
-			case REDO:
-				if (model.redo()){
-					return PlayStatus.NORMAL;
-				}else {
-					return PlayStatus.COMMAND_FAILED;
-				}
-			case DO_NOTHING:
-				// Save previous state to undo stack before
-				// we modify the level state
-				try {
-					model.writeHistory();
-				} catch(Exception e) {
-					e.printStackTrace();
-				}
-				//Player does nothing that turn, just increment to the next turn
+			}
+			//Return the command if it was not successful
+			if (growSuccessful != PlayStatus.NORMAL){
+				return growSuccessful;
+			}
+			if (!model.isRealTime()){
 				model.getLevel().incrementTurn();
+			}
+			break;
 
-				break;
-			default:
+		case UNDO:
+			if (model.undo()){
+				return PlayStatus.NORMAL;
+			}else {
+				return PlayStatus.COMMAND_FAILED;
+			}
+		case REDO:
+			if (model.redo()){
+				return PlayStatus.NORMAL;
+			}else {
+				return PlayStatus.COMMAND_FAILED;
+			}
+		case DO_NOTHING:
+			// Save previous state to undo stack before
+			// we modify the level state
+			try {
+				model.writeHistory();
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			//Player does nothing that turn, just increment to the next turn
+			model.getLevel().incrementTurn();
+
+			break;
+		default:
 		}
 		if (model.getLevel().isGameOver()) {
 			return PlayStatus.GAMEOVER;

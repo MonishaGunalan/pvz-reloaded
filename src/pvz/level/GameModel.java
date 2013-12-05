@@ -63,18 +63,25 @@ public class GameModel extends Observable {
 	 */
 	Timer t;
 	/**
+	 * whether or not the game is being played in real time
+	 */
+	boolean realTime;
+	/**
 	 * The public constructor for Game Model
 	 * If player data exists it is loaded and level and player is initialized
 	 * 
 	 */
-	public GameModel(){
+	public GameModel(boolean realTime){
 		level = new Level(1);
 		player = new Player(this);	
 
 		// Initialize undo and redo stacks
 		undoStack = new ArrayDeque<Level>();
 		redoStack = new ArrayDeque<Level>();
-		startTimer();
+		this.realTime = realTime;
+		if (realTime){
+			startTimer();
+		}
 	}	
 
 	/**
@@ -100,6 +107,10 @@ public class GameModel extends Observable {
 		this.level = new Level(levelNum);
 		setChanged();
 		this.notifyObservers(Player.PlayStatus.NORMAL);
+		if (realTime){
+			stopTimer();
+			startTimer();
+		}
 	}
 
 	/**
@@ -116,7 +127,7 @@ public class GameModel extends Observable {
 	 */
 	public void play(PlayerCommand command){
 		Player.PlayStatus result = player.play(command);
-		if (result == Player.PlayStatus.GAMEOVER){
+		if (result == Player.PlayStatus.GAMEOVER || Player.PlayStatus.VICTORY== result){
 			stopTimer();
 		}
 		setChanged();
@@ -150,7 +161,7 @@ public class GameModel extends Observable {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		new GameModel().play();
+		new GameModel(false).play();
 	}
 
 	/**
@@ -164,7 +175,6 @@ public class GameModel extends Observable {
 		//System.out.println("Current turn: " + level.getTurnNumber());
 		// If there's something on the undo stack
 		if (!redoStack.isEmpty()) {
-			stopTimer();
 			// Make deep copy of current level and push onto 
 			// undo stack
 			Level savedLevel = (Level)DeepCopy.copy(this.getLevel());
@@ -174,7 +184,6 @@ public class GameModel extends Observable {
 			this.level = redoStack.removeFirst();
 			//System.out.println("Redo turn: " + level.getTurnNumber());
 			//printStackSizes();
-			startTimer();
 			return true;
 		}
 
@@ -193,7 +202,7 @@ public class GameModel extends Observable {
 		//System.out.println("Current turn: " + level.getTurnNumber());
 		// If there's something on the undo stack
 		if (!undoStack.isEmpty()) {
-			stopTimer();
+		//	stopTimer();
 			// Make deep copy of current level and push onto 
 			// redo stack
 			Level savedLevel = (Level)DeepCopy.copy(this.getLevel());
@@ -203,7 +212,7 @@ public class GameModel extends Observable {
 			this.level = undoStack.removeFirst();
 			//System.out.println("Undo turn: " + level.getTurnNumber());
 			//printStackSizes();
-			//startTimer();
+	//		startTimer();
 			return true;
 		}
 
@@ -238,7 +247,10 @@ public class GameModel extends Observable {
 		return false;
 	}
 	
-	private void startTimer(){
+	public void startTimer(){
+		if (!realTime){
+			return;
+		}
 		task = new TimerTask(){
 
 			@Override
@@ -248,14 +260,23 @@ public class GameModel extends Observable {
 			}
 			
 		};
-		
+		System.out.println("Timer start");
 		t = new Timer();
 		t.scheduleAtFixedRate(task, 2000, 2000);
 		
 	}
 	
-	private void stopTimer(){
+	public void stopTimer(){
+		
+		if (!realTime){
+			return;
+		}
+		System.out.println("Timer stopped");
 		t.cancel();
+	}
+	
+	public boolean isRealTime(){
+		return realTime;
 	}
 
 	//@Override
