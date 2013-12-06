@@ -1,11 +1,7 @@
 package pvz.unit;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Observable;
-
 import pvz.level.Field;
 import pvz.level.Square;
-import pvz.level.Field.Direction;
 
 /**
  * This class is the parent of all zombie types.<!-- --> It contains default information
@@ -17,7 +13,10 @@ import pvz.level.Field.Direction;
  */
 public abstract class Zombie 
 	extends PerishableUnit {
-
+	/**
+	 * Serial id
+	 */
+	private static final long serialVersionUID = 1L;
 	/**
 	 * The default attack damage of zombie
 	 */

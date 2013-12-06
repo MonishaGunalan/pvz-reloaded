@@ -15,7 +15,6 @@ import pvz.unit.Plant;
 import pvz.unit.PlantFactory;
 import pvz.unit.Zombie;
 import pvz.unit.ZombieFactory;
-import pvz.unit.Plant.Type;
 import pvz.level.SerializableObservable;
 
 /**

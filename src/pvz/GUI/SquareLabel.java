@@ -16,7 +16,6 @@ import javax.swing.JLabel;
 
 import pvz.level.Square;
 import pvz.level.Strip;
-import pvz.level.Strip.Terrain;
 import pvz.unit.Bullet;
 import pvz.unit.ConeZombie;
 import pvz.unit.FlagZombie;
@@ -35,6 +34,10 @@ import pvz.unit.Zombie;
  *
  */
 public class SquareLabel extends JLabel {
+	/**
+	 * Serial id
+	 */
+	private static final long serialVersionUID = 1L;
 	/**
 	 * row of square
 	 */

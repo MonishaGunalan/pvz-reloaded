@@ -1,4 +1,10 @@
 package pvz.level;
+
+
+import java.util.ArrayList;
+import java.util.Observer;
+import java.util.Observable;
+import java.io.Serializable;
 /**
  * @author Tianming Zhuang
  * 100875151
@@ -6,17 +12,13 @@ package pvz.level;
  * This class is an implementation of the Observable
  * class that supports serialization.
  */
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Observer;
-import java.util.Observable;
-import java.io.Serializable;
-
-import pvz.level.Square;
-
 public abstract class SerializableObservable 
 	extends Observable
 	implements Serializable {
+	/**
+	 * Serial id
+	 */
+	private static final long serialVersionUID = 1L;
 	/** 
 	 * The list of observers
 	 */

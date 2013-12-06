@@ -2,8 +2,6 @@ package pvz.unit;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Collections;
-
-import pvz.unit.Zombie.Type;
 /**
  * This class is for creating instances of
  * classes extending {@link Zombie}.

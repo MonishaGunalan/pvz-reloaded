@@ -13,6 +13,10 @@ import pvz.level.Square;
 public class WallnutPlant
 	extends DefensivePlant {
 	/**
+	 * Serial id
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
 	 * The max HP of the plant
 	 */
 	public static final int MAX_HP = 25;

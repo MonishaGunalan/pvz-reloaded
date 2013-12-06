@@ -1,6 +1,6 @@
 package pvz.unit;
 
-import pvz.unit.Zombie.Type;
+
 
 /**
  * The most basic type of zombie. This class should not be instantiated
@@ -12,6 +12,10 @@ import pvz.unit.Zombie.Type;
  */
 public class NormalZombie
 	extends Zombie {
+	/**
+	 * Serial id
+	 */
+	private static final long serialVersionUID = 1L;
 	/**
 	 * Max HP of zombie
 	 */

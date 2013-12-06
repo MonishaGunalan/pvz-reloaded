@@ -11,7 +11,10 @@ import pvz.level.Square;
  */
 public abstract class Plant 
 	extends PerishableUnit{
-
+	/**
+	 * Serial id
+	 */
+	private static final long serialVersionUID = 1L;
 	/**
 	 * The possible types a plant can have
 	 *

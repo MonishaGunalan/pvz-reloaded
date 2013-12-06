@@ -12,6 +12,10 @@ package pvz.unit;
 public abstract class PerishableUnit 
 	extends Unit{
 	/**
+	 * Serial id
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
 	 * Maximum hp
 	 */
     protected int maxHP;
