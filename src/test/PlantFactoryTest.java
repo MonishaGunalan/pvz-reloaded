@@ -37,9 +37,6 @@ public class PlantFactoryTest {
 
 	@Test
 	public void testMakePlant(){
-		if (square == null) {
-			System.out.println("WTF");
-		}
 		assertTrue(PlantFactory.makePlant(Plant.Type.PEASHOOTER, square).getClass() == PeaShooterPlant.class);
 	}
 

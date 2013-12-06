@@ -21,6 +21,7 @@ public class Player {
 	public enum PlayStatus{
 		GAMEOVER,
 		VICTORY,
+		ZOMBIE_DIED,
 		NOT_ENOUGH_SUN,
 		INVALID_POSITION,
 		COOLDOWN_NOT_READY,
@@ -198,9 +199,9 @@ public class Player {
 		//Make the plant and update the level based on the plant
 		Plant plant = PlantFactory.makePlant(plantType, square);
 		if (plant != null){
-			System.out.println("Plant Created");
-			System.out.println(plant.getClass().getName());
-			System.out.println("Using " + plantCost + " amount of sun.");
+			//System.out.println("Plant Created");
+			//System.out.println(plant.getClass().getName());
+			//System.out.println("Using " + plantCost + " amount of sun.");
 			model.getLevel().getField().useSun(plantCost);
 			model.getLevel().addObserver(plant);
 			model.getLevel().getTriggeredCooldowns().get(plantType).trigger();

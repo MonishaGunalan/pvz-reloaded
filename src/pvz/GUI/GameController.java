@@ -14,7 +14,6 @@ import pvz.level.GameModel;
 import pvz.level.PlayerCommand;
 import pvz.level.PlayerCommand.CommandType;
 import pvz.unit.Plant;
-import sun.awt.WindowClosingListener;
 /**
  * The controller class in the MVC, it is the entry point for the GUI
  * @author Christopher Nguyen

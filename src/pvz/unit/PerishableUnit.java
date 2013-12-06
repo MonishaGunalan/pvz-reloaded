@@ -73,8 +73,6 @@ public abstract class PerishableUnit
 	 */
 	public void die(){
 		//System.out.println(this.getClass().getName() + "@" + getRow() + "," + getCol() + " is dead.");
-		setChanged();
-		notifyObservers("zombie died");
 		getSquare().getStrip().getField().getLevel().deleteObserver(this);
 		this.getSquare().remove(this);
 	}

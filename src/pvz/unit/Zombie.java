@@ -6,6 +6,7 @@ import java.util.Observable;
 import pvz.level.Field;
 import pvz.level.Square;
 import pvz.level.Field.Direction;
+import pvz.level.Player;
 
 /**
  * This class is the parent of all zombie types.<!-- --> It contains default information
@@ -183,12 +184,19 @@ public abstract class Zombie
 		// If there's a plant on the square, attack it
 		// otherwise, move when possible
 		if (getSquare().hasPlant()) {
-			System.out.println(getSquare().getLoc());
+			//System.out.println(getSquare().getLoc());
 			this.hit(getSquare().getPlant());
 		} else if (!getSquare().hasBullet()) {
 			this.move(Field.Direction.LEFT);
 		}
 		super.tickCooldowns();
+	}
+
+	@Override
+	public void die() {
+		setChanged();
+		notifyObservers(Player.PlayStatus.ZOMBIE_DIED);
+		super.die();
 	}
 
 

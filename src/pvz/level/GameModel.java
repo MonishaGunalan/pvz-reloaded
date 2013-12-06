@@ -260,7 +260,7 @@ public class GameModel extends Observable {
 			}
 			
 		};
-		System.out.println("Timer start");
+		//System.out.println("Timer start");
 		t = new Timer();
 		t.scheduleAtFixedRate(task, 2000, 2000);
 		
@@ -271,7 +271,7 @@ public class GameModel extends Observable {
 		if (!realTime){
 			return;
 		}
-		System.out.println("Timer stopped");
+		//System.out.println("Timer stopped");
 		t.cancel();
 	}
 	

@@ -11,7 +11,7 @@ public class GameModelTest {
 
 	@Before
 	public void setUp() {
-		model = new GameModel();
+		model = new GameModel(false);
 	}
 
 	@Test
