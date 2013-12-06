@@ -98,4 +98,42 @@ public class GameModelTest {
 	@Test
 	public void loadLevelValidLevel() {
 	}
+	
+	@Test
+	public void testRealTime(){
+		GameModel m1 = new GameModel(true);
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		assertTrue(m1.getLevel().getTurnNumber()==1);
+	}
+	@Test
+	public void testStopTimer(){
+		GameModel m1 = new GameModel(true);
+		m1.stopTimer();
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		assertTrue(m1.getLevel().getTurnNumber()==0);
+	}
+	
+	@Test
+	public void testStartTime(){
+		GameModel m1 = new GameModel(true);
+		m1.stopTimer();
+		m1.startTimer();
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		assertTrue(m1.getLevel().getTurnNumber()==1);
+	}
 }

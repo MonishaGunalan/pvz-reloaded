@@ -123,7 +123,7 @@ public class GameFrame extends JFrame implements Observer {
 		statusPanel.add(resumeButton);
 		consolePanel.add(statusPanel);
 		consolePanel.add(userMessage);
-
+		
 		this.add(commandPanel, BorderLayout.NORTH);
 
 		this.add(gamePanel, BorderLayout.CENTER);
@@ -172,6 +172,8 @@ public class GameFrame extends JFrame implements Observer {
 		gamePanel.updateLevel();
 		sunLabel.setText("" + model.getLevel().getField().getTotalSun());
 		turnLabel.setText("" + model.getLevel().getTurnNumber());
+		undoButton.setEnabled(model.hasUndo());
+		redoButton.setEnabled(model.hasRedo());
 		revalidate();
 		repaint();
 	}

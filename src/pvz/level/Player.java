@@ -117,6 +117,7 @@ public class Player {
 			if (growSuccessful != PlayStatus.NORMAL){
 				return growSuccessful;
 			}
+			//Only increment turn if it is being played turn based
 			if (!model.isRealTime()){
 				model.getLevel().incrementTurn();
 			}
