@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import pvz.level.Field;
 import pvz.level.GameModel;
 import pvz.level.Player;
-import pvz.level.Player.PlayStatus;
+
 import pvz.unit.Plant;
 import pvz.unit.PlantFactory;
 
@@ -26,15 +26,14 @@ import pvz.unit.PlantFactory;
  * 
  */
 public class GameFrame extends JFrame implements Observer {
-
 	/**
-	 * Option for when the level has finished
+	 * Serial id
 	 */
-	private String [] options = {"Next Level"};
+	private static final long serialVersionUID = 1L;
 
 	private JPanel commandPanel, seedPanel, consolePanel, statusPanel;
 	/**
-	 * The pannel that contains all the game object
+	 * The panel that contains all the game object
 	 */
 	private GamePanel gamePanel;
 	/**
@@ -42,7 +41,7 @@ public class GameFrame extends JFrame implements Observer {
 	 * Buttons that allow user interaction
 	 */
 	private JButton plantButton, doNothingButton, undoButton, redoButton,
-	sunflowerButton, peashooterButton,wallnutButton, cancelButton;
+	sunflowerButton, peashooterButton,wallnutButton;
 
 	private JButton pauseButton, resumeButton;
 

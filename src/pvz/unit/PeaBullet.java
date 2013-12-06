@@ -15,6 +15,10 @@ package pvz.unit;
  */
 public class PeaBullet
 	extends Bullet {
+	/**
+	 * Serial id
+	 */
+	private static final long serialVersionUID = 1L;
 	// Constants
 	/**
 	 * The trigger time for move

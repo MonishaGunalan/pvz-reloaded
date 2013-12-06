@@ -1,5 +1,4 @@
 package pvz.unit;
-import java.util.Observable;
 
 import pvz.level.Square;
 
@@ -15,6 +14,10 @@ import pvz.level.Square;
  */
 public abstract class GeneratorPlant
 	extends Plant {
+	/**
+	 * Serial id
+	 */
+	private static final long serialVersionUID = 1L;
 	/**
 	 * The generator of the plant
 	 */

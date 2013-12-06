@@ -34,6 +34,7 @@ public class GeneratorPlantTest {
 		testSquare1 = new Square( 3, 2, testStrip1);
 		testZombie1 = new NormalZombie();
 		testGeneratorPlant = new GeneratorPlant(4, testSquare1){
+
 			@Override
 			public void update(Observable o, Object arg) {
 				// TODO Auto-generated method stub

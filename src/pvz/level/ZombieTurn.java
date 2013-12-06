@@ -11,6 +11,10 @@ import pvz.unit.Zombie;
 
 public class ZombieTurn implements Serializable{
 	/**
+	 * Serial id
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
 	 * Turn number of the Zombie at which it should spawn
 	 */
 	private int turn;

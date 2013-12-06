@@ -6,13 +6,10 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
-
 import pvz.level.GameModel;
 import pvz.level.PlayerCommand;
-import pvz.level.PlayerCommand.CommandType;
 import pvz.unit.Plant;
 /**
  * The controller class in the MVC, it is the entry point for the GUI

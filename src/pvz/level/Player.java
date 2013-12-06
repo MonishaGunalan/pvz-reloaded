@@ -1,10 +1,6 @@
 package pvz.level;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Scanner;
 
+import java.util.Scanner;
 import pvz.unit.Cooldown;
 import pvz.unit.Plant;
 import pvz.unit.PlantFactory;

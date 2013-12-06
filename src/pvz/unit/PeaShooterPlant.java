@@ -14,6 +14,10 @@ import pvz.level.Square;
 public class PeaShooterPlant
 	extends OffensivePlant {
 	/**
+	 * Serial id
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
 	 * The mas HP of the plant
 	 */
 	public static final int MAX_HP = 3;

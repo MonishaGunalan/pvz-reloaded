@@ -9,8 +9,6 @@ package pvz.level;
  */
 import java.io.Serializable;
 
-import pvz.level.Strip.Terrain;
-
 public class Strip
 	implements Serializable {
 	/**

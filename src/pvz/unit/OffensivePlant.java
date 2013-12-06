@@ -1,8 +1,7 @@
 package pvz.unit;
 import java.util.Observable;
-
 import pvz.level.Square;
-import pvz.unit.Bullet.Type;
+
 
 /**
  * This class is the abstract superclass for all plant
@@ -18,6 +17,10 @@ import pvz.unit.Bullet.Type;
  */
 public abstract class OffensivePlant
 	extends Plant {
+	/**
+	 * Serial id
+	 */
+	private static final long serialVersionUID = 1L;
 	/**
 	 * Default bullet the plant shoots
 	 */
