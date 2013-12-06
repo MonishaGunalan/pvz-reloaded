@@ -104,21 +104,26 @@ public class GameController implements ActionListener, MouseListener, WindowList
 			} else if (((JButton) e.getSource()).getText().equals("Cancel")) {
 				view.hideSeedPanel();
 			} else if (e.getSource() ==view.getPauseButton()){
+				//Pause button has been selected
 				model.stopTimer();
 				view.getResumeButton().setEnabled(true);
 				view.getPauseButton().setEnabled(false);
 				view.revalidate();
 				view.repaint();
 			} else if (e.getSource() ==view.getResumeButton()){
+				//Resume button has been selected
 				model.startTimer();
 				view.getPauseButton().setEnabled(true);
 				view.getResumeButton().setEnabled(false);
 				view.revalidate();
 				view.repaint();
 			} else if(e.getSource() == view.getRedoButton()){
+				//redo button was selected
 				play(new PlayerCommand(
 						PlayerCommand.CommandType.REDO, 0, 0, ""));
 			} else if(e.getSource() == view.getUndoButton()){
+				//undo is selected
+				//pause the game if it is being played in real time
 				if (model.isRealTime() && view.getPauseButton().isEnabled()){
 					view.getPauseButton().doClick();
 				}
@@ -149,6 +154,7 @@ public class GameController implements ActionListener, MouseListener, WindowList
 	}
 	@Override
 	public void windowClosed(WindowEvent arg0) {
+		//stop the timer before quitting
 		if (arg0.getComponent().getClass() == view.getClass()){
 			model.stopTimer();
 		} 

@@ -1,11 +1,6 @@
 package pvz.level;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.Observable;
-import java.util.Observer;
 import java.util.Deque;
 import java.util.ArrayDeque;
 import java.util.Timer;
@@ -53,6 +48,9 @@ public class GameModel extends Observable {
 	 * Number of implemented levels
 	 */
 	public static final int MIN_LEVEL = 1;
+	/**
+	 * Current max of level
+	 */
 	public static final int MAX_LEVEL = 5;
 	/**
 	 * The task done at the timer
@@ -63,7 +61,7 @@ public class GameModel extends Observable {
 	 */
 	Timer t;
 	/**
-	 * whether or not the game is being played in real time
+	 * Whether or not the game is being played in real time
 	 */
 	boolean realTime;
 	/**
@@ -247,6 +245,10 @@ public class GameModel extends Observable {
 		return false;
 	}
 	
+	
+	/**
+	 * Starts the timer if is running in real time
+	 */
 	public void startTimer(){
 		if (!realTime){
 			return;
@@ -266,6 +268,9 @@ public class GameModel extends Observable {
 		
 	}
 	
+	/**
+	 * Stops the timer if playing in real time
+	 */
 	public void stopTimer(){
 		
 		if (!realTime){
@@ -275,10 +280,29 @@ public class GameModel extends Observable {
 		t.cancel();
 	}
 	
+	/**
+	 * Returns if the game is playing in real time
+	 * @return true if the game in playing in real time
+	 */
 	public boolean isRealTime(){
 		return realTime;
 	}
 
+	/**
+	 * Returns if there is any undo left
+	 * @return true if the undo stack is not empty
+	 */
+	public boolean hasUndo(){
+		return !undoStack.isEmpty();
+	}
+	
+	/**
+	 * Returns if there is any undo left
+	 * @return true if the redo stack is not empty
+	 */
+	public boolean hasRedo(){
+		return !redoStack.isEmpty();
+	}
 	//@Override
 	//public void update(Observable o, Object args) {
 		//this.writeHistory();
