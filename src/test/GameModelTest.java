@@ -98,4 +98,15 @@ public class GameModelTest {
 	@Test
 	public void loadLevelValidLevel() {
 	}
+
+	@Test
+	public void saveAndLoad() {
+		int currentTurn = model.getLevel().getTurnNumber();
+		model.save();
+		for (int i=0; i<5; i++) {
+			model.getLevel().incrementTurn();
+		}
+		model.load();
+		assertTrue(model.getLevel().getTurnNumber() == currentTurn);
+	}
 }

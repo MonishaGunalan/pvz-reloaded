@@ -241,10 +241,6 @@ public class Level
 					Square lastSquareInStrip = this.field.getStrip()[i]
 							.getSquares()[Field.DEFAULT_MAX_POSN - 1];
 
-					System.out.println("Putting a zombie on "
-							+ lastSquareInStrip.getLoc());
-					z.setSquare(lastSquareInStrip);
-
 					//System.out.println("Putting a zombie on " + lastSquareInStrip.getLoc());
 					z.setSquare(lastSquareInStrip);
 

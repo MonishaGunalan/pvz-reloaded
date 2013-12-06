@@ -35,7 +35,7 @@ public class GeneratorPlantTest {
 		testZombie1 = new NormalZombie();
 		testGeneratorPlant = new GeneratorPlant(4, testSquare1){
 			@Override
-			public void update(SerializableObservable o, Object arg) {
+			public void update(Observable o, Object arg) {
 				// TODO Auto-generated method stub
 				
 			}

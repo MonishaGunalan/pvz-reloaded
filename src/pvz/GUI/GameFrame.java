@@ -44,7 +44,8 @@ public class GameFrame extends JFrame implements Observer {
 	private JButton plantButton, doNothingButton, undoButton, redoButton,
 	sunflowerButton, peashooterButton,wallnutButton, cancelButton;
 
-	private JButton pauseButton, resumeButton;
+	private JButton pauseButton, resumeButton,
+			saveButton, loadButton;
 
 
 	/**
@@ -118,9 +119,15 @@ public class GameFrame extends JFrame implements Observer {
 		}
 		resumeButton = new JButton("Resume");
 		resumeButton.setEnabled(false);
+		saveButton = new JButton("Save");
+		saveButton.addActionListener(controller);
+		loadButton = new JButton("Load");
+		loadButton.addActionListener(controller);
 		resumeButton.addActionListener(controller);
 		statusPanel.add(pauseButton);
 		statusPanel.add(resumeButton);
+		statusPanel.add(saveButton);
+		statusPanel.add(loadButton);
 		consolePanel.add(statusPanel);
 		consolePanel.add(userMessage);
 
@@ -166,7 +173,7 @@ public class GameFrame extends JFrame implements Observer {
 	/**
 	 * Updates the Game board
 	 */
-	private void updateLevel() {
+	public void updateLevel() {
 		// query the model to update the game panel
 		userMessage.setText("");
 		gamePanel.updateLevel();
@@ -308,5 +315,13 @@ public class GameFrame extends JFrame implements Observer {
 
 	public JButton getResumeButton() {
 		return resumeButton;
+	}
+
+	public JButton getSaveButton() {
+		return saveButton;
+	}
+
+	public JButton getLoadButton() {
+		return loadButton;
 	}
 }

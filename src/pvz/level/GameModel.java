@@ -2,14 +2,21 @@ package pvz.level;
 
 import java.io.BufferedReader;
 import java.io.File;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Deque;
 import java.util.ArrayDeque;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import javax.swing.DefaultListModel;
 
 /**
  * The GameModel is the model for the Plant vs Zombie game
@@ -36,6 +43,8 @@ public class GameModel extends Observable {
 	 * History stack for redos
 	 */
 	private Deque<Level> redoStack;
+	private String playerName;
+	public final static String PLAYERS_FILENAME = "names.txt";
 
 	/**
 	 * Message to print when player wins
@@ -54,6 +63,8 @@ public class GameModel extends Observable {
 	 */
 	public static final int MIN_LEVEL = 1;
 	public static final int MAX_LEVEL = 5;
+
+	public static final String DEFAULT_PLAYER_NAME = "ADMIN";
 	/**
 	 * The task done at the timer
 	 */
@@ -67,12 +78,26 @@ public class GameModel extends Observable {
 	 */
 	boolean realTime;
 	/**
+	 * Default constructor
+	 */
+	public GameModel() {
+		this(false, true);
+	}
+
+	/**
 	 * The public constructor for Game Model
 	 * If player data exists it is loaded and level and player is initialized
 	 * 
 	 */
-	public GameModel(boolean realTime){
-		level = new Level(1);
+	public GameModel(boolean realTime, boolean startNew, String playerName){
+		this.playerName = playerName;
+		// Loads the game depending on the playername 
+
+		if (startNew) {
+			this.level = new Level(1);
+		} else {
+			this.load();
+		}
 		player = new Player(this);	
 
 		// Initialize undo and redo stacks
@@ -83,6 +108,10 @@ public class GameModel extends Observable {
 			startTimer();
 		}
 	}	
+
+	public GameModel(boolean realTime, boolean startNew) {
+		this(realTime, startNew, DEFAULT_PLAYER_NAME);
+	}
 
 	/**
 	 * Play the game
@@ -155,14 +184,6 @@ public class GameModel extends Observable {
 	//public void setLevel(Level level){
 	//this.level = level;
 	//}
-
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		new GameModel(false).play();
-	}
 
 	/**
 	 * Current level is pushed onto the undow stack,
@@ -260,7 +281,6 @@ public class GameModel extends Observable {
 			}
 			
 		};
-		System.out.println("Timer start");
 		t = new Timer();
 		t.scheduleAtFixedRate(task, 2000, 2000);
 		
@@ -271,7 +291,6 @@ public class GameModel extends Observable {
 		if (!realTime){
 			return;
 		}
-		System.out.println("Timer stopped");
 		t.cancel();
 	}
 	
@@ -288,5 +307,54 @@ public class GameModel extends Observable {
 		//System.out.println("Undo stack size: " + undoStack.size());
 		//System.out.println("Redo stack size: " + redoStack.size());
 	//}
+	/**
+	 * Saves current level to default file
+	 */
+	public void save() {
+		try {
+			// Create file if doesnt exit
+			File f = new File(playerName + ".ser");
+			try {
+				f.createNewFile();
+			} catch(Exception e) {
+			}
+			//Open file to write to
+			FileOutputStream fos = new FileOutputStream(playerName + ".ser");
+			ObjectOutputStream out = new ObjectOutputStream(fos);
+			// Get a copy of current level
+			Level savedLevel = (Level)DeepCopy.copy(this.getLevel());
+			// Write to file
+			out.writeObject(savedLevel);
+			out.close();
+		} catch(IOException e) {
+			e.printStackTrace();
+		} 
+	}
+
+
+	/**
+	 * Loads the default file to be played
+	 */
+	public void load() {
+		Level savedLevel = null;
+
+		try {
+			// Get file to open
+			FileInputStream fos = new FileInputStream(playerName + ".ser");
+			ObjectInputStream in = new ObjectInputStream(fos);
+			// Read the level
+			savedLevel = (Level)in.readObject();
+			// Set current level
+			this.level = savedLevel;
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		// If we couldnt open the file, start from level 1
+		//this.loadNew();
+	}
+
+	public void loadNew() {
+		this.level = new Level(1);
+	}
 }
 

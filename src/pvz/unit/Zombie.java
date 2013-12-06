@@ -183,7 +183,6 @@ public abstract class Zombie
 		// If there's a plant on the square, attack it
 		// otherwise, move when possible
 		if (getSquare().hasPlant()) {
-			System.out.println(getSquare().getLoc());
 			this.hit(getSquare().getPlant());
 		} else if (!getSquare().hasBullet()) {
 			this.move(Field.Direction.LEFT);

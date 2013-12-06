@@ -91,9 +91,6 @@ public abstract class OffensivePlant
 	 * Update the observer
 	 */
 	public void update(Observable o, Object arg) {
-		System.out.println("Gonna try to shoot...");
-		System.out.println("hasZombieAfter: " + getSquare().hasZombieAfter());
-		System.out.println("shootCD available: " + shootCD.isAvailable());
 		if (getSquare().hasZombieAfter() && shootCD.isAvailable()) {
 				shoot();
 				shootCD.trigger();

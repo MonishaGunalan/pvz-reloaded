@@ -17,7 +17,9 @@ import pvz.unit.PlantFactory;
  * @since 1.7
  */
 public class Player {
-
+	/**
+	 * List of statuses
+	 */
 	public enum PlayStatus{
 		GAMEOVER,
 		VICTORY,
@@ -36,6 +38,7 @@ public class Player {
 	 * The current score of the player (Not implemented)
 	 */
 	private int score;
+
 	/**
 	 * Model in charge of this game
 	 */
@@ -46,10 +49,14 @@ public class Player {
 	 */
 	public Player(GameModel model){
 		this.model = model;
-
-
 		score = START_SCORE;
+	}
 
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		new GameModel(false, true).play();
 	}
 
 	/**
@@ -198,9 +205,6 @@ public class Player {
 		//Make the plant and update the level based on the plant
 		Plant plant = PlantFactory.makePlant(plantType, square);
 		if (plant != null){
-			System.out.println("Plant Created");
-			System.out.println(plant.getClass().getName());
-			System.out.println("Using " + plantCost + " amount of sun.");
 			model.getLevel().getField().useSun(plantCost);
 			model.getLevel().addObserver(plant);
 			model.getLevel().getTriggeredCooldowns().get(plantType).trigger();
