@@ -1,5 +1,9 @@
 package pvz.level;
-
+/**
+ * Model has all the information of the LevelBuilder and write is to the file
+ * 
+ * @author Monisha Gunalan 100871444
+ */
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
