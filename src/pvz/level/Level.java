@@ -132,7 +132,7 @@ public class Level
 	public String[] loadLevel(String fileName, int levelNumber) {
 		// This will reference one line at a time
 		String line = null;
-		String readLevel = "Level" + levelNumber;
+		String readLevel = "level" + levelNumber;
 		String[] fieldRows = new String[Field.DEFAULT_MAX_ROW];
 		int[] numZombieInRow = new int[Field.DEFAULT_MAX_ROW];
 
