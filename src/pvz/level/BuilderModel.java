@@ -94,7 +94,7 @@ public class BuilderModel extends Observable {
 		BufferedWriter out;
 		int position = 0;
 		try {
-			out = new BufferedWriter(new FileWriter(level + ".txt"));
+			out = new BufferedWriter(new FileWriter("rsrc/"+level + ".txt"));
 			out.write(this.toString(level));
 			out.close();
 		} catch (IOException e) {
@@ -183,7 +183,7 @@ public class BuilderModel extends Observable {
 	public void writeDefaultToFile(String level, String contents){
 		BufferedWriter out;
 		try {
-			out = new BufferedWriter(new FileWriter(level + ".txt"));
+			out = new BufferedWriter(new FileWriter("rsrc/"+level + ".txt"));
 			out.write(contents);
 			out.close();
 		} catch (IOException e) {
