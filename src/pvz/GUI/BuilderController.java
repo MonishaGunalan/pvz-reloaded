@@ -1,4 +1,9 @@
 package pvz.GUI;
+/**
+ * controller handles the event from the GUI for Level Builder. 
+ * 
+ * @author Monisha Gunalan 100871444
+ */
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,15 +14,27 @@ import javax.swing.JComboBox;
 import pvz.level.BuilderModel;
 
 public class BuilderController implements ActionListener {
-
+	/**
+	 * Builder view
+	 */
 	private BuilderView view;
+	
+	/**
+	 * Builder Model
+	 */
 	private BuilderModel model;
 
+	
 	public BuilderController() {
 		view = new BuilderView("Level Builder", this);
 		model = new BuilderModel();
 		model.addObserver(view);
 	}
+	
+	/**
+	 * Handles the action event form View
+	 * @param e: action event 
+	 */
 
 	public void actionPerformed(ActionEvent e) {
 		System.out.println("Action Performed");
@@ -64,6 +81,11 @@ public class BuilderController implements ActionListener {
 
 	}
 
+	/**
+	 * copies the zombie type and zombie turn into an array 
+	 * and pass the array to model
+	 * @param rowIndex index of the row
+	 */
 	public void performAction(int rowIndex) {
 		int size = view.getZombieType(rowIndex).length;
 		String[][] zType = new String[size][2];
@@ -79,9 +101,5 @@ public class BuilderController implements ActionListener {
 		new BuilderController();
 	}
 
-	public BuilderModel getModel() {
-		// TODO Auto-generated method stub
-		return model;
-	}
 
 }
