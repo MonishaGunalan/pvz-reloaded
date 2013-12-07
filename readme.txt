@@ -75,12 +75,12 @@ JavaDoc files
 	
 Additions 
 --------------------------------------
-
 Real Time added for bonus
 
 -An option for real time is added when starting the gui.
 -Pause and Resume added for gui
 -Redo and Undo pauses the game
+-Save and load the game
 	
 Fixes from previous milestones
 ------------------------------
