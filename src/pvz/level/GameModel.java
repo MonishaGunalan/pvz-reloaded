@@ -1,22 +1,17 @@
 package pvz.level;
 
-import java.io.BufferedReader;
-import java.io.File;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Observable;
-import java.util.Observer;
 import java.util.Deque;
 import java.util.ArrayDeque;
 import java.util.Timer;
 import java.util.TimerTask;
-
-import javax.swing.DefaultListModel;
 
 /**
  * The GameModel is the model for the Plant vs Zombie game
@@ -352,11 +347,13 @@ public class GameModel extends Observable {
 			savedLevel = (Level)in.readObject();
 			// Set current level
 			this.level = savedLevel;
+			in.close();
 		} catch(Exception e) {
-			e.printStackTrace();
+			this.loadNew();
+			//e.printStackTrace();
 		}
 		// If we couldnt open the file, start from level 1
-		//this.loadNew();
+		
 	}
 
 	public void loadNew() {

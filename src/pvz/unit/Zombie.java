@@ -1,6 +1,5 @@
 package pvz.unit;
-import java.util.ArrayList;
-import java.util.List;
+
 import java.util.Observable;
 import pvz.level.Field;
 import pvz.level.Square;

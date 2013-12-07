@@ -2,8 +2,6 @@ package pvz.unit;
 import java.util.Observable;
 import pvz.level.Square;
 
-import pvz.level.Square;
-import pvz.unit.Bullet.Type;
 
 /**
  * This class is the abstract superclass for all plant

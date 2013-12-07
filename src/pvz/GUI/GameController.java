@@ -1,6 +1,6 @@
 package pvz.GUI;
 
-import java.awt.*;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -9,11 +9,6 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
-import java.io.File;
-import java.util.Scanner;
-
-import javax.swing.*;
-
 import pvz.level.GameModel;
 import pvz.level.PlayerCommand;
 import pvz.unit.Plant;
