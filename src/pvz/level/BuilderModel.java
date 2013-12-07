@@ -6,11 +6,27 @@ import java.util.Observable;
 
 public class BuilderModel extends Observable {
 
+	/**
+	 * number of rows in the field
+	 */
 	public static final int ROWSIZE = 5;
+	/**
+	 * number of levels
+	 */
 	public static final int NUM_LEVELS = 5;
+	/**
+	 * array of terrians,levels to edit and default level information
+	 */
 	private String[] terrainList, levelSelection, defaultLevels;
+	/**
+	 * array of number of zombies for each row
+	 */
 	private int[] numZombies;
+	/**
+	 * 2D array of zombie type and turn
+	 */
 	private String[][] row1, row2, row3, row4, row5;
+
 
 	public BuilderModel() {
 		this.terrainList = new String[ROWSIZE];
@@ -18,6 +34,9 @@ public class BuilderModel extends Observable {
 		loadDefaultValuesForLevel();
 	}
 
+	/**
+	 * load the defualt information for each row
+	 */
 	public void loadDefaultValuesForLevel() {
 		defaultLevels = new String[NUM_LEVELS];
 		defaultLevels[0] = "level1\nMUD 0\nMUD 0\nGRASS 6\n10 normal\n20 normal\n30 normal\n40 normal\n50 normal\n60 normal\nMUD 0\nMUD 0";
