@@ -91,4 +91,22 @@ Added test for
 Bug Fixes
 	-Undoing then continuing cause any zombies on screen to remain stuck
 	The Serializable did not restore observer/observable, created SerializableObservable to fix
-	
+
+Level Builder Instruction
+--------------------------
+
+- Run the BuilderModel.java class to start the level builder
+- Choose the level to  edit using the checkbox
+- Select the terrain type for each row of the selected level 
+- Enter the number of zombies for each row of grass terrain type
+- Select the type and enter the turn number for each zombie.
+- After all the information is entered for each level click the "Write to   File Button" to write to the file
+
+- Do the same for the next selected level if any left.
+
+-At the end of the level selections. Choose to quit or reset
+
+- Quit: quits the level builder
+- Reset: undo all the changes made in the level builder and set to default level values
+
+The project contains 5 text files for each level and it already has the information required for each level from previous milestones. The levels created using the level builder overwrites the exiting default level files. If you choose to "RESET" the file is reset to the default values and the new changes made to the file using the level builder is deleted.	
