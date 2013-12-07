@@ -99,7 +99,6 @@ public class BuilderController implements ActionListener {
 	}
 
 	public BuilderModel getModel() {
-		// TODO Auto-generated method stub
 		return model;
 	}
 
