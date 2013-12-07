@@ -154,7 +154,7 @@ public class Square
 	/**
 	 * Adds the plant to the square
 	 * 
-	 * @plant the plant
+	 * @param plant the plant
 	 */
 	public void add(Plant plant) {
 		// System.out.println("Add plant");
@@ -166,7 +166,7 @@ public class Square
 	/**
 	 * Adds the bullet to the square
 	 * 
-	 * @bullet the bullet
+	 * @param bullet the bullet
 	 */
 	public void add(Bullet bullet) {
 		// System.out.println("adding bullet @ " + getRow() + "," + getCol());
@@ -177,7 +177,7 @@ public class Square
 	/**
 	 * Adds the zombie to the square
 	 * 
-	 * @zombie the zombie
+	 * @param zombie the zombie
 	 */
 	public void add(Zombie zombie) {
 		zombies.add(zombie);
@@ -191,8 +191,7 @@ public class Square
 	/**
 	 * removes the unit from the square
 	 * 
-	 * @param p
-	 *            the unit element
+	 * @param unit the unit element
 	 * 
 	 * @return returns true when the unit can be removed
 	 */

@@ -32,9 +32,10 @@ public class Player {
 	 * Model in charge of this game
 	 */
 	private GameModel model;
+
 	/**
 	 * public constructor for player
-	 * @param The model the player is interacting with
+	 * @param model The model the player is interacting with
 	 */
 	public Player(GameModel model){
 		this.model = model;

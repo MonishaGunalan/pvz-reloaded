@@ -76,7 +76,8 @@ public class Strip
 	}
 
 	/**
-	 * @returns list of squares contained in this strip
+	 * Returns the list of squares that is this strip
+	 * @return list of squares contained in this strip
 	 */
 	public Square[] getSquares() {
 		return squares;
@@ -111,8 +112,7 @@ public class Strip
 
 	/**
 	 * Gets the Terrain
-	 * 
-	 * @return
+	 * @return The type of terrain for this strip
 	 */
 	public Terrain getTerrain() {
 		return this.terrain;

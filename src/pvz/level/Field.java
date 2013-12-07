@@ -65,8 +65,8 @@ public class Field
 	
 
 	/**
-	 * @param TerrianType
-	 *            [] the terrian type for each row
+	 * @param terrianType [] the terrian type for each row
+	 * @param level Reference for the associated level
 	 */
 	public Field(String[] terrainType, Level level) {
 		// Create field
@@ -127,7 +127,7 @@ public class Field
 	/**
 	 * Add sun points to the field
 	 * 
-	 * @param int amount of sun points to be added
+	 * @param amt amount of sun points to be added
 	 */
 	public void addSun(int amt) {
 		if (amt > 0) {
@@ -138,7 +138,7 @@ public class Field
 	/**
 	 * Use sun points from the field
 	 * 
-	 * @param int amount of sun points to be used
+	 * @param amt amount of sun points to be used
 	 */
 	public void useSun(int amt) {
 		int currentSunPoints = getTotalSun();
