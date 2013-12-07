@@ -148,7 +148,7 @@ public abstract class Zombie
 			if (dest == null) {
 				// Let level know we reached the end so it can handle it
 				setChanged();
-				notifyObservers("zombie won");
+				notifyObservers(Player.PlayStatus.GAMEOVER);
 				// Exit function without moving zombie
 				return;
 			}

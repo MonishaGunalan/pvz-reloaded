@@ -254,6 +254,7 @@ public class Level
 	 */
 	public void update(Observable o, Object arg) {
 		if (arg instanceof Player.PlayStatus) {
+
 			Player.PlayStatus ps = (Player.PlayStatus)arg;
 			switch (ps) {
 			case ZOMBIE_DIED: totalZombies--;
