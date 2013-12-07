@@ -151,8 +151,7 @@ public class GameModel extends Observable {
 
 	/**
 	 * Play the game with a given a command
-	 * @param command
-	 * @return
+	 * @param command Data about player input
 	 */
 	public void play(PlayerCommand command){
 		Player.PlayStatus result = player.play(command);
@@ -244,7 +243,6 @@ public class GameModel extends Observable {
 	/**
 	 * Creates a deep copy of the current level and
 	 * pushes it onto the undo stack. Redos are cleared.
-	 * @param level Level to be saved
 	 * @return True if successful, false otherwise
 	 */
 	public boolean writeHistory() throws java.io.NotSerializableException {

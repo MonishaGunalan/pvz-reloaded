@@ -2,12 +2,11 @@ package pvz.level;
 import java.io.OutputStream;
 import java.io.InputStream;
 
-
 /**
  * ByteArrayOutputStream implementation that doesn't synchronize methods
  * and doesn't copy the data on toByteArray().
  *
- * @Author Tianming Zhuang
+ * @author Tianming Zhuang
  * 100875151
  */
 public class FastByteArrayOutputStream extends OutputStream {

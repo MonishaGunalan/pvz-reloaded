@@ -306,7 +306,7 @@ public class Level
 
 	/**
 	 * Returns the cooldowns
-	 * @return
+	 * @return A list of cooldowns to keep track of plant creation
 	 */
 	public Map<Plant.Type,Cooldown> getTriggeredCooldowns() {
 		return this.triggeredCooldowns;
