@@ -1,4 +1,4 @@
-Level1
+level1
 MUD 0
 MUD 0
 GRASS 6

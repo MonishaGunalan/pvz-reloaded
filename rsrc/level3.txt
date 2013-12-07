@@ -1,4 +1,4 @@
-Level3
+level3
 MUD 0
 GRASS 5
 10 normal
