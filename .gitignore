@@ -17,7 +17,7 @@ compile-pvz
 compile-test
 main
 gui
-test
+tests
 
 # Misc
 build.xml

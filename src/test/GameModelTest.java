@@ -11,7 +11,7 @@ public class GameModelTest {
 
 	@Before
 	public void setUp() {
-		model = new GameModel(false);
+		model = new GameModel();
 	}
 
 	@Test
@@ -101,7 +101,7 @@ public class GameModelTest {
 	
 	@Test
 	public void testRealTime(){
-		GameModel m1 = new GameModel(true);
+		GameModel m1 = new GameModel(true, true);
 		try {
 			Thread.sleep(3000);
 		} catch (InterruptedException e) {
@@ -112,7 +112,7 @@ public class GameModelTest {
 	}
 	@Test
 	public void testStopTimer(){
-		GameModel m1 = new GameModel(true);
+		GameModel m1 = new GameModel(true, true);
 		m1.stopTimer();
 		try {
 			Thread.sleep(3000);
@@ -125,7 +125,7 @@ public class GameModelTest {
 	
 	@Test
 	public void testStartTime(){
-		GameModel m1 = new GameModel(true);
+		GameModel m1 = new GameModel(true, true);
 		m1.stopTimer();
 		m1.startTimer();
 		try {
@@ -135,6 +135,7 @@ public class GameModelTest {
 			e.printStackTrace();
 		}
 		assertTrue(m1.getLevel().getTurnNumber()==1);
+	}
 
 	@Test
 	public void saveAndLoad() {

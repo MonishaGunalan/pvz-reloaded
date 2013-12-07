@@ -28,7 +28,7 @@ public class OffensivePlantTest {
 	@Before
 	public void setUp() throws Exception {
 		//Mock the clases so we do not have to worry about the implemenation of the classes
-		GameModel model = new GameModel(false);
+		GameModel model = new GameModel();
 		level = model.getLevel();
 		field = level.getField();
 		strip = field.getStrip()[0];

@@ -29,7 +29,7 @@ public class PlayerTest {
 	int row, col;
 	@Before
 	public void setUp() throws Exception {
-		model = new GameModel(false);
+		model = new GameModel();
 		level = model.getLevel();
 		row = 0;
 		col = 0;
