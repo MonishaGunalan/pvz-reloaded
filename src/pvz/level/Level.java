@@ -258,7 +258,6 @@ public class Level
 			Player.PlayStatus ps = (Player.PlayStatus)arg;
 			switch (ps) {
 			case ZOMBIE_DIED: totalZombies--;
-			System.out.println("Zombie dead "+ totalZombies);
 			break;
 			case GAMEOVER: hasLost = true;
 			break;
