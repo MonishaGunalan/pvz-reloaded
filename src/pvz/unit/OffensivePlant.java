@@ -1,8 +1,7 @@
 package pvz.unit;
 import java.util.Observable;
-
 import pvz.level.Square;
-import pvz.unit.Bullet.Type;
+
 
 /**
  * This class is the abstract superclass for all plant
@@ -18,6 +17,10 @@ import pvz.unit.Bullet.Type;
  */
 public abstract class OffensivePlant
 	extends Plant {
+	/**
+	 * Serial id
+	 */
+	private static final long serialVersionUID = 1L;
 	/**
 	 * Default bullet the plant shoots
 	 */
@@ -91,9 +94,9 @@ public abstract class OffensivePlant
 	 * Update the observer
 	 */
 	public void update(Observable o, Object arg) {
-		System.out.println("Gonna try to shoot...");
-		System.out.println("hasZombieAfter: " + getSquare().hasZombieAfter());
-		System.out.println("shootCD available: " + shootCD.isAvailable());
+		//System.out.println("Gonna try to shoot...");
+		//System.out.println("hasZombieAfter: " + getSquare().hasZombieAfter());
+		//System.out.println("shootCD available: " + shootCD.isAvailable());
 		if (getSquare().hasZombieAfter() && shootCD.isAvailable()) {
 				shoot();
 				shootCD.trigger();

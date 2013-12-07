@@ -1,10 +1,6 @@
 package pvz.level;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Scanner;
 
+import java.util.Scanner;
 import pvz.unit.Cooldown;
 import pvz.unit.Plant;
 import pvz.unit.PlantFactory;
@@ -21,6 +17,7 @@ public class Player {
 	public enum PlayStatus{
 		GAMEOVER,
 		VICTORY,
+		ZOMBIE_DIED,
 		NOT_ENOUGH_SUN,
 		INVALID_POSITION,
 		COOLDOWN_NOT_READY,
@@ -90,72 +87,65 @@ public class Player {
 	 * @param command The command to be input
 	 * @return The status of the play
 	 */
-	public PlayStatus play (PlayerCommand command){
+	public synchronized PlayStatus play (PlayerCommand command){
 		if (command == null){
 			return PlayStatus.INVALID_COMMAND;
 		}
 		switch(command.getCommandType()){
-			case PLANT_SEED:
-				// Save previous state to undo stack before
-				// we modify the level state
-				try {
-					model.writeHistory();
-				} catch(Exception e) {
-					e.printStackTrace();
-				}
-				//Try to create the plant based on the playercommand
-				Plant.Type p = null;
-				String plant = command.getArg();
-				//Get the plant type
-				try{
-					p = Plant.Type.valueOf(plant.toUpperCase());
-				}catch(IllegalArgumentException e){
-					System.out.println("No such plant!");
-					return PlayStatus.INVALID_COMMAND;
-				}
-				PlayStatus growSuccessful = null;
-				//try to grow the plant
-				if (p != null){
-					growSuccessful = grow(command.getRow(),command.getCol(),p);
+		case PLANT_SEED:
+			//Try to create the plant based on the playercommand
+			Plant.Type p = null;
+			String plant = command.getArg();
+			//Get the plant type
+			try{
+				p = Plant.Type.valueOf(plant.toUpperCase());
+			}catch(IllegalArgumentException e){
+				System.out.println("No such plant!");
+				return PlayStatus.INVALID_COMMAND;
+			}
+			PlayStatus growSuccessful = null;
+			//try to grow the plant
+			if (p != null){
+				growSuccessful = grow(command.getRow(),command.getCol(),p);
 
-				}
-				//increment turn if the grow was successful
-				if (growSuccessful == PlayStatus.NORMAL){
-					model.getLevel().incrementTurn();
-
-				} else{
-					return growSuccessful;
-				}
-				break;
-
-			case UNDO:
-				if (model.undo()){
-					return PlayStatus.NORMAL;
-				}else {
-					return PlayStatus.COMMAND_FAILED;
-				}
-			case REDO:
-				if (model.redo()){
-					return PlayStatus.NORMAL;
-				}else {
-					return PlayStatus.COMMAND_FAILED;
-				}
-			case DO_NOTHING:
-				// Save previous state to undo stack before
-				// we modify the level state
-				try {
-					model.writeHistory();
-				} catch(Exception e) {
-					e.printStackTrace();
-				}
-				//Player does nothing that turn, just increment to the next turn
+			}
+			//Return the command if it was not successful
+			if (growSuccessful != PlayStatus.NORMAL){
+				return growSuccessful;
+			}
+			//Only increment turn if it is being played turn based
+			if (!model.isRealTime()){
 				model.getLevel().incrementTurn();
+			}
+			break;
 
-				break;
-			default:
+		case UNDO:
+			if (model.undo()){
+				return PlayStatus.NORMAL;
+			}else {
+				return PlayStatus.COMMAND_FAILED;
+			}
+		case REDO:
+			if (model.redo()){
+				return PlayStatus.NORMAL;
+			}else {
+				return PlayStatus.COMMAND_FAILED;
+			}
+		case DO_NOTHING:
+			// Save previous state to undo stack before
+			// we modify the level state
+			try {
+				model.writeHistory();
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			//Player does nothing that turn, just increment to the next turn
+			model.getLevel().incrementTurn();
+
+			break;
+		default:
 		}
 		if (model.getLevel().isGameOver()) {
-			System.out.println("Game OVer ");
 			return PlayStatus.GAMEOVER;
 		}else if (model.getLevel().isVictorious())
 			return PlayStatus.VICTORY;
@@ -206,9 +196,9 @@ public class Player {
 		//Make the plant and update the level based on the plant
 		Plant plant = PlantFactory.makePlant(plantType, square);
 		if (plant != null){
-			System.out.println("Plant Created");
-			System.out.println(plant.getClass().getName());
-			System.out.println("Using " + plantCost + " amount of sun.");
+			//System.out.println("Plant Created");
+			//System.out.println(plant.getClass().getName());
+			//System.out.println("Using " + plantCost + " amount of sun.");
 			model.getLevel().getField().useSun(plantCost);
 			model.getLevel().addObserver(plant);
 			model.getLevel().getTriggeredCooldowns().get(plantType).trigger();

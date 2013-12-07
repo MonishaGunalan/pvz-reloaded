@@ -13,7 +13,10 @@ import pvz.level.Strip;
  *
  */
 public class GamePanel extends JPanel {
-
+	/**
+	 * Serial id
+	 */
+	private static final long serialVersionUID = 1L;
 	/**
 	 * The grid of square label
 	 */

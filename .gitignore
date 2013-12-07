@@ -1,6 +1,7 @@
 *.class
 .project
 .classpath
+.gitignore
 
 # Package Files #
 *.war
@@ -17,3 +18,7 @@ compile-test
 main
 gui
 test
+
+# Misc
+build.xml
+workbench.xmi

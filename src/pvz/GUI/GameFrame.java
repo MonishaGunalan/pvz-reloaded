@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import pvz.level.Field;
 import pvz.level.GameModel;
 import pvz.level.Player;
-import pvz.level.Player.PlayStatus;
+
 import pvz.unit.Plant;
 import pvz.unit.PlantFactory;
 
@@ -26,23 +26,26 @@ import pvz.unit.PlantFactory;
  * 
  */
 public class GameFrame extends JFrame implements Observer {
-
 	/**
-	 * Option for when the level has finished
+	 * Serial id
 	 */
-	private String [] options = {"Next Level"};
+	private static final long serialVersionUID = 1L;
 
 	private JPanel commandPanel, seedPanel, consolePanel, statusPanel;
 	/**
-	 * The pannel that contains all the game object
+	 * The panel that contains all the game object
 	 */
 	private GamePanel gamePanel;
 	/**
 	 * The buttons are make package wide so the controller has access to the buttons 
 	 * Buttons that allow user interaction
 	 */
-	JButton plantButton, doNothingButton, undoButton, redoButton,
-	sunflowerButton, peashooterButton,wallnutButton, cancelButton;
+	private JButton plantButton, doNothingButton, undoButton, redoButton,
+	sunflowerButton, peashooterButton,wallnutButton;
+
+	private JButton pauseButton, resumeButton;
+
+
 	/**
 	 * Labels display to user
 	 */
@@ -60,6 +63,8 @@ public class GameFrame extends JFrame implements Observer {
 	 */
 	private Plant.Type plantMode;
 
+	private JLabel turnLabel;
+
 	/**
 	 * Public constructor
 	 */
@@ -69,6 +74,7 @@ public class GameFrame extends JFrame implements Observer {
 		this.controller = controller;
 		// Initialize all the objects
 		this.model = model;
+		this.addWindowListener(controller);
 		gamePanel = new GamePanel(controller, model);
 
 		commandPanel = new JPanel();
@@ -97,14 +103,26 @@ public class GameFrame extends JFrame implements Observer {
 		consolePanel.setLayout(new GridLayout(0, 1));
 
 		statusPanel = new JPanel();
-		statusPanel.setLayout(new GridLayout(0, 4));
+		statusPanel.setLayout(new GridLayout(1, 0));
 		statusPanel.add(new JLabel("Sun"));
 		sunLabel = new JLabel();
 		statusPanel.add(sunLabel);
-
+		statusPanel.add(new JLabel("Turn: "));
+		turnLabel = new JLabel();
+		statusPanel.add(turnLabel);
+		pauseButton = new JButton("Pause");
+		pauseButton.addActionListener(controller);
+		if (!model.isRealTime()){
+			pauseButton.setEnabled(false);
+		}
+		resumeButton = new JButton("Resume");
+		resumeButton.setEnabled(false);
+		resumeButton.addActionListener(controller);
+		statusPanel.add(pauseButton);
+		statusPanel.add(resumeButton);
 		consolePanel.add(statusPanel);
 		consolePanel.add(userMessage);
-
+		
 		this.add(commandPanel, BorderLayout.NORTH);
 
 		this.add(gamePanel, BorderLayout.CENTER);
@@ -152,6 +170,9 @@ public class GameFrame extends JFrame implements Observer {
 		userMessage.setText("");
 		gamePanel.updateLevel();
 		sunLabel.setText("" + model.getLevel().getField().getTotalSun());
+		turnLabel.setText("" + model.getLevel().getTurnNumber());
+		undoButton.setEnabled(model.hasUndo());
+		redoButton.setEnabled(model.hasRedo());
 		revalidate();
 		repaint();
 	}
@@ -190,10 +211,10 @@ public class GameFrame extends JFrame implements Observer {
 			break;
 		case GAMEOVER:
 			updateLevel();
-			if (plantMode != null){
+	/*		if (plantMode != null){
 				hideSeedPanel();
 
-			}
+			}*/
 			JOptionPane.showMessageDialog(this, "You have lost.");
 			System.exit(0);
 			break;
@@ -205,18 +226,18 @@ public class GameFrame extends JFrame implements Observer {
 			break;
 		case NORMAL:
 			updateLevel();
-			if (plantMode != null){
+	/*		if (plantMode != null){
 				hideSeedPanel();
-			}
+			}*/
 			break;
 		case NOT_ENOUGH_SUN:
 			JOptionPane.showMessageDialog(this, "You require more sun points.");
 			break;
 		case VICTORY:
 			updateLevel();
-			if (plantMode != null){
+		/*	if (plantMode != null){
 				hideSeedPanel();
-			}
+			}*/
 			JOptionPane.showMessageDialog(this, "Congratulation on beating the level!!\n Start the next level");
 			try{
 				model.loadNextLevel();
@@ -252,5 +273,41 @@ public class GameFrame extends JFrame implements Observer {
 	 */
 	public void setPlantMode(Plant.Type plantMode){
 		this.plantMode = plantMode;
+	}
+	public JButton getPlantButton() {
+		return plantButton;
+	}
+
+	public JButton getDoNothingButton() {
+		return doNothingButton;
+	}
+
+	public JButton getRedoButton() {
+		return redoButton;
+	}
+	
+	public JButton getUndoButton() {
+		return undoButton;
+	}
+
+
+	public JButton getPeashooterButton() {
+		return peashooterButton;
+	}
+
+	public JButton getWallnutButton() {
+		return wallnutButton;
+	}
+
+	public JButton getSunflowerButton() {
+		return sunflowerButton;
+	}
+
+	public JButton getPauseButton() {
+		return pauseButton;
+	}
+
+	public JButton getResumeButton() {
+		return resumeButton;
 	}
 }

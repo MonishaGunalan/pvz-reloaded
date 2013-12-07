@@ -29,7 +29,7 @@ public class PlayerTest {
 	int row, col;
 	@Before
 	public void setUp() throws Exception {
-		model = new GameModel();
+		model = new GameModel(false);
 		level = model.getLevel();
 		row = 0;
 		col = 0;
@@ -88,7 +88,7 @@ public class PlayerTest {
 	public void testPlayWithPlantSeedPlayerCommandWithPeashooter() {
 		PlayerCommand command = new PlayerCommand(PlayerCommand.CommandType.PLANT_SEED, 0, 0, "peashooter");
 		Player.PlayStatus status = player.play(command);
-		System.out.println("STATUS: " + status);
+		//System.out.println("STATUS: " + status);
 		//assertTrue(player.play(command) == Player.PlayStatus.NORMAL);
 		assertTrue(status == Player.PlayStatus.NORMAL);
 	}

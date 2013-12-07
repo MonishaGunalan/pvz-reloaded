@@ -15,7 +15,6 @@ import pvz.unit.Plant;
 import pvz.unit.PlantFactory;
 import pvz.unit.Zombie;
 import pvz.unit.ZombieFactory;
-import pvz.unit.Plant.Type;
 import pvz.level.SerializableObservable;
 
 /**
@@ -241,10 +240,6 @@ public class Level
 					Square lastSquareInStrip = this.field.getStrip()[i]
 							.getSquares()[Field.DEFAULT_MAX_POSN - 1];
 
-					System.out.println("Putting a zombie on "
-							+ lastSquareInStrip.getLoc());
-					z.setSquare(lastSquareInStrip);
-
 					//System.out.println("Putting a zombie on " + lastSquareInStrip.getLoc());
 					z.setSquare(lastSquareInStrip);
 
@@ -258,12 +253,12 @@ public class Level
 	 * Update method from zombie if it has reached the end
 	 */
 	public void update(Observable o, Object arg) {
-		if (arg instanceof String) {
-			String s = (String)arg;
-			switch (s) {
-			case "zombie died": totalZombies--;
+		if (arg instanceof Player.PlayStatus) {
+			Player.PlayStatus ps = (Player.PlayStatus)arg;
+			switch (ps) {
+			case ZOMBIE_DIED: totalZombies--;
 			break;
-			case "zombie won": hasLost = true;
+			case GAMEOVER: hasLost = true;
 			break;
 			}
 		}

@@ -1,13 +1,10 @@
 package pvz.level;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.Observable;
-import java.util.Observer;
 import java.util.Deque;
 import java.util.ArrayDeque;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * The GameModel is the model for the Plant vs Zombie game
@@ -51,20 +48,38 @@ public class GameModel extends Observable {
 	 * Number of implemented levels
 	 */
 	public static final int MIN_LEVEL = 1;
+	/**
+	 * Current max of level
+	 */
 	public static final int MAX_LEVEL = 5;
-
+	/**
+	 * The task done at the timer
+	 */
+	private TimerTask task;
+	/**
+	 * The timer
+	 */
+	Timer t;
+	/**
+	 * Whether or not the game is being played in real time
+	 */
+	boolean realTime;
 	/**
 	 * The public constructor for Game Model
 	 * If player data exists it is loaded and level and player is initialized
 	 * 
 	 */
-	public GameModel(){
+	public GameModel(boolean realTime){
 		level = new Level(1);
 		player = new Player(this);	
 
 		// Initialize undo and redo stacks
 		undoStack = new ArrayDeque<Level>();
 		redoStack = new ArrayDeque<Level>();
+		this.realTime = realTime;
+		if (realTime){
+			startTimer();
+		}
 	}	
 
 	/**
@@ -90,6 +105,10 @@ public class GameModel extends Observable {
 		this.level = new Level(levelNum);
 		setChanged();
 		this.notifyObservers(Player.PlayStatus.NORMAL);
+		if (realTime){
+			stopTimer();
+			startTimer();
+		}
 	}
 
 	/**
@@ -106,7 +125,9 @@ public class GameModel extends Observable {
 	 */
 	public void play(PlayerCommand command){
 		Player.PlayStatus result = player.play(command);
-
+		if (result == Player.PlayStatus.GAMEOVER || Player.PlayStatus.VICTORY== result){
+			stopTimer();
+		}
 		setChanged();
 		this.notifyObservers(result);
 	}
@@ -138,7 +159,7 @@ public class GameModel extends Observable {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		new GameModel().play();
+		new GameModel(false).play();
 	}
 
 	/**
@@ -179,6 +200,7 @@ public class GameModel extends Observable {
 		//System.out.println("Current turn: " + level.getTurnNumber());
 		// If there's something on the undo stack
 		if (!undoStack.isEmpty()) {
+		//	stopTimer();
 			// Make deep copy of current level and push onto 
 			// redo stack
 			Level savedLevel = (Level)DeepCopy.copy(this.getLevel());
@@ -188,6 +210,7 @@ public class GameModel extends Observable {
 			this.level = undoStack.removeFirst();
 			//System.out.println("Undo turn: " + level.getTurnNumber());
 			//printStackSizes();
+	//		startTimer();
 			return true;
 		}
 
@@ -221,7 +244,65 @@ public class GameModel extends Observable {
 
 		return false;
 	}
+	
+	
+	/**
+	 * Starts the timer if is running in real time
+	 */
+	public void startTimer(){
+		if (!realTime){
+			return;
+		}
+		task = new TimerTask(){
 
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				GameModel.this.play(new PlayerCommand(PlayerCommand.CommandType.DO_NOTHING));
+			}
+			
+		};
+		//System.out.println("Timer start");
+		t = new Timer();
+		t.scheduleAtFixedRate(task, 2000, 2000);
+		
+	}
+	
+	/**
+	 * Stops the timer if playing in real time
+	 */
+	public void stopTimer(){
+		
+		if (!realTime){
+			return;
+		}
+		//System.out.println("Timer stopped");
+		t.cancel();
+	}
+	
+	/**
+	 * Returns if the game is playing in real time
+	 * @return true if the game in playing in real time
+	 */
+	public boolean isRealTime(){
+		return realTime;
+	}
+
+	/**
+	 * Returns if there is any undo left
+	 * @return true if the undo stack is not empty
+	 */
+	public boolean hasUndo(){
+		return !undoStack.isEmpty();
+	}
+	
+	/**
+	 * Returns if there is any undo left
+	 * @return true if the redo stack is not empty
+	 */
+	public boolean hasRedo(){
+		return !redoStack.isEmpty();
+	}
 	//@Override
 	//public void update(Observable o, Object args) {
 		//this.writeHistory();

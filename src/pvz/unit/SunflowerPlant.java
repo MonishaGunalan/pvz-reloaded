@@ -14,6 +14,10 @@ import pvz.level.Square;
 public class SunflowerPlant
 	extends GeneratorPlant {	
 	/**
+	 * Serial id
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
 	 * Max HP of a sunflower plant
 	 */
 	public static final int MAX_HP = 3;

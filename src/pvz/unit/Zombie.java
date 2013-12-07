@@ -1,11 +1,8 @@
 package pvz.unit;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Observable;
-
 import pvz.level.Field;
 import pvz.level.Square;
-import pvz.level.Field.Direction;
+import pvz.level.Player;
 
 /**
  * This class is the parent of all zombie types.<!-- --> It contains default information
@@ -17,7 +14,10 @@ import pvz.level.Field.Direction;
  */
 public abstract class Zombie 
 	extends PerishableUnit {
-
+	/**
+	 * Serial id
+	 */
+	private static final long serialVersionUID = 1L;
 	/**
 	 * The default attack damage of zombie
 	 */
@@ -183,12 +183,19 @@ public abstract class Zombie
 		// If there's a plant on the square, attack it
 		// otherwise, move when possible
 		if (getSquare().hasPlant()) {
-			System.out.println(getSquare().getLoc());
+			//System.out.println(getSquare().getLoc());
 			this.hit(getSquare().getPlant());
 		} else if (!getSquare().hasBullet()) {
 			this.move(Field.Direction.LEFT);
 		}
 		super.tickCooldowns();
+	}
+
+	@Override
+	public void die() {
+		setChanged();
+		notifyObservers(Player.PlayStatus.ZOMBIE_DIED);
+		super.die();
 	}
 
 

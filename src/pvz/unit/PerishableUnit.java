@@ -12,6 +12,10 @@ package pvz.unit;
 public abstract class PerishableUnit 
 	extends Unit{
 	/**
+	 * Serial id
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
 	 * Maximum hp
 	 */
     protected int maxHP;
@@ -73,8 +77,6 @@ public abstract class PerishableUnit
 	 */
 	public void die(){
 		//System.out.println(this.getClass().getName() + "@" + getRow() + "," + getCol() + " is dead.");
-		setChanged();
-		notifyObservers("zombie died");
 		getSquare().getStrip().getField().getLevel().deleteObserver(this);
 		this.getSquare().remove(this);
 	}

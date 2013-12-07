@@ -15,7 +15,10 @@ import pvz.level.Square;
  */
 public abstract class DefensivePlant
 	extends Plant {
-
+	/**
+	 * Serial id
+	 */
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Default constructor

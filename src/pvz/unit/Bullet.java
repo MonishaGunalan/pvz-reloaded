@@ -19,6 +19,10 @@ import pvz.level.Field.Direction;
 public abstract class Bullet
 extends Unit {
 	/**
+	 * Serial id
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
 	 * Number of turns bullet must wait after moving
 	 */
 	protected Cooldown moveCD;

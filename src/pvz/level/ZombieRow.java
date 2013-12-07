@@ -3,7 +3,6 @@ package pvz.level;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.io.Serializable;
 
 import pvz.unit.Zombie;
 
@@ -15,6 +14,10 @@ import pvz.unit.Zombie;
  */
 
 public class ZombieRow implements Serializable{
+	/**
+	 * Serial id
+	 */
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * The list of ZombieTurns in in this row
