@@ -15,6 +15,8 @@ import pvz.level.Level;
 import pvz.level.Square;
 import pvz.level.Strip;
 import pvz.unit.NormalZombie;
+import pvz.unit.ConeZombie;
+import pvz.unit.FlagZombie;
 import pvz.unit.Zombie;
 
 public class PerishableUnitTest {
@@ -39,6 +41,14 @@ public class PerishableUnitTest {
 	@Test
 		public void maxHP(){
 			assertTrue("Current maxHP should be equal to the default.", testZombie1.getMaxHP() == NormalZombie.MAX_HP);
+		}
+	@Test
+		public void maxHP(){
+			assertTrue("Current maxHP should be equal to the default.", testZombie1.getMaxHP() == ConeZombie.MAX_HP);
+		}
+	@Test
+		public void maxHP(){
+			assertTrue("Current maxHP should be equal to the default.", testZombie1.getMaxHP() == FlagZombie.MAX_HP);
 		}
 
 	@Test
