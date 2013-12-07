@@ -1,8 +1,5 @@
 package pvz.level;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.HashMap;
+
 import java.util.Scanner;
 import pvz.unit.Cooldown;
 import pvz.unit.Plant;
@@ -30,14 +27,6 @@ public class Player {
 		COMMAND_FAILED,
 		NORMAL;
 	}
-	/**
-	 * The starting score;
-	 */
-	public final int START_SCORE = 0;
-	/**
-	 * The current score of the player (Not implemented)
-	 */
-	private int score;
 
 	/**
 	 * Model in charge of this game
@@ -50,7 +39,6 @@ public class Player {
 	 */
 	public Player(GameModel model){
 		this.model = model;
-		score = START_SCORE;
 	}
 
 	/**
@@ -76,17 +64,17 @@ public class Player {
 			System.out.println(model.getLevel().getField().toString());
 			//Handle game ending conditions
 			if (currentStatus == PlayStatus.GAMEOVER) {
-				System.out.println(model.LOSE_MSG);
+				System.out.println(GameModel.LOSE_MSG);
 				break;
 			} else if (currentStatus == PlayStatus.VICTORY)  {
 				int currentLevelNumber = model.getLevel().getLevelNumber();
 				// If we reach max level, print win message and exit
-				if (currentLevelNumber >= model.MAX_LEVEL) {
-					System.out.println(model.WIN_MSG);
+				if (currentLevelNumber >= GameModel.MAX_LEVEL) {
+					System.out.println(GameModel.WIN_MSG);
 					break;
 				} else {
 					// Load next level
-					System.out.println(model.NEXT_LEVEL_MSG);
+					System.out.println(GameModel.NEXT_LEVEL_MSG);
 					model.loadNextLevel();
 				}
 			}

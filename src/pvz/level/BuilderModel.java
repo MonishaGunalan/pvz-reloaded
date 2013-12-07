@@ -45,6 +45,8 @@ public class BuilderModel extends Observable {
 		defaultLevels[3] = "level4\nGRASS 4\n37 normal\n66 normal\n94 cone\n114 normal\nGRASS 5\n42 normal\n59 cone\n108 normal\n117 normal\n133 normal\nGRASS 5\n10 normal\n46 cone\n73 normal\n110 cone\n121 normal\nGRASS 4\n17 normal\n87 normal\n106 flag\n125 normal\nGRASS 5\n24 normal\n52 normal\n80 normal\n101 cone\n129 normal";
 		defaultLevels[4] = "level5\nGRASS 5\n22 normal\n46 normal\n76 cone\n94 normal\n115 normal\nGRASS 5\n28 normal\n52 cone\n100 normal\n108 normal\n118 normal\nGRASS 5\n34 normal\n70 normal\n82 normal\n121 cone\n129 normal\nGRASS 5\n16 normal\n58 normal\n88 normal\n112 normal\n123 normal\nGRASS 5\n10 normal\n40 normal\n64 cone\n105 flag\n126 normal";
 	}
+	
+
 
 	/**
 	 * set level to edit

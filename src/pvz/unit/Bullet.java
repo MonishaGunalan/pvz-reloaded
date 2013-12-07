@@ -3,7 +3,7 @@ import java.util.Observable;
 
 import pvz.level.Field;
 import pvz.level.Square;
-import pvz.level.Field.Direction;
+
 
 /**
  * This is an abstract superclass for all bullets
