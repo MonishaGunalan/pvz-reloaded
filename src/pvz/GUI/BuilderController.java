@@ -101,5 +101,9 @@ public class BuilderController implements ActionListener {
 		new BuilderController();
 	}
 
+	public BuilderModel getModel() {
+		// TODO Auto-generated method stub
+		return model;
+	}
 
 }
