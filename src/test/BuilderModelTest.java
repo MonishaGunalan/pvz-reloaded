@@ -1,4 +1,9 @@
 package test;
+/**
+ * Test cases for Builder Model Class 
+ * 
+ * @author Monisha Gunalan 100871444
+ */
 import static org.junit.Assert.*;
 
 import org.junit.After;
