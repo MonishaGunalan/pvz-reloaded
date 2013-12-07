@@ -127,9 +127,7 @@ public class BuilderView extends JFrame implements Observer {
 				l += "level" + (i + 1) + " ";
 			}
 		}
-		System.out.println("Edit Levels: " + l);
 		editLevels = l.split(" ");
-		System.out.println(editLevels.length);
 		return editLevels;
 	}
 
@@ -142,7 +140,6 @@ public class BuilderView extends JFrame implements Observer {
 			this.remove(levelName);
 		}
 		numFrame++;
-		System.out.println("_________Select Terrian_______ ");
 		gridPanel1.setLayout(new GridLayout(5, 2));
 		this.setLayout(new BorderLayout());
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -251,7 +248,7 @@ public class BuilderView extends JFrame implements Observer {
 			}
 		}
 		WriteToFileButton();
-		System.out.println("All required input is received");
+		System.out.println("All required input received");
 	}
 
 	/**
@@ -356,46 +353,37 @@ public class BuilderView extends JFrame implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
-		System.out.println("update");
 		this.setVisible(false);
 		gridPanel1.removeAll();
 		String s = (String) arg;
 		if (arg.equals("level1")) {
 			this.currentLevel = "level1";
 			submitLevel.setVisible(false);
-			System.out.println("create frame "+ arg);
 			createTerrainSelectionFrame("level1");
 
 		} else if (arg.equals("level2")) {
 			this.currentLevel = "level2";
 			submitLevel.setVisible(false);
-			System.out.println("create frame "+ arg);
 			createTerrainSelectionFrame("level2");
 
 		} else if (arg.equals("level3")) {
 			this.currentLevel = "level3";
 			submitLevel.setVisible(false);
-			System.out.println("create frame "+ arg);
 			createTerrainSelectionFrame("level3");
 		
 		} else if (arg.equals("level4")) {
 			this.currentLevel = "level4";
 			submitLevel.setVisible(false);
-			System.out.println("create frame "+ arg);
 			createTerrainSelectionFrame("level4");
 		
 		} else if (arg.equals("level5")) {
 			this.currentLevel = "level5";
 			submitLevel.setVisible(false);
-			System.out.println("create frame "+ arg);
 			createTerrainSelectionFrame("level5");
 		
 		} else if (arg.equals("Terrain List")) {
 			submitTerrain.setVisible(false);
 			String terrains[] = controller.getModel().getTerrianList();
-			for (int i = 0; i < terrains.length; i++) {
-				System.out.println(terrains[i]);
-			}
 			createnumZombieFrame(terrains);
 		} else if (arg.equals("Num Zombies")) {
 			submitNumZombie.setVisible(false);
@@ -403,32 +391,25 @@ public class BuilderView extends JFrame implements Observer {
 			createInputZombies(0);
 
 		} else if (arg.equals("row1")) {
-			System.out.println(arg);
-			System.out.println("row1");
 			submitZombies.setVisible(false);
 			createInputZombies(1);
 
 		} else if (arg.equals("row2")) {
-			System.out.println(arg);
 			submitZombies.setVisible(false);
 			createInputZombies(2);
 
 		} else if (arg.equals("row3")) {
-			System.out.println(arg);
 			submitZombies.setVisible(false);
 			createInputZombies(3);
 
 		} else if (arg.equals("row4")) {
-			System.out.println(arg);
 			submitZombies.setVisible(false);
 			createInputZombies(4);
 
 		} else if (arg.equals("row5")) {
-			System.out.println(arg);
 			submitZombies.setVisible(false);
 			createInputZombies(5);
 		} else if(arg.equals("Done Editing")){
-			System.out.println(arg);
 			this.remove(submitWrite);
 			this.remove(levelName);
 			createEndFrame();

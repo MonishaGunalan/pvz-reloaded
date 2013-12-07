@@ -1,4 +1,5 @@
 package pvz.level;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -27,7 +28,6 @@ public class BuilderModel extends Observable {
 	 */
 	private String[][] row1, row2, row3, row4, row5;
 
-
 	public BuilderModel() {
 		this.terrainList = new String[ROWSIZE];
 		this.numZombies = new int[ROWSIZE];
@@ -46,38 +46,70 @@ public class BuilderModel extends Observable {
 		defaultLevels[4] = "level5\nGRASS 5\n22 normal\n46 normal\n76 cone\n94 normal\n115 normal\nGRASS 5\n28 normal\n52 cone\n100 normal\n108 normal\n118 normal\nGRASS 5\n34 normal\n70 normal\n82 normal\n121 cone\n129 normal\nGRASS 5\n16 normal\n58 normal\n88 normal\n112 normal\n123 normal\nGRASS 5\n10 normal\n40 normal\n64 cone\n105 flag\n126 normal";
 	}
 
+	/**
+	 * set level to edit
+	 * 
+	 * @param levels
+	 *            levels that has to be edited
+	 */
 	public void setLevelsToEdit(String[] levels) {
 		levelSelection = levels.clone();
 		this.setChanged();
 		this.notifyObservers(levelSelection[0]);
 	}
 
+	/**
+	 * set the terrian for each row
+	 * 
+	 * @param terrain
+	 *            terrian for each row
+	 */
 	public void setTerrainList(String[] terrain) {
 		this.terrainList = terrain;
 		this.setChanged();
 		this.notifyObservers("Terrain List");
 	}
 
+	/**
+	 * 
+	 * @return the array of terrians
+	 */
 	public String[] getTerrianList() {
 		return terrainList;
 	}
 
+	/**
+	 * set the number of zombies for each row
+	 * 
+	 * @param num
+	 *            array of number of zombies
+	 */
+
 	public void setNumZombies(int[] num) {
 		numZombies = num.clone();
-		System.out.println("print numZombies");
-		for (int i = 0; i < num.length; i++) {
-			System.out.println(numZombies[i]);
-		}
 		this.setChanged();
 		this.notifyObservers("Num Zombies");
 	}
 
+	/**
+	 * 
+	 * @return array of number of zombies for each row
+	 */
 	public int[] getNumZombies() {
 		return numZombies;
 	}
 
+	/**
+	 * set the zombie type and turn
+	 * 
+	 * @param zType
+	 *            array of zombie type and turn
+	 * @param rowNum
+	 *            row index
+	 * @param size
+	 *            number of zombies in this row
+	 */
 	public void setZombieType(String[][] zType, int rowNum, int size) {
-		System.out.println("rowNum = " + rowNum);
 		if (rowNum == 1) {
 			row1 = new String[size][2];
 			for (int i = 0; i < size; i++) {
@@ -109,11 +141,17 @@ public class BuilderModel extends Observable {
 		this.notifyObservers("row" + rowNum);
 	}
 
+	/**
+	 * write the new level information to the file
+	 * 
+	 * @param level
+	 *            level name
+	 */
 	public void writeToFile(String level) {
 		BufferedWriter out;
 		int position = 0;
 		try {
-			out = new BufferedWriter(new FileWriter("rsrc/"+level + ".txt"));
+			out = new BufferedWriter(new FileWriter("rsrc/" + level + ".txt"));
 			out.write(this.toString(level));
 			out.close();
 		} catch (IOException e) {
@@ -123,8 +161,6 @@ public class BuilderModel extends Observable {
 		for (int i = 0; i < levelSelection.length; i++) {
 			if (levelSelection[i].equals(level)) {
 				position = i;
-				System.out.println("current position: " + i);
-				System.out.println("next position: " + (i + 1));
 				if (position == levelSelection.length - 1) {
 					System.out.println("No More Levels to Edit");
 					this.setChanged();
@@ -140,18 +176,18 @@ public class BuilderModel extends Observable {
 
 	}
 
+	/**
+	 * 
+	 * @param level
+	 * @return returns the string representation of the level information for
+	 *         input file
+	 */
 	public String toString(String level) {
-
-		System.out.println("print numZombies");
-		for (int i = 0; i < 5; i++) {
-			System.out.println(numZombies[i]);
-		}
-
 		String s = "";
 		s += level + "\n";
 		for (int i = 0; i < terrainList.length; i++) {
 			s += terrainList[i] + " " + numZombies[i] + "\n";
-			if (terrainList[i].equals("GRASS") && numZombies[i]!=0 ) {
+			if (terrainList[i].equals("GRASS") && numZombies[i] != 0) {
 				switch (i + 1) {
 				case 1:
 					s += writeZombies(numZombies[0], i + 1, row1);
@@ -169,40 +205,52 @@ public class BuilderModel extends Observable {
 					s += writeZombies(numZombies[4], i + 1, row5);
 					break;
 				default:
-					System.out.println("did not work");
+					System.out.println("error");
 				}
 			}
 		}
 		return s;
 	}
 
+	/**
+	 * write the type and turn for each zombie to a file
+	 * 
+	 * @param zombieCount number of zombies
+	 * @param rowSelection row index
+	 * @param row array with zombie type and turn information
+	 * @return string representation to write to the file
+	 */
 	public String writeZombies(int zombieCount, int rowSelection, String[][] row) {
-		System.out.println("write Zombies " + rowSelection + ", row size = "
-				+ row.length + ", Zombie Count = " + zombieCount);
 		String z = "";
 		for (int i = 0; i < zombieCount; i++) {
 			for (int j = 1; j >= 0; j--) {
 				z += row[i][j] + " ";
-				System.out.println(row[i][j]);
 			}
 			z += "\n";
 		}
 		return z;
 	}
 
+	/**
+	 * reset the level to the default values
+	 */
 	public void reset() {
-		System.out.println("model.reset");
 		for (int i = 0; i < NUM_LEVELS; i++) {
-			writeDefaultToFile("level"+(i+1),defaultLevels[i]);
+			writeDefaultToFile("level" + (i + 1), defaultLevels[i]);
 		}
 		this.setChanged();
 		this.notifyObservers("Reset");
 	}
-	
-	public void writeDefaultToFile(String level, String contents){
+
+	/**
+	 * write the default values to the input file
+	 * @param level level name
+	 * @param contents contents to be written to the file
+	 */
+	public void writeDefaultToFile(String level, String contents) {
 		BufferedWriter out;
 		try {
-			out = new BufferedWriter(new FileWriter("rsrc/"+level + ".txt"));
+			out = new BufferedWriter(new FileWriter("rsrc/" + level + ".txt"));
 			out.write(contents);
 			out.close();
 		} catch (IOException e) {

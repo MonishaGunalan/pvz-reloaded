@@ -37,8 +37,6 @@ public class BuilderController implements ActionListener {
 	 */
 
 	public void actionPerformed(ActionEvent e) {
-		System.out.println("Action Performed");
-		System.out.println(e.getActionCommand());
 
 		if (e.getSource().getClass() == JButton.class) {
 			if (e.getActionCommand().equals("Terrain Selection")) {
@@ -69,7 +67,6 @@ public class BuilderController implements ActionListener {
 				model.writeToFile("level5");
 			}else if(e.getActionCommand().equals("Level Selection")){
 				String level[] = view.getLevelSelection();
-				System.out.println("level Selection- Action Performed");
 				model.setLevelsToEdit(level);
 			}else if(e.getActionCommand().equals("quit")){
 				view.exit();
