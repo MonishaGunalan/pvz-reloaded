@@ -128,6 +128,10 @@ public class BuilderView extends JFrame implements Observer {
 			}
 		}
 		editLevels = l.split(" ");
+		if(editLevels.length == 0){
+			System.out.println("Exiting Level Builder");
+			this.dispose();
+		}
 		return editLevels;
 	}
 
@@ -349,6 +353,7 @@ public class BuilderView extends JFrame implements Observer {
 		this.add(quit,  BorderLayout.EAST);
 		this.add(reset, BorderLayout.WEST);
 		setVisible(true);
+		this.pack();
 	}
 
 	@Override
