@@ -1,4 +1,6 @@
 package pvz.unit;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
 import pvz.level.Field;
 import pvz.level.Square;
@@ -183,7 +185,6 @@ public abstract class Zombie
 		// If there's a plant on the square, attack it
 		// otherwise, move when possible
 		if (getSquare().hasPlant()) {
-			//System.out.println(getSquare().getLoc());
 			this.hit(getSquare().getPlant());
 		} else if (!getSquare().hasBullet()) {
 			this.move(Field.Direction.LEFT);
