@@ -1,4 +1,9 @@
 package pvz.GUI;
+/**
+ * view creates the Interactive GUI to get the Level information 
+ * 
+ * @author Monisha Gunalan 100871444
+ */
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
@@ -14,25 +19,65 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class BuilderView extends JFrame implements Observer {
-
+	/**
+	 * number of rows in the field
+	 */
 	public static final int ROWSIZE = 5;
+	/**
+	 * number of levels
+	 */
 	public static final int NUM_LEVELS = 5;
-	private JComboBox[] terrainInput;
-	private JComboBox[] zombieTypes;
+	/**
+	 * array of dropdown menus to choose terrain and zombie Types
+	 */
+	private JComboBox[] terrainInput, zombieTypes;
+	/**
+	 * text field to get input
+	 */
 	private JTextField[] numZombie, zombieTurn;
+	/**
+	 * submit button to perform an action
+	 */
 	private JButton submitLevel, submitTerrain, submitNumZombie, submitZombies,
 			submitWrite, quit, reset;
+	/**
+	 * panel to hold the components
+	 */
 	private JPanel gridPanel1;
+	/**
+	 * level builder controller
+	 */
 	private BuilderController controller;
+	/**
+	 * number of zombies in each row
+	 */
 	private int[] numberOfZombies;
+	/**
+	 * levels that has to be editted
+	 */
 	private String[] editLevels;
-	private JCheckBox level1, level2, level3, level4, level5;
+	/**
+	 * check box to choose the levels to edit
+	 */
 	private JCheckBox[] levelList;
+	/**
+	 * the current level being editted
+	 */
 	private String currentLevel;
+	/**
+	 * number of input frames
+	 */
 	private int numFrame;
+	/**
+	 * label for level name
+	 */
 	private JLabel levelName;
-	//private BorderLayout borderLayout;
 
+	/**
+	 * 
+	 * @param title title of the frame
+	 * @param controller level builder controller
+	 */
 	public BuilderView(String title, BuilderController controller) {
 		super(title);
 		this.currentLevel = null;
@@ -43,6 +88,9 @@ public class BuilderView extends JFrame implements Observer {
 		
 	}
 
+	/**
+	 * select the levels to build
+	 */
 	public void createLevelSelectionFrame() {
 
 		gridPanel1.setLayout(new GridLayout(6, 1));
@@ -68,6 +116,10 @@ public class BuilderView extends JFrame implements Observer {
 		setVisible(true);
 	}
 
+	/**
+	 * 
+	 * @return return the levels selected to build
+	 */
 	public String[] getLevelSelection() {
 		String l = "";
 		for (int i = 0; i < NUM_LEVELS; i++) {
@@ -81,6 +133,9 @@ public class BuilderView extends JFrame implements Observer {
 		return editLevels;
 	}
 
+	/**
+	 * select the terrian types for each row
+	 */
 	public void createTerrainSelectionFrame(String level) {
 		if(numFrame >0){
 			this.remove(submitWrite);
@@ -115,6 +170,9 @@ public class BuilderView extends JFrame implements Observer {
 		setVisible(true);
 	}
 
+	/**
+	 * @return return the string array of the terrian types selected
+	 */
 	public String[] getTerrainList() {
 
 		String[] terrainList = { "", "", "", "", "" };
@@ -124,6 +182,10 @@ public class BuilderView extends JFrame implements Observer {
 		return terrainList;
 	}
 
+	/**
+	 * Select the number of zombies for each row
+	 * @param terrain array of terrians selected
+	 */
 	public void createnumZombieFrame(String[] terrain) {
 		gridPanel1.setLayout(new GridLayout(5, 3));
 		this.setLayout(new BorderLayout());
@@ -155,7 +217,10 @@ public class BuilderView extends JFrame implements Observer {
 		setVisible(true);
 
 	}
-
+	/**
+	 * 
+	 * @return return the array of number of zombies in each row
+	 */
 	public int[] getNumZombie() {
 
 		int numZombieList[] = { 0, 0, 0, 0, 0 };
@@ -173,6 +238,10 @@ public class BuilderView extends JFrame implements Observer {
 		return numZombieList;
 	}
 
+	/**
+	 * Find the rows for which the zombie type and turn has to be received as inputs
+	 * @param startIndex
+	 */
 	public void createInputZombies(int startIndex) {
 
 		for (int i = startIndex; i < ROWSIZE; i++) {
@@ -185,6 +254,10 @@ public class BuilderView extends JFrame implements Observer {
 		System.out.println("All required input is received");
 	}
 
+	/**
+	 * Find the rows for which the zombie type and turn has to be received as inputs
+	 * @param startIndex
+	 */
 	private void getInputZombies(int numRows, int rowIndex) {
 		gridPanel1.setLayout(new GridLayout(numRows + 2, 3));
 		this.setLayout(new BorderLayout());
@@ -218,12 +291,15 @@ public class BuilderView extends JFrame implements Observer {
 		this.add(submitZombies, BorderLayout.SOUTH);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-		// setSize(300, 300);
 		setVisible(true);
-		this.pack();
 
 	}
 
+	/**
+	 * 
+	 * @param rowNum row index
+	 * @return string array with zombie type and turn
+	 */
 	public String[][] getZombieType(int rowNum) {
 		int numZ = numberOfZombies[rowNum - 1];
 		int testTurn = 1;
@@ -241,6 +317,9 @@ public class BuilderView extends JFrame implements Observer {
 		return type;
 	}
 
+	/**
+	 * create a button to write to a file
+	 */
 	public void WriteToFileButton() {
 		gridPanel1.setVisible(false);
 		this.setLayout(new BorderLayout());
@@ -250,14 +329,18 @@ public class BuilderView extends JFrame implements Observer {
 		submitWrite.setActionCommand(currentLevel);
 		this.add(submitWrite, BorderLayout.SOUTH);
 		setSize(200, 200);
-		
 		setVisible(true);
 	}
-	
+	/**
+	 * exit the frame
+	 */
 	public void exit(){
 		this.dispose();
 	}
 	
+	/**
+	 * choose to quit or to reset
+	 */
 	public void createEndFrame(){
 		quit = new JButton("Quit");
 		reset = new JButton("Reset");
@@ -268,7 +351,6 @@ public class BuilderView extends JFrame implements Observer {
 		this.setLayout(new BorderLayout());
 		this.add(quit,  BorderLayout.EAST);
 		this.add(reset, BorderLayout.WEST);
-		this.pack();
 		setVisible(true);
 	}
 
