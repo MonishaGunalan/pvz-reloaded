@@ -10,7 +10,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import pvz.level.BuilderModel;
+import pvz.level.*;
 
 public class BuilderModelTest {
 	private BuilderModel model;

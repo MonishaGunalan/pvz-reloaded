@@ -87,7 +87,7 @@ public class GameModelTest {
 
 	@Test
 	public void undoWithEmptyUndoStack() {
-		assertFalse(model.redo());
+		assertFalse(model.undo());
 	}
 
 	@Test
@@ -95,9 +95,6 @@ public class GameModelTest {
 		assertFalse(model.redo());
 	}
 
-	@Test
-	public void loadLevelValidLevel() {
-	}
 	
 	@Test
 	public void testRealTime(){
